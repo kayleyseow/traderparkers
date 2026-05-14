@@ -1,0 +1,6472 @@
+[
+  {
+    "storeNumber": "737",
+    "name": "Birmingham",
+    "streetAddress": "205 Summit Blvd",
+    "city": "Birmingham",
+    "state": "AL",
+    "zip": "35243",
+    "phone": "205-969-7802",
+    "url": "https://locations.traderjoes.com/al/birmingham/737/"
+  },
+  {
+    "storeNumber": "838",
+    "name": "Hoover",
+    "streetAddress": "1769 Montgomery Hwy",
+    "city": "Hoover",
+    "state": "AL",
+    "zip": "35244",
+    "phone": "205-202-7715",
+    "url": "https://locations.traderjoes.com/al/hoover/838/"
+  },
+  {
+    "storeNumber": "785",
+    "name": "Huntsville",
+    "streetAddress": "1100 Mid City Dr Nw",
+    "city": "Huntsville",
+    "state": "AL",
+    "zip": "35806",
+    "phone": "256-890-7156",
+    "url": "https://locations.traderjoes.com/al/huntsville/785/"
+  },
+  {
+    "storeNumber": "756",
+    "name": "Little Rock",
+    "streetAddress": "11500 Financial Centre Pky",
+    "city": "Little Rock",
+    "state": "AR",
+    "zip": "72211",
+    "phone": "501-954-7659",
+    "url": "https://locations.traderjoes.com/ar/little-rock/756/"
+  },
+  {
+    "storeNumber": "177",
+    "name": "Ahwatukee",
+    "streetAddress": "4025 E Chandler Blvd",
+    "city": "Phoenix",
+    "state": "AZ",
+    "zip": "85048",
+    "phone": "480-759-2293",
+    "url": "https://locations.traderjoes.com/az/phoenix/177/"
+  },
+  {
+    "storeNumber": "91",
+    "name": "ASU",
+    "streetAddress": "940 E. University Drive",
+    "city": "Tempe",
+    "state": "AZ",
+    "zip": "85281",
+    "phone": "480-303-9974",
+    "url": "https://locations.traderjoes.com/az/tempe/91/"
+  },
+  {
+    "storeNumber": "287",
+    "name": "Chandler",
+    "streetAddress": "3961 S Arizona Ave",
+    "city": "Chandler",
+    "state": "AZ",
+    "zip": "85248",
+    "phone": "520-453-3452",
+    "url": "https://locations.traderjoes.com/az/chandler/287/"
+  },
+  {
+    "storeNumber": "285",
+    "name": "gilbert",
+    "streetAddress": "1779 E. Williams Field Rd.",
+    "city": "Gilbert",
+    "state": "AZ",
+    "zip": "85295",
+    "phone": "480-857-9878",
+    "url": "https://locations.traderjoes.com/az/gilbert/285/"
+  },
+  {
+    "storeNumber": "85",
+    "name": "Glendale",
+    "streetAddress": "8078 W Bell Rd",
+    "city": "Glendale",
+    "state": "AZ",
+    "zip": "85308",
+    "phone": "928-397-9921",
+    "url": "https://locations.traderjoes.com/az/glendale/85/"
+  },
+  {
+    "storeNumber": "289",
+    "name": "Goodyear",
+    "streetAddress": "N Bullard Ave & Mcdowell Rd",
+    "city": "Goodyear",
+    "state": "AZ",
+    "zip": "85395",
+    "phone": "480-712-6645",
+    "url": "https://locations.traderjoes.com/az/goodyear/289/"
+  },
+  {
+    "storeNumber": "89",
+    "name": "Mesa",
+    "streetAddress": "2050 E Baseline Rd",
+    "city": "Mesa",
+    "state": "AZ",
+    "zip": "85204",
+    "phone": "480-632-0951",
+    "url": "https://locations.traderjoes.com/az/mesa/89/"
+  },
+  {
+    "storeNumber": "87",
+    "name": "N Scottsdale",
+    "streetAddress": "7555 E Frank Lloyd Wright",
+    "city": "Scottsdale",
+    "state": "AZ",
+    "zip": "85260",
+    "phone": "480-367-8920",
+    "url": "https://locations.traderjoes.com/az/scottsdale/87/"
+  },
+  {
+    "storeNumber": "96",
+    "name": "Oro Valley",
+    "streetAddress": "7912 N Oracle",
+    "city": "Oro Valley",
+    "state": "AZ",
+    "zip": "85704",
+    "phone": "520-797-4207",
+    "url": "https://locations.traderjoes.com/az/oro-valley/96/"
+  },
+  {
+    "storeNumber": "282",
+    "name": "Paradise Valley",
+    "streetAddress": "4726 East Shea Blvd",
+    "city": "Phoenix",
+    "state": "AZ",
+    "zip": "85028",
+    "phone": "602-485-7788",
+    "url": "https://locations.traderjoes.com/az/phoenix/282/"
+  },
+  {
+    "storeNumber": "90",
+    "name": "Phoenix - Town & Country",
+    "streetAddress": "4821 N 20Th St",
+    "city": "Phoenix",
+    "state": "AZ",
+    "zip": "85016",
+    "phone": "602-912-9022",
+    "url": "https://locations.traderjoes.com/az/phoenix/90/"
+  },
+  {
+    "storeNumber": "283",
+    "name": "Prescott",
+    "streetAddress": "252 N Lee Blvd",
+    "city": "Prescott",
+    "state": "AZ",
+    "zip": "86303",
+    "phone": "928-443-9075",
+    "url": "https://locations.traderjoes.com/az/prescott/283/"
+  },
+  {
+    "storeNumber": "286",
+    "name": "Queen Creek",
+    "streetAddress": "21186 S. Ellsworth Loop Rd",
+    "city": "Queen Creek",
+    "state": "AZ",
+    "zip": "85142",
+    "phone": "480-877-7213",
+    "url": "https://locations.traderjoes.com/az/queen-creek/286/"
+  },
+  {
+    "storeNumber": "94",
+    "name": "Scottsdale",
+    "streetAddress": "6202 N Scottsdale Rd",
+    "city": "Scottsdale",
+    "state": "AZ",
+    "zip": "85253",
+    "phone": "480-948-9886",
+    "url": "https://locations.traderjoes.com/az/scottsdale/94/"
+  },
+  {
+    "storeNumber": "92",
+    "name": "Surprise",
+    "streetAddress": "14095 W Grand Ave",
+    "city": "Surprise",
+    "state": "AZ",
+    "zip": "85374",
+    "phone": "623-546-1640",
+    "url": "https://locations.traderjoes.com/az/surprise/92/"
+  },
+  {
+    "storeNumber": "93",
+    "name": "Tempe",
+    "streetAddress": "6460 S Mcclintock Dr",
+    "city": "Tempe",
+    "state": "AZ",
+    "zip": "85283",
+    "phone": "480-838-4142",
+    "url": "https://locations.traderjoes.com/az/tempe/93/"
+  },
+  {
+    "storeNumber": "288",
+    "name": "Tucson",
+    "streetAddress": "2150 E Broadway Blvd",
+    "city": "Tucson",
+    "state": "AZ",
+    "zip": "85719",
+    "phone": "",
+    "url": "https://locations.traderjoes.com/az/tucson/288/"
+  },
+  {
+    "storeNumber": "95",
+    "name": "Tucson",
+    "streetAddress": "1101 N Wilmot Rd",
+    "city": "Tucson",
+    "state": "AZ",
+    "zip": "85712",
+    "phone": "520-733-1313",
+    "url": "https://locations.traderjoes.com/az/tucson/95/"
+  },
+  {
+    "storeNumber": "191",
+    "name": "Tucson - Campbell & Limberlost",
+    "streetAddress": "4209 N Campbell Ave",
+    "city": "Tucson",
+    "state": "AZ",
+    "zip": "85719",
+    "phone": "520-325-0069",
+    "url": "https://locations.traderjoes.com/az/tucson/191/"
+  },
+  {
+    "storeNumber": "88",
+    "name": "Tucson - Crossroads",
+    "streetAddress": "4766 E Grant Rd",
+    "city": "Tucson",
+    "state": "AZ",
+    "zip": "85712",
+    "phone": "520-323-4500",
+    "url": "https://locations.traderjoes.com/az/tucson/88/"
+  },
+  {
+    "storeNumber": "247",
+    "name": "Agoura Hills",
+    "streetAddress": "28941 Canwood St",
+    "city": "Agoura Hills",
+    "state": "CA",
+    "zip": "91301",
+    "phone": "818-865-8217",
+    "url": "https://locations.traderjoes.com/ca/agoura-hills/247/"
+  },
+  {
+    "storeNumber": "109",
+    "name": "Alameda",
+    "streetAddress": "2217 South Shore Ctr",
+    "city": "Alameda",
+    "state": "CA",
+    "zip": "94501",
+    "phone": "510-769-5450",
+    "url": "https://locations.traderjoes.com/ca/alameda/109/"
+  },
+  {
+    "storeNumber": "195",
+    "name": "Aliso Viejo",
+    "streetAddress": "26541 Aliso Creek Rd",
+    "city": "Aliso Viejo",
+    "state": "CA",
+    "zip": "92656",
+    "phone": "949-643-5531",
+    "url": "https://locations.traderjoes.com/ca/aliso-viejo/195/"
+  },
+  {
+    "storeNumber": "295",
+    "name": "Anaheim Hills",
+    "streetAddress": "6336 E Santa Ana Canyon Rd",
+    "city": "Anaheim Hills",
+    "state": "CA",
+    "zip": "92807",
+    "phone": "",
+    "url": "https://locations.traderjoes.com/ca/anaheim-hills/295/"
+  },
+  {
+    "storeNumber": "117",
+    "name": "Arroyo Grande",
+    "streetAddress": "955 Rancho Pkwy",
+    "city": "Arroyo Grande",
+    "state": "CA",
+    "zip": "93420",
+    "phone": "805-474-6114",
+    "url": "https://locations.traderjoes.com/ca/arroyo-grande/117/"
+  },
+  {
+    "storeNumber": "14",
+    "name": "Bakersfield",
+    "streetAddress": "8200 Stockdale Hwy",
+    "city": "Bakersfield",
+    "state": "CA",
+    "zip": "93311",
+    "phone": "661-837-8863",
+    "url": "https://locations.traderjoes.com/ca/bakersfield/14/"
+  },
+  {
+    "storeNumber": "186",
+    "name": "Berkeley",
+    "streetAddress": "1885 University Ave",
+    "city": "Berkeley",
+    "state": "CA",
+    "zip": "94703",
+    "phone": "510-204-9074",
+    "url": "https://locations.traderjoes.com/ca/berkeley/186/"
+  },
+  {
+    "storeNumber": "11",
+    "name": "Brea",
+    "streetAddress": "2500 E Imperial Hwy",
+    "city": "Brea",
+    "state": "CA",
+    "zip": "92821",
+    "phone": "714-257-1180",
+    "url": "https://locations.traderjoes.com/ca/brea/11/"
+  },
+  {
+    "storeNumber": "201",
+    "name": "Brentwood",
+    "streetAddress": "5451 Lone Tree Way",
+    "city": "Brentwood",
+    "state": "CA",
+    "zip": "94513",
+    "phone": "925-516-3044",
+    "url": "https://locations.traderjoes.com/ca/brentwood/201/"
+  },
+  {
+    "storeNumber": "124",
+    "name": "Burbank",
+    "streetAddress": "214 E Alameda Ave",
+    "city": "Burbank",
+    "state": "CA",
+    "zip": "91502",
+    "phone": "818-848-4299",
+    "url": "https://locations.traderjoes.com/ca/burbank/124/"
+  },
+  {
+    "storeNumber": "254",
+    "name": "Calabasas",
+    "streetAddress": "23741 Calabasas Rd.",
+    "city": "Calabasas",
+    "state": "CA",
+    "zip": "91302",
+    "phone": "818-591-6758",
+    "url": "https://locations.traderjoes.com/ca/calabasas/254/"
+  },
+  {
+    "storeNumber": "114",
+    "name": "Camarillo",
+    "streetAddress": "363 Carmen Dr",
+    "city": "Camarillo",
+    "state": "CA",
+    "zip": "93010",
+    "phone": "805-388-1925",
+    "url": "https://locations.traderjoes.com/ca/camarillo/114/"
+  },
+  {
+    "storeNumber": "73",
+    "name": "Campbell",
+    "streetAddress": "1875 Bascom Ave",
+    "city": "Campbell",
+    "state": "CA",
+    "zip": "95008",
+    "phone": "408-369-7823",
+    "url": "https://locations.traderjoes.com/ca/campbell/73/"
+  },
+  {
+    "storeNumber": "263",
+    "name": "Canyon Country",
+    "streetAddress": "19037 Golden Valley Rd",
+    "city": "Santa Clarita",
+    "state": "CA",
+    "zip": "91387",
+    "phone": "661-276-1430",
+    "url": "https://locations.traderjoes.com/ca/santa-clarita/263/"
+  },
+  {
+    "storeNumber": "64",
+    "name": "Capitola",
+    "streetAddress": "3555 Clares St",
+    "city": "Capitola",
+    "state": "CA",
+    "zip": "95010",
+    "phone": "831-464-0115",
+    "url": "https://locations.traderjoes.com/ca/capitola/64/"
+  },
+  {
+    "storeNumber": "220",
+    "name": "Carlsbad",
+    "streetAddress": "2629 Gateway Rd",
+    "city": "Carlsbad",
+    "state": "CA",
+    "zip": "92009",
+    "phone": "760-603-8473",
+    "url": "https://locations.traderjoes.com/ca/carlsbad/220/"
+  },
+  {
+    "storeNumber": "84",
+    "name": "Castro Valley",
+    "streetAddress": "22224 Redwood Road",
+    "city": "Castro Valley",
+    "state": "CA",
+    "zip": "94546",
+    "phone": "510-538-2738",
+    "url": "https://locations.traderjoes.com/ca/castro-valley/84/"
+  },
+  {
+    "storeNumber": "118",
+    "name": "Cathedral City",
+    "streetAddress": "67720 E Palm Canyon Dr",
+    "city": "Cathedral City",
+    "state": "CA",
+    "zip": "92234",
+    "phone": "760-202-0090",
+    "url": "https://locations.traderjoes.com/ca/cathedral-city/118/"
+  },
+  {
+    "storeNumber": "104",
+    "name": "Cerritos",
+    "streetAddress": "12861 Towne Center Dr",
+    "city": "Cerritos",
+    "state": "CA",
+    "zip": "90703",
+    "phone": "562-402-5148",
+    "url": "https://locations.traderjoes.com/ca/cerritos/104/"
+  },
+  {
+    "storeNumber": "184",
+    "name": "Chatsworth",
+    "streetAddress": "10330 Mason Ave",
+    "city": "Chatsworth",
+    "state": "CA",
+    "zip": "91311",
+    "phone": "818-341-3010",
+    "url": "https://locations.traderjoes.com/ca/chatsworth/184/"
+  },
+  {
+    "storeNumber": "199",
+    "name": "Chico",
+    "streetAddress": "801 East Ave",
+    "city": "Chico",
+    "state": "CA",
+    "zip": "95926",
+    "phone": "530-343-9920",
+    "url": "https://locations.traderjoes.com/ca/chico/199/"
+  },
+  {
+    "storeNumber": "216",
+    "name": "Chino Hills",
+    "streetAddress": "13911 Peyton Drive",
+    "city": "Chino Hills",
+    "state": "CA",
+    "zip": "91709",
+    "phone": "909-627-1404",
+    "url": "https://locations.traderjoes.com/ca/chino-hills/216/"
+  },
+  {
+    "storeNumber": "120",
+    "name": "Chula Vista",
+    "streetAddress": "878 Eastlake Pkwy",
+    "city": "Chula Vista",
+    "state": "CA",
+    "zip": "91914",
+    "phone": "619-656-5370",
+    "url": "https://locations.traderjoes.com/ca/chula-vista/120/"
+  },
+  {
+    "storeNumber": "214",
+    "name": "Claremont",
+    "streetAddress": "475 W Foothill Blvd",
+    "city": "Claremont",
+    "state": "CA",
+    "zip": "91711",
+    "phone": "909-625-8784",
+    "url": "https://locations.traderjoes.com/ca/claremont/214/"
+  },
+  {
+    "storeNumber": "180",
+    "name": "Clovis",
+    "streetAddress": "1077 N Willow Ave",
+    "city": "Clovis",
+    "state": "CA",
+    "zip": "93611",
+    "phone": "559-325-3120",
+    "url": "https://locations.traderjoes.com/ca/clovis/180/"
+  },
+  {
+    "storeNumber": "60",
+    "name": "Concord",
+    "streetAddress": "1150 Concord Ave",
+    "city": "Concord",
+    "state": "CA",
+    "zip": "94520",
+    "phone": "925-689-2990",
+    "url": "https://locations.traderjoes.com/ca/concord/60/"
+  },
+  {
+    "storeNumber": "83",
+    "name": "Concord",
+    "streetAddress": "785 Oak Grove Rd",
+    "city": "Concord",
+    "state": "CA",
+    "zip": "94518",
+    "phone": "925-521-1134",
+    "url": "https://locations.traderjoes.com/ca/concord/83/"
+  },
+  {
+    "storeNumber": "213",
+    "name": "Corona",
+    "streetAddress": "2790 Cabot Dr",
+    "city": "Corona",
+    "state": "CA",
+    "zip": "92883",
+    "phone": "951-603-0299",
+    "url": "https://locations.traderjoes.com/ca/corona/213/"
+  },
+  {
+    "storeNumber": "35",
+    "name": "Costa Mesa",
+    "streetAddress": "640 W 17Th St",
+    "city": "Costa Mesa",
+    "state": "CA",
+    "zip": "92627",
+    "phone": "949-642-5134",
+    "url": "https://locations.traderjoes.com/ca/costa-mesa/35/"
+  },
+  {
+    "storeNumber": "290",
+    "name": "Costa Mesa",
+    "streetAddress": "2170 Harbor Blvd",
+    "city": "Costa Mesa",
+    "state": "CA",
+    "zip": "92627",
+    "phone": "949-208-7420",
+    "url": "https://locations.traderjoes.com/ca/costa-mesa/290/"
+  },
+  {
+    "storeNumber": "251",
+    "name": "Culver City",
+    "streetAddress": "6150 Slauson Ave",
+    "city": "Culver City",
+    "state": "CA",
+    "zip": "90230",
+    "phone": "310-313-0441",
+    "url": "https://locations.traderjoes.com/ca/culver-city/251/"
+  },
+  {
+    "storeNumber": "36",
+    "name": "Culver City",
+    "streetAddress": "9290 Culver Blvd",
+    "city": "Culver City",
+    "state": "CA",
+    "zip": "90232",
+    "phone": "310-202-1108",
+    "url": "https://locations.traderjoes.com/ca/culver-city/36/"
+  },
+  {
+    "storeNumber": "242",
+    "name": "cypress",
+    "streetAddress": "5245 Katella Ave.",
+    "city": "Cypress",
+    "state": "CA",
+    "zip": "90720",
+    "phone": "714-220-4930",
+    "url": "https://locations.traderjoes.com/ca/cypress/242/"
+  },
+  {
+    "storeNumber": "74",
+    "name": "Daly City",
+    "streetAddress": "417 Westlake Center",
+    "city": "Daly City",
+    "state": "CA",
+    "zip": "94015",
+    "phone": "650-755-3825",
+    "url": "https://locations.traderjoes.com/ca/daly-city/74/"
+  },
+  {
+    "storeNumber": "65",
+    "name": "Danville",
+    "streetAddress": "85 Railroad Ave",
+    "city": "Danville",
+    "state": "CA",
+    "zip": "94526",
+    "phone": "925-838-5757",
+    "url": "https://locations.traderjoes.com/ca/danville/65/"
+  },
+  {
+    "storeNumber": "182",
+    "name": "Davis",
+    "streetAddress": "885 Russell Blvd",
+    "city": "Davis",
+    "state": "CA",
+    "zip": "95616",
+    "phone": "530-757-2693",
+    "url": "https://locations.traderjoes.com/ca/davis/182/"
+  },
+  {
+    "storeNumber": "55",
+    "name": "Eagle Rock",
+    "streetAddress": "1566 Colorado Blvd",
+    "city": "Eagle Rock",
+    "state": "CA",
+    "zip": "90041",
+    "phone": "323-257-6422",
+    "url": "https://locations.traderjoes.com/ca/eagle-rock/55/"
+  },
+  {
+    "storeNumber": "108",
+    "name": "El Cerrito",
+    "streetAddress": "225 El Cerrito Plaza",
+    "city": "El Cerrito",
+    "state": "CA",
+    "zip": "94530",
+    "phone": "510-524-7609",
+    "url": "https://locations.traderjoes.com/ca/el-cerrito/108/"
+  },
+  {
+    "storeNumber": "190",
+    "name": "Elk Grove",
+    "streetAddress": "9670 Bruceville Road",
+    "city": "Elk Grove",
+    "state": "CA",
+    "zip": "95757",
+    "phone": "916-686-9980",
+    "url": "https://locations.traderjoes.com/ca/elk-grove/190/"
+  },
+  {
+    "storeNumber": "72",
+    "name": "Emeryville",
+    "streetAddress": "5700 Christie Ave",
+    "city": "Emeryville",
+    "state": "CA",
+    "zip": "94608",
+    "phone": "510-658-8091",
+    "url": "https://locations.traderjoes.com/ca/emeryville/72/"
+  },
+  {
+    "storeNumber": "25",
+    "name": "Encinitas",
+    "streetAddress": "115 N El Camino Real",
+    "city": "Encinitas",
+    "state": "CA",
+    "zip": "92024",
+    "phone": "760-634-2114",
+    "url": "https://locations.traderjoes.com/ca/encinitas/25/"
+  },
+  {
+    "storeNumber": "56",
+    "name": "Encino",
+    "streetAddress": "17640 Burbank Blvd",
+    "city": "Encino",
+    "state": "CA",
+    "zip": "91316",
+    "phone": "818-990-7751",
+    "url": "https://locations.traderjoes.com/ca/encino/56/"
+  },
+  {
+    "storeNumber": "105",
+    "name": "Escondido",
+    "streetAddress": "1885 S Centre City Pkwy",
+    "city": "Escondido",
+    "state": "CA",
+    "zip": "92025",
+    "phone": "760-233-4020",
+    "url": "https://locations.traderjoes.com/ca/escondido/105/"
+  },
+  {
+    "storeNumber": "71",
+    "name": "Fair Oaks",
+    "streetAddress": "5309 Sunrise Blvd",
+    "city": "Fair Oaks",
+    "state": "CA",
+    "zip": "95628",
+    "phone": "916-863-1744",
+    "url": "https://locations.traderjoes.com/ca/fair-oaks/71/"
+  },
+  {
+    "storeNumber": "101",
+    "name": "Fairfield",
+    "streetAddress": "1350 Gateway Blvd",
+    "city": "Fairfield",
+    "state": "CA",
+    "zip": "94533",
+    "phone": "707-434-0144",
+    "url": "https://locations.traderjoes.com/ca/fairfield/101/"
+  },
+  {
+    "storeNumber": "172",
+    "name": "Folsom",
+    "streetAddress": "850 East Bidwell",
+    "city": "Folsom",
+    "state": "CA",
+    "zip": "95630",
+    "phone": "916-817-8820",
+    "url": "https://locations.traderjoes.com/ca/folsom/172/"
+  },
+  {
+    "storeNumber": "77",
+    "name": "Fremont",
+    "streetAddress": "39324 Argonaut Way",
+    "city": "Fremont",
+    "state": "CA",
+    "zip": "94538",
+    "phone": "510-794-1386",
+    "url": "https://locations.traderjoes.com/ca/fremont/77/"
+  },
+  {
+    "storeNumber": "8",
+    "name": "Fresno",
+    "streetAddress": "8478 N. Friant Road",
+    "city": "Fresno",
+    "state": "CA",
+    "zip": "93720",
+    "phone": "559-433-6478",
+    "url": "https://locations.traderjoes.com/ca/fresno/8/"
+  },
+  {
+    "storeNumber": "53",
+    "name": "Glendale",
+    "streetAddress": "103 E Glenoaks Blvd",
+    "city": "Glendale",
+    "state": "CA",
+    "zip": "91207",
+    "phone": "818-507-8192",
+    "url": "https://locations.traderjoes.com/ca/glendale/53/"
+  },
+  {
+    "storeNumber": "110",
+    "name": "Goleta",
+    "streetAddress": "5767 Calle Real",
+    "city": "Goleta",
+    "state": "CA",
+    "zip": "93117",
+    "phone": "805-692-2234",
+    "url": "https://locations.traderjoes.com/ca/goleta/110/"
+  },
+  {
+    "storeNumber": "44",
+    "name": "Granada Hills",
+    "streetAddress": "11114 Balboa Blvd",
+    "city": "Granada Hills",
+    "state": "CA",
+    "zip": "91344",
+    "phone": "818-368-6461",
+    "url": "https://locations.traderjoes.com/ca/granada-hills/44/"
+  },
+  {
+    "storeNumber": "171",
+    "name": "Hastings Ranch",
+    "streetAddress": "467 N Rosemead Blvd",
+    "city": "Pasadena",
+    "state": "CA",
+    "zip": "91107",
+    "phone": "626-351-3399",
+    "url": "https://locations.traderjoes.com/ca/pasadena/171/"
+  },
+  {
+    "storeNumber": "248",
+    "name": "Hermosa Beach",
+    "streetAddress": "1100 Pacific Coast Hwy",
+    "city": "Hermosa Beach",
+    "state": "CA",
+    "zip": "90254",
+    "phone": "310-318-1767",
+    "url": "https://locations.traderjoes.com/ca/hermosa-beach/248/"
+  },
+  {
+    "storeNumber": "206",
+    "name": "Hollywood",
+    "streetAddress": "1600 N Vine St",
+    "city": "Los Angeles",
+    "state": "CA",
+    "zip": "90028",
+    "phone": "323-856-0689",
+    "url": "https://locations.traderjoes.com/ca/los-angeles/206/"
+  },
+  {
+    "storeNumber": "47",
+    "name": "Huntington Beach",
+    "streetAddress": "18681 Main St",
+    "city": "Huntington Beach",
+    "state": "CA",
+    "zip": "92648",
+    "phone": "714-848-9640",
+    "url": "https://locations.traderjoes.com/ca/huntington-beach/47/"
+  },
+  {
+    "storeNumber": "241",
+    "name": "Huntington Beach - Brookhurst",
+    "streetAddress": "21431 Brookhurst St",
+    "city": "Huntington Beach",
+    "state": "CA",
+    "zip": "92646",
+    "phone": "714-968-4070",
+    "url": "https://locations.traderjoes.com/ca/huntington-beach/241/"
+  },
+  {
+    "storeNumber": "244",
+    "name": "Huntington Harbour",
+    "streetAddress": "16821 Algonquin St",
+    "city": "Huntington Beach",
+    "state": "CA",
+    "zip": "92649",
+    "phone": "714-846-7307",
+    "url": "https://locations.traderjoes.com/ca/huntington-beach/244/"
+  },
+  {
+    "storeNumber": "37",
+    "name": "Irvine -  Walnut Village Ctr",
+    "streetAddress": "14443 Culver Dr",
+    "city": "Irvine",
+    "state": "CA",
+    "zip": "92604",
+    "phone": "949-857-8108",
+    "url": "https://locations.traderjoes.com/ca/irvine/37/"
+  },
+  {
+    "storeNumber": "111",
+    "name": "Irvine - University Ctr",
+    "streetAddress": "4225 Campus Dr",
+    "city": "Irvine",
+    "state": "CA",
+    "zip": "92612",
+    "phone": "949-509-6138",
+    "url": "https://locations.traderjoes.com/ca/irvine/111/"
+  },
+  {
+    "storeNumber": "210",
+    "name": "Irvine - Woodbury Town Center",
+    "streetAddress": "6222 Irvine Blvd",
+    "city": "Irvine",
+    "state": "CA",
+    "zip": "92620",
+    "phone": "949-551-6402",
+    "url": "https://locations.traderjoes.com/ca/irvine/210/"
+  },
+  {
+    "storeNumber": "42",
+    "name": "La Canada",
+    "streetAddress": "475 Foothill Blvd",
+    "city": "La Canada",
+    "state": "CA",
+    "zip": "91011",
+    "phone": "818-790-6373",
+    "url": "https://locations.traderjoes.com/ca/la-canada/42/"
+  },
+  {
+    "storeNumber": "5",
+    "name": "La Habra",
+    "streetAddress": "2101 W. Imperial Hwy",
+    "city": "La Habra",
+    "state": "CA",
+    "zip": "90631",
+    "phone": "562-266-1428",
+    "url": "https://locations.traderjoes.com/ca/la-habra/5/"
+  },
+  {
+    "storeNumber": "20",
+    "name": "La Jolla",
+    "streetAddress": "8657 Villa la Jolla Dr",
+    "city": "La Jolla",
+    "state": "CA",
+    "zip": "92037",
+    "phone": "858-546-8629",
+    "url": "https://locations.traderjoes.com/ca/la-jolla/20/"
+  },
+  {
+    "storeNumber": "24",
+    "name": "La Mesa",
+    "streetAddress": "5495 Grossmont Center Dr",
+    "city": "La Mesa",
+    "state": "CA",
+    "zip": "91942",
+    "phone": "619-466-0105",
+    "url": "https://locations.traderjoes.com/ca/la-mesa/24/"
+  },
+  {
+    "storeNumber": "189",
+    "name": "La Quinta",
+    "streetAddress": "46400 Washington St",
+    "city": "La Quinta",
+    "state": "CA",
+    "zip": "92253",
+    "phone": "760-777-1553",
+    "url": "https://locations.traderjoes.com/ca/la-quinta/189/"
+  },
+  {
+    "storeNumber": "277",
+    "name": "La Verne",
+    "streetAddress": "2330 Foothill Blvd",
+    "city": "La Verne",
+    "state": "CA",
+    "zip": "91750",
+    "phone": "909-901-4568",
+    "url": "https://locations.traderjoes.com/ca/la-verne/277/"
+  },
+  {
+    "storeNumber": "257",
+    "name": "Ladera Ranch",
+    "streetAddress": "27542 Antonio Pkwy",
+    "city": "Ladera Ranch",
+    "state": "CA",
+    "zip": "92694",
+    "phone": "949-239-6429",
+    "url": "https://locations.traderjoes.com/ca/ladera-ranch/257/"
+  },
+  {
+    "storeNumber": "115",
+    "name": "Lafayette",
+    "streetAddress": "3649 Mt Diablo Blvd",
+    "city": "Lafayette",
+    "state": "CA",
+    "zip": "94549",
+    "phone": "925-299-9344",
+    "url": "https://locations.traderjoes.com/ca/lafayette/115/"
+  },
+  {
+    "storeNumber": "39",
+    "name": "Laguna Hills",
+    "streetAddress": "24231 Avenida de la Carlota",
+    "city": "Laguna Hills",
+    "state": "CA",
+    "zip": "92653",
+    "phone": "949-461-0927",
+    "url": "https://locations.traderjoes.com/ca/laguna-hills/39/"
+  },
+  {
+    "storeNumber": "103",
+    "name": "Laguna Niguel - Ocean Ranch",
+    "streetAddress": "32351 Street of the Golden Lantern",
+    "city": "Laguna Niguel",
+    "state": "CA",
+    "zip": "92677",
+    "phone": "949-493-8599",
+    "url": "https://locations.traderjoes.com/ca/laguna-niguel/103/"
+  },
+  {
+    "storeNumber": "235",
+    "name": "Larkspur",
+    "streetAddress": "2052 Redwood Hwy",
+    "city": "Greenbrae",
+    "state": "CA",
+    "zip": "94904",
+    "phone": "415-945-7955",
+    "url": "https://locations.traderjoes.com/ca/greenbrae/235/"
+  },
+  {
+    "storeNumber": "208",
+    "name": "Livermore",
+    "streetAddress": "1122 A East Stanley Blvd",
+    "city": "Livermore",
+    "state": "CA",
+    "zip": "94550",
+    "phone": "925-243-1947",
+    "url": "https://locations.traderjoes.com/ca/livermore/208/"
+  },
+  {
+    "storeNumber": "194",
+    "name": "Long Beach - Bellflower Blvd",
+    "streetAddress": "2222 North Bellflower Blvd",
+    "city": "Long Beach",
+    "state": "CA",
+    "zip": "90815",
+    "phone": "562-596-2514",
+    "url": "https://locations.traderjoes.com/ca/long-beach/194/"
+  },
+  {
+    "storeNumber": "116",
+    "name": "Long Beach - Bixby Knolls",
+    "streetAddress": "4210 Long Beach Blvd",
+    "city": "Long Beach",
+    "state": "CA",
+    "zip": "90807",
+    "phone": "562-422-1020",
+    "url": "https://locations.traderjoes.com/ca/long-beach/116/"
+  },
+  {
+    "storeNumber": "43",
+    "name": "Long Beach - PCH",
+    "streetAddress": "6451 E Pacific Coast  Hwy",
+    "city": "Long Beach",
+    "state": "CA",
+    "zip": "90803",
+    "phone": "562-596-4388",
+    "url": "https://locations.traderjoes.com/ca/long-beach/43/"
+  },
+  {
+    "storeNumber": "127",
+    "name": "Los Altos",
+    "streetAddress": "2310 Homestead Rd",
+    "city": "Los Altos",
+    "state": "CA",
+    "zip": "94024",
+    "phone": "408-245-1917",
+    "url": "https://locations.traderjoes.com/ca/los-altos/127/"
+  },
+  {
+    "storeNumber": "31",
+    "name": "Los Angeles",
+    "streetAddress": "263 S la Brea Ave",
+    "city": "Los Angeles",
+    "state": "CA",
+    "zip": "90036",
+    "phone": "323-965-1989",
+    "url": "https://locations.traderjoes.com/ca/los-angeles/31/"
+  },
+  {
+    "storeNumber": "240",
+    "name": "Los Angeles - 3rd & Fairfax",
+    "streetAddress": "175 South Fairfax Ave",
+    "city": "Los Angeles",
+    "state": "CA",
+    "zip": "90036",
+    "phone": "323-931-4012",
+    "url": "https://locations.traderjoes.com/ca/los-angeles/240/"
+  },
+  {
+    "storeNumber": "237",
+    "name": "Los Angeles - Burton Way",
+    "streetAddress": "8500 Burton Way",
+    "city": "Los Angeles",
+    "state": "CA",
+    "zip": "90048",
+    "phone": "310-248-2984",
+    "url": "https://locations.traderjoes.com/ca/los-angeles/237/"
+  },
+  {
+    "storeNumber": "181",
+    "name": "Los Gatos",
+    "streetAddress": "15466 Los Gatos Blvd",
+    "city": "Los Gatos",
+    "state": "CA",
+    "zip": "95032",
+    "phone": "408-356-2324",
+    "url": "https://locations.traderjoes.com/ca/los-gatos/181/"
+  },
+  {
+    "storeNumber": "46",
+    "name": "Mall of Orange",
+    "streetAddress": "2114 N Tustin St",
+    "city": "Orange",
+    "state": "CA",
+    "zip": "92865",
+    "phone": "714-283-5697",
+    "url": "https://locations.traderjoes.com/ca/orange/46/"
+  },
+  {
+    "storeNumber": "106",
+    "name": "Manhattan Beach - Rosecrans Blvd",
+    "streetAddress": "1800 Rosecrans Blvd",
+    "city": "Manhattan Beach",
+    "state": "CA",
+    "zip": "90266",
+    "phone": "310-725-9800",
+    "url": "https://locations.traderjoes.com/ca/manhattan-beach/106/"
+  },
+  {
+    "storeNumber": "34",
+    "name": "Manhattan Beach Blvd",
+    "streetAddress": "1821 Manhattan Beach Blvd",
+    "city": "Manhattan Beach",
+    "state": "CA",
+    "zip": "90266",
+    "phone": "310-372-1274",
+    "url": "https://locations.traderjoes.com/ca/manhattan-beach/34/"
+  },
+  {
+    "storeNumber": "261",
+    "name": "Marina",
+    "streetAddress": "150 10Th St",
+    "city": "Marina",
+    "state": "CA",
+    "zip": "93933",
+    "phone": "831-281-7247",
+    "url": "https://locations.traderjoes.com/ca/marina/261/"
+  },
+  {
+    "storeNumber": "205",
+    "name": "Marina Del Rey",
+    "streetAddress": "4675 Admiralty Way",
+    "city": "Marina Del Rey",
+    "state": "CA",
+    "zip": "90292",
+    "phone": "310-301-4461",
+    "url": "https://locations.traderjoes.com/ca/marina-del-rey/205/"
+  },
+  {
+    "storeNumber": "69",
+    "name": "Menlo Park",
+    "streetAddress": "720 Menlo Ave",
+    "city": "Menlo Park",
+    "state": "CA",
+    "zip": "94025",
+    "phone": "650-323-2134",
+    "url": "https://locations.traderjoes.com/ca/menlo-park/69/"
+  },
+  {
+    "storeNumber": "170",
+    "name": "Millbrae",
+    "streetAddress": "765 Broadway",
+    "city": "Millbrae",
+    "state": "CA",
+    "zip": "94030",
+    "phone": "650-259-9142",
+    "url": "https://locations.traderjoes.com/ca/millbrae/170/"
+  },
+  {
+    "storeNumber": "229",
+    "name": "Milpitas",
+    "streetAddress": "1306 Great Mall Pkwy",
+    "city": "Milpitas",
+    "state": "CA",
+    "zip": "95035",
+    "phone": "408-942-6957",
+    "url": "https://locations.traderjoes.com/ca/milpitas/229/"
+  },
+  {
+    "storeNumber": "222",
+    "name": "Mission Valley",
+    "streetAddress": "1072 Camino Del Rio North",
+    "city": "San Diego",
+    "state": "CA",
+    "zip": "92108",
+    "phone": "619-297-0749",
+    "url": "https://locations.traderjoes.com/ca/san-diego/222/"
+  },
+  {
+    "storeNumber": "126",
+    "name": "Mission Viejo",
+    "streetAddress": "25410 Marguerite Pkwy",
+    "city": "Mission Viejo",
+    "state": "CA",
+    "zip": "92692",
+    "phone": "949-581-5638",
+    "url": "https://locations.traderjoes.com/ca/mission-viejo/126/"
+  },
+  {
+    "storeNumber": "9",
+    "name": "Modesto",
+    "streetAddress": "3250 Dale Road",
+    "city": "Modesto",
+    "state": "CA",
+    "zip": "95356",
+    "phone": "209-491-0445",
+    "url": "https://locations.traderjoes.com/ca/modesto/9/"
+  },
+  {
+    "storeNumber": "112",
+    "name": "Monrovia",
+    "streetAddress": "604 W Huntington Dr",
+    "city": "Monrovia",
+    "state": "CA",
+    "zip": "91016",
+    "phone": "626-358-8884",
+    "url": "https://locations.traderjoes.com/ca/monrovia/112/"
+  },
+  {
+    "storeNumber": "204",
+    "name": "Monterey",
+    "streetAddress": "570 Munras Ave",
+    "city": "Monterey",
+    "state": "CA",
+    "zip": "93940",
+    "phone": "831-372-2010",
+    "url": "https://locations.traderjoes.com/ca/monterey/204/"
+  },
+  {
+    "storeNumber": "52",
+    "name": "Montrose",
+    "streetAddress": "2462 Honolulu Ave",
+    "city": "Montrose",
+    "state": "CA",
+    "zip": "91020",
+    "phone": "818-957-3613",
+    "url": "https://locations.traderjoes.com/ca/montrose/52/"
+  },
+  {
+    "storeNumber": "202",
+    "name": "Morgan Hill",
+    "streetAddress": "17035 Laurel Rd",
+    "city": "Morgan Hill",
+    "state": "CA",
+    "zip": "95037",
+    "phone": "408-778-6409",
+    "url": "https://locations.traderjoes.com/ca/morgan-hill/202/"
+  },
+  {
+    "storeNumber": "81",
+    "name": "Mountain View",
+    "streetAddress": "590 Showers Dr",
+    "city": "Mountain View",
+    "state": "CA",
+    "zip": "94040",
+    "phone": "650-917-1013",
+    "url": "https://locations.traderjoes.com/ca/mountain-view/81/"
+  },
+  {
+    "storeNumber": "258",
+    "name": "Murrieta",
+    "streetAddress": "40388 Murrieta Hot Springs Rd",
+    "city": "Murrieta",
+    "state": "CA",
+    "zip": "92563",
+    "phone": "951-528-5115",
+    "url": "https://locations.traderjoes.com/ca/murrieta/258/"
+  },
+  {
+    "storeNumber": "128",
+    "name": "Napa",
+    "streetAddress": "3654 Bel Aire Plaza",
+    "city": "Napa",
+    "state": "CA",
+    "zip": "94558",
+    "phone": "707-256-0806",
+    "url": "https://locations.traderjoes.com/ca/napa/128/"
+  },
+  {
+    "storeNumber": "243",
+    "name": "Newbury Park",
+    "streetAddress": "125 N Reino Road",
+    "city": "Thousand Oaks",
+    "state": "CA",
+    "zip": "91320",
+    "phone": "805-375-1984",
+    "url": "https://locations.traderjoes.com/ca/thousand-oaks/243/"
+  },
+  {
+    "storeNumber": "125",
+    "name": "Newport Beach",
+    "streetAddress": "8086 E Pacific Coast Hwy",
+    "city": "Newport Beach",
+    "state": "CA",
+    "zip": "92657",
+    "phone": "949-494-7404",
+    "url": "https://locations.traderjoes.com/ca/newport-beach/125/"
+  },
+  {
+    "storeNumber": "252",
+    "name": "North Hollywood",
+    "streetAddress": "6130 Laurel Canyon Bl",
+    "city": "North Hollywood",
+    "state": "CA",
+    "zip": "91606",
+    "phone": "818-762-2963",
+    "url": "https://locations.traderjoes.com/ca/north-hollywood/252/"
+  },
+  {
+    "storeNumber": "312",
+    "name": "Northridge",
+    "streetAddress": "9224 Reseda Blvd",
+    "city": "Northridge",
+    "state": "CA",
+    "zip": "91325",
+    "phone": "747-245-4766",
+    "url": "https://locations.traderjoes.com/ca/northridge/312/"
+  },
+  {
+    "storeNumber": "198",
+    "name": "Novato",
+    "streetAddress": "7514 Redwood Blvd",
+    "city": "Novato",
+    "state": "CA",
+    "zip": "94945",
+    "phone": "415-898-9359",
+    "url": "https://locations.traderjoes.com/ca/novato/198/"
+  },
+  {
+    "storeNumber": "203",
+    "name": "Oakland - Lakeshore",
+    "streetAddress": "3250 Lakeshore Ave",
+    "city": "Oakland",
+    "state": "CA",
+    "zip": "94610",
+    "phone": "510-238-9076",
+    "url": "https://locations.traderjoes.com/ca/oakland/203/"
+  },
+  {
+    "storeNumber": "231",
+    "name": "Oakland - Rockridge",
+    "streetAddress": "5727 College Ave",
+    "city": "Oakland",
+    "state": "CA",
+    "zip": "94618",
+    "phone": "510-923-9428",
+    "url": "https://locations.traderjoes.com/ca/oakland/231/"
+  },
+  {
+    "storeNumber": "22",
+    "name": "Oceanside",
+    "streetAddress": "2570 Vista Way",
+    "city": "Oceanside",
+    "state": "CA",
+    "zip": "92054",
+    "phone": "760-433-9994",
+    "url": "https://locations.traderjoes.com/ca/oceanside/22/"
+  },
+  {
+    "storeNumber": "215",
+    "name": "Olympic Blvd",
+    "streetAddress": "11755 Olympic Blvd",
+    "city": "Los Angeles",
+    "state": "CA",
+    "zip": "90064",
+    "phone": "310-477-5949",
+    "url": "https://locations.traderjoes.com/ca/los-angeles/215/"
+  },
+  {
+    "storeNumber": "79",
+    "name": "Pacific Grove",
+    "streetAddress": "1170 Forest Ave",
+    "city": "Pacific Grove",
+    "state": "CA",
+    "zip": "93950",
+    "phone": "831-656-0180",
+    "url": "https://locations.traderjoes.com/ca/pacific-grove/79/"
+  },
+  {
+    "storeNumber": "3",
+    "name": "Palm Desert",
+    "streetAddress": "44250 Town Center Way",
+    "city": "Palm Desert",
+    "state": "CA",
+    "zip": "92260",
+    "phone": "760-340-2291",
+    "url": "https://locations.traderjoes.com/ca/palm-desert/3/"
+  },
+  {
+    "storeNumber": "185",
+    "name": "Palmdale",
+    "streetAddress": "39507 10Th St w",
+    "city": "Palmdale",
+    "state": "CA",
+    "zip": "93551",
+    "phone": "661-947-2890",
+    "url": "https://locations.traderjoes.com/ca/palmdale/185/"
+  },
+  {
+    "storeNumber": "207",
+    "name": "Palo Alto",
+    "streetAddress": "855 El Camino Real",
+    "city": "Palo Alto",
+    "state": "CA",
+    "zip": "94301",
+    "phone": "650-327-7018",
+    "url": "https://locations.traderjoes.com/ca/palo-alto/207/"
+  },
+  {
+    "storeNumber": "32",
+    "name": "pasadena",
+    "streetAddress": "3035 E Huntington Dr",
+    "city": "Pasadena",
+    "state": "CA",
+    "zip": "91107",
+    "phone": "626-356-2963",
+    "url": "https://locations.traderjoes.com/ca/pasadena/32/"
+  },
+  {
+    "storeNumber": "51",
+    "name": "Pasadena",
+    "streetAddress": "610 S Arroyo Pkwy",
+    "city": "Pasadena",
+    "state": "CA",
+    "zip": "91105",
+    "phone": "626-568-9254",
+    "url": "https://locations.traderjoes.com/ca/pasadena/51/"
+  },
+  {
+    "storeNumber": "179",
+    "name": "Pasadena - S Lake Ave",
+    "streetAddress": "345 S Lake Ave",
+    "city": "Pasadena",
+    "state": "CA",
+    "zip": "91101",
+    "phone": "626-395-9553",
+    "url": "https://locations.traderjoes.com/ca/pasadena/179/"
+  },
+  {
+    "storeNumber": "291",
+    "name": "Paso Robles",
+    "streetAddress": "2457 Golden Hill Rd",
+    "city": "Paso Robles",
+    "state": "CA",
+    "zip": "93446",
+    "phone": "",
+    "url": "https://locations.traderjoes.com/ca/paso-robles/291/"
+  },
+  {
+    "storeNumber": "107",
+    "name": "Petaluma",
+    "streetAddress": "169 N Mcdowell Blvd",
+    "city": "Petaluma",
+    "state": "CA",
+    "zip": "94954",
+    "phone": "707-769-2782",
+    "url": "https://locations.traderjoes.com/ca/petaluma/107/"
+  },
+  {
+    "storeNumber": "230",
+    "name": "Pinole",
+    "streetAddress": "2742 Pinole Valley Rd",
+    "city": "Pinole",
+    "state": "CA",
+    "zip": "94564",
+    "phone": "510-222-3501",
+    "url": "https://locations.traderjoes.com/ca/pinole/230/"
+  },
+  {
+    "storeNumber": "66",
+    "name": "Pleasanton",
+    "streetAddress": "3903 Santa Rita Road",
+    "city": "Pleasanton",
+    "state": "CA",
+    "zip": "94588",
+    "phone": "925-468-0763",
+    "url": "https://locations.traderjoes.com/ca/pleasanton/66/"
+  },
+  {
+    "storeNumber": "265",
+    "name": "Poway",
+    "streetAddress": "13644 Poway Rd",
+    "city": "Poway",
+    "state": "CA",
+    "zip": "92064",
+    "phone": "858-294-6131",
+    "url": "https://locations.traderjoes.com/ca/poway/265/"
+  },
+  {
+    "storeNumber": "217",
+    "name": "Rancho Cucamonga",
+    "streetAddress": "6401 Haven Ave",
+    "city": "Rancho Cucamonga",
+    "state": "CA",
+    "zip": "91737",
+    "phone": "909-476-1410",
+    "url": "https://locations.traderjoes.com/ca/rancho-cucamonga/217/"
+  },
+  {
+    "storeNumber": "233",
+    "name": "Rancho Palos Verdes",
+    "streetAddress": "31176 Hawthorne Blvd",
+    "city": "Rancho Palos Verdes",
+    "state": "CA",
+    "zip": "90275",
+    "phone": "310-544-1727",
+    "url": "https://locations.traderjoes.com/ca/rancho-palos-verdes/233/"
+  },
+  {
+    "storeNumber": "57",
+    "name": "Rancho Palos Verdes - S. Western Ave.",
+    "streetAddress": "28901 S Western Ave",
+    "city": "Rancho Palos Verdes",
+    "state": "CA",
+    "zip": "90275",
+    "phone": "310-832-1241",
+    "url": "https://locations.traderjoes.com/ca/rancho-palos-verdes/57/"
+  },
+  {
+    "storeNumber": "27",
+    "name": "Rancho Santa Margarita",
+    "streetAddress": "30652 Santa Margarita Pkwy",
+    "city": "Rancho Santa Margarita",
+    "state": "CA",
+    "zip": "92688",
+    "phone": "949-888-3640",
+    "url": "https://locations.traderjoes.com/ca/rancho-santa-margarita/27/"
+  },
+  {
+    "storeNumber": "219",
+    "name": "Redding",
+    "streetAddress": "845 Browning St",
+    "city": "Redding",
+    "state": "CA",
+    "zip": "96003",
+    "phone": "530-223-4875",
+    "url": "https://locations.traderjoes.com/ca/redding/219/"
+  },
+  {
+    "storeNumber": "99",
+    "name": "Redlands",
+    "streetAddress": "552 Orange St",
+    "city": "Redlands",
+    "state": "CA",
+    "zip": "92374",
+    "phone": "909-798-3888",
+    "url": "https://locations.traderjoes.com/ca/redlands/99/"
+  },
+  {
+    "storeNumber": "38",
+    "name": "Redondo Beach",
+    "streetAddress": "1761 S Elena Ave",
+    "city": "Redondo Bch.",
+    "state": "CA",
+    "zip": "90277",
+    "phone": "310-316-1745",
+    "url": "https://locations.traderjoes.com/ca/redondo-bch-/38/"
+  },
+  {
+    "storeNumber": "15",
+    "name": "Riverside",
+    "streetAddress": "6225 Riverside Plaza",
+    "city": "Riverside",
+    "state": "CA",
+    "zip": "92506",
+    "phone": "951-781-2378",
+    "url": "https://locations.traderjoes.com/ca/riverside/15/"
+  },
+  {
+    "storeNumber": "228",
+    "name": "Rocklin",
+    "streetAddress": "5116 Commons Dr.",
+    "city": "Rocklin",
+    "state": "CA",
+    "zip": "95677",
+    "phone": "916-660-9820",
+    "url": "https://locations.traderjoes.com/ca/rocklin/228/"
+  },
+  {
+    "storeNumber": "80",
+    "name": "Roseville",
+    "streetAddress": "1117 Roseville Square",
+    "city": "Roseville",
+    "state": "CA",
+    "zip": "95678",
+    "phone": "916-784-9084",
+    "url": "https://locations.traderjoes.com/ca/roseville/80/"
+  },
+  {
+    "storeNumber": "266",
+    "name": "Roseville - North",
+    "streetAddress": "10261 Fairway Dr",
+    "city": "Roseville",
+    "state": "CA",
+    "zip": "95678",
+    "phone": "279-217-4579",
+    "url": "https://locations.traderjoes.com/ca/roseville/266/"
+  },
+  {
+    "storeNumber": "70",
+    "name": "Sacramento",
+    "streetAddress": "2625 Marconi Ave",
+    "city": "Sacramento",
+    "state": "CA",
+    "zip": "95821",
+    "phone": "916-481-8797",
+    "url": "https://locations.traderjoes.com/ca/sacramento/70/"
+  },
+  {
+    "storeNumber": "175",
+    "name": "Sacramento",
+    "streetAddress": "5000 Folsom Blvd",
+    "city": "Sacramento",
+    "state": "CA",
+    "zip": "95819",
+    "phone": "916-456-1853",
+    "url": "https://locations.traderjoes.com/ca/sacramento/175/"
+  },
+  {
+    "storeNumber": "174",
+    "name": "San Carlos",
+    "streetAddress": "1482 El Camino Real",
+    "city": "San Carlos",
+    "state": "CA",
+    "zip": "94070",
+    "phone": "650-594-2138",
+    "url": "https://locations.traderjoes.com/ca/san-carlos/174/"
+  },
+  {
+    "storeNumber": "16",
+    "name": "San Clemente",
+    "streetAddress": "638 Camino de Los Mares",
+    "city": "San Clemente",
+    "state": "CA",
+    "zip": "92673",
+    "phone": "949-240-9996",
+    "url": "https://locations.traderjoes.com/ca/san-clemente/16/"
+  },
+  {
+    "storeNumber": "23",
+    "name": "San Diego - Carmel Mtn Ranch",
+    "streetAddress": "11955 Carmel Mountain Rd",
+    "city": "San Diego",
+    "state": "CA",
+    "zip": "92128",
+    "phone": "858-673-0526",
+    "url": "https://locations.traderjoes.com/ca/san-diego/23/"
+  },
+  {
+    "storeNumber": "26",
+    "name": "San Diego - Hillcrest",
+    "streetAddress": "1090 University Avenue",
+    "city": "San Diego",
+    "state": "CA",
+    "zip": "92103",
+    "phone": "619-296-3122",
+    "url": "https://locations.traderjoes.com/ca/san-diego/26/"
+  },
+  {
+    "storeNumber": "21",
+    "name": "San Diego - Pacific Beach",
+    "streetAddress": "1640 Garnet Ave",
+    "city": "San Diego",
+    "state": "CA",
+    "zip": "92109",
+    "phone": "858-581-9101",
+    "url": "https://locations.traderjoes.com/ca/san-diego/21/"
+  },
+  {
+    "storeNumber": "188",
+    "name": "San Diego - Point Loma",
+    "streetAddress": "2401 Truxtun Rd",
+    "city": "San Diego",
+    "state": "CA",
+    "zip": "92106",
+    "phone": "619-758-9272",
+    "url": "https://locations.traderjoes.com/ca/san-diego/188/"
+  },
+  {
+    "storeNumber": "224",
+    "name": "San Diego - SDSU",
+    "streetAddress": "5140 College Ave",
+    "city": "San Diego",
+    "state": "CA",
+    "zip": "92115",
+    "phone": "619-229-9092",
+    "url": "https://locations.traderjoes.com/ca/san-diego/224/"
+  },
+  {
+    "storeNumber": "28",
+    "name": "San Dimas",
+    "streetAddress": "856 W Arrow Hwy",
+    "city": "San Dimas",
+    "state": "CA",
+    "zip": "91773",
+    "phone": "909-305-4757",
+    "url": "https://locations.traderjoes.com/ca/san-dimas/28/"
+  },
+  {
+    "storeNumber": "100",
+    "name": "San Francisco",
+    "streetAddress": "3 Masonic Ave",
+    "city": "San Francisco",
+    "state": "CA",
+    "zip": "94118",
+    "phone": "415-346-9964",
+    "url": "https://locations.traderjoes.com/ca/san-francisco/100/"
+  },
+  {
+    "storeNumber": "78",
+    "name": "San Francisco - 9th St",
+    "streetAddress": "555 9Th St",
+    "city": "San Francisco",
+    "state": "CA",
+    "zip": "94103",
+    "phone": "415-863-1292",
+    "url": "https://locations.traderjoes.com/ca/san-francisco/78/"
+  },
+  {
+    "storeNumber": "200",
+    "name": "San Francisco - Nob Hill",
+    "streetAddress": "1095 Hyde St",
+    "city": "San Francisco",
+    "state": "CA",
+    "zip": "94109",
+    "phone": "415-292-7665",
+    "url": "https://locations.traderjoes.com/ca/san-francisco/200/"
+  },
+  {
+    "storeNumber": "19",
+    "name": "San Francisco - North Beach",
+    "streetAddress": "401 Bay St",
+    "city": "San Francisco",
+    "state": "CA",
+    "zip": "94133",
+    "phone": "415-351-1013",
+    "url": "https://locations.traderjoes.com/ca/san-francisco/19/"
+  },
+  {
+    "storeNumber": "225",
+    "name": "San Francisco - Pacific Place",
+    "streetAddress": "10 4Th Street",
+    "city": "San Francisco",
+    "state": "CA",
+    "zip": "94103",
+    "phone": "415-536-7801",
+    "url": "https://locations.traderjoes.com/ca/san-francisco/225/"
+  },
+  {
+    "storeNumber": "236",
+    "name": "San Francisco - Stonestown",
+    "streetAddress": "265 Winston Dr",
+    "city": "San Francisco",
+    "state": "CA",
+    "zip": "94132",
+    "phone": "415-665-1835",
+    "url": "https://locations.traderjoes.com/ca/san-francisco/236/"
+  },
+  {
+    "storeNumber": "212",
+    "name": "San Jose - Coleman Ave",
+    "streetAddress": "635 Coleman Ave",
+    "city": "San Jose",
+    "state": "CA",
+    "zip": "95110",
+    "phone": "408-298-9731",
+    "url": "https://locations.traderjoes.com/ca/san-jose/212/"
+  },
+  {
+    "storeNumber": "232",
+    "name": "San Jose - Cupertino",
+    "streetAddress": "7250 Bollinger Rd",
+    "city": "San Jose",
+    "state": "CA",
+    "zip": "95129",
+    "phone": "408-873-7384",
+    "url": "https://locations.traderjoes.com/ca/san-jose/232/"
+  },
+  {
+    "storeNumber": "63",
+    "name": "San Jose - Old Almaden",
+    "streetAddress": "5353 Almaden Expressway #j-38",
+    "city": "San Jose",
+    "state": "CA",
+    "zip": "95118",
+    "phone": "408-264-8120",
+    "url": "https://locations.traderjoes.com/ca/san-jose/63/"
+  },
+  {
+    "storeNumber": "62",
+    "name": "San Jose - Westgate West",
+    "streetAddress": "5269 Prospect",
+    "city": "San Jose",
+    "state": "CA",
+    "zip": "95129",
+    "phone": "408-446-5055",
+    "url": "https://locations.traderjoes.com/ca/san-jose/62/"
+  },
+  {
+    "storeNumber": "249",
+    "name": "San Juan Capistrano",
+    "streetAddress": "32151 Camino Capistrano",
+    "city": "San Juan Capistrano",
+    "state": "CA",
+    "zip": "92675",
+    "phone": "949-496-4150",
+    "url": "https://locations.traderjoes.com/ca/san-juan-capistrano/249/"
+  },
+  {
+    "storeNumber": "41",
+    "name": "San Luis Obispo",
+    "streetAddress": "3977 Higuera Street",
+    "city": "San Luis Obispo",
+    "state": "CA",
+    "zip": "93401",
+    "phone": "805-783-2780",
+    "url": "https://locations.traderjoes.com/ca/san-luis-obispo/41/"
+  },
+  {
+    "storeNumber": "67",
+    "name": "San Mateo - Grant St",
+    "streetAddress": "1820-22 S Grant Street",
+    "city": "San Mateo",
+    "state": "CA",
+    "zip": "94402",
+    "phone": "650-570-6140",
+    "url": "https://locations.traderjoes.com/ca/san-mateo/67/"
+  },
+  {
+    "storeNumber": "245",
+    "name": "San Mateo - Hillsdale",
+    "streetAddress": "45 W Hillsdale Blvd",
+    "city": "San Mateo",
+    "state": "CA",
+    "zip": "94403",
+    "phone": "650-286-1509",
+    "url": "https://locations.traderjoes.com/ca/san-mateo/245/"
+  },
+  {
+    "storeNumber": "61",
+    "name": "San Rafael",
+    "streetAddress": "337 3Rd St",
+    "city": "San Rafael",
+    "state": "CA",
+    "zip": "94901",
+    "phone": "415-454-9530",
+    "url": "https://locations.traderjoes.com/ca/san-rafael/61/"
+  },
+  {
+    "storeNumber": "246",
+    "name": "San Ramon",
+    "streetAddress": "300 Market Place",
+    "city": "San Ramon",
+    "state": "CA",
+    "zip": "94583",
+    "phone": "925-275-8140",
+    "url": "https://locations.traderjoes.com/ca/san-ramon/246/"
+  },
+  {
+    "storeNumber": "223",
+    "name": "san-diego",
+    "streetAddress": "13480 Highlands Place",
+    "city": "San Diego",
+    "state": "CA",
+    "zip": "92130",
+    "phone": "858-755-7130",
+    "url": "https://locations.traderjoes.com/ca/san-diego/223/"
+  },
+  {
+    "storeNumber": "226",
+    "name": "san-francisco",
+    "streetAddress": "788 Laguna St",
+    "city": "San Francisco",
+    "state": "CA",
+    "zip": "94102",
+    "phone": "415-718-0175",
+    "url": "https://locations.traderjoes.com/ca/san-francisco/226/"
+  },
+  {
+    "storeNumber": "113",
+    "name": "Santa Ana",
+    "streetAddress": "3329 S Bristol St",
+    "city": "Santa Ana",
+    "state": "CA",
+    "zip": "92704",
+    "phone": "714-424-9304",
+    "url": "https://locations.traderjoes.com/ca/santa-ana/113/"
+  },
+  {
+    "storeNumber": "59",
+    "name": "Santa Barbara",
+    "streetAddress": "222 North Milpas Street",
+    "city": "Santa Barbara",
+    "state": "CA",
+    "zip": "93103",
+    "phone": "805-560-1182",
+    "url": "https://locations.traderjoes.com/ca/santa-barbara/59/"
+  },
+  {
+    "storeNumber": "183",
+    "name": "Santa Barbara",
+    "streetAddress": "3025 De la Vina St",
+    "city": "Santa Barbara",
+    "state": "CA",
+    "zip": "93105",
+    "phone": "805-563-7383",
+    "url": "https://locations.traderjoes.com/ca/santa-barbara/183/"
+  },
+  {
+    "storeNumber": "193",
+    "name": "Santa Cruz",
+    "streetAddress": "700 Front St",
+    "city": "Santa Cruz",
+    "state": "CA",
+    "zip": "95060",
+    "phone": "831-425-0140",
+    "url": "https://locations.traderjoes.com/ca/santa-cruz/193/"
+  },
+  {
+    "storeNumber": "239",
+    "name": "Santa Maria",
+    "streetAddress": "1303 S Bradley Rd",
+    "city": "Santa Maria",
+    "state": "CA",
+    "zip": "93454",
+    "phone": "805-925-1657",
+    "url": "https://locations.traderjoes.com/ca/santa-maria/239/"
+  },
+  {
+    "storeNumber": "6",
+    "name": "Santa Monica",
+    "streetAddress": "3212 Pico Blvd",
+    "city": "Santa Monica",
+    "state": "CA",
+    "zip": "90405",
+    "phone": "310-581-0253",
+    "url": "https://locations.traderjoes.com/ca/santa-monica/6/"
+  },
+  {
+    "storeNumber": "256",
+    "name": "Santa Monica",
+    "streetAddress": "500 Broadway",
+    "city": "Santa Monica",
+    "state": "CA",
+    "zip": "90401",
+    "phone": "310-912-6877",
+    "url": "https://locations.traderjoes.com/ca/santa-monica/256/"
+  },
+  {
+    "storeNumber": "75",
+    "name": "Santa Rosa - Cleveland Ave",
+    "streetAddress": "3225 Cleveland Ave",
+    "city": "Santa Rosa",
+    "state": "CA",
+    "zip": "95403",
+    "phone": "707-525-1406",
+    "url": "https://locations.traderjoes.com/ca/santa-rosa/75/"
+  },
+  {
+    "storeNumber": "178",
+    "name": "Santa Rosa Ave",
+    "streetAddress": "2100 Santa Rosa Ave",
+    "city": "Santa Rosa",
+    "state": "CA",
+    "zip": "95407",
+    "phone": "707-535-0788",
+    "url": "https://locations.traderjoes.com/ca/santa-rosa/178/"
+  },
+  {
+    "storeNumber": "260",
+    "name": "Santee",
+    "streetAddress": "9680 Mission Gorge Rd",
+    "city": "Santee",
+    "state": "CA",
+    "zip": "92071",
+    "phone": "619-812-3705",
+    "url": "https://locations.traderjoes.com/ca/santee/260/"
+  },
+  {
+    "storeNumber": "221",
+    "name": "Scripps Ranch",
+    "streetAddress": "9850 Hibert St",
+    "city": "San Diego",
+    "state": "CA",
+    "zip": "92131",
+    "phone": "858-549-9185",
+    "url": "https://locations.traderjoes.com/ca/san-diego/221/"
+  },
+  {
+    "storeNumber": "49",
+    "name": "Sherman Oaks",
+    "streetAddress": "14119 Riverside Dr",
+    "city": "Sherman Oaks",
+    "state": "CA",
+    "zip": "91423",
+    "phone": "818-789-2771",
+    "url": "https://locations.traderjoes.com/ca/sherman-oaks/49/"
+  },
+  {
+    "storeNumber": "267",
+    "name": "Sherman Oaks too",
+    "streetAddress": "14140 Riverside Dr",
+    "city": "Sherman Oaks",
+    "state": "CA",
+    "zip": "91423",
+    "phone": "747-245-6608",
+    "url": "https://locations.traderjoes.com/ca/sherman-oaks/267/"
+  },
+  {
+    "storeNumber": "17",
+    "name": "Silver Lake",
+    "streetAddress": "2738 Hyperion Ave",
+    "city": "Los Angeles",
+    "state": "CA",
+    "zip": "90027",
+    "phone": "323-665-6774",
+    "url": "https://locations.traderjoes.com/ca/los-angeles/17/"
+  },
+  {
+    "storeNumber": "30",
+    "name": "Simi Valley",
+    "streetAddress": "2975-A Cochran St",
+    "city": "Simi Valley",
+    "state": "CA",
+    "zip": "93065",
+    "phone": "805-520-3135",
+    "url": "https://locations.traderjoes.com/ca/simi-valley/30/"
+  },
+  {
+    "storeNumber": "18",
+    "name": "South Pasadena",
+    "streetAddress": "613 Mission St",
+    "city": "S. Pasadena",
+    "state": "CA",
+    "zip": "91030",
+    "phone": "626-441-6263",
+    "url": "https://locations.traderjoes.com/ca/s-pasadena/18/"
+  },
+  {
+    "storeNumber": "187",
+    "name": "South San Francisco",
+    "streetAddress": "301 Mc Lellan Dr",
+    "city": "South San Francisco",
+    "state": "CA",
+    "zip": "94080",
+    "phone": "650-583-6401",
+    "url": "https://locations.traderjoes.com/ca/south-san-francisco/187/"
+  },
+  {
+    "storeNumber": "4",
+    "name": "south-pasadena",
+    "streetAddress": "1129 Fair Oaks Ave",
+    "city": "South Pasadena",
+    "state": "CA",
+    "zip": "91030",
+    "phone": "323-784-1840",
+    "url": "https://locations.traderjoes.com/ca/south-pasadena/4/"
+  },
+  {
+    "storeNumber": "76",
+    "name": "Stockton",
+    "streetAddress": "6535 Pacific Ave",
+    "city": "Stockton",
+    "state": "CA",
+    "zip": "95207",
+    "phone": "209-951-7597",
+    "url": "https://locations.traderjoes.com/ca/stockton/76/"
+  },
+  {
+    "storeNumber": "122",
+    "name": "Studio City",
+    "streetAddress": "11976 Ventura Blvd",
+    "city": "Studio City",
+    "state": "CA",
+    "zip": "91604",
+    "phone": "818-509-0168",
+    "url": "https://locations.traderjoes.com/ca/studio-city/122/"
+  },
+  {
+    "storeNumber": "68",
+    "name": "Sunnyvale",
+    "streetAddress": "316 West El Camino Real",
+    "city": "Sunnyvale",
+    "state": "CA",
+    "zip": "94087",
+    "phone": "408-736-7573",
+    "url": "https://locations.traderjoes.com/ca/sunnyvale/68/"
+  },
+  {
+    "storeNumber": "192",
+    "name": "Sunset Blvd",
+    "streetAddress": "8000 W Sunset Blvd",
+    "city": "Los Angeles",
+    "state": "CA",
+    "zip": "90046",
+    "phone": "323-822-7663",
+    "url": "https://locations.traderjoes.com/ca/los-angeles/192/"
+  },
+  {
+    "storeNumber": "264",
+    "name": "Tarzana",
+    "streetAddress": "18700 Ventura Blvd",
+    "city": "Tarzana",
+    "state": "CA",
+    "zip": "91356",
+    "phone": "747-212-1646",
+    "url": "https://locations.traderjoes.com/ca/tarzana/264/"
+  },
+  {
+    "storeNumber": "102",
+    "name": "Temecula",
+    "streetAddress": "40665 Winchester Rd",
+    "city": "Temecula",
+    "state": "CA",
+    "zip": "92591",
+    "phone": "951-296-9964",
+    "url": "https://locations.traderjoes.com/ca/temecula/102/"
+  },
+  {
+    "storeNumber": "211",
+    "name": "Templeton",
+    "streetAddress": "1111 Rossi Road",
+    "city": "Templeton",
+    "state": "CA",
+    "zip": "93465",
+    "phone": "805-434-9562",
+    "url": "https://locations.traderjoes.com/ca/templeton/211/"
+  },
+  {
+    "storeNumber": "196",
+    "name": "Thousand Oaks",
+    "streetAddress": "451 Avenida de Los Arboles",
+    "city": "Thousand Oaks",
+    "state": "CA",
+    "zip": "91360",
+    "phone": "805-492-7107",
+    "url": "https://locations.traderjoes.com/ca/thousand-oaks/196/"
+  },
+  {
+    "storeNumber": "54",
+    "name": "Toluca Lake",
+    "streetAddress": "10130 Riverside Dr",
+    "city": "Toluca Lake",
+    "state": "CA",
+    "zip": "91602",
+    "phone": "818-762-2787",
+    "url": "https://locations.traderjoes.com/ca/toluca-lake/54/"
+  },
+  {
+    "storeNumber": "121",
+    "name": "Torrance - Hawthorne Blvd",
+    "streetAddress": "19720 Hawthorne Blvd",
+    "city": "Torrance",
+    "state": "CA",
+    "zip": "90503",
+    "phone": "310-793-8585",
+    "url": "https://locations.traderjoes.com/ca/torrance/121/"
+  },
+  {
+    "storeNumber": "29",
+    "name": "Torrance - Rolling Hills Plaza",
+    "streetAddress": "2545 Pacific Coast Hwy",
+    "city": "Torrance",
+    "state": "CA",
+    "zip": "90505",
+    "phone": "310-326-9520",
+    "url": "https://locations.traderjoes.com/ca/torrance/29/"
+  },
+  {
+    "storeNumber": "269",
+    "name": "Tracy",
+    "streetAddress": "2530 Naglee Rd",
+    "city": "Tracy",
+    "state": "CA",
+    "zip": "95304",
+    "phone": "209-913-5511",
+    "url": "https://locations.traderjoes.com/ca/tracy/269/"
+  },
+  {
+    "storeNumber": "197",
+    "name": "Tustin",
+    "streetAddress": "1198 Irvine Blvd.",
+    "city": "Tustin",
+    "state": "CA",
+    "zip": "92780",
+    "phone": "714-505-3289",
+    "url": "https://locations.traderjoes.com/ca/tustin/197/"
+  },
+  {
+    "storeNumber": "250",
+    "name": "USC Village",
+    "streetAddress": "3131 S Hoover Street",
+    "city": "Los Angeles",
+    "state": "CA",
+    "zip": "90089",
+    "phone": "213-749-1497",
+    "url": "https://locations.traderjoes.com/ca/los-angeles/250/"
+  },
+  {
+    "storeNumber": "13",
+    "name": "Valencia",
+    "streetAddress": "26517 Bouquet Canyon Rd",
+    "city": "Santa Clarita",
+    "state": "CA",
+    "zip": "91350",
+    "phone": "661-263-3796",
+    "url": "https://locations.traderjoes.com/ca/santa-clarita/13/"
+  },
+  {
+    "storeNumber": "45",
+    "name": "Ventura",
+    "streetAddress": "1795 S. Victoria Ave",
+    "city": "Ventura",
+    "state": "CA",
+    "zip": "93003",
+    "phone": "805-650-9977",
+    "url": "https://locations.traderjoes.com/ca/ventura/45/"
+  },
+  {
+    "storeNumber": "218",
+    "name": "Ventura - Midtown",
+    "streetAddress": "103 S Mills Rd",
+    "city": "Ventura",
+    "state": "CA",
+    "zip": "93003",
+    "phone": "805-658-2664",
+    "url": "https://locations.traderjoes.com/ca/ventura/218/"
+  },
+  {
+    "storeNumber": "259",
+    "name": "Vista",
+    "streetAddress": "1861 University Dr",
+    "city": "Vista",
+    "state": "CA",
+    "zip": "92083",
+    "phone": "760-502-9816",
+    "url": "https://locations.traderjoes.com/ca/vista/259/"
+  },
+  {
+    "storeNumber": "123",
+    "name": "Walnut Creek",
+    "streetAddress": "1372 S California Blvd",
+    "city": "Walnut Creek",
+    "state": "CA",
+    "zip": "94596",
+    "phone": "925-945-1674",
+    "url": "https://locations.traderjoes.com/ca/walnut-creek/123/"
+  },
+  {
+    "storeNumber": "50",
+    "name": "West Hills",
+    "streetAddress": "6751 Fallbrook Ave",
+    "city": "West Hills",
+    "state": "CA",
+    "zip": "91307",
+    "phone": "818-347-2591",
+    "url": "https://locations.traderjoes.com/ca/west-hills/50/"
+  },
+  {
+    "storeNumber": "173",
+    "name": "West Hollywood",
+    "streetAddress": "8611 Santa Monica Blvd",
+    "city": "West Hollywood",
+    "state": "CA",
+    "zip": "90069",
+    "phone": "310-657-0152",
+    "url": "https://locations.traderjoes.com/ca/west-hollywood/173/"
+  },
+  {
+    "storeNumber": "40",
+    "name": "West Hollywood",
+    "streetAddress": "7310 Santa Monica Blvd",
+    "city": "West Hollywood",
+    "state": "CA",
+    "zip": "90046",
+    "phone": "323-969-8048",
+    "url": "https://locations.traderjoes.com/ca/west-hollywood/40/"
+  },
+  {
+    "storeNumber": "7",
+    "name": "West Los Angeles",
+    "streetAddress": "10850 National Blvd",
+    "city": "Los Angeles",
+    "state": "CA",
+    "zip": "90064",
+    "phone": "310-470-1917",
+    "url": "https://locations.traderjoes.com/ca/los-angeles/7/"
+  },
+  {
+    "storeNumber": "119",
+    "name": "West Los Angeles - Sepulveda",
+    "streetAddress": "3456 S Sepulveda Blvd",
+    "city": "Los Angeles",
+    "state": "CA",
+    "zip": "90034",
+    "phone": "310-836-2458",
+    "url": "https://locations.traderjoes.com/ca/los-angeles/119/"
+  },
+  {
+    "storeNumber": "33",
+    "name": "Westchester",
+    "streetAddress": "8645 S Sepulveda",
+    "city": "Westchester",
+    "state": "CA",
+    "zip": "90045",
+    "phone": "310-338-9238",
+    "url": "https://locations.traderjoes.com/ca/westchester/33/"
+  },
+  {
+    "storeNumber": "58",
+    "name": "Westlake Village",
+    "streetAddress": "3835 E Thousand Oaks Blvd",
+    "city": "Westlake Village",
+    "state": "CA",
+    "zip": "91362",
+    "phone": "805-494-5040",
+    "url": "https://locations.traderjoes.com/ca/westlake-village/58/"
+  },
+  {
+    "storeNumber": "234",
+    "name": "Westwood",
+    "streetAddress": "1000 Glendon Ave",
+    "city": "Los Angeles",
+    "state": "CA",
+    "zip": "90024",
+    "phone": "310-824-1495",
+    "url": "https://locations.traderjoes.com/ca/los-angeles/234/"
+  },
+  {
+    "storeNumber": "48",
+    "name": "Whittier",
+    "streetAddress": "15025 E Whittier Blvd",
+    "city": "Whittier",
+    "state": "CA",
+    "zip": "90603",
+    "phone": "562-698-1642",
+    "url": "https://locations.traderjoes.com/ca/whittier/48/"
+  },
+  {
+    "storeNumber": "253",
+    "name": "Wilshire",
+    "streetAddress": "2300 Wilshire Blvd",
+    "city": "Santa Monica",
+    "state": "CA",
+    "zip": "90403",
+    "phone": "310-264-2223",
+    "url": "https://locations.traderjoes.com/ca/santa-monica/253/"
+  },
+  {
+    "storeNumber": "209",
+    "name": "Woodland Hills",
+    "streetAddress": "21055 Ventura Blvd",
+    "city": "Woodland Hills",
+    "state": "CA",
+    "zip": "91364",
+    "phone": "818-712-9475",
+    "url": "https://locations.traderjoes.com/ca/woodland-hills/209/"
+  },
+  {
+    "storeNumber": "176",
+    "name": "Yorba Linda",
+    "streetAddress": "19655 Yorba Linda Blvd",
+    "city": "Yorba Linda",
+    "state": "CA",
+    "zip": "92886",
+    "phone": "714-970-0116",
+    "url": "https://locations.traderjoes.com/ca/yorba-linda/176/"
+  },
+  {
+    "storeNumber": "268",
+    "name": "Yucaipa",
+    "streetAddress": "31545 Yucaipa Boulevard",
+    "city": "Yucaipa",
+    "state": "CA",
+    "zip": "92399",
+    "phone": "909-951-6154",
+    "url": "https://locations.traderjoes.com/ca/yucaipa/268/"
+  },
+  {
+    "storeNumber": "301",
+    "name": "Boulder",
+    "streetAddress": "1906 28Th St",
+    "city": "Boulder",
+    "state": "CO",
+    "zip": "80301",
+    "phone": "303-443-0160",
+    "url": "https://locations.traderjoes.com/co/boulder/301/"
+  },
+  {
+    "storeNumber": "305",
+    "name": "Colorado Springs",
+    "streetAddress": "5342 N Nevada Ave",
+    "city": "Colorado Springs",
+    "state": "CO",
+    "zip": "80918",
+    "phone": "719-264-0123",
+    "url": "https://locations.traderjoes.com/co/colorado-springs/305/"
+  },
+  {
+    "storeNumber": "315",
+    "name": "Colorado Springs Wine Shop",
+    "streetAddress": "5338 N Nevada Avenue",
+    "city": "Colorado Springs",
+    "state": "CO",
+    "zip": "80918",
+    "phone": "719-266-6838",
+    "url": "https://locations.traderjoes.com/co/colorado-springs/315/"
+  },
+  {
+    "storeNumber": "302",
+    "name": "Denver",
+    "streetAddress": "661 Logan Street",
+    "city": "Denver",
+    "state": "CO",
+    "zip": "80203",
+    "phone": "303-318-7112",
+    "url": "https://locations.traderjoes.com/co/denver/302/"
+  },
+  {
+    "storeNumber": "300",
+    "name": "Denver Grocery",
+    "streetAddress": "750 N Colorado Blvd",
+    "city": "Denver",
+    "state": "CO",
+    "zip": "80206",
+    "phone": "303-321-1003",
+    "url": "https://locations.traderjoes.com/co/denver/300/"
+  },
+  {
+    "storeNumber": "310",
+    "name": "Denver Wine Shop",
+    "streetAddress": "790 N Colorado Blvd",
+    "city": "Denver",
+    "state": "CO",
+    "zip": "80206",
+    "phone": "303-321-3245",
+    "url": "https://locations.traderjoes.com/co/denver/310/"
+  },
+  {
+    "storeNumber": "304",
+    "name": "Fort Collins",
+    "streetAddress": "3500 S College Ave",
+    "city": "Fort Collins",
+    "state": "CO",
+    "zip": "80525",
+    "phone": "970-223-3560",
+    "url": "https://locations.traderjoes.com/co/fort-collins/304/"
+  },
+  {
+    "storeNumber": "303",
+    "name": "Greenwood Village",
+    "streetAddress": "5910 S University Blvd",
+    "city": "Greenwood Village",
+    "state": "CO",
+    "zip": "80121",
+    "phone": "303-730-3848",
+    "url": "https://locations.traderjoes.com/co/greenwood-village/303/"
+  },
+  {
+    "storeNumber": "306",
+    "name": "Littleton",
+    "streetAddress": "8055 West Bowles Ave",
+    "city": "Littleton",
+    "state": "CO",
+    "zip": "80123",
+    "phone": "720-981-4563",
+    "url": "https://locations.traderjoes.com/co/littleton/306/"
+  },
+  {
+    "storeNumber": "309",
+    "name": "Parker",
+    "streetAddress": "18374 Cottonwood Drive",
+    "city": "Parker",
+    "state": "CO",
+    "zip": "80138",
+    "phone": "720-851-0549",
+    "url": "https://locations.traderjoes.com/co/parker/309/"
+  },
+  {
+    "storeNumber": "308",
+    "name": "Westminster",
+    "streetAddress": "9350 Sheridan Blvd",
+    "city": "Westminster",
+    "state": "CO",
+    "zip": "80031",
+    "phone": "720-710-5391",
+    "url": "https://locations.traderjoes.com/co/westminster/308/"
+  },
+  {
+    "storeNumber": "525",
+    "name": "Danbury",
+    "streetAddress": "113 Mill Plain Rd",
+    "city": "Danbury",
+    "state": "CT",
+    "zip": "06811",
+    "phone": "203-739-0098",
+    "url": "https://locations.traderjoes.com/ct/danbury/525/"
+  },
+  {
+    "storeNumber": "522",
+    "name": "Darien",
+    "streetAddress": "436 Boston Post Rd",
+    "city": "Darien",
+    "state": "CT",
+    "zip": "06820",
+    "phone": "203-656-1414",
+    "url": "https://locations.traderjoes.com/ct/darien/522/"
+  },
+  {
+    "storeNumber": "523",
+    "name": "Fairfield",
+    "streetAddress": "2258 Black Rock Turnpike",
+    "city": "Fairfield",
+    "state": "CT",
+    "zip": "06825",
+    "phone": "203-330-8301",
+    "url": "https://locations.traderjoes.com/ct/fairfield/523/"
+  },
+  {
+    "storeNumber": "586",
+    "name": "Glastonbury",
+    "streetAddress": "400 Hebron Ave",
+    "city": "Glastonbury",
+    "state": "CT",
+    "zip": "06033",
+    "phone": "860-633-9270",
+    "url": "https://locations.traderjoes.com/ct/glastonbury/586/"
+  },
+  {
+    "storeNumber": "597",
+    "name": "Hamden",
+    "streetAddress": "46 Skiff St",
+    "city": "Hamden",
+    "state": "CT",
+    "zip": "06517",
+    "phone": "475-293-3774",
+    "url": "https://locations.traderjoes.com/ct/hamden/597/"
+  },
+  {
+    "storeNumber": "563",
+    "name": "Manchester",
+    "streetAddress": "1510 Pleasant Valley Road",
+    "city": "Manchester",
+    "state": "CT",
+    "zip": "06042",
+    "phone": "860-644-3182",
+    "url": "https://locations.traderjoes.com/ct/manchester/563/"
+  },
+  {
+    "storeNumber": "524",
+    "name": "Orange",
+    "streetAddress": "560 Boston Post Rd",
+    "city": "Orange",
+    "state": "CT",
+    "zip": "06477",
+    "phone": "203-795-5505",
+    "url": "https://locations.traderjoes.com/ct/orange/524/"
+  },
+  {
+    "storeNumber": "587",
+    "name": "Shelton",
+    "streetAddress": "775 Bridgeport Ave",
+    "city": "Shelton",
+    "state": "CT",
+    "zip": "06484",
+    "phone": "475-325-6306",
+    "url": "https://locations.traderjoes.com/ct/shelton/587/"
+  },
+  {
+    "storeNumber": "529",
+    "name": "Stamford",
+    "streetAddress": "1041 High Ridge Rd",
+    "city": "Stamford",
+    "state": "CT",
+    "zip": "06905",
+    "phone": "203-321-8440",
+    "url": "https://locations.traderjoes.com/ct/stamford/529/"
+  },
+  {
+    "storeNumber": "526",
+    "name": "West Hartford",
+    "streetAddress": "1489 New Britain Ave",
+    "city": "West Hartford",
+    "state": "CT",
+    "zip": "06110",
+    "phone": "860-561-4771",
+    "url": "https://locations.traderjoes.com/ct/west-hartford/526/"
+  },
+  {
+    "storeNumber": "521",
+    "name": "Westport",
+    "streetAddress": "400 Post Road e",
+    "city": "Westport",
+    "state": "CT",
+    "zip": "06880",
+    "phone": "203-226-8966",
+    "url": "https://locations.traderjoes.com/ct/westport/521/"
+  },
+  {
+    "storeNumber": "620",
+    "name": "Glover Park",
+    "streetAddress": "2101 Wisconsin Ave Nw",
+    "city": "Washington",
+    "state": "DC",
+    "zip": "20007",
+    "phone": "202-944-8403",
+    "url": "https://locations.traderjoes.com/dc/washington/620/"
+  },
+  {
+    "storeNumber": "662",
+    "name": "Washington - 14th St",
+    "streetAddress": "1914 14Th St Nw",
+    "city": "Washington",
+    "state": "DC",
+    "zip": "20009",
+    "phone": "202-986-1591",
+    "url": "https://locations.traderjoes.com/dc/washington/662/"
+  },
+  {
+    "storeNumber": "653",
+    "name": "Washington - 25th St",
+    "streetAddress": "1101 25Th Street Nw",
+    "city": "Washington",
+    "state": "DC",
+    "zip": "20037",
+    "phone": "202-296-1921",
+    "url": "https://locations.traderjoes.com/dc/washington/653/"
+  },
+  {
+    "storeNumber": "820",
+    "name": "Washington - Brookland",
+    "streetAddress": "701 Monroe St Ne",
+    "city": "Washington",
+    "state": "DC",
+    "zip": "20017",
+    "phone": "202-677-7460",
+    "url": "https://locations.traderjoes.com/dc/washington/820/"
+  },
+  {
+    "storeNumber": "622",
+    "name": "Washington - Capitol Hill",
+    "streetAddress": "750 Pennsylvania Ave Se",
+    "city": "Washington",
+    "state": "DC",
+    "zip": "20003",
+    "phone": "202-698-0190",
+    "url": "https://locations.traderjoes.com/dc/washington/622/"
+  },
+  {
+    "storeNumber": "819",
+    "name": "Washington - Friendship Heights",
+    "streetAddress": "5335 Wisconsin Ave Nw",
+    "city": "Washington",
+    "state": "DC",
+    "zip": "20015",
+    "phone": "227-229-0636",
+    "url": "https://locations.traderjoes.com/dc/washington/819/"
+  },
+  {
+    "storeNumber": "621",
+    "name": "Washington - Union Market District",
+    "streetAddress": "350 Florida Ave. Ne",
+    "city": "Washington",
+    "state": "DC",
+    "zip": "20002",
+    "phone": "202-608-1023",
+    "url": "https://locations.traderjoes.com/dc/washington/621/"
+  },
+  {
+    "storeNumber": "759",
+    "name": "Christiana",
+    "streetAddress": "2500 Fashion Center Blvd.",
+    "city": "Newark",
+    "state": "DE",
+    "zip": "19702",
+    "phone": "302-292-6825",
+    "url": "https://locations.traderjoes.com/de/newark/759/"
+  },
+  {
+    "storeNumber": "636",
+    "name": "Wilmington",
+    "streetAddress": "5605 Concord Pike",
+    "city": "Wilmington",
+    "state": "DE",
+    "zip": "19803",
+    "phone": "302-478-8494",
+    "url": "https://locations.traderjoes.com/de/wilmington/636/"
+  },
+  {
+    "storeNumber": "773",
+    "name": "Boca Raton",
+    "streetAddress": "855 S Federal Hwy",
+    "city": "Boca Raton",
+    "state": "FL",
+    "zip": "33432",
+    "phone": "561-338-5031",
+    "url": "https://locations.traderjoes.com/fl/boca-raton/773/"
+  },
+  {
+    "storeNumber": "781",
+    "name": "Coral Gables",
+    "streetAddress": "211 S. Dixie Highway",
+    "city": "Coral Gables",
+    "state": "FL",
+    "zip": "33133",
+    "phone": "305-442-5402",
+    "url": "https://locations.traderjoes.com/fl/coral-gables/781/"
+  },
+  {
+    "storeNumber": "782",
+    "name": "Coral Springs",
+    "streetAddress": "2796 N. University Drive",
+    "city": "Coral Springs",
+    "state": "FL",
+    "zip": "33065",
+    "phone": "954-227-3407",
+    "url": "https://locations.traderjoes.com/fl/coral-springs/782/"
+  },
+  {
+    "storeNumber": "778",
+    "name": "Davie",
+    "streetAddress": "2296 S University Dr",
+    "city": "Davie",
+    "state": "FL",
+    "zip": "33324",
+    "phone": "954-512-2968",
+    "url": "https://locations.traderjoes.com/fl/davie/778/"
+  },
+  {
+    "storeNumber": "797",
+    "name": "Daytona Beach",
+    "streetAddress": "1511 Cornerstone Blvd",
+    "city": "Daytona Beach",
+    "state": "FL",
+    "zip": "32117",
+    "phone": "386-308-1218",
+    "url": "https://locations.traderjoes.com/fl/daytona-beach/797/"
+  },
+  {
+    "storeNumber": "771",
+    "name": "Delray Beach",
+    "streetAddress": "1851 S Federal Hwy",
+    "city": "Delray Beach",
+    "state": "FL",
+    "zip": "33483",
+    "phone": "561-278-1493",
+    "url": "https://locations.traderjoes.com/fl/delray-beach/771/"
+  },
+  {
+    "storeNumber": "776",
+    "name": "Fort Lauderdale",
+    "streetAddress": "1560 N Federal Hwy",
+    "city": "Fort Lauderdale",
+    "state": "FL",
+    "zip": "33304",
+    "phone": "954-537-3585",
+    "url": "https://locations.traderjoes.com/fl/fort-lauderdale/776/"
+  },
+  {
+    "storeNumber": "784",
+    "name": "Fort Myers",
+    "streetAddress": "4983 S. Cleveland Avenue",
+    "city": "Fort Myers",
+    "state": "FL",
+    "zip": "33907",
+    "phone": "239-275-1712",
+    "url": "https://locations.traderjoes.com/fl/fort-myers/784/"
+  },
+  {
+    "storeNumber": "764",
+    "name": "Gainesville",
+    "streetAddress": "3724 Sw Archer Rd",
+    "city": "Gainesville",
+    "state": "FL",
+    "zip": "32608",
+    "phone": "352-378-9321",
+    "url": "https://locations.traderjoes.com/fl/gainesville/764/"
+  },
+  {
+    "storeNumber": "769",
+    "name": "Jacksonville",
+    "streetAddress": "11112 San Jose Blvd",
+    "city": "Jacksonville",
+    "state": "FL",
+    "zip": "32223",
+    "phone": "904-880-0583",
+    "url": "https://locations.traderjoes.com/fl/jacksonville/769/"
+  },
+  {
+    "storeNumber": "760",
+    "name": "Jacksonville Beach",
+    "streetAddress": "4180 S 3Rd St",
+    "city": "Jacksonville Beach",
+    "state": "FL",
+    "zip": "32250",
+    "phone": "904-241-1770",
+    "url": "https://locations.traderjoes.com/fl/jacksonville-beach/760/"
+  },
+  {
+    "storeNumber": "780",
+    "name": "Lakewood Ranch",
+    "streetAddress": "8111 Cooper Creek Blvd",
+    "city": "Bradenton",
+    "state": "FL",
+    "zip": "34201",
+    "phone": "941-355-2394",
+    "url": "https://locations.traderjoes.com/fl/bradenton/780/"
+  },
+  {
+    "storeNumber": "848",
+    "name": "Melbourne",
+    "streetAddress": "2221 Town Center Ave",
+    "city": "Melbourne",
+    "state": "FL",
+    "zip": "32940",
+    "phone": "321-338-3418",
+    "url": "https://locations.traderjoes.com/fl/melbourne/848/"
+  },
+  {
+    "storeNumber": "794",
+    "name": "Miami - Midtown",
+    "streetAddress": "3191 Ne 1St Ave",
+    "city": "Miami",
+    "state": "FL",
+    "zip": "33137",
+    "phone": "786-422-0606",
+    "url": "https://locations.traderjoes.com/fl/miami/794/"
+  },
+  {
+    "storeNumber": "779",
+    "name": "Miami Beach",
+    "streetAddress": "1683 West Ave",
+    "city": "Miami Beach",
+    "state": "FL",
+    "zip": "33139",
+    "phone": "305-534-4951",
+    "url": "https://locations.traderjoes.com/fl/miami-beach/779/"
+  },
+  {
+    "storeNumber": "762",
+    "name": "Naples",
+    "streetAddress": "10600 Tamiami Trail n",
+    "city": "Naples",
+    "state": "FL",
+    "zip": "34108",
+    "phone": "239-596-5631",
+    "url": "https://locations.traderjoes.com/fl/naples/762/"
+  },
+  {
+    "storeNumber": "876",
+    "name": "Orlando",
+    "streetAddress": "1444 North Alafaya Trail",
+    "city": "Orlando",
+    "state": "FL",
+    "zip": "32828",
+    "phone": "",
+    "url": "https://locations.traderjoes.com/fl/orlando/876/"
+  },
+  {
+    "storeNumber": "768",
+    "name": "Orlando Dr. Phillips",
+    "streetAddress": "8323 Sand Lake Rd",
+    "city": "Orlando",
+    "state": "FL",
+    "zip": "32819",
+    "phone": "407-345-0611",
+    "url": "https://locations.traderjoes.com/fl/orlando/768/"
+  },
+  {
+    "storeNumber": "772",
+    "name": "Palm Beach Gardens",
+    "streetAddress": "2560 Pga Blvd",
+    "city": "Palm Beach Gardens",
+    "state": "FL",
+    "zip": "33410",
+    "phone": "561-514-6770",
+    "url": "https://locations.traderjoes.com/fl/palm-beach-gardens/772/"
+  },
+  {
+    "storeNumber": "795",
+    "name": "Palm Harbor",
+    "streetAddress": "33597 Us Hwy 19 n",
+    "city": "Palm Harbor",
+    "state": "FL",
+    "zip": "34684",
+    "phone": "727-436-4019",
+    "url": "https://locations.traderjoes.com/fl/palm-harbor/795/"
+  },
+  {
+    "storeNumber": "775",
+    "name": "Pembroke Pines",
+    "streetAddress": "11960 Pines Blvd",
+    "city": "Pembroke Pines",
+    "state": "FL",
+    "zip": "33026",
+    "phone": "954-432-0405",
+    "url": "https://locations.traderjoes.com/fl/pembroke-pines/775/"
+  },
+  {
+    "storeNumber": "770",
+    "name": "Pinecrest",
+    "streetAddress": "9205 S Dixie Hwy",
+    "city": "Miami",
+    "state": "FL",
+    "zip": "33156",
+    "phone": "305-661-1432",
+    "url": "https://locations.traderjoes.com/fl/miami/770/"
+  },
+  {
+    "storeNumber": "761",
+    "name": "Sarasota",
+    "streetAddress": "4101 S Tamiami Trail",
+    "city": "Sarasota",
+    "state": "FL",
+    "zip": "34231",
+    "phone": "941-922-5727",
+    "url": "https://locations.traderjoes.com/fl/sarasota/761/"
+  },
+  {
+    "storeNumber": "767",
+    "name": "St. Petersburg",
+    "streetAddress": "2742 4Th St n",
+    "city": "St. Petersburg",
+    "state": "FL",
+    "zip": "33704",
+    "phone": "727-824-0907",
+    "url": "https://locations.traderjoes.com/fl/st-petersburg/767/"
+  },
+  {
+    "storeNumber": "763",
+    "name": "Tallahassee",
+    "streetAddress": "3425 Thomasville Rd",
+    "city": "Tallahassee",
+    "state": "FL",
+    "zip": "32309",
+    "phone": "850-894-2538",
+    "url": "https://locations.traderjoes.com/fl/tallahassee/763/"
+  },
+  {
+    "storeNumber": "766",
+    "name": "Tampa",
+    "streetAddress": "3808 W Swann Ave",
+    "city": "Tampa",
+    "state": "FL",
+    "zip": "33609",
+    "phone": "813-872-6846",
+    "url": "https://locations.traderjoes.com/fl/tampa/766/"
+  },
+  {
+    "storeNumber": "774",
+    "name": "Wellington",
+    "streetAddress": "2877 South State Rd 7",
+    "city": "Wellington",
+    "state": "FL",
+    "zip": "33414",
+    "phone": "561-656-1067",
+    "url": "https://locations.traderjoes.com/fl/wellington/774/"
+  },
+  {
+    "storeNumber": "796",
+    "name": "West Palm Beach",
+    "streetAddress": "8111 S Dixie Highway",
+    "city": "West Palm Beach",
+    "state": "FL",
+    "zip": "33405",
+    "phone": "",
+    "url": "https://locations.traderjoes.com/fl/west-palm-beach/796/"
+  },
+  {
+    "storeNumber": "765",
+    "name": "Winter Park",
+    "streetAddress": "131 Orlando Ave.",
+    "city": "Winter Park",
+    "state": "FL",
+    "zip": "32789",
+    "phone": "407-622-0874",
+    "url": "https://locations.traderjoes.com/fl/winter-park/765/"
+  },
+  {
+    "storeNumber": "798",
+    "name": "Alpharetta",
+    "streetAddress": "1605 Halcyon Days Trail",
+    "city": "Alpharetta",
+    "state": "GA",
+    "zip": "30005",
+    "phone": "470-762-3171",
+    "url": "https://locations.traderjoes.com/ga/alpharetta/798/"
+  },
+  {
+    "storeNumber": "736",
+    "name": "Athens",
+    "streetAddress": "1850 Epps Bridge Pkwy",
+    "city": "Athens",
+    "state": "GA",
+    "zip": "30606",
+    "phone": "706-583-8934",
+    "url": "https://locations.traderjoes.com/ga/athens/736/"
+  },
+  {
+    "storeNumber": "730",
+    "name": "Atlanta",
+    "streetAddress": "931 Monroe Dr",
+    "city": "Atlanta",
+    "state": "GA",
+    "zip": "30308",
+    "phone": "404-815-9210",
+    "url": "https://locations.traderjoes.com/ga/atlanta/730/"
+  },
+  {
+    "storeNumber": "735",
+    "name": "Buckhead",
+    "streetAddress": "3183 Peachtree Rd",
+    "city": "Atlanta",
+    "state": "GA",
+    "zip": "30305",
+    "phone": "404-842-0907",
+    "url": "https://locations.traderjoes.com/ga/atlanta/735/"
+  },
+  {
+    "storeNumber": "806",
+    "name": "Johns Creek",
+    "streetAddress": "1000 Medley Blvd",
+    "city": "Johns Creek",
+    "state": "GA",
+    "zip": "30097",
+    "phone": "",
+    "url": "https://locations.traderjoes.com/ga/johns-creek/806/"
+  },
+  {
+    "storeNumber": "732",
+    "name": "Marietta",
+    "streetAddress": "4250 Roswell Road",
+    "city": "Marietta",
+    "state": "GA",
+    "zip": "30062",
+    "phone": "678-560-3585",
+    "url": "https://locations.traderjoes.com/ga/marietta/732/"
+  },
+  {
+    "storeNumber": "734",
+    "name": "Norcross - Peachtree Corners",
+    "streetAddress": "5185 Peachtree Pkwy",
+    "city": "Norcross",
+    "state": "GA",
+    "zip": "30092",
+    "phone": "678-966-9236",
+    "url": "https://locations.traderjoes.com/ga/norcross/734/"
+  },
+  {
+    "storeNumber": "800",
+    "name": "Peachtree City",
+    "streetAddress": "258 City Circle",
+    "city": "Peachtree City",
+    "state": "GA",
+    "zip": "30269",
+    "phone": "404-907-2283",
+    "url": "https://locations.traderjoes.com/ga/peachtree-city/800/"
+  },
+  {
+    "storeNumber": "733",
+    "name": "Roswell",
+    "streetAddress": "635 W Crossville Rd",
+    "city": "Roswell",
+    "state": "GA",
+    "zip": "30075",
+    "phone": "770-645-8505",
+    "url": "https://locations.traderjoes.com/ga/roswell/733/"
+  },
+  {
+    "storeNumber": "731",
+    "name": "Sandy Springs",
+    "streetAddress": "6277 Roswell Road Ne",
+    "city": "Sandy Springs",
+    "state": "GA",
+    "zip": "30328",
+    "phone": "404-236-2414",
+    "url": "https://locations.traderjoes.com/ga/sandy-springs/731/"
+  },
+  {
+    "storeNumber": "799",
+    "name": "sandy-springs",
+    "streetAddress": "4600 Roswell Rd",
+    "city": "Sandy Springs",
+    "state": "GA",
+    "zip": "30342",
+    "phone": "770-678-7294",
+    "url": "https://locations.traderjoes.com/ga/sandy-springs/799/"
+  },
+  {
+    "storeNumber": "728",
+    "name": "Coralville",
+    "streetAddress": "920 Ponseti Way",
+    "city": "Coralville",
+    "state": "IA",
+    "zip": "52241",
+    "phone": "319-351-7223",
+    "url": "https://locations.traderjoes.com/ia/coralville/728/"
+  },
+  {
+    "storeNumber": "721",
+    "name": "W Des Moines",
+    "streetAddress": "6305 Mills Civic Pkwy",
+    "city": "West Des Moines",
+    "state": "IA",
+    "zip": "50266",
+    "phone": "515-225-3820",
+    "url": "https://locations.traderjoes.com/ia/west-des-moines/721/"
+  },
+  {
+    "storeNumber": "360",
+    "name": "Boise",
+    "streetAddress": "300 S Capitol Blvd",
+    "city": "Boise",
+    "state": "ID",
+    "zip": "83702",
+    "phone": "208-336-7282",
+    "url": "https://locations.traderjoes.com/id/boise/360/"
+  },
+  {
+    "storeNumber": "362",
+    "name": "Coeur d&#x27;Alene",
+    "streetAddress": "303 E Spokane Ave",
+    "city": "Coeur d&#x27;Alene",
+    "state": "ID",
+    "zip": "83814",
+    "phone": "208-214-8293",
+    "url": "https://locations.traderjoes.com/id/coeur-d-alene/362/"
+  },
+  {
+    "storeNumber": "361",
+    "name": "Meridian",
+    "streetAddress": "2986 N. Eagle Rd.",
+    "city": "Meridian",
+    "state": "ID",
+    "zip": "83646",
+    "phone": "208-506-2978",
+    "url": "https://locations.traderjoes.com/id/meridian/361/"
+  },
+  {
+    "storeNumber": "699",
+    "name": "Algonquin",
+    "streetAddress": "1800 S Randall Rd",
+    "city": "Algonquin",
+    "state": "IL",
+    "zip": "60102",
+    "phone": "847-854-4886",
+    "url": "https://locations.traderjoes.com/il/algonquin/699/"
+  },
+  {
+    "storeNumber": "687",
+    "name": "Arlington Heights",
+    "streetAddress": "17 W Rand Rd",
+    "city": "Arlington Heights",
+    "state": "IL",
+    "zip": "60004",
+    "phone": "847-506-0752",
+    "url": "https://locations.traderjoes.com/il/arlington-heights/687/"
+  },
+  {
+    "storeNumber": "689",
+    "name": "Batavia",
+    "streetAddress": "1942 W Fabyan Pkwy",
+    "city": "Batavia",
+    "state": "IL",
+    "zip": "60510",
+    "phone": "630-879-3234",
+    "url": "https://locations.traderjoes.com/il/batavia/689/"
+  },
+  {
+    "storeNumber": "688",
+    "name": "Chicago",
+    "streetAddress": "3745 N Lincoln Ave",
+    "city": "Chicago",
+    "state": "IL",
+    "zip": "60613",
+    "phone": "773-248-4920",
+    "url": "https://locations.traderjoes.com/il/chicago/688/"
+  },
+  {
+    "storeNumber": "703",
+    "name": "Chicago - Diversey Pkwy",
+    "streetAddress": "667 W Diversey Pkwy",
+    "city": "Chicago",
+    "state": "IL",
+    "zip": "60614",
+    "phone": "773-935-7255",
+    "url": "https://locations.traderjoes.com/il/chicago/703/"
+  },
+  {
+    "storeNumber": "691",
+    "name": "Chicago - Lincoln Park",
+    "streetAddress": "1840 N Clybourn Ave",
+    "city": "Chicago",
+    "state": "IL",
+    "zip": "60614",
+    "phone": "312-274-9733",
+    "url": "https://locations.traderjoes.com/il/chicago/691/"
+  },
+  {
+    "storeNumber": "696",
+    "name": "Chicago - River North",
+    "streetAddress": "44 E Ontario St",
+    "city": "Chicago",
+    "state": "IL",
+    "zip": "60611",
+    "phone": "312-951-6369",
+    "url": "https://locations.traderjoes.com/il/chicago/696/"
+  },
+  {
+    "storeNumber": "701",
+    "name": "Chicago - South Loop",
+    "streetAddress": "1147 S Wabash Ave",
+    "city": "Chicago",
+    "state": "IL",
+    "zip": "60605",
+    "phone": "312-588-0489",
+    "url": "https://locations.traderjoes.com/il/chicago/701/"
+  },
+  {
+    "storeNumber": "683",
+    "name": "Downers Grove",
+    "streetAddress": "122 Ogden Ave",
+    "city": "Downers Grove",
+    "state": "IL",
+    "zip": "60515",
+    "phone": "630-241-1662",
+    "url": "https://locations.traderjoes.com/il/downers-grove/683/"
+  },
+  {
+    "storeNumber": "702",
+    "name": "Evanston",
+    "streetAddress": "1211 Chicago Avenue",
+    "city": "Evanston",
+    "state": "IL",
+    "zip": "60202",
+    "phone": "847-733-0690",
+    "url": "https://locations.traderjoes.com/il/evanston/702/"
+  },
+  {
+    "storeNumber": "680",
+    "name": "Glen Ellyn",
+    "streetAddress": "680 Roosevelt Rd",
+    "city": "Glen Ellyn",
+    "state": "IL",
+    "zip": "60137",
+    "phone": "630-858-5077",
+    "url": "https://locations.traderjoes.com/il/glen-ellyn/680/"
+  },
+  {
+    "storeNumber": "681",
+    "name": "Glenview",
+    "streetAddress": "1407 Waukegan Rd",
+    "city": "Glenview",
+    "state": "IL",
+    "zip": "60025",
+    "phone": "847-657-7821",
+    "url": "https://locations.traderjoes.com/il/glenview/681/"
+  },
+  {
+    "storeNumber": "706",
+    "name": "Hyde Park",
+    "streetAddress": "1528 E 55Th Street",
+    "city": "Chicago",
+    "state": "IL",
+    "zip": "60615",
+    "phone": "773-363-8831",
+    "url": "https://locations.traderjoes.com/il/chicago/706/"
+  },
+  {
+    "storeNumber": "685",
+    "name": "La Grange",
+    "streetAddress": "25 N la Grange Rd",
+    "city": "La Grange",
+    "state": "IL",
+    "zip": "60525",
+    "phone": "708-579-0838",
+    "url": "https://locations.traderjoes.com/il/la-grange/685/"
+  },
+  {
+    "storeNumber": "684",
+    "name": "Lake Zurich",
+    "streetAddress": "735 W Route 22",
+    "city": "Lake Zurich",
+    "state": "IL",
+    "zip": "60047",
+    "phone": "847-550-7827",
+    "url": "https://locations.traderjoes.com/il/lake-zurich/684/"
+  },
+  {
+    "storeNumber": "704",
+    "name": "Libertyville",
+    "streetAddress": "1600 S Milwaukee Ave",
+    "city": "Libertyville",
+    "state": "IL",
+    "zip": "60048",
+    "phone": "847-680-1739",
+    "url": "https://locations.traderjoes.com/il/libertyville/704/"
+  },
+  {
+    "storeNumber": "690",
+    "name": "Naperville",
+    "streetAddress": "44 W Gartner Rd",
+    "city": "Naperville",
+    "state": "IL",
+    "zip": "60540",
+    "phone": "630-355-4389",
+    "url": "https://locations.traderjoes.com/il/naperville/690/"
+  },
+  {
+    "storeNumber": "682",
+    "name": "Northbrook",
+    "streetAddress": "127 Skokie Blvd",
+    "city": "Northbrook",
+    "state": "IL",
+    "zip": "60062",
+    "phone": "847-480-9280",
+    "url": "https://locations.traderjoes.com/il/northbrook/682/"
+  },
+  {
+    "storeNumber": "697",
+    "name": "Oak Park",
+    "streetAddress": "483 N Harlem Ave",
+    "city": "Oak Park",
+    "state": "IL",
+    "zip": "60301",
+    "phone": "708-386-1169",
+    "url": "https://locations.traderjoes.com/il/oak-park/697/"
+  },
+  {
+    "storeNumber": "686",
+    "name": "Orland Park",
+    "streetAddress": "14924 S la Grange Rd",
+    "city": "Orland Park",
+    "state": "IL",
+    "zip": "60462",
+    "phone": "708-349-9021",
+    "url": "https://locations.traderjoes.com/il/orland-park/686/"
+  },
+  {
+    "storeNumber": "861",
+    "name": "Oswego",
+    "streetAddress": "1930 Us-34",
+    "city": "Oswego",
+    "state": "IL",
+    "zip": "60543",
+    "phone": "",
+    "url": "https://locations.traderjoes.com/il/oswego/861/"
+  },
+  {
+    "storeNumber": "698",
+    "name": "Park Ridge",
+    "streetAddress": "190 N Nw Highway",
+    "city": "Park Ridge",
+    "state": "IL",
+    "zip": "60068",
+    "phone": "847-292-1108",
+    "url": "https://locations.traderjoes.com/il/park-ridge/698/"
+  },
+  {
+    "storeNumber": "705",
+    "name": "Schaumburg",
+    "streetAddress": "1426 E Golf Rd",
+    "city": "Schaumburg",
+    "state": "IL",
+    "zip": "60173",
+    "phone": "847-619-0095",
+    "url": "https://locations.traderjoes.com/il/schaumburg/705/"
+  },
+  {
+    "storeNumber": "757",
+    "name": "Fort Wayne",
+    "streetAddress": "4110 W. Jefferson Blvd.",
+    "city": "Fort Wayne",
+    "state": "IN",
+    "zip": "46804",
+    "phone": "260-432-5828",
+    "url": "https://locations.traderjoes.com/in/fort-wayne/757/"
+  },
+  {
+    "storeNumber": "671",
+    "name": "Indianapolis - Castleton",
+    "streetAddress": "5473 E 82Nd St",
+    "city": "Indianapolis",
+    "state": "IN",
+    "zip": "46250",
+    "phone": "317-595-8950",
+    "url": "https://locations.traderjoes.com/in/indianapolis/671/"
+  },
+  {
+    "storeNumber": "670",
+    "name": "Indianapolis - W 86th",
+    "streetAddress": "2902 W 86Th St",
+    "city": "Indianapolis",
+    "state": "IN",
+    "zip": "46268",
+    "phone": "317-337-1880",
+    "url": "https://locations.traderjoes.com/in/indianapolis/670/"
+  },
+  {
+    "storeNumber": "600",
+    "name": "South Bend",
+    "streetAddress": "1140 East Howard",
+    "city": "South Bend",
+    "state": "IN",
+    "zip": "46617",
+    "phone": "574-472-8744",
+    "url": "https://locations.traderjoes.com/in/south-bend/600/"
+  },
+  {
+    "storeNumber": "723",
+    "name": "Leawood",
+    "streetAddress": "4201 W 119Th St",
+    "city": "Leawood",
+    "state": "KS",
+    "zip": "66209",
+    "phone": "913-327-7209",
+    "url": "https://locations.traderjoes.com/ks/leawood/723/"
+  },
+  {
+    "storeNumber": "821",
+    "name": "Merriam",
+    "streetAddress": "8700 Shawnee Mission Pkwy",
+    "city": "Merriam",
+    "state": "KS",
+    "zip": "66202",
+    "phone": "",
+    "url": "https://locations.traderjoes.com/ks/merriam/821/"
+  },
+  {
+    "storeNumber": "729",
+    "name": "Wichita",
+    "streetAddress": "1800 N. Rock Road",
+    "city": "Wichita",
+    "state": "KS",
+    "zip": "67206",
+    "phone": "316-634-1846",
+    "url": "https://locations.traderjoes.com/ks/wichita/729/"
+  },
+  {
+    "storeNumber": "788",
+    "name": "Crestview Hills Grocery",
+    "streetAddress": "2780 Dixie Highway",
+    "city": "Crestview Hills",
+    "state": "KY",
+    "zip": "41017",
+    "phone": "859-331-0034",
+    "url": "https://locations.traderjoes.com/ky/crestview-hills/788/"
+  },
+  {
+    "storeNumber": "789",
+    "name": "Crestview Hills Wine Shop",
+    "streetAddress": "2785 Dixie Highway",
+    "city": "Crestview Hills",
+    "state": "KY",
+    "zip": "41017",
+    "phone": "859-331-1472",
+    "url": "https://locations.traderjoes.com/ky/crestview-hills/789/"
+  },
+  {
+    "storeNumber": "627",
+    "name": "Lexington Grocery",
+    "streetAddress": "2326 Nicholasville Rd",
+    "city": "Lexington",
+    "state": "KY",
+    "zip": "40503",
+    "phone": "859-313-5030",
+    "url": "https://locations.traderjoes.com/ky/lexington/627/"
+  },
+  {
+    "storeNumber": "626",
+    "name": "Lexington Wine Shop",
+    "streetAddress": "2320 Nicholasville Road",
+    "city": "Lexington",
+    "state": "KY",
+    "zip": "40503",
+    "phone": "859-277-0144",
+    "url": "https://locations.traderjoes.com/ky/lexington/626/"
+  },
+  {
+    "storeNumber": "628",
+    "name": "Louisville Grocery",
+    "streetAddress": "4600 Shelbyville Rd",
+    "city": "Louisville",
+    "state": "KY",
+    "zip": "40207",
+    "phone": "502-895-1361",
+    "url": "https://locations.traderjoes.com/ky/louisville/628/"
+  },
+  {
+    "storeNumber": "625",
+    "name": "Louisville Wine Shop",
+    "streetAddress": "4600 Shelbyville Rd Ste 112",
+    "city": "Louisville",
+    "state": "KY",
+    "zip": "40207",
+    "phone": "502-895-7872",
+    "url": "https://locations.traderjoes.com/ky/louisville/625/"
+  },
+  {
+    "storeNumber": "754",
+    "name": "Baton Rouge",
+    "streetAddress": "3535 Perkins Rd",
+    "city": "Baton Rouge",
+    "state": "LA",
+    "zip": "70808",
+    "phone": "225-382-0588",
+    "url": "https://locations.traderjoes.com/la/baton-rouge/754/"
+  },
+  {
+    "storeNumber": "807",
+    "name": "Lafayette",
+    "streetAddress": "1710 Camellia Blvd",
+    "city": "Lafayette",
+    "state": "LA",
+    "zip": "70508",
+    "phone": "",
+    "url": "https://locations.traderjoes.com/la/lafayette/807/"
+  },
+  {
+    "storeNumber": "863",
+    "name": "Mandeville",
+    "streetAddress": "3377 U.s. Hwy 190",
+    "city": "Mandeville",
+    "state": "LA",
+    "zip": "70471",
+    "phone": "",
+    "url": "https://locations.traderjoes.com/la/mandeville/863/"
+  },
+  {
+    "storeNumber": "755",
+    "name": "Metairie",
+    "streetAddress": "2949 Veterans Blvd",
+    "city": "Metairie",
+    "state": "LA",
+    "zip": "70002",
+    "phone": "504-831-0253",
+    "url": "https://locations.traderjoes.com/la/metairie/755/"
+  },
+  {
+    "storeNumber": "793",
+    "name": "New Orleans",
+    "streetAddress": "2428 Napoleon Ave",
+    "city": "New Orleans",
+    "state": "LA",
+    "zip": "70115",
+    "phone": "",
+    "url": "https://locations.traderjoes.com/la/new-orleans/793/"
+  },
+  {
+    "storeNumber": "811",
+    "name": "New Orleans - Mid-City",
+    "streetAddress": "2501 Tulane Ave",
+    "city": "New Orleans",
+    "state": "LA",
+    "zip": "70119",
+    "phone": "504-229-9973",
+    "url": "https://locations.traderjoes.com/la/new-orleans/811/"
+  },
+  {
+    "storeNumber": "511",
+    "name": "Acton",
+    "streetAddress": "145 Great Rd",
+    "city": "Acton",
+    "state": "MA",
+    "zip": "01720",
+    "phone": "978-266-8908",
+    "url": "https://locations.traderjoes.com/ma/acton/511/"
+  },
+  {
+    "storeNumber": "561",
+    "name": "Allston",
+    "streetAddress": "199 N Harvard St",
+    "city": "Allston",
+    "state": "MA",
+    "zip": "02134",
+    "phone": "617-787-1238",
+    "url": "https://locations.traderjoes.com/ma/allston/561/"
+  },
+  {
+    "storeNumber": "505",
+    "name": "Arlington",
+    "streetAddress": "1427 Massachusetts Ave",
+    "city": "Arlington",
+    "state": "MA",
+    "zip": "02476",
+    "phone": "781-646-9138",
+    "url": "https://locations.traderjoes.com/ma/arlington/505/"
+  },
+  {
+    "storeNumber": "500",
+    "name": "boston",
+    "streetAddress": "500 Boylston St",
+    "city": "Boston",
+    "state": "MA",
+    "zip": "02116",
+    "phone": "617-693-6302",
+    "url": "https://locations.traderjoes.com/ma/boston/500/"
+  },
+  {
+    "storeNumber": "510",
+    "name": "Boston - Back Bay",
+    "streetAddress": "899 Boylston St",
+    "city": "Boston",
+    "state": "MA",
+    "zip": "02115",
+    "phone": "617-262-6505",
+    "url": "https://locations.traderjoes.com/ma/boston/510/"
+  },
+  {
+    "storeNumber": "588",
+    "name": "Boston - West Roxbury",
+    "streetAddress": "1999 Centre St",
+    "city": "Boston",
+    "state": "MA",
+    "zip": "02132",
+    "phone": "617-682-7600",
+    "url": "https://locations.traderjoes.com/ma/boston/588/"
+  },
+  {
+    "storeNumber": "501",
+    "name": "Brookline",
+    "streetAddress": "1317 Beacon St",
+    "city": "Brookline",
+    "state": "MA",
+    "zip": "02446",
+    "phone": "617-278-9997",
+    "url": "https://locations.traderjoes.com/ma/brookline/501/"
+  },
+  {
+    "storeNumber": "515",
+    "name": "Burlington",
+    "streetAddress": "51 Middlesex Turnpike",
+    "city": "Burlington",
+    "state": "MA",
+    "zip": "01803",
+    "phone": "781-273-2310",
+    "url": "https://locations.traderjoes.com/ma/burlington/515/"
+  },
+  {
+    "storeNumber": "502",
+    "name": "Cambridge",
+    "streetAddress": "748 Memorial Dr",
+    "city": "Cambridge",
+    "state": "MA",
+    "zip": "02139",
+    "phone": "617-491-8582",
+    "url": "https://locations.traderjoes.com/ma/cambridge/502/"
+  },
+  {
+    "storeNumber": "517",
+    "name": "Cambridge Fresh Pond",
+    "streetAddress": "211 Alewife Brook Pkwy",
+    "city": "Cambridge",
+    "state": "MA",
+    "zip": "02138",
+    "phone": "617-498-3201",
+    "url": "https://locations.traderjoes.com/ma/cambridge/517/"
+  },
+  {
+    "storeNumber": "566",
+    "name": "Fort Point Seaport",
+    "streetAddress": "44 Thomson Place",
+    "city": "Boston",
+    "state": "MA",
+    "zip": "02210",
+    "phone": "617-941-3714",
+    "url": "https://locations.traderjoes.com/ma/boston/566/"
+  },
+  {
+    "storeNumber": "528",
+    "name": "Foxborough - Patriot Place",
+    "streetAddress": "350 Patriot Place",
+    "city": "Foxborough",
+    "state": "MA",
+    "zip": "02035",
+    "phone": "508-543-1978",
+    "url": "https://locations.traderjoes.com/ma/foxborough/528/"
+  },
+  {
+    "storeNumber": "503",
+    "name": "Framingham",
+    "streetAddress": "659 Worcester Rd",
+    "city": "Framingham",
+    "state": "MA",
+    "zip": "01701",
+    "phone": "508-935-2931",
+    "url": "https://locations.traderjoes.com/ma/framingham/503/"
+  },
+  {
+    "storeNumber": "512",
+    "name": "Hadley",
+    "streetAddress": "375 Russell St",
+    "city": "Hadley",
+    "state": "MA",
+    "zip": "01035",
+    "phone": "413-587-3260",
+    "url": "https://locations.traderjoes.com/ma/hadley/512/"
+  },
+  {
+    "storeNumber": "513",
+    "name": "Hanover",
+    "streetAddress": "1775 Washington St",
+    "city": "Hanover",
+    "state": "MA",
+    "zip": "02339",
+    "phone": "339-298-1530",
+    "url": "https://locations.traderjoes.com/ma/hanover/513/"
+  },
+  {
+    "storeNumber": "530",
+    "name": "Hingham",
+    "streetAddress": "5 Essington Drive",
+    "city": "Hingham",
+    "state": "MA",
+    "zip": "02043",
+    "phone": "781-740-2038",
+    "url": "https://locations.traderjoes.com/ma/hingham/530/"
+  },
+  {
+    "storeNumber": "514",
+    "name": "Hyannis",
+    "streetAddress": "655 Iyannough Road Rt 132",
+    "city": "Hyannis",
+    "state": "MA",
+    "zip": "02601",
+    "phone": "508-790-3008",
+    "url": "https://locations.traderjoes.com/ma/hyannis/514/"
+  },
+  {
+    "storeNumber": "582",
+    "name": "Milford",
+    "streetAddress": "230 Fortune Blvd",
+    "city": "Milford",
+    "state": "MA",
+    "zip": "01757",
+    "phone": "508-318-9234",
+    "url": "https://locations.traderjoes.com/ma/milford/582/"
+  },
+  {
+    "storeNumber": "504",
+    "name": "Needham Heights",
+    "streetAddress": "958 Highland Ave",
+    "city": "Needham",
+    "state": "MA",
+    "zip": "02494",
+    "phone": "781-449-6993",
+    "url": "https://locations.traderjoes.com/ma/needham/504/"
+  },
+  {
+    "storeNumber": "583",
+    "name": "Newton",
+    "streetAddress": "165 Needham St",
+    "city": "Newton",
+    "state": "MA",
+    "zip": "02464",
+    "phone": "617-340-5765",
+    "url": "https://locations.traderjoes.com/ma/newton/583/"
+  },
+  {
+    "storeNumber": "516",
+    "name": "Peabody",
+    "streetAddress": "300 Andover St",
+    "city": "Peabody",
+    "state": "MA",
+    "zip": "01960",
+    "phone": "978-977-5316",
+    "url": "https://locations.traderjoes.com/ma/peabody/516/"
+  },
+  {
+    "storeNumber": "873",
+    "name": "Reading",
+    "streetAddress": "34 Walkers Brook Drive",
+    "city": "Reading",
+    "state": "MA",
+    "zip": "01867",
+    "phone": "",
+    "url": "https://locations.traderjoes.com/ma/reading/873/"
+  },
+  {
+    "storeNumber": "506",
+    "name": "Saugus",
+    "streetAddress": "358 Broadway",
+    "city": "Saugus",
+    "state": "MA",
+    "zip": "01906",
+    "phone": "781-231-0848",
+    "url": "https://locations.traderjoes.com/ma/saugus/506/"
+  },
+  {
+    "storeNumber": "508",
+    "name": "Shrewsbury",
+    "streetAddress": "77 Boston Turnpike",
+    "city": "Shrewsbury",
+    "state": "MA",
+    "zip": "01545",
+    "phone": "508-755-9560",
+    "url": "https://locations.traderjoes.com/ma/shrewsbury/508/"
+  },
+  {
+    "storeNumber": "560",
+    "name": "Somerville",
+    "streetAddress": "145 Middlesex Ave",
+    "city": "Somerville",
+    "state": "MA",
+    "zip": "02145",
+    "phone": "617-591-0124",
+    "url": "https://locations.traderjoes.com/ma/somerville/560/"
+  },
+  {
+    "storeNumber": "509",
+    "name": "West Newton",
+    "streetAddress": "1121 Washington St",
+    "city": "West Newton",
+    "state": "MA",
+    "zip": "02465",
+    "phone": "617-244-1620",
+    "url": "https://locations.traderjoes.com/ma/west-newton/509/"
+  },
+  {
+    "storeNumber": "650",
+    "name": "Annapolis",
+    "streetAddress": "160 F Jennifer Rd",
+    "city": "Annapolis",
+    "state": "MD",
+    "zip": "21401",
+    "phone": "410-573-0505",
+    "url": "https://locations.traderjoes.com/md/annapolis/650/"
+  },
+  {
+    "storeNumber": "645",
+    "name": "Bethesda",
+    "streetAddress": "6831 Wisconsin Ave",
+    "city": "Bethesda",
+    "state": "MD",
+    "zip": "20815",
+    "phone": "301-907-0982",
+    "url": "https://locations.traderjoes.com/md/bethesda/645/"
+  },
+  {
+    "storeNumber": "623",
+    "name": "Bethesda - Downtown",
+    "streetAddress": "7900 Wisconsin Ave",
+    "city": "Bethesda",
+    "state": "MD",
+    "zip": "20814",
+    "phone": "301-215-7913",
+    "url": "https://locations.traderjoes.com/md/bethesda/623/"
+  },
+  {
+    "storeNumber": "758",
+    "name": "College Park",
+    "streetAddress": "4429 Calvert Road",
+    "city": "College Park",
+    "state": "MD",
+    "zip": "20740",
+    "phone": "301-985-3704",
+    "url": "https://locations.traderjoes.com/md/college-park/758/"
+  },
+  {
+    "storeNumber": "658",
+    "name": "Columbia",
+    "streetAddress": "6610 Marie Curie Dr",
+    "city": "Elkridge",
+    "state": "MD",
+    "zip": "21075",
+    "phone": "410-953-8139",
+    "url": "https://locations.traderjoes.com/md/elkridge/658/"
+  },
+  {
+    "storeNumber": "648",
+    "name": "North Potomac",
+    "streetAddress": "10076 Darnestown Rd",
+    "city": "Rockville",
+    "state": "MD",
+    "zip": "20850",
+    "phone": "301-762-0782",
+    "url": "https://locations.traderjoes.com/md/rockville/648/"
+  },
+  {
+    "storeNumber": "655",
+    "name": "Pikesville",
+    "streetAddress": "1809 Reisterstown Rd",
+    "city": "Pikesville",
+    "state": "MD",
+    "zip": "21208",
+    "phone": "410-484-8373",
+    "url": "https://locations.traderjoes.com/md/pikesville/655/"
+  },
+  {
+    "storeNumber": "589",
+    "name": "Rockville",
+    "streetAddress": "225 N Washington St",
+    "city": "Rockville",
+    "state": "MD",
+    "zip": "20850",
+    "phone": "240-219-2398",
+    "url": "https://locations.traderjoes.com/md/rockville/589/"
+  },
+  {
+    "storeNumber": "642",
+    "name": "Rockville",
+    "streetAddress": "12268-H Rockville Pike",
+    "city": "Rockville",
+    "state": "MD",
+    "zip": "20852",
+    "phone": "301-468-6656",
+    "url": "https://locations.traderjoes.com/md/rockville/642/"
+  },
+  {
+    "storeNumber": "652",
+    "name": "Silver Spring",
+    "streetAddress": "10741 Columbia Pike",
+    "city": "Silver Spring",
+    "state": "MD",
+    "zip": "20901",
+    "phone": "301-681-1675",
+    "url": "https://locations.traderjoes.com/md/silver-spring/652/"
+  },
+  {
+    "storeNumber": "649",
+    "name": "Towson",
+    "streetAddress": "800 Kenilworth Drive",
+    "city": "Towson",
+    "state": "MD",
+    "zip": "21204",
+    "phone": "410-321-0276",
+    "url": "https://locations.traderjoes.com/md/towson/649/"
+  },
+  {
+    "storeNumber": "519",
+    "name": "Portland",
+    "streetAddress": "87 Marginal Way",
+    "city": "Portland",
+    "state": "ME",
+    "zip": "04101",
+    "phone": "207-699-3799",
+    "url": "https://locations.traderjoes.com/me/portland/519/"
+  },
+  {
+    "storeNumber": "678",
+    "name": "Ann Arbor",
+    "streetAddress": "2398 East Stadium Blvd",
+    "city": "Ann Arbor",
+    "state": "MI",
+    "zip": "48104",
+    "phone": "734-975-2455",
+    "url": "https://locations.traderjoes.com/mi/ann-arbor/678/"
+  },
+  {
+    "storeNumber": "675",
+    "name": "Bloomfield Hills",
+    "streetAddress": "6536 Telegraph Rd",
+    "city": "Bloomfield Hills",
+    "state": "MI",
+    "zip": "48301",
+    "phone": "248-855-2283",
+    "url": "https://locations.traderjoes.com/mi/bloomfield-hills/675/"
+  },
+  {
+    "storeNumber": "804",
+    "name": "East Lansing",
+    "streetAddress": "2755 E Grand River Ave",
+    "city": "East Lansing",
+    "state": "MI",
+    "zip": "48823",
+    "phone": "517-274-8581",
+    "url": "https://locations.traderjoes.com/mi/east-lansing/804/"
+  },
+  {
+    "storeNumber": "707",
+    "name": "Grand Rapids - Kentwood",
+    "streetAddress": "3684 28Th St Se",
+    "city": "Kentwood",
+    "state": "MI",
+    "zip": "49512",
+    "phone": "616-977-1819",
+    "url": "https://locations.traderjoes.com/mi/kentwood/707/"
+  },
+  {
+    "storeNumber": "665",
+    "name": "Grosse Pointe",
+    "streetAddress": "17028 Kercheval Ave",
+    "city": "Grosse Pointe",
+    "state": "MI",
+    "zip": "48230",
+    "phone": "313-640-7794",
+    "url": "https://locations.traderjoes.com/mi/grosse-pointe/665/"
+  },
+  {
+    "storeNumber": "708",
+    "name": "Kalamazoo",
+    "streetAddress": "5099 Century Ave",
+    "city": "Kalamazoo",
+    "state": "MI",
+    "zip": "49006",
+    "phone": "269-372-2049",
+    "url": "https://locations.traderjoes.com/mi/kalamazoo/708/"
+  },
+  {
+    "storeNumber": "667",
+    "name": "Northville",
+    "streetAddress": "18771 Traditions Drive",
+    "city": "Northville",
+    "state": "MI",
+    "zip": "48167",
+    "phone": "248-349-4909",
+    "url": "https://locations.traderjoes.com/mi/northville/667/"
+  },
+  {
+    "storeNumber": "668",
+    "name": "Rochester Hills",
+    "streetAddress": "3044 Walton Blvd",
+    "city": "Rochester Hills",
+    "state": "MI",
+    "zip": "48309",
+    "phone": "248-375-2190",
+    "url": "https://locations.traderjoes.com/mi/rochester-hills/668/"
+  },
+  {
+    "storeNumber": "674",
+    "name": "Royal Oak",
+    "streetAddress": "27880 Woodward Ave",
+    "city": "Royal Oak",
+    "state": "MI",
+    "zip": "48067",
+    "phone": "248-582-9002",
+    "url": "https://locations.traderjoes.com/mi/royal-oak/674/"
+  },
+  {
+    "storeNumber": "724",
+    "name": "Bloomington",
+    "streetAddress": "4270 W 78Th St",
+    "city": "Bloomington",
+    "state": "MN",
+    "zip": "55435",
+    "phone": "952-835-8640",
+    "url": "https://locations.traderjoes.com/mn/bloomington/724/"
+  },
+  {
+    "storeNumber": "717",
+    "name": "Eagan",
+    "streetAddress": "2065 Cliff Road",
+    "city": "Eagan",
+    "state": "MN",
+    "zip": "55122",
+    "phone": "651-362-4841",
+    "url": "https://locations.traderjoes.com/mn/eagan/717/"
+  },
+  {
+    "storeNumber": "713",
+    "name": "Maple Grove",
+    "streetAddress": "12105 Elm Creek Blvd n",
+    "city": "Maple Grove",
+    "state": "MN",
+    "zip": "55369",
+    "phone": "763-315-1739",
+    "url": "https://locations.traderjoes.com/mn/maple-grove/713/"
+  },
+  {
+    "storeNumber": "725",
+    "name": "Minneapolis",
+    "streetAddress": "721 Washington Ave s",
+    "city": "Minneapolis",
+    "state": "MN",
+    "zip": "55415",
+    "phone": "612-339-2110",
+    "url": "https://locations.traderjoes.com/mn/minneapolis/725/"
+  },
+  {
+    "storeNumber": "714",
+    "name": "Minnetonka",
+    "streetAddress": "11220 Wayzata Blvd",
+    "city": "Minnetonka",
+    "state": "MN",
+    "zip": "55305",
+    "phone": "952-417-9080",
+    "url": "https://locations.traderjoes.com/mn/minnetonka/714/"
+  },
+  {
+    "storeNumber": "718",
+    "name": "Rochester",
+    "streetAddress": "1200 16Th St Sw",
+    "city": "Rochester",
+    "state": "MN",
+    "zip": "55902",
+    "phone": "507-281-4411",
+    "url": "https://locations.traderjoes.com/mn/rochester/718/"
+  },
+  {
+    "storeNumber": "727",
+    "name": "Shoreview",
+    "streetAddress": "1041 Red Fox Rd",
+    "city": "Shoreview",
+    "state": "MN",
+    "zip": "55126",
+    "phone": "651-765-1398",
+    "url": "https://locations.traderjoes.com/mn/shoreview/727/"
+  },
+  {
+    "storeNumber": "710",
+    "name": "St. Louis Park",
+    "streetAddress": "4500 Excelsior Blvd",
+    "city": "St. Louis Park",
+    "state": "MN",
+    "zip": "55416",
+    "phone": "952-285-1053",
+    "url": "https://locations.traderjoes.com/mn/st-louis-park/710/"
+  },
+  {
+    "storeNumber": "716",
+    "name": "St. Paul",
+    "streetAddress": "484 Lexington Pkwy s",
+    "city": "St. Paul",
+    "state": "MN",
+    "zip": "55105",
+    "phone": "651-698-3119",
+    "url": "https://locations.traderjoes.com/mn/st-paul/716/"
+  },
+  {
+    "storeNumber": "715",
+    "name": "Woodbury",
+    "streetAddress": "8960 Hudson Rd.",
+    "city": "Woodbury",
+    "state": "MN",
+    "zip": "55125",
+    "phone": "651-735-0269",
+    "url": "https://locations.traderjoes.com/mn/woodbury/715/"
+  },
+  {
+    "storeNumber": "692",
+    "name": "Brentwood",
+    "streetAddress": "48 Brentwood Promenade Court",
+    "city": "Brentwood",
+    "state": "MO",
+    "zip": "63144",
+    "phone": "314-963-0253",
+    "url": "https://locations.traderjoes.com/mo/brentwood/692/"
+  },
+  {
+    "storeNumber": "693",
+    "name": "Chesterfield",
+    "streetAddress": "1679 Clarkson Rd",
+    "city": "Chesterfield",
+    "state": "MO",
+    "zip": "63017",
+    "phone": "636-536-7846",
+    "url": "https://locations.traderjoes.com/mo/chesterfield/693/"
+  },
+  {
+    "storeNumber": "808",
+    "name": "Columbia",
+    "streetAddress": "201 N Stadium Blvd",
+    "city": "Columbia",
+    "state": "MO",
+    "zip": "65203",
+    "phone": "573-370-7203",
+    "url": "https://locations.traderjoes.com/mo/columbia/808/"
+  },
+  {
+    "storeNumber": "694",
+    "name": "Creve Coeur",
+    "streetAddress": "11505 Olive Blvd",
+    "city": "Creve Coeur",
+    "state": "MO",
+    "zip": "63141",
+    "phone": "314-569-0432",
+    "url": "https://locations.traderjoes.com/mo/creve-coeur/694/"
+  },
+  {
+    "storeNumber": "695",
+    "name": "Des Peres",
+    "streetAddress": "13343 Manchester Rd",
+    "city": "Des Peres",
+    "state": "MO",
+    "zip": "63131",
+    "phone": "314-984-5051",
+    "url": "https://locations.traderjoes.com/mo/des-peres/695/"
+  },
+  {
+    "storeNumber": "720",
+    "name": "Kansas City",
+    "streetAddress": "8600 Ward Pkwy",
+    "city": "Kansas City",
+    "state": "MO",
+    "zip": "64114",
+    "phone": "816-333-5322",
+    "url": "https://locations.traderjoes.com/mo/kansas-city/720/"
+  },
+  {
+    "storeNumber": "740",
+    "name": "Asheville",
+    "streetAddress": "120 Merrimon Ave",
+    "city": "Asheville",
+    "state": "NC",
+    "zip": "28801",
+    "phone": "828-232-5078",
+    "url": "https://locations.traderjoes.com/nc/asheville/740/"
+  },
+  {
+    "storeNumber": "741",
+    "name": "Cary",
+    "streetAddress": "1393 Kildaire Farm Rd",
+    "city": "Cary",
+    "state": "NC",
+    "zip": "27511",
+    "phone": "919-465-5985",
+    "url": "https://locations.traderjoes.com/nc/cary/741/"
+  },
+  {
+    "storeNumber": "745",
+    "name": "Chapel Hill",
+    "streetAddress": "1800 E Franklin St",
+    "city": "Chapel Hill",
+    "state": "NC",
+    "zip": "27514",
+    "phone": "919-918-7871",
+    "url": "https://locations.traderjoes.com/nc/chapel-hill/745/"
+  },
+  {
+    "storeNumber": "744",
+    "name": "Charlotte",
+    "streetAddress": "1133 Metropolitan Ave",
+    "city": "Charlotte",
+    "state": "NC",
+    "zip": "28204",
+    "phone": "704-334-0737",
+    "url": "https://locations.traderjoes.com/nc/charlotte/744/"
+  },
+  {
+    "storeNumber": "743",
+    "name": "Charlotte - North",
+    "streetAddress": "1820 E Arbors Dr",
+    "city": "Charlotte",
+    "state": "NC",
+    "zip": "28262",
+    "phone": "704-688-9578",
+    "url": "https://locations.traderjoes.com/nc/charlotte/743/"
+  },
+  {
+    "storeNumber": "742",
+    "name": "Charlotte - Piper Glen",
+    "streetAddress": "6418 Rea Rd",
+    "city": "Charlotte",
+    "state": "NC",
+    "zip": "28277",
+    "phone": "704-543-5249",
+    "url": "https://locations.traderjoes.com/nc/charlotte/742/"
+  },
+  {
+    "storeNumber": "750",
+    "name": "Greensboro",
+    "streetAddress": "3721 Battleground Ave.",
+    "city": "Greensboro",
+    "state": "NC",
+    "zip": "27410",
+    "phone": "336-286-7859",
+    "url": "https://locations.traderjoes.com/nc/greensboro/750/"
+  },
+  {
+    "storeNumber": "790",
+    "name": "Greenville",
+    "streetAddress": "3160 B Evans St",
+    "city": "Greenville",
+    "state": "NC",
+    "zip": "27834",
+    "phone": "252-374-8457",
+    "url": "https://locations.traderjoes.com/nc/greenville/790/"
+  },
+  {
+    "storeNumber": "791",
+    "name": "Morrisville",
+    "streetAddress": "951 Morrisville Parkway",
+    "city": "Morrisville",
+    "state": "NC",
+    "zip": "27560",
+    "phone": "919-460-4449",
+    "url": "https://locations.traderjoes.com/nc/morrisville/791/"
+  },
+  {
+    "storeNumber": "746",
+    "name": "Raleigh",
+    "streetAddress": "3000 Wake Forest Rd",
+    "city": "Raleigh",
+    "state": "NC",
+    "zip": "27609",
+    "phone": "919-981-7422",
+    "url": "https://locations.traderjoes.com/nc/raleigh/746/"
+  },
+  {
+    "storeNumber": "748",
+    "name": "Raleigh - North",
+    "streetAddress": "8111 Creedmoor Rd",
+    "city": "Raleigh",
+    "state": "NC",
+    "zip": "27613",
+    "phone": "984-252-3344",
+    "url": "https://locations.traderjoes.com/nc/raleigh/748/"
+  },
+  {
+    "storeNumber": "747",
+    "name": "Wilmington",
+    "streetAddress": "1437 S College Rd",
+    "city": "Wilmington",
+    "state": "NC",
+    "zip": "28403",
+    "phone": "910-507-8870",
+    "url": "https://locations.traderjoes.com/nc/wilmington/747/"
+  },
+  {
+    "storeNumber": "749",
+    "name": "Winston Salem",
+    "streetAddress": "252 South Stratford Road",
+    "city": "Winston Salem",
+    "state": "NC",
+    "zip": "27103",
+    "phone": "336-721-1744",
+    "url": "https://locations.traderjoes.com/nc/winston-salem/749/"
+  },
+  {
+    "storeNumber": "722",
+    "name": "Lincoln",
+    "streetAddress": "3120 Pine Lake Rd",
+    "city": "Lincoln",
+    "state": "NE",
+    "zip": "68516",
+    "phone": "402-328-0120",
+    "url": "https://locations.traderjoes.com/ne/lincoln/722/"
+  },
+  {
+    "storeNumber": "719",
+    "name": "Omaha",
+    "streetAddress": "10305 Pacific St",
+    "city": "Omaha",
+    "state": "NE",
+    "zip": "68114",
+    "phone": "402-391-3698",
+    "url": "https://locations.traderjoes.com/ne/omaha/719/"
+  },
+  {
+    "storeNumber": "562",
+    "name": "Bedford",
+    "streetAddress": "2 Market Street",
+    "city": "Bedford",
+    "state": "NH",
+    "zip": "03110",
+    "phone": "603-222-3074",
+    "url": "https://locations.traderjoes.com/nh/bedford/562/"
+  },
+  {
+    "storeNumber": "507",
+    "name": "Nashua",
+    "streetAddress": "262 Daniel Webster Hwy",
+    "city": "Nashua",
+    "state": "NH",
+    "zip": "03060",
+    "phone": "603-888-5460",
+    "url": "https://locations.traderjoes.com/nh/nashua/507/"
+  },
+  {
+    "storeNumber": "520",
+    "name": "Newington/Portsmouth",
+    "streetAddress": "45 Gosling Rd",
+    "city": "Portsmouth",
+    "state": "NH",
+    "zip": "03801",
+    "phone": "603-431-2654",
+    "url": "https://locations.traderjoes.com/nh/portsmouth/520/"
+  },
+  {
+    "storeNumber": "615",
+    "name": "Brick",
+    "streetAddress": "110 Brick Plaza",
+    "city": "Brick",
+    "state": "NJ",
+    "zip": "08723",
+    "phone": "732-477-4781",
+    "url": "https://locations.traderjoes.com/nj/brick/615/"
+  },
+  {
+    "storeNumber": "614",
+    "name": "Bridgewater",
+    "streetAddress": "315 Promenade Blvd",
+    "city": "Bridgewater",
+    "state": "NJ",
+    "zip": "08807",
+    "phone": "732-805-0268",
+    "url": "https://locations.traderjoes.com/nj/bridgewater/614/"
+  },
+  {
+    "storeNumber": "613",
+    "name": "Cherry Hill",
+    "streetAddress": "775 Haddonfield Rd",
+    "city": "Cherry Hill",
+    "state": "NJ",
+    "zip": "08002",
+    "phone": "856-488-0801",
+    "url": "https://locations.traderjoes.com/nj/cherry-hill/613/"
+  },
+  {
+    "storeNumber": "610",
+    "name": "Clifton",
+    "streetAddress": "259 Allwood Road",
+    "city": "Clifton",
+    "state": "NJ",
+    "zip": "07012",
+    "phone": "973-777-5020",
+    "url": "https://locations.traderjoes.com/nj/clifton/610/"
+  },
+  {
+    "storeNumber": "617",
+    "name": "Denville",
+    "streetAddress": "3056 State Route 10 West",
+    "city": "Denville",
+    "state": "NJ",
+    "zip": "07834",
+    "phone": "973-537-3672",
+    "url": "https://locations.traderjoes.com/nj/denville/617/"
+  },
+  {
+    "storeNumber": "606",
+    "name": "Edgewater",
+    "streetAddress": "715 River Rd",
+    "city": "Edgewater",
+    "state": "NJ",
+    "zip": "07020",
+    "phone": "201-945-5932",
+    "url": "https://locations.traderjoes.com/nj/edgewater/606/"
+  },
+  {
+    "storeNumber": "604",
+    "name": "Florham Park",
+    "streetAddress": "176 Columbia Turnpike",
+    "city": "Florham Park",
+    "state": "NJ",
+    "zip": "07932",
+    "phone": "973-377-0679",
+    "url": "https://locations.traderjoes.com/nj/florham-park/604/"
+  },
+  {
+    "storeNumber": "590",
+    "name": "Freehold",
+    "streetAddress": "4331 Route 9",
+    "city": "Freehold",
+    "state": "NJ",
+    "zip": "07728",
+    "phone": "732-462-1539",
+    "url": "https://locations.traderjoes.com/nj/freehold/590/"
+  },
+  {
+    "storeNumber": "611",
+    "name": "Hoboken",
+    "streetAddress": "1350 Willow Ave.",
+    "city": "Hoboken",
+    "state": "NJ",
+    "zip": "07030",
+    "phone": "201-714-4790",
+    "url": "https://locations.traderjoes.com/nj/hoboken/611/"
+  },
+  {
+    "storeNumber": "593",
+    "name": "Iselin - Woodbridge",
+    "streetAddress": "675 Us-1",
+    "city": "Iselin",
+    "state": "NJ",
+    "zip": "08830",
+    "phone": "848-306-5497",
+    "url": "https://locations.traderjoes.com/nj/iselin/593/"
+  },
+  {
+    "storeNumber": "631",
+    "name": "Marlton",
+    "streetAddress": "300 P Route 73 s",
+    "city": "Marlton",
+    "state": "NJ",
+    "zip": "08053",
+    "phone": "856-988-3323",
+    "url": "https://locations.traderjoes.com/nj/marlton/631/"
+  },
+  {
+    "storeNumber": "591",
+    "name": "Middletown",
+    "streetAddress": "1447 Nj-35",
+    "city": "Middletown Township",
+    "state": "NJ",
+    "zip": "07748",
+    "phone": "732-808-3237",
+    "url": "https://locations.traderjoes.com/nj/middletown-township/591/"
+  },
+  {
+    "storeNumber": "609",
+    "name": "Millburn",
+    "streetAddress": "187 Millburn Ave",
+    "city": "Millburn",
+    "state": "NJ",
+    "zip": "07041",
+    "phone": "973-218-0912",
+    "url": "https://locations.traderjoes.com/nj/millburn/609/"
+  },
+  {
+    "storeNumber": "612",
+    "name": "North Brunswick",
+    "streetAddress": "869 Us-1",
+    "city": "North Brunswick",
+    "state": "NJ",
+    "zip": "08902",
+    "phone": "732-993-1403",
+    "url": "https://locations.traderjoes.com/nj/north-brunswick/612/"
+  },
+  {
+    "storeNumber": "605",
+    "name": "Paramus",
+    "streetAddress": "404 Rt 17 n",
+    "city": "Paramus",
+    "state": "NJ",
+    "zip": "07652",
+    "phone": "201-265-9624",
+    "url": "https://locations.traderjoes.com/nj/paramus/605/"
+  },
+  {
+    "storeNumber": "607",
+    "name": "Princeton",
+    "streetAddress": "3528 Brunswick Pike",
+    "city": "Princeton",
+    "state": "NJ",
+    "zip": "08540",
+    "phone": "609-897-0581",
+    "url": "https://locations.traderjoes.com/nj/princeton/607/"
+  },
+  {
+    "storeNumber": "608",
+    "name": "Shrewsbury",
+    "streetAddress": "1031 Broad St",
+    "city": "Shrewsbury",
+    "state": "NJ",
+    "zip": "07702",
+    "phone": "732-389-2535",
+    "url": "https://locations.traderjoes.com/nj/shrewsbury/608/"
+  },
+  {
+    "storeNumber": "603",
+    "name": "Wayne",
+    "streetAddress": "910 Hamburg Turnpike",
+    "city": "Wayne",
+    "state": "NJ",
+    "zip": "07470",
+    "phone": "973-872-4604",
+    "url": "https://locations.traderjoes.com/nj/wayne/603/"
+  },
+  {
+    "storeNumber": "592",
+    "name": "West Orange",
+    "streetAddress": "471 Mt Pleasant Ave",
+    "city": "West Orange",
+    "state": "NJ",
+    "zip": "07052",
+    "phone": "",
+    "url": "https://locations.traderjoes.com/nj/west-orange/592/"
+  },
+  {
+    "storeNumber": "601",
+    "name": "Westfield",
+    "streetAddress": "155 Elm St",
+    "city": "Westfield",
+    "state": "NJ",
+    "zip": "07090",
+    "phone": "908-301-0910",
+    "url": "https://locations.traderjoes.com/nj/westfield/601/"
+  },
+  {
+    "storeNumber": "602",
+    "name": "Westwood",
+    "streetAddress": "20 Irvington St",
+    "city": "Westwood",
+    "state": "NJ",
+    "zip": "07675",
+    "phone": "201-263-0134",
+    "url": "https://locations.traderjoes.com/nj/westwood/602/"
+  },
+  {
+    "storeNumber": "166",
+    "name": "Albuquerque",
+    "streetAddress": "8928 Holly Ave Ne",
+    "city": "Albuquerque",
+    "state": "NM",
+    "zip": "87122",
+    "phone": "505-796-0311",
+    "url": "https://locations.traderjoes.com/nm/albuquerque/166/"
+  },
+  {
+    "storeNumber": "167",
+    "name": "Albuquerque",
+    "streetAddress": "2200 Uptown Lp Ne",
+    "city": "Albuquerque",
+    "state": "NM",
+    "zip": "87110",
+    "phone": "505-883-3662",
+    "url": "https://locations.traderjoes.com/nm/albuquerque/167/"
+  },
+  {
+    "storeNumber": "165",
+    "name": "Santa Fe",
+    "streetAddress": "530 W Cordova Rd",
+    "city": "Santa Fe",
+    "state": "NM",
+    "zip": "87505",
+    "phone": "505-995-8145",
+    "url": "https://locations.traderjoes.com/nm/santa-fe/165/"
+  },
+  {
+    "storeNumber": "280",
+    "name": "Anthem",
+    "streetAddress": "10345 S Eastern Ave",
+    "city": "Henderson",
+    "state": "NV",
+    "zip": "89052",
+    "phone": "702-407-8673",
+    "url": "https://locations.traderjoes.com/nv/henderson/280/"
+  },
+  {
+    "storeNumber": "281",
+    "name": "Carson City",
+    "streetAddress": "3790 Us Hwy 395 s",
+    "city": "Carson City",
+    "state": "NV",
+    "zip": "89705",
+    "phone": "775-267-2486",
+    "url": "https://locations.traderjoes.com/nv/carson-city/281/"
+  },
+  {
+    "storeNumber": "97",
+    "name": "Henderson",
+    "streetAddress": "2716 N Green Valley Pkwy",
+    "city": "Henderson",
+    "state": "NV",
+    "zip": "89014",
+    "phone": "702-433-6773",
+    "url": "https://locations.traderjoes.com/nv/henderson/97/"
+  },
+  {
+    "storeNumber": "98",
+    "name": "Las Vegas - Centennial Hills",
+    "streetAddress": "5639 Centennial Ctr Blvd",
+    "city": "Las Vegas",
+    "state": "NV",
+    "zip": "89149",
+    "phone": "702-396-3372",
+    "url": "https://locations.traderjoes.com/nv/las-vegas/98/"
+  },
+  {
+    "storeNumber": "284",
+    "name": "Las Vegas - Downtown Summerlin",
+    "streetAddress": "2315 Summa Dr",
+    "city": "Las Vegas",
+    "state": "NV",
+    "zip": "89135",
+    "phone": "702-242-0597",
+    "url": "https://locations.traderjoes.com/nv/las-vegas/284/"
+  },
+  {
+    "storeNumber": "86",
+    "name": "Las Vegas - Summerlin",
+    "streetAddress": "7575 W Washington",
+    "city": "Las Vegas",
+    "state": "NV",
+    "zip": "89128",
+    "phone": "702-242-8240",
+    "url": "https://locations.traderjoes.com/nv/las-vegas/86/"
+  },
+  {
+    "storeNumber": "278",
+    "name": "reno",
+    "streetAddress": "13945 S Virginia St",
+    "city": "Reno",
+    "state": "NV",
+    "zip": "89511",
+    "phone": "775-249-6301",
+    "url": "https://locations.traderjoes.com/nv/reno/278/"
+  },
+  {
+    "storeNumber": "82",
+    "name": "Reno",
+    "streetAddress": "5035 S Mccarran Blvd",
+    "city": "Reno",
+    "state": "NV",
+    "zip": "89502",
+    "phone": "775-826-1621",
+    "url": "https://locations.traderjoes.com/nv/reno/82/"
+  },
+  {
+    "storeNumber": "279",
+    "name": "Sparks",
+    "streetAddress": "185 Los Altos Pkwy",
+    "city": "Sparks",
+    "state": "NV",
+    "zip": "89436",
+    "phone": "775-259-1634",
+    "url": "https://locations.traderjoes.com/nv/sparks/279/"
+  },
+  {
+    "storeNumber": "542",
+    "name": "72nd & Broadway",
+    "streetAddress": "2073 Broadway",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10023",
+    "phone": "212-799-0028",
+    "url": "https://locations.traderjoes.com/ny/new-york/542/"
+  },
+  {
+    "storeNumber": "536",
+    "name": "Amherst",
+    "streetAddress": "1565 Niagara Falls Blvd",
+    "city": "Buffalo",
+    "state": "NY",
+    "zip": "14228",
+    "phone": "716-833-4687",
+    "url": "https://locations.traderjoes.com/ny/buffalo/536/"
+  },
+  {
+    "storeNumber": "558",
+    "name": "Brooklyn",
+    "streetAddress": "130 Court St",
+    "city": "Brooklyn",
+    "state": "NY",
+    "zip": "11201",
+    "phone": "718-246-8460",
+    "url": "https://locations.traderjoes.com/ny/brooklyn/558/"
+  },
+  {
+    "storeNumber": "547",
+    "name": "Brooklyn - City Point",
+    "streetAddress": "445 Gold St",
+    "city": "Brooklyn",
+    "state": "NY",
+    "zip": "11201",
+    "phone": "718-243-0107",
+    "url": "https://locations.traderjoes.com/ny/brooklyn/547/"
+  },
+  {
+    "storeNumber": "548",
+    "name": "Brooklyn - Williamsburg",
+    "streetAddress": "200 Kent Ave",
+    "city": "Brooklyn",
+    "state": "NY",
+    "zip": "11249",
+    "phone": "718-218-7315",
+    "url": "https://locations.traderjoes.com/ny/brooklyn/548/"
+  },
+  {
+    "storeNumber": "543",
+    "name": "Chelsea",
+    "streetAddress": "675 6Th Ave",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10010",
+    "phone": "212-255-2106",
+    "url": "https://locations.traderjoes.com/ny/new-york/543/"
+  },
+  {
+    "storeNumber": "535",
+    "name": "Colonie/Albany",
+    "streetAddress": "79 Wolf Rd",
+    "city": "Colonie",
+    "state": "NY",
+    "zip": "12205",
+    "phone": "518-482-4538",
+    "url": "https://locations.traderjoes.com/ny/colonie/535/"
+  },
+  {
+    "storeNumber": "551",
+    "name": "Commack",
+    "streetAddress": "5900 Jericho Turnpike",
+    "city": "Commack",
+    "state": "NY",
+    "zip": "11725",
+    "phone": "631-499-0898",
+    "url": "https://locations.traderjoes.com/ny/commack/551/"
+  },
+  {
+    "storeNumber": "546",
+    "name": "East Village",
+    "streetAddress": "436 East 14Th St",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10009",
+    "phone": "212-777-9412",
+    "url": "https://locations.traderjoes.com/ny/new-york/546/"
+  },
+  {
+    "storeNumber": "538",
+    "name": "Essex Crossing",
+    "streetAddress": "400 Grand St. (Cellar)",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10002",
+    "phone": "212-477-8340",
+    "url": "https://locations.traderjoes.com/ny/new-york/538/"
+  },
+  {
+    "storeNumber": "578",
+    "name": "Forest Hills",
+    "streetAddress": "69-65 Yellowstone Blvd",
+    "city": "Queens",
+    "state": "NY",
+    "zip": "11375",
+    "phone": "718-544-8589",
+    "url": "https://locations.traderjoes.com/ny/queens/578/"
+  },
+  {
+    "storeNumber": "579",
+    "name": "Glenmont",
+    "streetAddress": "388 Feura Bush Rd",
+    "city": "Glenmont",
+    "state": "NY",
+    "zip": "12077",
+    "phone": "518-363-4927",
+    "url": "https://locations.traderjoes.com/ny/glenmont/579/"
+  },
+  {
+    "storeNumber": "574",
+    "name": "Halfmoon",
+    "streetAddress": "3 Halfmoon Crossing Blvd",
+    "city": "Halfmoon",
+    "state": "NY",
+    "zip": "12065",
+    "phone": "518-383-5015",
+    "url": "https://locations.traderjoes.com/ny/halfmoon/574/"
+  },
+  {
+    "storeNumber": "576",
+    "name": "Harlem",
+    "streetAddress": "123 W 125Th St",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10027",
+    "phone": "646-337-1986",
+    "url": "https://locations.traderjoes.com/ny/new-york/576/"
+  },
+  {
+    "storeNumber": "533",
+    "name": "Hartsdale",
+    "streetAddress": "215 N Central Ave",
+    "city": "Hartsdale",
+    "state": "NY",
+    "zip": "10530",
+    "phone": "914-997-1960",
+    "url": "https://locations.traderjoes.com/ny/hartsdale/533/"
+  },
+  {
+    "storeNumber": "554",
+    "name": "Hewlett",
+    "streetAddress": "1280 West Broadway",
+    "city": "Hewlett",
+    "state": "NY",
+    "zip": "11557",
+    "phone": "516-569-7191",
+    "url": "https://locations.traderjoes.com/ny/hewlett/554/"
+  },
+  {
+    "storeNumber": "568",
+    "name": "Ithaca",
+    "streetAddress": "744 S Meadow Street",
+    "city": "Ithaca",
+    "state": "NY",
+    "zip": "14850",
+    "phone": "607-272-1420",
+    "url": "https://locations.traderjoes.com/ny/ithaca/568/"
+  },
+  {
+    "storeNumber": "556",
+    "name": "Lake Grove",
+    "streetAddress": "2085 Smith Haven Plaza",
+    "city": "Lake Grove",
+    "state": "NY",
+    "zip": "11755",
+    "phone": "631-366-2094",
+    "url": "https://locations.traderjoes.com/ny/lake-grove/556/"
+  },
+  {
+    "storeNumber": "532",
+    "name": "Larchmont",
+    "streetAddress": "1260 Boston Post Rd",
+    "city": "Larchmont",
+    "state": "NY",
+    "zip": "10538",
+    "phone": "914-833-9112",
+    "url": "https://locations.traderjoes.com/ny/larchmont/532/"
+  },
+  {
+    "storeNumber": "565",
+    "name": "Long Island City",
+    "streetAddress": "22-43 Jackson Ave",
+    "city": "Queens",
+    "state": "NY",
+    "zip": "11101",
+    "phone": "718-472-2672",
+    "url": "https://locations.traderjoes.com/ny/queens/565/"
+  },
+  {
+    "storeNumber": "553",
+    "name": "Merrick",
+    "streetAddress": "1714 Merrick Rd",
+    "city": "Merrick",
+    "state": "NY",
+    "zip": "11566",
+    "phone": "516-771-1012",
+    "url": "https://locations.traderjoes.com/ny/merrick/553/"
+  },
+  {
+    "storeNumber": "577",
+    "name": "Miller Place",
+    "streetAddress": "300 Rte 25a",
+    "city": "Miller Place",
+    "state": "NY",
+    "zip": "11764",
+    "phone": "934-225-8061",
+    "url": "https://locations.traderjoes.com/ny/miller-place/577/"
+  },
+  {
+    "storeNumber": "544",
+    "name": "New York - Murray Hill",
+    "streetAddress": "200 E 32Nd St",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10016",
+    "phone": "212-889-3279",
+    "url": "https://locations.traderjoes.com/ny/new-york/544/"
+  },
+  {
+    "storeNumber": "552",
+    "name": "Oceanside",
+    "streetAddress": "3418 Long Beach Rd",
+    "city": "Oceanside",
+    "state": "NY",
+    "zip": "11572",
+    "phone": "516-536-9163",
+    "url": "https://locations.traderjoes.com/ny/oceanside/552/"
+  },
+  {
+    "storeNumber": "555",
+    "name": "Plainview",
+    "streetAddress": "425 S Oyster Bay Rd",
+    "city": "Plainview",
+    "state": "NY",
+    "zip": "11803",
+    "phone": "516-933-6900",
+    "url": "https://locations.traderjoes.com/ny/plainview/555/"
+  },
+  {
+    "storeNumber": "557",
+    "name": "Rego Park",
+    "streetAddress": "9030 Metropolitan Ave",
+    "city": "Queens",
+    "state": "NY",
+    "zip": "11374",
+    "phone": "718-275-1791",
+    "url": "https://locations.traderjoes.com/ny/queens/557/"
+  },
+  {
+    "storeNumber": "534",
+    "name": "Rochester",
+    "streetAddress": "3349 Monroe Ave",
+    "city": "Rochester",
+    "state": "NY",
+    "zip": "14618",
+    "phone": "585-248-5011",
+    "url": "https://locations.traderjoes.com/ny/rochester/534/"
+  },
+  {
+    "storeNumber": "531",
+    "name": "Scarsdale",
+    "streetAddress": "727 White Plains Rd",
+    "city": "Scarsdale",
+    "state": "NY",
+    "zip": "10583",
+    "phone": "914-472-2988",
+    "url": "https://locations.traderjoes.com/ny/scarsdale/531/"
+  },
+  {
+    "storeNumber": "539",
+    "name": "SoHo",
+    "streetAddress": "233 Spring Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10013",
+    "phone": "212-691-2721",
+    "url": "https://locations.traderjoes.com/ny/new-york/539/"
+  },
+  {
+    "storeNumber": "559",
+    "name": "Staten Island",
+    "streetAddress": "2385 Richmond Ave",
+    "city": "Staten Island",
+    "state": "NY",
+    "zip": "10314",
+    "phone": "718-370-1085",
+    "url": "https://locations.traderjoes.com/ny/staten-island/559/"
+  },
+  {
+    "storeNumber": "580",
+    "name": "Staten Island - South Shore",
+    "streetAddress": "6400 Amboy Rd",
+    "city": "Staten Island",
+    "state": "NY",
+    "zip": "10309",
+    "phone": "329-208-1571",
+    "url": "https://locations.traderjoes.com/ny/staten-island/580/"
+  },
+  {
+    "storeNumber": "537",
+    "name": "Syracuse",
+    "streetAddress": "3422 Erie Blvd e",
+    "city": "Syracuse",
+    "state": "NY",
+    "zip": "13214",
+    "phone": "315-446-1629",
+    "url": "https://locations.traderjoes.com/ny/syracuse/537/"
+  },
+  {
+    "storeNumber": "540",
+    "name": "Union Square",
+    "streetAddress": "142 E 14Th St",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10003",
+    "phone": "212-529-4612",
+    "url": "https://locations.traderjoes.com/ny/new-york/540/"
+  },
+  {
+    "storeNumber": "571",
+    "name": "Upper East Side - Bridgemarket",
+    "streetAddress": "405 E. 59Th Street",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10022",
+    "phone": "212-935-3870",
+    "url": "https://locations.traderjoes.com/ny/new-york/571/"
+  },
+  {
+    "storeNumber": "545",
+    "name": "Upper West Side",
+    "streetAddress": "670 Columbus Ave",
+    "city": "New York",
+    "state": "NY",
+    "zip": "10025",
+    "phone": "212-678-1680",
+    "url": "https://locations.traderjoes.com/ny/new-york/545/"
+  },
+  {
+    "storeNumber": "550",
+    "name": "Westbury",
+    "streetAddress": "910 Old Country Rd",
+    "city": "Garden City",
+    "state": "NY",
+    "zip": "11530",
+    "phone": "516-794-0174",
+    "url": "https://locations.traderjoes.com/ny/garden-city/550/"
+  },
+  {
+    "storeNumber": "575",
+    "name": "Williamsville",
+    "streetAddress": "5017 Transit Rd",
+    "city": "Williamsville",
+    "state": "NY",
+    "zip": "14221",
+    "phone": "716-415-3179",
+    "url": "https://locations.traderjoes.com/ny/williamsville/575/"
+  },
+  {
+    "storeNumber": "567",
+    "name": "Yorktown",
+    "streetAddress": "3240 Crompond Road",
+    "city": "Yorktown",
+    "state": "NY",
+    "zip": "10598",
+    "phone": "914-737-1460",
+    "url": "https://locations.traderjoes.com/ny/yorktown/567/"
+  },
+  {
+    "storeNumber": "679",
+    "name": "Columbus",
+    "streetAddress": "3888 Townsfair Way",
+    "city": "Columbus",
+    "state": "OH",
+    "zip": "43219",
+    "phone": "614-473-0794",
+    "url": "https://locations.traderjoes.com/oh/columbus/679/"
+  },
+  {
+    "storeNumber": "672",
+    "name": "Dublin",
+    "streetAddress": "6355 Sawmill Rd",
+    "city": "Dublin",
+    "state": "OH",
+    "zip": "43017",
+    "phone": "614-793-8505",
+    "url": "https://locations.traderjoes.com/oh/dublin/672/"
+  },
+  {
+    "storeNumber": "669",
+    "name": "Kenwood",
+    "streetAddress": "7788 Montgomery Rd",
+    "city": "Cincinnati",
+    "state": "OH",
+    "zip": "45236",
+    "phone": "513-984-3452",
+    "url": "https://locations.traderjoes.com/oh/cincinnati/669/"
+  },
+  {
+    "storeNumber": "673",
+    "name": "Kettering",
+    "streetAddress": "328 East Stroop Rd",
+    "city": "Kettering",
+    "state": "OH",
+    "zip": "45429",
+    "phone": "937-294-5411",
+    "url": "https://locations.traderjoes.com/oh/kettering/673/"
+  },
+  {
+    "storeNumber": "709",
+    "name": "Mentor",
+    "streetAddress": "9474 Mentor Ave",
+    "city": "Mentor",
+    "state": "OH",
+    "zip": "44060",
+    "phone": "440-350-7216",
+    "url": "https://locations.traderjoes.com/oh/mentor/709/"
+  },
+  {
+    "storeNumber": "677",
+    "name": "Westlake",
+    "streetAddress": "175 Market St",
+    "city": "Westlake",
+    "state": "OH",
+    "zip": "44145",
+    "phone": "440-250-1592",
+    "url": "https://locations.traderjoes.com/oh/westlake/677/"
+  },
+  {
+    "storeNumber": "676",
+    "name": "Woodmere",
+    "streetAddress": "28425 Chagrin Blvd",
+    "city": "Woodmere",
+    "state": "OH",
+    "zip": "44122",
+    "phone": "216-591-9457",
+    "url": "https://locations.traderjoes.com/oh/woodmere/676/"
+  },
+  {
+    "storeNumber": "462",
+    "name": "Broken Arrow",
+    "streetAddress": "1525 E Hillside Dr",
+    "city": "Broken Arrow",
+    "state": "OK",
+    "zip": "74012",
+    "phone": "539-207-0023",
+    "url": "https://locations.traderjoes.com/ok/broken-arrow/462/"
+  },
+  {
+    "storeNumber": "461",
+    "name": "Oklahoma City - Nichols Hills",
+    "streetAddress": "6409 Avondale Dr",
+    "city": "Nichols Hills",
+    "state": "OK",
+    "zip": "73116",
+    "phone": "405-843-5655",
+    "url": "https://locations.traderjoes.com/ok/nichols-hills/461/"
+  },
+  {
+    "storeNumber": "463",
+    "name": "Oklahoma City - Northwest",
+    "streetAddress": "6920 Northwest Expy",
+    "city": "Oklahoma City",
+    "state": "OK",
+    "zip": "73132",
+    "phone": "405-357-0298",
+    "url": "https://locations.traderjoes.com/ok/oklahoma-city/463/"
+  },
+  {
+    "storeNumber": "460",
+    "name": "Tulsa",
+    "streetAddress": "3702 S Peoria Ave",
+    "city": "Tulsa",
+    "state": "OK",
+    "zip": "74105",
+    "phone": "918-712-9768",
+    "url": "https://locations.traderjoes.com/ok/tulsa/460/"
+  },
+  {
+    "storeNumber": "141",
+    "name": "Beaverton",
+    "streetAddress": "11753 Sw Beaverton Hillsdale Hwy",
+    "city": "Beaverton",
+    "state": "OR",
+    "zip": "97005",
+    "phone": "503-626-7398",
+    "url": "https://locations.traderjoes.com/or/beaverton/141/"
+  },
+  {
+    "storeNumber": "150",
+    "name": "Bend",
+    "streetAddress": "63455 N Hwy 97",
+    "city": "Bend",
+    "state": "OR",
+    "zip": "97701",
+    "phone": "541-312-4198",
+    "url": "https://locations.traderjoes.com/or/bend/150/"
+  },
+  {
+    "storeNumber": "152",
+    "name": "Clackamas",
+    "streetAddress": "9345 Se 82Nd Ave",
+    "city": "Clackamas",
+    "state": "OR",
+    "zip": "97086",
+    "phone": "503-771-6300",
+    "url": "https://locations.traderjoes.com/or/clackamas/152/"
+  },
+  {
+    "storeNumber": "154",
+    "name": "Corvallis",
+    "streetAddress": "1550 Nw 9Th St",
+    "city": "Corvallis",
+    "state": "OR",
+    "zip": "97330",
+    "phone": "541-753-0048",
+    "url": "https://locations.traderjoes.com/or/corvallis/154/"
+  },
+  {
+    "storeNumber": "145",
+    "name": "Eugene",
+    "streetAddress": "85 Oakway Center",
+    "city": "Eugene",
+    "state": "OR",
+    "zip": "97401",
+    "phone": "541-485-1744",
+    "url": "https://locations.traderjoes.com/or/eugene/145/"
+  },
+  {
+    "storeNumber": "276",
+    "name": "gresham",
+    "streetAddress": "2083 Ne Burnside Rd",
+    "city": "Gresham",
+    "state": "OR",
+    "zip": "97030",
+    "phone": "971-253-0535",
+    "url": "https://locations.traderjoes.com/or/gresham/276/"
+  },
+  {
+    "storeNumber": "149",
+    "name": "Hillsboro",
+    "streetAddress": "2285 Nw 185Th Ave",
+    "city": "Hillsboro",
+    "state": "OR",
+    "zip": "97124",
+    "phone": "503-645-8321",
+    "url": "https://locations.traderjoes.com/or/hillsboro/149/"
+  },
+  {
+    "storeNumber": "142",
+    "name": "Lake Oswego",
+    "streetAddress": "15391 Sw Bangy Rd",
+    "city": "Lake Oswego",
+    "state": "OR",
+    "zip": "97035",
+    "phone": "503-639-3238",
+    "url": "https://locations.traderjoes.com/or/lake-oswego/142/"
+  },
+  {
+    "storeNumber": "155",
+    "name": "Medford",
+    "streetAddress": "55 Rossanley Dr",
+    "city": "Medford",
+    "state": "OR",
+    "zip": "97501",
+    "phone": "541-608-4993",
+    "url": "https://locations.traderjoes.com/or/medford/155/"
+  },
+  {
+    "storeNumber": "275",
+    "name": "Milwaukie",
+    "streetAddress": "15574 Se Mcloughlin Blvd",
+    "city": "Milwaukie",
+    "state": "OR",
+    "zip": "97267",
+    "phone": "971-365-7604",
+    "url": "https://locations.traderjoes.com/or/milwaukie/275/"
+  },
+  {
+    "storeNumber": "144",
+    "name": "Portland - Hollywood",
+    "streetAddress": "4121 Ne Halsey St",
+    "city": "Portland",
+    "state": "OR",
+    "zip": "97232",
+    "phone": "503-284-4232",
+    "url": "https://locations.traderjoes.com/or/portland/144/"
+  },
+  {
+    "storeNumber": "146",
+    "name": "Portland NW",
+    "streetAddress": "2122 Nw Glisan St",
+    "city": "Portland",
+    "state": "OR",
+    "zip": "97210",
+    "phone": "971-544-0788",
+    "url": "https://locations.traderjoes.com/or/portland/146/"
+  },
+  {
+    "storeNumber": "143",
+    "name": "Portland SE",
+    "streetAddress": "4715 Se Cesar e. Chavez Blvd",
+    "city": "Portland",
+    "state": "OR",
+    "zip": "97202",
+    "phone": "503-777-1601",
+    "url": "https://locations.traderjoes.com/or/portland/143/"
+  },
+  {
+    "storeNumber": "153",
+    "name": "Salem",
+    "streetAddress": "4450 Commercial St Se",
+    "city": "Salem",
+    "state": "OR",
+    "zip": "97302",
+    "phone": "503-378-9042",
+    "url": "https://locations.traderjoes.com/or/salem/153/"
+  },
+  {
+    "storeNumber": "168",
+    "name": "Southwest Portland",
+    "streetAddress": "7215 Sw Garden Home Road",
+    "city": "Portland",
+    "state": "OR",
+    "zip": "97223",
+    "phone": "503-244-4625",
+    "url": "https://locations.traderjoes.com/or/portland/168/"
+  },
+  {
+    "storeNumber": "169",
+    "name": "Tigard",
+    "streetAddress": "16200 Sw Pacific Hwy",
+    "city": "Tigard",
+    "state": "OR",
+    "zip": "97224",
+    "phone": "503-443-6713",
+    "url": "https://locations.traderjoes.com/or/tigard/169/"
+  },
+  {
+    "storeNumber": "618",
+    "name": "Arch St.",
+    "streetAddress": "1324 Arch St.",
+    "city": "Philadelphia",
+    "state": "PA",
+    "zip": "19107",
+    "phone": "215-563-2170",
+    "url": "https://locations.traderjoes.com/pa/philadelphia/618/"
+  },
+  {
+    "storeNumber": "635",
+    "name": "Ardmore",
+    "streetAddress": "112 Coulter Ave",
+    "city": "Ardmore",
+    "state": "PA",
+    "zip": "19003",
+    "phone": "610-658-0645",
+    "url": "https://locations.traderjoes.com/pa/ardmore/635/"
+  },
+  {
+    "storeNumber": "584",
+    "name": "Berwyn",
+    "streetAddress": "550 Lancaster Ave",
+    "city": "Berwyn",
+    "state": "PA",
+    "zip": "19312",
+    "phone": "610-920-0029",
+    "url": "https://locations.traderjoes.com/pa/berwyn/584/"
+  },
+  {
+    "storeNumber": "569",
+    "name": "Camp Hill",
+    "streetAddress": "3545 Gettysburg Road",
+    "city": "Camp Hill",
+    "state": "PA",
+    "zip": "17011",
+    "phone": "717-730-6025",
+    "url": "https://locations.traderjoes.com/pa/camp-hill/569/"
+  },
+  {
+    "storeNumber": "594",
+    "name": "Exton",
+    "streetAddress": "125 West Lincoln Hwy",
+    "city": "Exton",
+    "state": "PA",
+    "zip": "19341",
+    "phone": "267-267-2910",
+    "url": "https://locations.traderjoes.com/pa/exton/594/"
+  },
+  {
+    "storeNumber": "633",
+    "name": "Jenkintown",
+    "streetAddress": "933 Old York Rd",
+    "city": "Jenkintown",
+    "state": "PA",
+    "zip": "19046",
+    "phone": "215-885-5240",
+    "url": "https://locations.traderjoes.com/pa/jenkintown/633/"
+  },
+  {
+    "storeNumber": "585",
+    "name": "King of Prussia",
+    "streetAddress": "224 W Dekalb Pike",
+    "city": "King of Prussia",
+    "state": "PA",
+    "zip": "19406",
+    "phone": "484-261-7509",
+    "url": "https://locations.traderjoes.com/pa/king-of-prussia/585/"
+  },
+  {
+    "storeNumber": "637",
+    "name": "Media",
+    "streetAddress": "12 E State St",
+    "city": "Media",
+    "state": "PA",
+    "zip": "19063",
+    "phone": "610-891-2752",
+    "url": "https://locations.traderjoes.com/pa/media/637/"
+  },
+  {
+    "storeNumber": "639",
+    "name": "North Wales",
+    "streetAddress": "1460 Bethlehem Pike",
+    "city": "North Wales",
+    "state": "PA",
+    "zip": "19454",
+    "phone": "215-646-5870",
+    "url": "https://locations.traderjoes.com/pa/north-wales/639/"
+  },
+  {
+    "storeNumber": "634",
+    "name": "Philadelphia - Center City",
+    "streetAddress": "2121 Market St",
+    "city": "Philadelphia",
+    "state": "PA",
+    "zip": "19103",
+    "phone": "215-569-9282",
+    "url": "https://locations.traderjoes.com/pa/philadelphia/634/"
+  },
+  {
+    "storeNumber": "638",
+    "name": "Pittsburgh",
+    "streetAddress": "6343 Penn Ave",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "zip": "15206",
+    "phone": "412-363-5748",
+    "url": "https://locations.traderjoes.com/pa/pittsburgh/638/"
+  },
+  {
+    "storeNumber": "630",
+    "name": "Pittsburgh - South Hills",
+    "streetAddress": "1630 Washington Rd",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "zip": "15241",
+    "phone": "412-835-2212",
+    "url": "https://locations.traderjoes.com/pa/pittsburgh/630/"
+  },
+  {
+    "storeNumber": "624",
+    "name": "Pittsburgh North Hills",
+    "streetAddress": "9020 Covenant Ave",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "zip": "15237",
+    "phone": "412-366-1131",
+    "url": "https://locations.traderjoes.com/pa/pittsburgh/624/"
+  },
+  {
+    "storeNumber": "629",
+    "name": "State College",
+    "streetAddress": "243 Patriot Lane",
+    "city": "State College",
+    "state": "PA",
+    "zip": "16803",
+    "phone": "814-234-2224",
+    "url": "https://locations.traderjoes.com/pa/state-college/629/"
+  },
+  {
+    "storeNumber": "632",
+    "name": "Wayne",
+    "streetAddress": "171 E Swedesford Rd",
+    "city": "Wayne",
+    "state": "PA",
+    "zip": "19087",
+    "phone": "610-225-0925",
+    "url": "https://locations.traderjoes.com/pa/wayne/632/"
+  },
+  {
+    "storeNumber": "572",
+    "name": "Providence",
+    "streetAddress": "425 S Main St",
+    "city": "Providence",
+    "state": "RI",
+    "zip": "02903",
+    "phone": "401-459-4090",
+    "url": "https://locations.traderjoes.com/ri/providence/572/"
+  },
+  {
+    "storeNumber": "518",
+    "name": "Warwick",
+    "streetAddress": "1000 Bald Hill Rd",
+    "city": "Warwick",
+    "state": "RI",
+    "zip": "02886",
+    "phone": "401-821-5368",
+    "url": "https://locations.traderjoes.com/ri/warwick/518/"
+  },
+  {
+    "storeNumber": "856",
+    "name": "Columbia",
+    "streetAddress": "275 Harbison Blvd",
+    "city": "Columbia",
+    "state": "SC",
+    "zip": "29212",
+    "phone": "803-574-8020",
+    "url": "https://locations.traderjoes.com/sc/columbia/856/"
+  },
+  {
+    "storeNumber": "753",
+    "name": "Columbia",
+    "streetAddress": "4516 Forest Drive",
+    "city": "Columbia",
+    "state": "SC",
+    "zip": "29206",
+    "phone": "803-790-2404",
+    "url": "https://locations.traderjoes.com/sc/columbia/753/"
+  },
+  {
+    "storeNumber": "751",
+    "name": "Greenville",
+    "streetAddress": "59 Woodruff Industrial Ln",
+    "city": "Greenville",
+    "state": "SC",
+    "zip": "29607",
+    "phone": "864-286-0231",
+    "url": "https://locations.traderjoes.com/sc/greenville/751/"
+  },
+  {
+    "storeNumber": "752",
+    "name": "Mt. Pleasant",
+    "streetAddress": "401 Johnnie Dodds Blvd",
+    "city": "Mt. Pleasant",
+    "state": "SC",
+    "zip": "29464",
+    "phone": "843-884-4037",
+    "url": "https://locations.traderjoes.com/sc/mt-pleasant/752/"
+  },
+  {
+    "storeNumber": "812",
+    "name": "Mt. Pleasant - Isle of Palms",
+    "streetAddress": "1909 Hwy 17 n",
+    "city": "Mt. Pleasant",
+    "state": "SC",
+    "zip": "29464",
+    "phone": "854-223-5830",
+    "url": "https://locations.traderjoes.com/sc/mt-pleasant/812/"
+  },
+  {
+    "storeNumber": "828",
+    "name": "Myrtle Beach",
+    "streetAddress": "115 Sayebrook Pkwy",
+    "city": "Myrtle Beach",
+    "state": "SC",
+    "zip": "29588",
+    "phone": "843-630-6282",
+    "url": "https://locations.traderjoes.com/sc/myrtle-beach/828/"
+  },
+  {
+    "storeNumber": "739",
+    "name": "Belle Meade",
+    "streetAddress": "90 White Bridge Rd",
+    "city": "Nashville",
+    "state": "TN",
+    "zip": "37205",
+    "phone": "615-356-1066",
+    "url": "https://locations.traderjoes.com/tn/nashville/739/"
+  },
+  {
+    "storeNumber": "787",
+    "name": "Chattanooga",
+    "streetAddress": "2111 Gunbarrel Road",
+    "city": "Chattanooga",
+    "state": "TN",
+    "zip": "37421",
+    "phone": "423-855-1310",
+    "url": "https://locations.traderjoes.com/tn/chattanooga/787/"
+  },
+  {
+    "storeNumber": "792",
+    "name": "Franklin - Cool Springs",
+    "streetAddress": "545 Cool Springs Blvd",
+    "city": "Franklin",
+    "state": "TN",
+    "zip": "37067",
+    "phone": "615-771-3697",
+    "url": "https://locations.traderjoes.com/tn/franklin/792/"
+  },
+  {
+    "storeNumber": "738",
+    "name": "Germantown",
+    "streetAddress": "2130 Exeter Rd.",
+    "city": "Germantown",
+    "state": "TN",
+    "zip": "38138",
+    "phone": "901-759-2803",
+    "url": "https://locations.traderjoes.com/tn/germantown/738/"
+  },
+  {
+    "storeNumber": "663",
+    "name": "Knoxville",
+    "streetAddress": "8001 Kingston Pike",
+    "city": "Knoxville",
+    "state": "TN",
+    "zip": "37919",
+    "phone": "865-670-4088",
+    "url": "https://locations.traderjoes.com/tn/knoxville/663/"
+  },
+  {
+    "storeNumber": "815",
+    "name": "Murfreesboro",
+    "streetAddress": "2305 Medical Center Parkway",
+    "city": "Murfreesboro",
+    "state": "TN",
+    "zip": "37129",
+    "phone": "629-260-7432",
+    "url": "https://locations.traderjoes.com/tn/murfreesboro/815/"
+  },
+  {
+    "storeNumber": "664",
+    "name": "Nashville",
+    "streetAddress": "3909 Hillsboro Pike",
+    "city": "Nashville",
+    "state": "TN",
+    "zip": "37215",
+    "phone": "615-297-6560",
+    "url": "https://locations.traderjoes.com/tn/nashville/664/"
+  },
+  {
+    "storeNumber": "454",
+    "name": "Austin - Northwest",
+    "streetAddress": "9722 Great Hills Trail",
+    "city": "Austin",
+    "state": "TX",
+    "zip": "78759",
+    "phone": "512-241-1248",
+    "url": "https://locations.traderjoes.com/tx/austin/454/"
+  },
+  {
+    "storeNumber": "453",
+    "name": "Austin - Rollingwood",
+    "streetAddress": "2805 Bee Cave Rd",
+    "city": "Austin",
+    "state": "TX",
+    "zip": "78746",
+    "phone": "512-306-1032",
+    "url": "https://locations.traderjoes.com/tx/austin/453/"
+  },
+  {
+    "storeNumber": "452",
+    "name": "Austin - Seaholm",
+    "streetAddress": "211 Walter Seaholm Dr",
+    "city": "Austin",
+    "state": "TX",
+    "zip": "78701",
+    "phone": "512-474-2263",
+    "url": "https://locations.traderjoes.com/tx/austin/452/"
+  },
+  {
+    "storeNumber": "450",
+    "name": "Bee Cave",
+    "streetAddress": "12812 Shops Pkwy",
+    "city": "Bee Cave",
+    "state": "TX",
+    "zip": "78738",
+    "phone": "737-379-1680",
+    "url": "https://locations.traderjoes.com/tx/bee-cave/450/"
+  },
+  {
+    "storeNumber": "456",
+    "name": "Coppell",
+    "streetAddress": "120 S Denton Tap Rd.",
+    "city": "Coppell",
+    "state": "TX",
+    "zip": "75019",
+    "phone": "945-202-7413",
+    "url": "https://locations.traderjoes.com/tx/coppell/456/"
+  },
+  {
+    "storeNumber": "432",
+    "name": "Cypress",
+    "streetAddress": "9715 Towne Lake Pkwy",
+    "city": "Cypress",
+    "state": "TX",
+    "zip": "77433",
+    "phone": "281-290-4216",
+    "url": "https://locations.traderjoes.com/tx/cypress/432/"
+  },
+  {
+    "storeNumber": "403",
+    "name": "Dallas  -  Lower Greenville",
+    "streetAddress": "2001 Greenville Ave",
+    "city": "Dallas",
+    "state": "TX",
+    "zip": "75206",
+    "phone": "469-334-0614",
+    "url": "https://locations.traderjoes.com/tx/dallas/403/"
+  },
+  {
+    "storeNumber": "407",
+    "name": "Dallas Far North",
+    "streetAddress": "14856 Preston Rd",
+    "city": "Dallas",
+    "state": "TX",
+    "zip": "75254",
+    "phone": "972-239-3901",
+    "url": "https://locations.traderjoes.com/tx/dallas/407/"
+  },
+  {
+    "storeNumber": "400",
+    "name": "Dallas Knox",
+    "streetAddress": "4525 Cole Ave",
+    "city": "Dallas",
+    "state": "TX",
+    "zip": "75205",
+    "phone": "214-599-2155",
+    "url": "https://locations.traderjoes.com/tx/dallas/400/"
+  },
+  {
+    "storeNumber": "401",
+    "name": "Dallas North",
+    "streetAddress": "7939 Walnut Hill Lane",
+    "city": "Dallas",
+    "state": "TX",
+    "zip": "75230",
+    "phone": "214-346-6579",
+    "url": "https://locations.traderjoes.com/tx/dallas/401/"
+  },
+  {
+    "storeNumber": "405",
+    "name": "Dallas West",
+    "streetAddress": "5550 W Lovers Lane",
+    "city": "Dallas",
+    "state": "TX",
+    "zip": "75209",
+    "phone": "214-366-0205",
+    "url": "https://locations.traderjoes.com/tx/dallas/405/"
+  },
+  {
+    "storeNumber": "404",
+    "name": "Fort Worth",
+    "streetAddress": "2701 S Hulen St",
+    "city": "Fort Worth",
+    "state": "TX",
+    "zip": "76109",
+    "phone": "817-922-9107",
+    "url": "https://locations.traderjoes.com/tx/fort-worth/404/"
+  },
+  {
+    "storeNumber": "426",
+    "name": "Houston - Alabama Theater",
+    "streetAddress": "2922 S Shepherd Drive",
+    "city": "Houston",
+    "state": "TX",
+    "zip": "77098",
+    "phone": "713-526-4034",
+    "url": "https://locations.traderjoes.com/tx/houston/426/"
+  },
+  {
+    "storeNumber": "427",
+    "name": "Houston - S Voss Rd",
+    "streetAddress": "1440 South Voss Road",
+    "city": "Houston",
+    "state": "TX",
+    "zip": "77057",
+    "phone": "713-266-2377",
+    "url": "https://locations.traderjoes.com/tx/houston/427/"
+  },
+  {
+    "storeNumber": "431",
+    "name": "Houston - West",
+    "streetAddress": "11683 Westheimer Rd",
+    "city": "Houston",
+    "state": "TX",
+    "zip": "77077",
+    "phone": "281-496-2488",
+    "url": "https://locations.traderjoes.com/tx/houston/431/"
+  },
+  {
+    "storeNumber": "429",
+    "name": "katy",
+    "streetAddress": "2717 Commercial Center Blvd",
+    "city": "Katy",
+    "state": "TX",
+    "zip": "77494",
+    "phone": "281-392-4200",
+    "url": "https://locations.traderjoes.com/tx/katy/429/"
+  },
+  {
+    "storeNumber": "433",
+    "name": "Kingwood",
+    "streetAddress": "600 Kingwood Dr",
+    "city": "Kingwood",
+    "state": "TX",
+    "zip": "77339",
+    "phone": "281-453-6996",
+    "url": "https://locations.traderjoes.com/tx/kingwood/433/"
+  },
+  {
+    "storeNumber": "408",
+    "name": "McKinney",
+    "streetAddress": "2851 Craig Dr",
+    "city": "McKinney",
+    "state": "TX",
+    "zip": "75070",
+    "phone": "214-491-1893",
+    "url": "https://locations.traderjoes.com/tx/mckinney/408/"
+  },
+  {
+    "storeNumber": "410",
+    "name": "McKinney - West",
+    "streetAddress": "8101 Eldorado Pkwy",
+    "city": "McKinney",
+    "state": "TX",
+    "zip": "75070",
+    "phone": "945-328-3989",
+    "url": "https://locations.traderjoes.com/tx/mckinney/410/"
+  },
+  {
+    "storeNumber": "402",
+    "name": "Plano",
+    "streetAddress": "2400 Preston Rd",
+    "city": "Plano",
+    "state": "TX",
+    "zip": "75093",
+    "phone": "972-312-9538",
+    "url": "https://locations.traderjoes.com/tx/plano/402/"
+  },
+  {
+    "storeNumber": "451",
+    "name": "San Antonio",
+    "streetAddress": "350 East Basse Road",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "78209",
+    "phone": "210-826-1110",
+    "url": "https://locations.traderjoes.com/tx/san-antonio/451/"
+  },
+  {
+    "storeNumber": "457",
+    "name": "San Antonio - Northwest",
+    "streetAddress": "11745 I-10 w",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "78230",
+    "phone": "210-607-6510",
+    "url": "https://locations.traderjoes.com/tx/san-antonio/457/"
+  },
+  {
+    "storeNumber": "455",
+    "name": "San Antonio - Sonterra Village",
+    "streetAddress": "403 N Loop 1604 w",
+    "city": "San Antonio",
+    "state": "TX",
+    "zip": "78232",
+    "phone": "210-939-5789",
+    "url": "https://locations.traderjoes.com/tx/san-antonio/455/"
+  },
+  {
+    "storeNumber": "406",
+    "name": "Southlake",
+    "streetAddress": "1492 E Southlake Blvd",
+    "city": "Southlake",
+    "state": "TX",
+    "zip": "76092",
+    "phone": "817-251-0360",
+    "url": "https://locations.traderjoes.com/tx/southlake/406/"
+  },
+  {
+    "storeNumber": "430",
+    "name": "Sugar Land",
+    "streetAddress": "13550 University Blvd",
+    "city": "Sugar Land",
+    "state": "TX",
+    "zip": "77479",
+    "phone": "281-805-3021",
+    "url": "https://locations.traderjoes.com/tx/sugar-land/430/"
+  },
+  {
+    "storeNumber": "428",
+    "name": "The Woodlands",
+    "streetAddress": "10868 Kuykendahl Road",
+    "city": "The Woodlands",
+    "state": "TX",
+    "zip": "77381",
+    "phone": "281-465-0254",
+    "url": "https://locations.traderjoes.com/tx/the-woodlands/428/"
+  },
+  {
+    "storeNumber": "351",
+    "name": "Cottonwood Heights",
+    "streetAddress": "6989 S 1300 e",
+    "city": "Cottonwood Heights",
+    "state": "UT",
+    "zip": "84047",
+    "phone": "801-562-3024",
+    "url": "https://locations.traderjoes.com/ut/cottonwood-heights/351/"
+  },
+  {
+    "storeNumber": "353",
+    "name": "Draper",
+    "streetAddress": "11477 S. State St.",
+    "city": "Draper",
+    "state": "UT",
+    "zip": "84020",
+    "phone": "801-571-0987",
+    "url": "https://locations.traderjoes.com/ut/draper/353/"
+  },
+  {
+    "storeNumber": "356",
+    "name": "Herriman",
+    "streetAddress": "4850 W 13400 South",
+    "city": "Herriman",
+    "state": "UT",
+    "zip": "84096",
+    "phone": "",
+    "url": "https://locations.traderjoes.com/ut/herriman/356/"
+  },
+  {
+    "storeNumber": "357",
+    "name": "Holladay",
+    "streetAddress": "1895 East Rodeo Walk Dr",
+    "city": "Holladay",
+    "state": "UT",
+    "zip": "84117",
+    "phone": "385-324-2911",
+    "url": "https://locations.traderjoes.com/ut/holladay/357/"
+  },
+  {
+    "storeNumber": "352",
+    "name": "Orem",
+    "streetAddress": "440 East Park Avenue",
+    "city": "Orem",
+    "state": "UT",
+    "zip": "84097",
+    "phone": "801-224-1453",
+    "url": "https://locations.traderjoes.com/ut/orem/352/"
+  },
+  {
+    "storeNumber": "355",
+    "name": "Riverdale - Ogden",
+    "streetAddress": "4060 Riverdale Rd",
+    "city": "Riverdale",
+    "state": "UT",
+    "zip": "84405",
+    "phone": "385-298-4276",
+    "url": "https://locations.traderjoes.com/ut/riverdale/355/"
+  },
+  {
+    "storeNumber": "350",
+    "name": "Salt Lake City",
+    "streetAddress": "634 East 400 South",
+    "city": "Salt Lake City",
+    "state": "UT",
+    "zip": "84102",
+    "phone": "801-359-2462",
+    "url": "https://locations.traderjoes.com/ut/salt-lake-city/350/"
+  },
+  {
+    "storeNumber": "354",
+    "name": "salt-lake-city",
+    "streetAddress": "2160 S 700 e",
+    "city": "Salt Lake City",
+    "state": "UT",
+    "zip": "84106",
+    "phone": "801-720-8834",
+    "url": "https://locations.traderjoes.com/ut/salt-lake-city/354/"
+  },
+  {
+    "storeNumber": "647",
+    "name": "Alexandria",
+    "streetAddress": "612 N Saint Asaph St",
+    "city": "Alexandria",
+    "state": "VA",
+    "zip": "22314",
+    "phone": "703-548-0611",
+    "url": "https://locations.traderjoes.com/va/alexandria/647/"
+  },
+  {
+    "storeNumber": "640",
+    "name": "Arlington - Clarendon",
+    "streetAddress": "1109 N Highland St",
+    "city": "Arlington",
+    "state": "VA",
+    "zip": "22201",
+    "phone": "703-351-8015",
+    "url": "https://locations.traderjoes.com/va/arlington/640/"
+  },
+  {
+    "storeNumber": "619",
+    "name": "Ashburn",
+    "streetAddress": "44755 Brimfield Dr",
+    "city": "Ashburn",
+    "state": "VA",
+    "zip": "20147",
+    "phone": "703-858-5993",
+    "url": "https://locations.traderjoes.com/va/ashburn/619/"
+  },
+  {
+    "storeNumber": "644",
+    "name": "Bailey&#x27;s Crossroads",
+    "streetAddress": "5847 Leesburg Pike",
+    "city": "Bailey&#x27;s Crossroads",
+    "state": "VA",
+    "zip": "22041",
+    "phone": "703-379-5883",
+    "url": "https://locations.traderjoes.com/va/bailey-s-crossroads/644/"
+  },
+  {
+    "storeNumber": "654",
+    "name": "Centreville",
+    "streetAddress": "14100 Lee Hwy",
+    "city": "Centreville",
+    "state": "VA",
+    "zip": "20120",
+    "phone": "703-815-0697",
+    "url": "https://locations.traderjoes.com/va/centreville/654/"
+  },
+  {
+    "storeNumber": "661",
+    "name": "Charlottesville",
+    "streetAddress": "2025 Bond St.",
+    "city": "Charlottesville",
+    "state": "VA",
+    "zip": "22901",
+    "phone": "434-974-1466",
+    "url": "https://locations.traderjoes.com/va/charlottesville/661/"
+  },
+  {
+    "storeNumber": "643",
+    "name": "Fairfax",
+    "streetAddress": "9464 Main St",
+    "city": "Fairfax",
+    "state": "VA",
+    "zip": "22031",
+    "phone": "703-764-8550",
+    "url": "https://locations.traderjoes.com/va/fairfax/643/"
+  },
+  {
+    "storeNumber": "641",
+    "name": "Falls Church - Tyson&#x27;s Station",
+    "streetAddress": "7514 Leesburg Turnpike",
+    "city": "Falls Church",
+    "state": "VA",
+    "zip": "22043",
+    "phone": "703-288-0566",
+    "url": "https://locations.traderjoes.com/va/falls-church/641/"
+  },
+  {
+    "storeNumber": "817",
+    "name": "Leesburg",
+    "streetAddress": "504 Fort Evans Rd Ne",
+    "city": "Leesburg",
+    "state": "VA",
+    "zip": "20176",
+    "phone": "571-582-2209",
+    "url": "https://locations.traderjoes.com/va/leesburg/817/"
+  },
+  {
+    "storeNumber": "656",
+    "name": "Newport News",
+    "streetAddress": "12551 Jefferson Ave",
+    "city": "Newport News",
+    "state": "VA",
+    "zip": "23602",
+    "phone": "757-890-0235",
+    "url": "https://locations.traderjoes.com/va/newport-news/656/"
+  },
+  {
+    "storeNumber": "646",
+    "name": "Reston",
+    "streetAddress": "11958 Killingsworth Ave",
+    "city": "Reston",
+    "state": "VA",
+    "zip": "20194",
+    "phone": "703-689-0865",
+    "url": "https://locations.traderjoes.com/va/reston/646/"
+  },
+  {
+    "storeNumber": "786",
+    "name": "Richmond",
+    "streetAddress": "3000 Stony Point Rd",
+    "city": "Richmond",
+    "state": "VA",
+    "zip": "23235",
+    "phone": "804-323-4292",
+    "url": "https://locations.traderjoes.com/va/richmond/786/"
+  },
+  {
+    "storeNumber": "659",
+    "name": "Richmond/Short Pump",
+    "streetAddress": "11331 W Broad St",
+    "city": "Glen Allen",
+    "state": "VA",
+    "zip": "23060",
+    "phone": "804-360-4098",
+    "url": "https://locations.traderjoes.com/va/glen-allen/659/"
+  },
+  {
+    "storeNumber": "651",
+    "name": "Springfield",
+    "streetAddress": "6394 Springfield Plaza",
+    "city": "Springfield",
+    "state": "VA",
+    "zip": "22150",
+    "phone": "703-569-9301",
+    "url": "https://locations.traderjoes.com/va/springfield/651/"
+  },
+  {
+    "storeNumber": "823",
+    "name": "Virginia Beach",
+    "streetAddress": "220 Constitution Drive",
+    "city": "Virginia Beach",
+    "state": "VA",
+    "zip": "23462",
+    "phone": "757-863-7406",
+    "url": "https://locations.traderjoes.com/va/virginia-beach/823/"
+  },
+  {
+    "storeNumber": "660",
+    "name": "Virginia Beach",
+    "streetAddress": "503 Hilltop Plaza",
+    "city": "Virginia Beach",
+    "state": "VA",
+    "zip": "23454",
+    "phone": "757-422-4840",
+    "url": "https://locations.traderjoes.com/va/virginia-beach/660/"
+  },
+  {
+    "storeNumber": "809",
+    "name": "West Springfield",
+    "streetAddress": "8402 Old Keene Mill Rd",
+    "city": "West Springfield",
+    "state": "VA",
+    "zip": "22152",
+    "phone": "703-202-8770",
+    "url": "https://locations.traderjoes.com/va/west-springfield/809/"
+  },
+  {
+    "storeNumber": "657",
+    "name": "Williamsburg",
+    "streetAddress": "5000 Settlers Market Blvd",
+    "city": "Williamsburg",
+    "state": "VA",
+    "zip": "23188",
+    "phone": "757-259-2135",
+    "url": "https://locations.traderjoes.com/va/williamsburg/657/"
+  },
+  {
+    "storeNumber": "527",
+    "name": "South Burlington",
+    "streetAddress": "200 Dorset St",
+    "city": "South Burlington",
+    "state": "VT",
+    "zip": "05403",
+    "phone": "802-658-4500",
+    "url": "https://locations.traderjoes.com/vt/south-burlington/527/"
+  },
+  {
+    "storeNumber": "147",
+    "name": "Ballard",
+    "streetAddress": "4609 14Th Ave Nw",
+    "city": "Seattle",
+    "state": "WA",
+    "zip": "98107",
+    "phone": "206-783-0498",
+    "url": "https://locations.traderjoes.com/wa/seattle/147/"
+  },
+  {
+    "storeNumber": "131",
+    "name": "Bellevue",
+    "streetAddress": "15563 Ne 24Th St",
+    "city": "Bellevue",
+    "state": "WA",
+    "zip": "98007",
+    "phone": "425-641-5069",
+    "url": "https://locations.traderjoes.com/wa/bellevue/131/"
+  },
+  {
+    "storeNumber": "162",
+    "name": "Bellevue",
+    "streetAddress": "416 116Th Ave Ne",
+    "city": "Bellevue",
+    "state": "WA",
+    "zip": "98004",
+    "phone": "425-454-9799",
+    "url": "https://locations.traderjoes.com/wa/bellevue/162/"
+  },
+  {
+    "storeNumber": "151",
+    "name": "Bellingham",
+    "streetAddress": "2410 James St",
+    "city": "Bellingham",
+    "state": "WA",
+    "zip": "98225",
+    "phone": "360-734-5166",
+    "url": "https://locations.traderjoes.com/wa/bellingham/151/"
+  },
+  {
+    "storeNumber": "274",
+    "name": "Bellingham - North",
+    "streetAddress": "4255 Meridian St",
+    "city": "Bellingham",
+    "state": "WA",
+    "zip": "98226",
+    "phone": "360-217-2007",
+    "url": "https://locations.traderjoes.com/wa/bellingham/274/"
+  },
+  {
+    "storeNumber": "133",
+    "name": "Burien",
+    "streetAddress": "15868 1St Ave s",
+    "city": "Burien",
+    "state": "WA",
+    "zip": "98148",
+    "phone": "206-901-9339",
+    "url": "https://locations.traderjoes.com/wa/burien/133/"
+  },
+  {
+    "storeNumber": "139",
+    "name": "Everett",
+    "streetAddress": "1302 Se Everett Mall Way",
+    "city": "Everett",
+    "state": "WA",
+    "zip": "98208",
+    "phone": "425-464-5485",
+    "url": "https://locations.traderjoes.com/wa/everett/139/"
+  },
+  {
+    "storeNumber": "134",
+    "name": "Federal Way",
+    "streetAddress": "1758 S 320Th St",
+    "city": "Federal Way",
+    "state": "WA",
+    "zip": "98003",
+    "phone": "253-941-6138",
+    "url": "https://locations.traderjoes.com/wa/federal-way/134/"
+  },
+  {
+    "storeNumber": "138",
+    "name": "Issaquah",
+    "streetAddress": "975 Nw Gilman Blvd",
+    "city": "Issaquah",
+    "state": "WA",
+    "zip": "98027",
+    "phone": "425-557-6420",
+    "url": "https://locations.traderjoes.com/wa/issaquah/138/"
+  },
+  {
+    "storeNumber": "163",
+    "name": "Kent",
+    "streetAddress": "12966 Se Kent-Kangley Rd",
+    "city": "Kent",
+    "state": "WA",
+    "zip": "98030",
+    "phone": "253-639-3419",
+    "url": "https://locations.traderjoes.com/wa/kent/163/"
+  },
+  {
+    "storeNumber": "132",
+    "name": "Kirkland",
+    "streetAddress": "12520 Totem Lake Blvd Ne",
+    "city": "Kirkland",
+    "state": "WA",
+    "zip": "98034",
+    "phone": "425-814-9181",
+    "url": "https://locations.traderjoes.com/wa/kirkland/132/"
+  },
+  {
+    "storeNumber": "292",
+    "name": "Lacey",
+    "streetAddress": "691 Sleater Kinney Rd Se",
+    "city": "Lacey",
+    "state": "WA",
+    "zip": "98503",
+    "phone": "360-858-5284",
+    "url": "https://locations.traderjoes.com/wa/lacey/292/"
+  },
+  {
+    "storeNumber": "129",
+    "name": "Lynnwood",
+    "streetAddress": "19715 Highway 99",
+    "city": "Lynnwood",
+    "state": "WA",
+    "zip": "98036",
+    "phone": "425-670-0623",
+    "url": "https://locations.traderjoes.com/wa/lynnwood/129/"
+  },
+  {
+    "storeNumber": "156",
+    "name": "Olympia",
+    "streetAddress": "1530 Black Lake Blvd Sw",
+    "city": "Olympia",
+    "state": "WA",
+    "zip": "98502",
+    "phone": "360-352-7440",
+    "url": "https://locations.traderjoes.com/wa/olympia/156/"
+  },
+  {
+    "storeNumber": "140",
+    "name": "Redmond",
+    "streetAddress": "15932 Redmond Way",
+    "city": "Redmond",
+    "state": "WA",
+    "zip": "98052",
+    "phone": "425-883-1624",
+    "url": "https://locations.traderjoes.com/wa/redmond/140/"
+  },
+  {
+    "storeNumber": "160",
+    "name": "Sammamish",
+    "streetAddress": "490 228Th Ave Ne",
+    "city": "Sammamish",
+    "state": "WA",
+    "zip": "98074",
+    "phone": "425-836-0837",
+    "url": "https://locations.traderjoes.com/wa/sammamish/160/"
+  },
+  {
+    "storeNumber": "297",
+    "name": "Seattle",
+    "streetAddress": "401 Ne Northgate Way",
+    "city": "Seattle",
+    "state": "WA",
+    "zip": "98125",
+    "phone": "",
+    "url": "https://locations.traderjoes.com/wa/seattle/297/"
+  },
+  {
+    "storeNumber": "130",
+    "name": "Seattle - Capitol Hill",
+    "streetAddress": "1700 Madison St",
+    "city": "Seattle",
+    "state": "WA",
+    "zip": "98122",
+    "phone": "206-322-7268",
+    "url": "https://locations.traderjoes.com/wa/seattle/130/"
+  },
+  {
+    "storeNumber": "273",
+    "name": "Seattle - Greenwood",
+    "streetAddress": "8726 Greenwood Ave",
+    "city": "Seattle",
+    "state": "WA",
+    "zip": "98103",
+    "phone": "206-414-6379",
+    "url": "https://locations.traderjoes.com/wa/seattle/273/"
+  },
+  {
+    "storeNumber": "135",
+    "name": "Seattle - Queen Anne Hill",
+    "streetAddress": "1916 Queen Anne Ave n",
+    "city": "Seattle",
+    "state": "WA",
+    "zip": "98109",
+    "phone": "206-284-2546",
+    "url": "https://locations.traderjoes.com/wa/seattle/135/"
+  },
+  {
+    "storeNumber": "137",
+    "name": "Seattle - U District",
+    "streetAddress": "4555 Roosevelt Way Ne",
+    "city": "Seattle",
+    "state": "WA",
+    "zip": "98105",
+    "phone": "206-547-6299",
+    "url": "https://locations.traderjoes.com/wa/seattle/137/"
+  },
+  {
+    "storeNumber": "270",
+    "name": "Shoreline",
+    "streetAddress": "1201 N 175Th St",
+    "city": "Shoreline",
+    "state": "WA",
+    "zip": "98133",
+    "phone": "206-542-5336",
+    "url": "https://locations.traderjoes.com/wa/shoreline/270/"
+  },
+  {
+    "storeNumber": "158",
+    "name": "Silverdale",
+    "streetAddress": "9991 Mickelberry Rd",
+    "city": "Silverdale",
+    "state": "WA",
+    "zip": "98383",
+    "phone": "360-307-7224",
+    "url": "https://locations.traderjoes.com/wa/silverdale/158/"
+  },
+  {
+    "storeNumber": "159",
+    "name": "Spokane",
+    "streetAddress": "2975 East 29Th Ave",
+    "city": "Spokane",
+    "state": "WA",
+    "zip": "99223",
+    "phone": "509-534-1077",
+    "url": "https://locations.traderjoes.com/wa/spokane/159/"
+  },
+  {
+    "storeNumber": "164",
+    "name": "Spokane N",
+    "streetAddress": "5520 N Division St",
+    "city": "Spokane",
+    "state": "WA",
+    "zip": "99208",
+    "phone": "509-487-4188",
+    "url": "https://locations.traderjoes.com/wa/spokane/164/"
+  },
+  {
+    "storeNumber": "296",
+    "name": "Spokane Valley",
+    "streetAddress": "13414 E Sprague Ave",
+    "city": "Spokane Valley",
+    "state": "WA",
+    "zip": "99216",
+    "phone": "",
+    "url": "https://locations.traderjoes.com/wa/spokane-valley/296/"
+  },
+  {
+    "storeNumber": "148",
+    "name": "University Place",
+    "streetAddress": "3800 Bridgeport Way w",
+    "city": "University Place",
+    "state": "WA",
+    "zip": "98466",
+    "phone": "253-460-2672",
+    "url": "https://locations.traderjoes.com/wa/university-place/148/"
+  },
+  {
+    "storeNumber": "272",
+    "name": "vancouver",
+    "streetAddress": "16701 Mill Plain Blvd",
+    "city": "Vancouver",
+    "state": "WA",
+    "zip": "98683",
+    "phone": "360-322-3554",
+    "url": "https://locations.traderjoes.com/wa/vancouver/272/"
+  },
+  {
+    "storeNumber": "271",
+    "name": "vancouver",
+    "streetAddress": "14007 Ne 10Th Ave",
+    "city": "Vancouver",
+    "state": "WA",
+    "zip": "98685",
+    "phone": "360-512-2792",
+    "url": "https://locations.traderjoes.com/wa/vancouver/271/"
+  },
+  {
+    "storeNumber": "136",
+    "name": "Vancouver",
+    "streetAddress": "305 Se Chkalov Dr",
+    "city": "Vancouver",
+    "state": "WA",
+    "zip": "98683",
+    "phone": "360-883-9000",
+    "url": "https://locations.traderjoes.com/wa/vancouver/136/"
+  },
+  {
+    "storeNumber": "157",
+    "name": "West Seattle",
+    "streetAddress": "4545 Fauntleroy Way Sw",
+    "city": "Seattle",
+    "state": "WA",
+    "zip": "98116",
+    "phone": "206-913-0013",
+    "url": "https://locations.traderjoes.com/wa/seattle/157/"
+  },
+  {
+    "storeNumber": "293",
+    "name": "Woodinville",
+    "streetAddress": "14035 Ne Woodinville Duvall Rd",
+    "city": "Woodinville",
+    "state": "WA",
+    "zip": "98072",
+    "phone": "425-292-7559",
+    "url": "https://locations.traderjoes.com/wa/woodinville/293/"
+  },
+  {
+    "storeNumber": "726",
+    "name": "Brookfield",
+    "streetAddress": "12665 W. Bluemound Rd",
+    "city": "Brookfield",
+    "state": "WI",
+    "zip": "53005",
+    "phone": "262-784-4806",
+    "url": "https://locations.traderjoes.com/wi/brookfield/726/"
+  },
+  {
+    "storeNumber": "711",
+    "name": "Glendale",
+    "streetAddress": "5600 N Port Washington Rd",
+    "city": "Milwaukee",
+    "state": "WI",
+    "zip": "53217",
+    "phone": "414-962-3382",
+    "url": "https://locations.traderjoes.com/wi/milwaukee/711/"
+  },
+  {
+    "storeNumber": "712",
+    "name": "Madison",
+    "streetAddress": "1810 Monroe St",
+    "city": "Madison",
+    "state": "WI",
+    "zip": "53711",
+    "phone": "608-257-1916",
+    "url": "https://locations.traderjoes.com/wi/madison/712/"
+  }
+]

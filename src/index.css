@@ -1,0 +1,46 @@
+@import "tailwindcss";
+
+/* Trader Joe's-style script font by Fontopia (CC BY-NC).
+   File lives at: public/fonts/TraderJoes-JYrx.otf
+   Download from: https://www.fontspace.com/trader-joes-font-f34830 */
+@font-face {
+  font-family: "TraderJoes";
+  src: url("/fonts/TraderJoes-JYrx.otf") format("opentype");
+  font-display: swap;
+}
+
+:root {
+  --tj-kraft:      #c8a878;
+  --tj-kraft-dark: #b8946a;
+  --tj-kraft-deep: #a07a4a;
+  --tj-cream:      #f5e6c8;
+  --tj-cream-dark: #ead8a8;
+  --tj-red:        #a01c1c;
+  --tj-red-dark:   #7a1414;
+  --tj-ink:        #2a1f14;
+
+  /* Type stack: Source Serif 4 is a free, open-source cousin of FreightText
+     Pro (the typeface used on traderjoes.com). Bookman/Georgia hold the
+     space until Google Fonts loads. */
+  --tj-body:       "Source Serif 4", "Source Serif Pro", "Bookman Old Style", Georgia, serif;
+  --tj-script:     "TraderJoes", "Brush Script MT", cursive;
+  --tj-label:      "Bebas Neue", "Impact", "Arial Narrow", sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+}
+
+body {
+  font-family: var(--tj-body);
+  color: var(--tj-ink);
+  background: var(--tj-cream);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}

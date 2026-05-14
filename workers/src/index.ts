@@ -1,0 +1,370 @@
+/**
+ * Parker's Bag Bazaar — Cloudflare Worker
+ *
+ * Two endpoints:
+ *   POST /collection   — password-gated; commits a new bag + photos to the GitHub repo
+ *   POST /suggestions  — public (Turnstile-protected); opens a GitHub issue with the suggestion
+ *
+ * Setup: see workers/README.md
+ */
+
+import { Hono } from 'hono'
+import { cors } from 'hono/cors'
+
+type Env = {
+  // Vars (wrangler.toml)
+  GITHUB_REPO: string
+  GITHUB_BRANCH: string
+  COLLECTION_PATH: string
+  PHOTOS_PATH_PREFIX: string
+  ALLOWED_ORIGINS: string
+  // Secrets (wrangler secret put)
+  GITHUB_TOKEN: string
+  ADMIN_HASH: string
+  TURNSTILE_SECRET: string
+}
+
+const app = new Hono<{ Bindings: Env }>()
+
+app.use('*', async (c, next) => {
+  const allowed = c.env.ALLOWED_ORIGINS.split(',').map((s) => s.trim())
+  return cors({
+    origin: (origin) => (origin && allowed.includes(origin) ? origin : null),
+    allowMethods: ['POST', 'OPTIONS'],
+    allowHeaders: ['Content-Type'],
+    maxAge: 86400,
+  })(c, next)
+})
+
+app.get('/', (c) =>
+  c.json({
+    name: 'parker-bags',
+    endpoints: ['POST /collection', 'POST /suggestions'],
+  }),
+)
+
+/* ──────────────────────────  /collection  ────────────────────────── */
+
+type IncomingBag = {
+  slug: string
+  name: string
+  catalogId?: string
+  storeNumber: string
+  dateAcquired: string
+  memory: string
+}
+
+type IncomingPhoto = {
+  name: string
+  base64: string
+}
+
+app.post('/collection', async (c) => {
+  let body: { password?: string; bag?: IncomingBag; photos?: IncomingPhoto[] }
+  try {
+    body = await c.req.json()
+  } catch {
+    return c.json({ error: 'Invalid JSON' }, 400)
+  }
+
+  const { password, bag, photos = [] } = body
+  if (!password || !bag) {
+    return c.json({ error: 'Missing password or bag' }, 400)
+  }
+
+  // 1. Verify the admin password.
+  const incomingHash = await sha256Hex(password)
+  if (!constantTimeEqual(incomingHash, c.env.ADMIN_HASH)) {
+    return c.json({ error: 'Wrong password' }, 401)
+  }
+
+  // 2. Validate bag shape.
+  const fieldError = validateBag(bag)
+  if (fieldError) return c.json({ error: fieldError }, 400)
+  if (photos.length > 8) {
+    return c.json({ error: 'Too many photos (max 8)' }, 400)
+  }
+
+  // 3. Commit each photo; collect their public paths for the bag record.
+  const photoPaths: string[] = []
+  for (const photo of photos) {
+    const ext = sanitizeExtension(photo.name)
+    const path = `${c.env.PHOTOS_PATH_PREFIX}/${bag.slug}-${randomId(6)}${ext}`
+    try {
+      await ghWriteFile(c.env, path, photo.base64, `Add photo for bag: ${bag.name}`)
+    } catch (err) {
+      return c.json({ error: `Failed to upload photo: ${(err as Error).message}` }, 502)
+    }
+    // Public URL path (collection.json stores leading-slash absolute paths under public/).
+    photoPaths.push('/' + path.replace(/^public\//, ''))
+  }
+
+  // 4. Read existing collection.json, append the new bag, commit it back.
+  let existing: { content: string; sha: string }
+  try {
+    existing = await ghReadFile(c.env, c.env.COLLECTION_PATH)
+  } catch (err) {
+    return c.json({ error: `Failed to read collection: ${(err as Error).message}` }, 502)
+  }
+
+  let collection: unknown[]
+  try {
+    collection = JSON.parse(existing.content)
+    if (!Array.isArray(collection)) throw new Error('not an array')
+  } catch {
+    return c.json({ error: 'collection.json is not valid JSON array' }, 502)
+  }
+
+  const newEntry = {
+    slug: bag.slug,
+    catalogId: bag.catalogId,
+    name: bag.name,
+    storeNumber: bag.storeNumber,
+    dateAcquired: bag.dateAcquired,
+    memory: bag.memory,
+    photos: photoPaths,
+  }
+  collection.push(newEntry)
+
+  const newContent = JSON.stringify(collection, null, 2) + '\n'
+  try {
+    const result = await ghWriteFile(
+      c.env,
+      c.env.COLLECTION_PATH,
+      utf8ToBase64(newContent),
+      `Add bag: ${bag.name}`,
+      existing.sha,
+    )
+    return c.json({
+      ok: true,
+      slug: bag.slug,
+      photoPaths,
+      commitUrl: result.commit.html_url,
+    })
+  } catch (err) {
+    return c.json({ error: `Failed to commit collection: ${(err as Error).message}` }, 502)
+  }
+})
+
+function validateBag(bag: IncomingBag): string | null {
+  if (!bag.slug || !/^[a-z0-9-]{1,80}$/.test(bag.slug)) {
+    return 'Invalid slug (lowercase letters, numbers, hyphens; max 80)'
+  }
+  if (!bag.name || bag.name.length > 120) return 'Invalid bag name'
+  if (!bag.storeNumber || !/^[a-zA-Z0-9-]{1,16}$/.test(bag.storeNumber)) {
+    return 'Invalid storeNumber'
+  }
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(bag.dateAcquired)) {
+    return 'Invalid dateAcquired (YYYY-MM-DD)'
+  }
+  if (!bag.memory || bag.memory.length > 4000) return 'Invalid memory'
+  return null
+}
+
+/* ──────────────────────────  /suggestions  ───────────────────────── */
+
+type IncomingSuggestion = {
+  name: string
+  type?: 'state' | 'special' | 'seasonal' | 'standard'
+  state?: string
+  stateCode?: string
+  region?: string
+  year?: number
+  notes?: string
+  submitterContact?: string
+  turnstileToken: string
+}
+
+app.post('/suggestions', async (c) => {
+  let body: IncomingSuggestion
+  try {
+    body = await c.req.json()
+  } catch {
+    return c.json({ error: 'Invalid JSON' }, 400)
+  }
+
+  if (!body.name || body.name.length > 120) {
+    return c.json({ error: 'Invalid name' }, 400)
+  }
+  if (!body.turnstileToken) {
+    return c.json({ error: 'Missing captcha token' }, 400)
+  }
+
+  // 1. Verify Turnstile token.
+  const remoteIp = c.req.header('CF-Connecting-IP') ?? undefined
+  const passed = await verifyTurnstile(c.env.TURNSTILE_SECRET, body.turnstileToken, remoteIp)
+  if (!passed) return c.json({ error: 'Captcha failed' }, 403)
+
+  // 2. Open a GitHub issue.
+  try {
+    const issue = await ghCreateIssue(c.env, {
+      title: `Bag suggestion: ${body.name.slice(0, 80)}`,
+      body: formatSuggestionBody(body),
+      labels: ['bag-suggestion'],
+    })
+    return c.json({ ok: true, issueUrl: issue.html_url })
+  } catch (err) {
+    return c.json({ error: `Failed to create issue: ${(err as Error).message}` }, 502)
+  }
+})
+
+function formatSuggestionBody(s: IncomingSuggestion): string {
+  const lines = [
+    `**Bag name:** ${s.name}`,
+    `**Type:** ${s.type ?? '(unspecified)'}`,
+  ]
+  if (s.state) lines.push(`**State:** ${s.state}${s.stateCode ? ` (${s.stateCode})` : ''}`)
+  if (s.region) lines.push(`**Region/city:** ${s.region}`)
+  if (s.year) lines.push(`**Year:** ${s.year}`)
+  if (s.notes) lines.push('', '**Notes:**', s.notes)
+  if (s.submitterContact) lines.push('', `_Submitted by:_ ${s.submitterContact}`)
+  lines.push('', '---', '_Submitted via the public suggestion form on the catalog page._')
+  return lines.join('\n')
+}
+
+/* ──────────────────────────  GitHub helpers  ─────────────────────── */
+
+const GH_API = 'https://api.github.com'
+
+function ghHeaders(env: Env): HeadersInit {
+  return {
+    Authorization: `Bearer ${env.GITHUB_TOKEN}`,
+    Accept: 'application/vnd.github+json',
+    'X-GitHub-Api-Version': '2022-11-28',
+    'User-Agent': 'parker-bags-worker',
+  }
+}
+
+async function ghReadFile(
+  env: Env,
+  path: string,
+): Promise<{ content: string; sha: string }> {
+  const url = `${GH_API}/repos/${env.GITHUB_REPO}/contents/${encodePath(path)}?ref=${encodeURIComponent(env.GITHUB_BRANCH)}`
+  const res = await fetch(url, { headers: ghHeaders(env) })
+  if (!res.ok) {
+    throw new Error(`GET ${path}: ${res.status} ${await res.text()}`)
+  }
+  const data = (await res.json()) as { content: string; encoding: string; sha: string }
+  if (data.encoding !== 'base64') throw new Error(`Unexpected encoding: ${data.encoding}`)
+  // GitHub wraps base64 with newlines every 60 chars.
+  const content = base64ToUtf8(data.content.replace(/\n/g, ''))
+  return { content, sha: data.sha }
+}
+
+async function ghWriteFile(
+  env: Env,
+  path: string,
+  contentBase64: string,
+  message: string,
+  sha?: string,
+): Promise<{ commit: { html_url: string; sha: string }; content: { sha: string } }> {
+  const url = `${GH_API}/repos/${env.GITHUB_REPO}/contents/${encodePath(path)}`
+  const body = {
+    message,
+    content: contentBase64,
+    branch: env.GITHUB_BRANCH,
+    ...(sha ? { sha } : {}),
+  }
+  const res = await fetch(url, {
+    method: 'PUT',
+    headers: { ...ghHeaders(env), 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+  })
+  if (!res.ok) {
+    throw new Error(`PUT ${path}: ${res.status} ${await res.text()}`)
+  }
+  return res.json() as Promise<{
+    commit: { html_url: string; sha: string }
+    content: { sha: string }
+  }>
+}
+
+async function ghCreateIssue(
+  env: Env,
+  { title, body, labels }: { title: string; body: string; labels: string[] },
+): Promise<{ html_url: string; number: number }> {
+  const url = `${GH_API}/repos/${env.GITHUB_REPO}/issues`
+  const res = await fetch(url, {
+    method: 'POST',
+    headers: { ...ghHeaders(env), 'Content-Type': 'application/json' },
+    body: JSON.stringify({ title, body, labels }),
+  })
+  if (!res.ok) {
+    throw new Error(`POST issues: ${res.status} ${await res.text()}`)
+  }
+  return res.json() as Promise<{ html_url: string; number: number }>
+}
+
+function encodePath(path: string): string {
+  return path.split('/').map(encodeURIComponent).join('/')
+}
+
+/* ──────────────────────────  Turnstile  ──────────────────────────── */
+
+async function verifyTurnstile(
+  secret: string,
+  token: string,
+  remoteIp?: string,
+): Promise<boolean> {
+  const form = new FormData()
+  form.append('secret', secret)
+  form.append('response', token)
+  if (remoteIp) form.append('remoteip', remoteIp)
+
+  const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
+    method: 'POST',
+    body: form,
+  })
+  if (!res.ok) return false
+  const data = (await res.json()) as { success: boolean }
+  return data.success === true
+}
+
+/* ──────────────────────────  Crypto/encoding utils  ──────────────── */
+
+async function sha256Hex(input: string): Promise<string> {
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(input))
+  return Array.from(new Uint8Array(buf))
+    .map((b) => b.toString(16).padStart(2, '0'))
+    .join('')
+}
+
+function constantTimeEqual(a: string, b: string): boolean {
+  if (a.length !== b.length) return false
+  let diff = 0
+  for (let i = 0; i < a.length; i++) diff |= a.charCodeAt(i) ^ b.charCodeAt(i)
+  return diff === 0
+}
+
+function utf8ToBase64(s: string): string {
+  const bytes = new TextEncoder().encode(s)
+  let bin = ''
+  for (let i = 0; i < bytes.length; i++) bin += String.fromCharCode(bytes[i])
+  return btoa(bin)
+}
+
+function base64ToUtf8(b64: string): string {
+  const bin = atob(b64)
+  const bytes = new Uint8Array(bin.length)
+  for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i)
+  return new TextDecoder().decode(bytes)
+}
+
+function randomId(len: number): string {
+  const arr = new Uint8Array(len)
+  crypto.getRandomValues(arr)
+  return Array.from(arr)
+    .map((b) => b.toString(16).padStart(2, '0'))
+    .join('')
+    .slice(0, len)
+}
+
+function sanitizeExtension(filename: string): string {
+  const m = filename.toLowerCase().match(/\.([a-z0-9]{1,5})$/)
+  if (!m) return ''
+  const ext = m[1]
+  const allowed = new Set(['jpg', 'jpeg', 'png', 'webp', 'gif', 'heic', 'heif'])
+  return allowed.has(ext) ? `.${ext}` : ''
+}
+
+export default app

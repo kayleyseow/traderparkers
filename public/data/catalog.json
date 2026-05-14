@@ -1,0 +1,561 @@
+[
+  {
+    "id": "al",
+    "name": "Alabama",
+    "type": "state",
+    "state": "Alabama",
+    "stateCode": "AL",
+    "source": "https://poshmark.com/listing/Trader-Joes-reusable-grocery-bag-Tote-Alabama-Turquoise-Green-New-68ffab56c4e7b4966e28dbfc"
+  },
+  {
+    "id": "az",
+    "name": "Arizona",
+    "type": "state",
+    "state": "Arizona",
+    "stateCode": "AZ",
+    "source": "https://www.instagram.com/reel/DWIBFA1jox4/"
+  },
+  {
+    "id": "ca-norcal",
+    "name": "Northern California",
+    "type": "state",
+    "state": "California",
+    "stateCode": "CA",
+    "region": "Northern California",
+    "source": "https://bajehome.com/products/trader-joes-california-both-southern-and-northern-reusable-shopping-grocery-bags-totes-san-fran-la"
+  },
+  {
+    "id": "ca-socal",
+    "name": "Southern California",
+    "type": "state",
+    "state": "California",
+    "stateCode": "CA",
+    "region": "Southern California",
+    "source": "https://meandjorge.com/florida-trader-joes-bag/"
+  },
+  {
+    "id": "co",
+    "name": "Colorado",
+    "type": "state",
+    "state": "Colorado",
+    "stateCode": "CO",
+    "source": "https://poshmark.com/listing/Trader-Joes-Reusable-Bag-COLORADO-68bc6b22e9c77df5bb188ac7"
+  },
+  {
+    "id": "ct",
+    "name": "Connecticut",
+    "type": "state",
+    "state": "Connecticut",
+    "stateCode": "CT",
+    "source": "https://www.greetingsfromthepast.com/product/trader-joes-reusable-grocery-tote-bag-from-connecticut/"
+  },
+  {
+    "id": "dc",
+    "name": "Washington DC",
+    "type": "state",
+    "state": "District of Columbia",
+    "stateCode": "DC",
+    "source": "https://oasbcn.com/1330628/Washington-DC-Edition-Reusable-Shopping-Tote-Bag-One-Blue"
+  },
+  {
+    "id": "de",
+    "name": "Delaware",
+    "type": "state",
+    "state": "Delaware",
+    "stateCode": "DE",
+    "source": "https://www.reddit.com/r/Delaware/comments/1csren9/new_delaware_bags_at_tjs/"
+  },
+  {
+    "id": "fl",
+    "name": "Florida",
+    "type": "state",
+    "state": "Florida",
+    "stateCode": "FL",
+    "source": "https://www.greetingsfromthepast.com/product/trader-joes-reusable-bag-florida/"
+  },
+  {
+    "id": "ga",
+    "name": "Georgia",
+    "type": "state",
+    "state": "Georgia",
+    "stateCode": "GA",
+    "source": "https://sweethoneyintherock.org/039-s-Reusable-Grocery-Tote-Bag-Georgia-Peach-Design-Large-1286713/"
+  },
+  {
+    "id": "ga-atlanta",
+    "name": "Atlanta",
+    "type": "state",
+    "state": "Georgia",
+    "stateCode": "GA",
+    "region": "Atlanta",
+    "source": "https://www.greetingsfromthepast.com/product/trader-joes-reusable-grocery-tote-bag-from-atlanta/"
+  },
+  {
+    "id": "id",
+    "name": "Idaho",
+    "type": "state",
+    "state": "Idaho",
+    "stateCode": "ID",
+    "source": "https://www.mercari.com/us/item/m16009107826/"
+  },
+  {
+    "id": "il-chicago",
+    "name": "Chicago",
+    "type": "state",
+    "state": "Illinois",
+    "stateCode": "IL",
+    "region": "Chicago",
+    "source": "Confirmed via community listings, May 2026"
+  },
+  {
+    "id": "in",
+    "name": "Indiana",
+    "type": "state",
+    "state": "Indiana",
+    "stateCode": "IN",
+    "source": "https://www.reddit.com/r/Vonnegut/comments/kaoiah/found_on_the_bottom_of_the_indiana_themed/"
+  },
+  {
+    "id": "ky",
+    "name": "Kentucky",
+    "type": "state",
+    "state": "Kentucky",
+    "stateCode": "KY",
+    "source": "https://www.mercari.com/us/item/m50639299650/"
+  },
+  {
+    "id": "la",
+    "name": "Louisiana",
+    "type": "state",
+    "state": "Louisiana",
+    "stateCode": "LA",
+    "source": "https://www.sears.com/trader-joe-s-bags-finally-here-2-louisiana-trader/p-A081313791"
+  },
+  {
+    "id": "ma-boston",
+    "name": "Boston",
+    "type": "state",
+    "state": "Massachusetts",
+    "stateCode": "MA",
+    "region": "Boston",
+    "source": "https://www.greetingsfromthepast.com/product/trader-joes-reusable-grocery-tote-bag-from-boston-massachusetts/"
+  },
+  {
+    "id": "md",
+    "name": "Maryland",
+    "type": "state",
+    "state": "Maryland",
+    "stateCode": "MD",
+    "source": "https://www.mercari.com/us/item/m34048365256/"
+  },
+  {
+    "id": "mi",
+    "name": "Michigan",
+    "type": "state",
+    "state": "Michigan",
+    "stateCode": "MI",
+    "source": "https://www.mercari.com/us/item/m50643698603/"
+  },
+  {
+    "id": "mn",
+    "name": "Minnesota",
+    "type": "state",
+    "state": "Minnesota",
+    "stateCode": "MN",
+    "source": "https://poshmark.com/listing/Trader-Joes-Minnesota-State-Reusable-Grocery-Bag-68364371bd4ce389ce68c154"
+  },
+  {
+    "id": "mo",
+    "name": "Missouri",
+    "type": "state",
+    "state": "Missouri",
+    "stateCode": "MO",
+    "source": "https://www.mercari.com/us/item/m54017221998/"
+  },
+  {
+    "id": "nc",
+    "name": "North Carolina",
+    "type": "state",
+    "state": "North Carolina",
+    "stateCode": "NC",
+    "source": "https://www.greetingsfromthepast.com/product/trader-joes-reusable-grocery-tote-bag-from-north-carolina/"
+  },
+  {
+    "id": "ne",
+    "name": "Nebraska",
+    "type": "state",
+    "state": "Nebraska",
+    "stateCode": "NE",
+    "source": "https://www.mercari.com/us/item/m17768255661/"
+  },
+  {
+    "id": "nh",
+    "name": "New Hampshire",
+    "type": "state",
+    "state": "New Hampshire",
+    "stateCode": "NH",
+    "source": "https://academy.groundhogapps.com/products/trader-joes-new-hampshire-reusable-shopping-bag-carry-tote/51030308/"
+  },
+  {
+    "id": "nj",
+    "name": "New Jersey",
+    "type": "state",
+    "state": "New Jersey",
+    "stateCode": "NJ",
+    "source": "https://angiesamericansweetsandtreats.com/products/trader-joe-s-eco-fun-reusable-grocery-bag-new-jersey"
+  },
+  {
+    "id": "nm",
+    "name": "New Mexico",
+    "type": "state",
+    "state": "New Mexico",
+    "stateCode": "NM",
+    "source": "https://www.facebook.com/groups/Santafefoodies/posts/3349406342008072/"
+  },
+  {
+    "id": "nv",
+    "name": "Nevada",
+    "type": "state",
+    "state": "Nevada",
+    "stateCode": "NV",
+    "source": "https://poshmark.com/listing/Trader-Joes-Reusable-Grocery-Tote-Bag-NV-Casino-Chip-65613ff052eee17c6c1e80a8"
+  },
+  {
+    "id": "ny",
+    "name": "New York",
+    "type": "state",
+    "state": "New York",
+    "stateCode": "NY",
+    "source": "https://angiesamericansweetsandtreats.com/products/trader-joe-s-eco-fun-reusable-grocery-bag-new-york"
+  },
+  {
+    "id": "ny-brooklyn",
+    "name": "Brooklyn",
+    "type": "state",
+    "state": "New York",
+    "stateCode": "NY",
+    "region": "Brooklyn / NYC",
+    "source": "https://www.mercari.com/us/item/m77558061813/"
+  },
+  {
+    "id": "oh",
+    "name": "Ohio",
+    "type": "state",
+    "state": "Ohio",
+    "stateCode": "OH",
+    "source": "https://www.mercari.com/us/item/m83574903959/"
+  },
+  {
+    "id": "ok",
+    "name": "Oklahoma",
+    "type": "state",
+    "state": "Oklahoma",
+    "stateCode": "OK",
+    "source": "https://www.mercari.com/us/item/m83574903959/"
+  },
+  {
+    "id": "or",
+    "name": "Oregon",
+    "type": "state",
+    "state": "Oregon",
+    "stateCode": "OR",
+    "source": "https://poshmark.com/listing/Oregon-Trader-Joes-bag-691d1b03ff03204338f82d48"
+  },
+  {
+    "id": "or-portland",
+    "name": "Portland",
+    "type": "state",
+    "state": "Oregon",
+    "stateCode": "OR",
+    "region": "Portland (PDX)",
+    "source": "https://poshmark.com/listing/Trader-Joes-Reusable-Bag-Portland-Oregon-PDX-691485169f19e24677c7240f"
+  },
+  {
+    "id": "pa-philadelphia",
+    "name": "Philadelphia",
+    "type": "state",
+    "state": "Pennsylvania",
+    "stateCode": "PA",
+    "region": "Philadelphia",
+    "source": "https://www.mercari.com/us/item/m39051202187/"
+  },
+  {
+    "id": "ri",
+    "name": "Rhode Island",
+    "type": "state",
+    "state": "Rhode Island",
+    "stateCode": "RI",
+    "source": "https://www.greetingsfromthepast.com/product/trader-joes-reusable-grocery-tote-bag-from-rhode-island/"
+  },
+  {
+    "id": "sc",
+    "name": "South Carolina",
+    "type": "state",
+    "state": "South Carolina",
+    "stateCode": "SC",
+    "source": "https://www.greetingsfromthepast.com/product/trader-joes-reusable-grocery-tote-bag-from-south-carolina-new-design/"
+  },
+  {
+    "id": "tn-nashville",
+    "name": "Nashville",
+    "type": "state",
+    "state": "Tennessee",
+    "stateCode": "TN",
+    "region": "Nashville",
+    "source": "https://www.kmart.com/tjoe-1-trader-joe-s-nashville-tenn-theme-reusable/p-A081321145"
+  },
+  {
+    "id": "tx",
+    "name": "Texas",
+    "type": "state",
+    "state": "Texas",
+    "stateCode": "TX",
+    "source": "https://www.greetingsfromthepast.com/product/trader-joes-reusable-grocery-tote-bag-from-texas/"
+  },
+  {
+    "id": "ut",
+    "name": "Utah",
+    "type": "state",
+    "state": "Utah",
+    "stateCode": "UT",
+    "source": "https://www.mercari.com/us/item/m24081227052/"
+  },
+  {
+    "id": "va",
+    "name": "Virginia",
+    "type": "state",
+    "state": "Virginia",
+    "stateCode": "VA",
+    "source": "https://www.greetingsfromthepast.com/product/trader-joes-reusable-grocery-tote-bag-from-virginia/"
+  },
+  {
+    "id": "wa",
+    "name": "Washington",
+    "type": "state",
+    "state": "Washington",
+    "stateCode": "WA",
+    "description": "\"The Evergreen State\" tagline.",
+    "source": "https://www.mercari.com/us/item/m56237322925/"
+  },
+  {
+    "id": "wi",
+    "name": "Wisconsin",
+    "type": "state",
+    "state": "Wisconsin",
+    "stateCode": "WI",
+    "source": "https://www.greetingsfromthepast.com/product/trader-joes-reusable-grocery-tote-bag-from-wisconsin/"
+  },
+
+  {
+    "id": "insulated-reusable-bag",
+    "name": "Insulated Reusable Bag",
+    "type": "standard",
+    "description": "The classic silver-lined cooler bag — keeps frozens cold from the parking lot home.",
+    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
+  },
+  {
+    "id": "large-insulated-bag",
+    "name": "Large Reusable Insulated Bag",
+    "type": "standard",
+    "description": "Bigger sibling of the standard insulated bag — fits a Thanksgiving-sized haul.",
+    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
+  },
+  {
+    "id": "mini-insulated-tote",
+    "name": "Mini Insulated Tote",
+    "type": "standard",
+    "description": "Lunch-sized cooler tote.",
+    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
+  },
+  {
+    "id": "mini-canvas-tote",
+    "name": "Mini Canvas Tote",
+    "type": "standard",
+    "description": "The cult-favorite tiny canvas tote. Released in rotating colorways and prints.",
+    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
+  },
+  {
+    "id": "micro-canvas-tote",
+    "name": "Micro Canvas Tote",
+    "type": "standard",
+    "description": "Smaller than the Mini — barely larger than a wallet.",
+    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
+  },
+  {
+    "id": "micro-tote-with-grocery",
+    "name": "Micro Tote with Grocery Bag",
+    "type": "standard",
+    "description": "A micro pouch that unfolds into a full grocery bag.",
+    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
+  },
+  {
+    "id": "stand-up-collapsible",
+    "name": "Stand-Up Collapsible Grocery Bag",
+    "type": "standard",
+    "description": "Holds its own shape so groceries don't tip over; folds flat for storage.",
+    "source": "https://www.traderjoes.com/home/products/pdp/stand-up-collapsable-grocery-tote-078276"
+  },
+  {
+    "id": "washable-paper-tote",
+    "name": "Washable Paper Tote",
+    "type": "standard",
+    "description": "Brown-paper-bag look with the durability of a reusable tote.",
+    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
+  },
+  {
+    "id": "washable-paper-grocery",
+    "name": "Washable Paper Grocery Bag",
+    "type": "standard",
+    "description": "Larger version of the washable paper tote.",
+    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
+  },
+  {
+    "id": "washable-paper-lunch",
+    "name": "Washable Paper Lunch Bag",
+    "type": "standard",
+    "description": "Lunchbox-sized version of the washable paper line.",
+    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
+  },
+  {
+    "id": "bottle-holder-bag",
+    "name": "Bottle Holder Reusable Bag",
+    "type": "standard",
+    "description": "White polypropylene 6-gallon bag with the red TJ's logo and built-in inner bottle dividers — sized like the standard tote but optimized for bottles/wine.",
+    "source": "https://www.spiez.com/karte?d=099745237605"
+  },
+  {
+    "id": "classic-reusable-tote",
+    "name": "Classic Reusable Grocery Tote",
+    "type": "standard",
+    "description": "The everyday 6-gallon polypropylene shopper (16\" x 11.5\" x 7\") with retro collage art of TJ's logos, food, and store imagery — the daily-driver many regulars use.",
+    "source": "https://khalsaschoolwear.co.uk/products/trader-joes-reusable-grocery-tote-bag/13254624/"
+  },
+  {
+    "id": "reusable-flower-bag",
+    "name": "Reusable Flower Bag",
+    "type": "standard",
+    "description": "Tall narrow bag for flower bouquets without crushing them.",
+    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
+  },
+  {
+    "id": "reusable-breakfast-tote",
+    "name": "Reusable Breakfast Tote",
+    "type": "standard",
+    "description": "Compact tote sized for a few breakfast items.",
+    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
+  },
+
+  {
+    "id": "coffee-jute-bag",
+    "name": "Coffee Jute Bag",
+    "type": "special",
+    "description": "Burlap-style jute bag with coffee-themed graphics.",
+    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
+  },
+  {
+    "id": "citrus-jute-bag",
+    "name": "Citrus Jute Bag",
+    "type": "special",
+    "description": "Jute bag with citrus illustrations — released alongside summer produce pushes.",
+    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
+  },
+  {
+    "id": "pickle-cotton-bag",
+    "name": "Pickle Cotton Bag",
+    "type": "special",
+    "description": "Cult-favorite pickle-themed cotton tote.",
+    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
+  },
+  {
+    "id": "sardine-bag",
+    "name": "Sardine Bag",
+    "type": "special",
+    "description": "Sardine-themed reusable bag — tied to TJ's seafood line.",
+    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
+  },
+  {
+    "id": "brazil-nut-insulated",
+    "name": "Brazil Nut Insulated Bag",
+    "type": "special",
+    "description": "Insulated bag with Brazil nut illustrations.",
+    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
+  },
+  {
+    "id": "cheese-adventure-canvas",
+    "name": "Cheese Adventure Canvas Bag",
+    "type": "special",
+    "description": "Canvas tote celebrating TJ's cheese department.",
+    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
+  },
+  {
+    "id": "comfort-food-bag",
+    "name": "Comfort Food Reusable Bag",
+    "type": "special",
+    "description": "Purple-themed 6-gallon shopper with comfort-food pairings on all five panels: mac & cheese, PB&J, bacon & eggs, fries & ketchup, milk & cookies. ~99¢ in stores.",
+    "source": "https://www.traderjoes.com/home/products/pdp/comfort-food-bag-081037"
+  },
+  {
+    "id": "george-washington-peanuts",
+    "name": "George Washington Peanuts Bag",
+    "type": "special",
+    "description": "Non-location collectible 6-gallon polypropylene shopper built around George Washington and peanuts; sometimes labeled \"The Peanut Bag.\"",
+    "source": "https://poshmark.com/listing/Trader-Joes-George-Washington-Peanuts-Collectible-Design-Tote-Bag-691bf3b1b94491ac1f65cbcd"
+  },
+  {
+    "id": "vintage-print-bag",
+    "name": "Vintage Print Bag (Horse & Owl)",
+    "type": "special",
+    "description": "Generic 100% polypropylene 6-gallon TJ shopper with whimsical vintage artwork (horse, owl, etc.) — same format as the state bags but not tied to a location.",
+    "source": "https://www.ople.com/m/shop/item.php?it_id=1512214579"
+  },
+  {
+    "id": "wine-reusable-bag",
+    "name": "Wine Reusable Bag",
+    "type": "special",
+    "description": "Reusable carrier specifically built for wine bottles.",
+    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
+  },
+  {
+    "id": "wine-gift-bag",
+    "name": "Wine Gift Bag",
+    "type": "special",
+    "description": "Single-bottle gift presentation bag.",
+    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
+  },
+  {
+    "id": "mystery-bag-set",
+    "name": "Mystery Bag Set",
+    "type": "special",
+    "description": "Annual mystery 3-pack of state bags from random regions — released around November.",
+    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
+  },
+
+  {
+    "id": "halloween-mini-canvas",
+    "name": "Halloween Mini Canvas Tote",
+    "type": "seasonal",
+    "description": "October release of the Mini Canvas in Halloween prints.",
+    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
+  },
+  {
+    "id": "holiday-gift-bag",
+    "name": "Holiday Gift Bag",
+    "type": "seasonal",
+    "description": "December gift-wrap-replacement totes — design changes yearly.",
+    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
+  },
+  {
+    "id": "pastel-mini-canvas",
+    "name": "Pastel Mini Canvas Totes",
+    "type": "seasonal",
+    "description": "Spring release of the Mini Canvas in pastel colorways.",
+    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
+  },
+  {
+    "id": "gift-bag-all-seasons",
+    "name": "Gift Bag for All Seasons",
+    "type": "standard",
+    "description": "Trio of 79¢ gift-style shoppers in three prints: Pasta, Groceries, and Desserts & Ice Cream. Tag spec: 98.755% polypropylene + 1.25% polyester, designed for at least 125 uses.",
+    "source": "https://www.reddit.com/r/traderjoes/comments/1834ceh/trader_joes_gift_bags_3_designs_pasta_desserts/"
+  }
+]
