@@ -40,10 +40,13 @@ export default function Catalog() {
       .catch(() => setCatalog([]))
   }, [])
 
-  const ownedIds = useMemo(
-    () => new Set(collection.map((b) => b.catalogId).filter(Boolean) as string[]),
-    [collection],
-  )
+  const ownedByCatalogId = useMemo(() => {
+    const map = new Map<string, CollectionBag>()
+    for (const bag of collection) {
+      if (bag.catalogId) map.set(bag.catalogId, bag)
+    }
+    return map
+  }, [collection])
 
   const byState = useMemo(() => {
     const map = new Map<string, CatalogBag[]>()
@@ -150,14 +153,6 @@ export default function Catalog() {
                 </strong>
                 of 51 locales represented
               </span>
-              <span aria-hidden className="opacity-30">·</span>
-              <span>
-                <strong className="text-2xl tracking-normal text-[var(--tj-red)] align-middle mr-2"
-                  style={{ fontFamily: 'var(--tj-script)' }}>
-                  {ownedIds.size}
-                </strong>
-                in Parker's stash
-              </span>
             </div>
 
             <div className="space-y-10">
@@ -167,7 +162,7 @@ export default function Catalog() {
                   code={locale.code}
                   name={locale.name}
                   bags={byState.get(locale.code)!}
-                  ownedIds={ownedIds}
+                  ownedByCatalogId={ownedByCatalogId}
                 />
               ))}
             </div>
@@ -192,7 +187,7 @@ export default function Catalog() {
                         label={group.label}
                         blurb={group.blurb}
                         bags={bags}
-                        ownedIds={ownedIds}
+                        ownedByCatalogId={ownedByCatalogId}
                       />
                     )
                   })}
@@ -219,12 +214,12 @@ function StateSection({
   code,
   name,
   bags,
-  ownedIds,
+  ownedByCatalogId,
 }: {
   code: string
   name: string
   bags: CatalogBag[]
-  ownedIds: Set<string>
+  ownedByCatalogId: Map<string, CollectionBag>
 }) {
   return (
     <section>
@@ -245,7 +240,7 @@ function StateSection({
       <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {bags.map((bag) => (
           <li key={bag.id}>
-            <CatalogCard bag={bag} owned={ownedIds.has(bag.id)} />
+            <CatalogCard bag={bag} ownedBag={ownedByCatalogId.get(bag.id)} />
           </li>
         ))}
       </ul>
@@ -257,12 +252,12 @@ function TypeSection({
   label,
   blurb,
   bags,
-  ownedIds,
+  ownedByCatalogId,
 }: {
   label: string
   blurb: string
   bags: CatalogBag[]
-  ownedIds: Set<string>
+  ownedByCatalogId: Map<string, CollectionBag>
 }) {
   return (
     <section>
@@ -281,7 +276,7 @@ function TypeSection({
       <ul className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {bags.map((bag) => (
           <li key={bag.id}>
-            <CatalogCard bag={bag} owned={ownedIds.has(bag.id)} />
+            <CatalogCard bag={bag} ownedBag={ownedByCatalogId.get(bag.id)} />
           </li>
         ))}
       </ul>
@@ -289,14 +284,20 @@ function TypeSection({
   )
 }
 
-function CatalogCard({ bag, owned }: { bag: CatalogBag; owned: boolean }) {
+function CatalogCard({
+  bag,
+  ownedBag,
+}: {
+  bag: CatalogBag
+  ownedBag: CollectionBag | undefined
+}) {
   return (
-    <article
-      className={`relative border-2 border-[var(--tj-ink)] p-4 h-full ${
-        owned ? 'bg-[var(--tj-kraft)]' : 'bg-[var(--tj-cream)]'
-      }`}
+    <Link
+      id={`bag-${bag.id}`}
+      to={`/catalog/${bag.id}`}
+      className="relative border-2 border-[var(--tj-ink)] bg-[var(--tj-cream)] p-4 h-full block scroll-mt-24 hover:-translate-y-0.5 hover:shadow-[0_4px_0_rgba(42,31,20,0.2)] transition-transform"
     >
-      <h3 className="font-[var(--tj-body)] text-xl font-bold leading-tight pr-16">
+      <h3 className="font-[var(--tj-body)] text-xl font-bold leading-tight">
         {bag.region ?? bag.name}
       </h3>
       {bag.region && (
@@ -314,15 +315,15 @@ function CatalogCard({ bag, owned }: { bag: CatalogBag; owned: boolean }) {
           {bag.description}
         </p>
       )}
-      {owned && (
-        <span
-          className="absolute top-2 right-2 font-[var(--tj-body)] tracking-[0.2em] text-[0.6rem] uppercase font-bold border-2 border-[var(--tj-red)] text-[var(--tj-red)] px-2 py-0.5 rotate-6 select-none"
-          aria-label="Parker owns this bag"
+      {ownedBag && (
+        <p
+          className="font-[var(--tj-body)] tracking-[0.22em] text-[0.6rem] uppercase font-semibold mt-3 text-[var(--tj-red)]/80"
+          aria-label="Also in Parker's collection"
         >
-          Owned
-        </span>
+          ★ Also in Parker’s collection
+        </p>
       )}
-    </article>
+    </Link>
   )
 }
 

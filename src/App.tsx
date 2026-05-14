@@ -4,6 +4,7 @@ import Gallery from './routes/Gallery'
 import Catalog from './routes/Catalog'
 import Admin from './routes/Admin'
 import BagDetail from './routes/BagDetail'
+import CatalogDetail from './routes/CatalogDetail'
 import About from './routes/About'
 
 export default function App() {
@@ -13,6 +14,7 @@ export default function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/collection" element={<Gallery />} />
         <Route path="/catalog" element={<Catalog />} />
+        <Route path="/catalog/:id" element={<CatalogDetail />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/about" element={<About />} />
         <Route path="/bags/:slug" element={<BagDetail />} />

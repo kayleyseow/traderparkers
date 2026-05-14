@@ -47,6 +47,13 @@ export type CatalogBag = {
   /** Path to a reference photo of the bag (under public/). */
   referencePhoto?: string
 
+  /**
+   * Paths to multiple reference photos when we have more than one angle.
+   * Files use the same basename convention as collection photos so the
+   * angle viewer can read them: front.{ext}, back.{ext}, etc.
+   */
+  referencePhotos?: string[]
+
   /** Where the reference photo came from — credit / link back. */
   source?: string
 }

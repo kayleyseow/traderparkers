@@ -37,7 +37,7 @@
   justify-content: space-between;
   gap: 2rem;
 
-  font-family: "Bookman Old Style", "Rockwell", Georgia, serif;
+  font-family: var(--tj-body);
 }
 
 .crumple {
@@ -73,9 +73,9 @@
 .topLabel {
   position: relative;
   z-index: 1;
-  font-family: "Bebas Neue", "Impact", "Arial Narrow", sans-serif;
-  font-weight: 700;
-  letter-spacing: 0.4em;
+  font-family: var(--tj-body);
+  font-weight: 600;
+  letter-spacing: 0.35em;
   font-size: 0.75rem;
   padding: 0.5rem 1.25rem;
   border: 2px solid var(--tj-ink);
@@ -119,25 +119,15 @@
 }
 
 .bagBazaar {
-  font-size: 1em;
+  font-size: 1.15em;
   margin-top: 0.1em;
 }
 
-.crossedUtensils {
-  width: 180px;
-  height: 50px;
-  color: var(--tj-ink);
-  margin: 0.75rem 0;
-
-  opacity: 0;
-  animation: fadeUp 0.6s ease 0.9s forwards;
-}
-
 .tagline {
-  font-family: "Bookman Old Style", "Rockwell", Georgia, serif;
+  font-family: var(--tj-body);
   font-style: italic;
   font-size: clamp(0.95rem, 1.6vw, 1.15rem);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.03em;
   text-align: center;
   max-width: 28ch;
   margin: 0;
@@ -152,9 +142,10 @@
   display: flex;
   align-items: center;
   gap: 2.5rem;
-  font-family: "Bebas Neue", "Impact", "Arial Narrow", sans-serif;
-  letter-spacing: 0.2em;
-  font-size: 0.95rem;
+  font-family: var(--tj-body);
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  font-size: 0.85rem;
   padding: 0.75rem 0;
   border-top: 2px solid var(--tj-ink);
   border-bottom: 2px solid var(--tj-ink);
@@ -176,10 +167,11 @@
   line-height: 1;
   color: var(--tj-red);
   font-weight: 700;
+  letter-spacing: 0;
 }
 
 .stat span {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
 }
 
 .ctaRow {
@@ -195,14 +187,16 @@
 }
 
 .cta {
-  font-family: "Bebas Neue", "Impact", "Arial Narrow", sans-serif;
-  letter-spacing: 0.25em;
-  font-size: 0.95rem;
+  font-family: var(--tj-body);
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  font-size: 0.85rem;
   padding: 0.9rem 2rem;
   border: 2px solid var(--tj-ink);
   background: var(--tj-ink);
   color: var(--tj-cream);
   text-decoration: none;
+  text-transform: uppercase;
   cursor: pointer;
   transition: transform 0.1s ease;
 }
@@ -222,58 +216,12 @@
   color: var(--tj-ink);
 }
 
-.illustration {
-  position: absolute;
-  color: var(--tj-ink);
-  opacity: 0;
-  pointer-events: none;
-  z-index: 1;
-  transform-origin: center;
-  animation: illoFadeIn 0.9s ease 1.2s forwards;
-}
-
-.illoTopLeft {
-  top: 3rem; left: 2.5rem; width: 90px;
-}
-.illoTopRight {
-  top: 3rem; right: 2.5rem; width: 90px;
-}
-.illoBottomLeft {
-  bottom: 5rem; left: 2.5rem; width: 100px;
-}
-.illoBottomRight {
-  bottom: 5rem; right: 2.5rem; width: 100px;
-}
-
-/* Inner wrapper inside each illustration gets the looping motion, so the
-   entrance fade doesn't fight the perpetual transform. */
-.illoMotionShip {
-  animation: shipRock 5s ease-in-out infinite;
-  transform-origin: 50% 80%;
-}
-.illoMotionBalloon {
-  animation: balloonBob 4s ease-in-out infinite;
-}
-.illoMotionPalm {
-  animation: palmSway 6s ease-in-out infinite;
-  transform-origin: 50% 90%;
-}
-.illoMotionCompass {
-  animation: compassSpin 80s linear infinite;
-  transform-origin: center;
-}
-
-@media (max-width: 640px) {
-  .illoTopLeft, .illoTopRight { width: 60px; top: 2.5rem; }
-  .illoBottomLeft, .illoBottomRight { width: 70px; bottom: 4rem; }
-}
-
 .footer {
   position: relative;
   z-index: 1;
-  font-family: "Bookman Old Style", "Rockwell", Georgia, serif;
-  font-size: 0.65rem;
-  letter-spacing: 0.1em;
+  font-family: var(--tj-body);
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
   text-align: center;
 
   opacity: 0;
@@ -291,7 +239,7 @@
   text-decoration: underline;
   text-underline-offset: 3px;
   text-decoration-thickness: 1px;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.12em;
   transition: opacity 0.15s ease;
 }
 
@@ -317,40 +265,12 @@
   100% { opacity: 1; transform: translateY(0) rotate(0) scale(1); }
 }
 
-@keyframes illoFadeIn {
-  from { opacity: 0; }
-  to   { opacity: 0.85; }
-}
-
-@keyframes shipRock {
-  0%, 100% { transform: rotate(-2deg); }
-  50%      { transform: rotate(2deg); }
-}
-
-@keyframes balloonBob {
-  0%, 100% { transform: translateY(0); }
-  50%      { transform: translateY(-8px); }
-}
-
-@keyframes palmSway {
-  0%, 100% { transform: rotate(-1.5deg); }
-  50%      { transform: rotate(1.5deg); }
-}
-
-@keyframes compassSpin {
-  from { transform: rotate(0); }
-  to   { transform: rotate(360deg); }
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .topLabel, .wordmark, .crossedUtensils, .tagline,
-  .stats, .ctaRow, .footer, .illustration {
+  .topLabel, .wordmark, .tagline,
+  .stats, .ctaRow, .footer {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
-  }
-  .illoMotionShip, .illoMotionBalloon, .illoMotionPalm, .illoMotionCompass {
-    animation: none !important;
   }
   /* Freeze the crumple animation by pausing the SVG's <animate> elements
      via CSS — feTurbulence keeps its current seed instead of evolving. */

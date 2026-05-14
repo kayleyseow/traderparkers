@@ -5,6 +5,13 @@
     "type": "state",
     "state": "Alabama",
     "stateCode": "AL",
+    "referencePhotos": [
+      "bags/alabama/front.png",
+      "bags/alabama/back.png",
+      "bags/alabama/left.png",
+      "bags/alabama/right.png",
+      "bags/alabama/bottom.png"
+    ],
     "source": "https://poshmark.com/listing/Trader-Joes-reusable-grocery-bag-Tote-Alabama-Turquoise-Green-New-68ffab56c4e7b4966e28dbfc"
   },
   {
@@ -13,6 +20,13 @@
     "type": "state",
     "state": "Arizona",
     "stateCode": "AZ",
+    "referencePhotos": [
+      "bags/arizona/front.png",
+      "bags/arizona/back.png",
+      "bags/arizona/left.png",
+      "bags/arizona/right.png",
+      "bags/arizona/bottom.png"
+    ],
     "source": "https://www.instagram.com/reel/DWIBFA1jox4/"
   },
   {
@@ -22,6 +36,13 @@
     "state": "California",
     "stateCode": "CA",
     "region": "Northern California",
+    "referencePhotos": [
+      "bags/northern-california/front.png",
+      "bags/northern-california/back.png",
+      "bags/northern-california/left.png",
+      "bags/northern-california/right.png",
+      "bags/northern-california/bottom.png"
+    ],
     "source": "https://bajehome.com/products/trader-joes-california-both-southern-and-northern-reusable-shopping-grocery-bags-totes-san-fran-la"
   },
   {
@@ -31,6 +52,13 @@
     "state": "California",
     "stateCode": "CA",
     "region": "Southern California",
+    "referencePhotos": [
+      "bags/southern-california/front.png",
+      "bags/southern-california/back.png",
+      "bags/southern-california/left.png",
+      "bags/southern-california/right.png",
+      "bags/southern-california/bottom.png"
+    ],
     "source": "https://meandjorge.com/florida-trader-joes-bag/"
   },
   {
@@ -39,6 +67,13 @@
     "type": "state",
     "state": "Colorado",
     "stateCode": "CO",
+    "referencePhotos": [
+      "bags/colorado/front.png",
+      "bags/colorado/back.png",
+      "bags/colorado/left.png",
+      "bags/colorado/right.png",
+      "bags/colorado/bottom.png"
+    ],
     "source": "https://poshmark.com/listing/Trader-Joes-Reusable-Bag-COLORADO-68bc6b22e9c77df5bb188ac7"
   },
   {
@@ -47,6 +82,13 @@
     "type": "state",
     "state": "Connecticut",
     "stateCode": "CT",
+    "referencePhotos": [
+      "bags/connecticut/front.png",
+      "bags/connecticut/back.png",
+      "bags/connecticut/left.png",
+      "bags/connecticut/right.png",
+      "bags/connecticut/bottom.png"
+    ],
     "source": "https://www.greetingsfromthepast.com/product/trader-joes-reusable-grocery-tote-bag-from-connecticut/"
   },
   {
@@ -55,6 +97,13 @@
     "type": "state",
     "state": "District of Columbia",
     "stateCode": "DC",
+    "referencePhotos": [
+      "bags/washington-dc/front.png",
+      "bags/washington-dc/back.png",
+      "bags/washington-dc/left.png",
+      "bags/washington-dc/right.png",
+      "bags/washington-dc/bottom.png"
+    ],
     "source": "https://oasbcn.com/1330628/Washington-DC-Edition-Reusable-Shopping-Tote-Bag-One-Blue"
   },
   {
@@ -63,6 +112,13 @@
     "type": "state",
     "state": "Delaware",
     "stateCode": "DE",
+    "referencePhotos": [
+      "bags/delaware/front.png",
+      "bags/delaware/back.png",
+      "bags/delaware/left.png",
+      "bags/delaware/right.png",
+      "bags/delaware/bottom.png"
+    ],
     "source": "https://www.reddit.com/r/Delaware/comments/1csren9/new_delaware_bags_at_tjs/"
   },
   {
@@ -71,6 +127,13 @@
     "type": "state",
     "state": "Florida",
     "stateCode": "FL",
+    "referencePhotos": [
+      "bags/florida/front.png",
+      "bags/florida/back.png",
+      "bags/florida/left.png",
+      "bags/florida/right.png",
+      "bags/florida/bottom.png"
+    ],
     "source": "https://www.greetingsfromthepast.com/product/trader-joes-reusable-bag-florida/"
   },
   {
@@ -79,16 +142,14 @@
     "type": "state",
     "state": "Georgia",
     "stateCode": "GA",
+    "referencePhotos": [
+      "bags/georgia/front.png",
+      "bags/georgia/back.png",
+      "bags/georgia/left.png",
+      "bags/georgia/right.png",
+      "bags/georgia/bottom.png"
+    ],
     "source": "https://sweethoneyintherock.org/039-s-Reusable-Grocery-Tote-Bag-Georgia-Peach-Design-Large-1286713/"
-  },
-  {
-    "id": "ga-atlanta",
-    "name": "Atlanta",
-    "type": "state",
-    "state": "Georgia",
-    "stateCode": "GA",
-    "region": "Atlanta",
-    "source": "https://www.greetingsfromthepast.com/product/trader-joes-reusable-grocery-tote-bag-from-atlanta/"
   },
   {
     "id": "id",
@@ -96,6 +157,13 @@
     "type": "state",
     "state": "Idaho",
     "stateCode": "ID",
+    "referencePhotos": [
+      "bags/idaho/front.png",
+      "bags/idaho/back.png",
+      "bags/idaho/left.png",
+      "bags/idaho/right.png",
+      "bags/idaho/bottom.png"
+    ],
     "source": "https://www.mercari.com/us/item/m16009107826/"
   },
   {
@@ -105,6 +173,13 @@
     "state": "Illinois",
     "stateCode": "IL",
     "region": "Chicago",
+    "referencePhotos": [
+      "bags/chicago/front.png",
+      "bags/chicago/back.png",
+      "bags/chicago/left.png",
+      "bags/chicago/right.png",
+      "bags/chicago/bottom.png"
+    ],
     "source": "Confirmed via community listings, May 2026"
   },
   {
@@ -113,6 +188,13 @@
     "type": "state",
     "state": "Indiana",
     "stateCode": "IN",
+    "referencePhotos": [
+      "bags/indiana/front.png",
+      "bags/indiana/back.png",
+      "bags/indiana/left.png",
+      "bags/indiana/right.png",
+      "bags/indiana/bottom.png"
+    ],
     "source": "https://www.reddit.com/r/Vonnegut/comments/kaoiah/found_on_the_bottom_of_the_indiana_themed/"
   },
   {
@@ -121,6 +203,13 @@
     "type": "state",
     "state": "Kentucky",
     "stateCode": "KY",
+    "referencePhotos": [
+      "bags/kentucky/front.png",
+      "bags/kentucky/back.png",
+      "bags/kentucky/left.png",
+      "bags/kentucky/right.png",
+      "bags/kentucky/bottom.png"
+    ],
     "source": "https://www.mercari.com/us/item/m50639299650/"
   },
   {
@@ -129,6 +218,13 @@
     "type": "state",
     "state": "Louisiana",
     "stateCode": "LA",
+    "referencePhotos": [
+      "bags/louisiana/front.png",
+      "bags/louisiana/back.png",
+      "bags/louisiana/left.png",
+      "bags/louisiana/right.png",
+      "bags/louisiana/bottom.png"
+    ],
     "source": "https://www.sears.com/trader-joe-s-bags-finally-here-2-louisiana-trader/p-A081313791"
   },
   {
@@ -138,6 +234,13 @@
     "state": "Massachusetts",
     "stateCode": "MA",
     "region": "Boston",
+    "referencePhotos": [
+      "bags/boston/front.png",
+      "bags/boston/back.png",
+      "bags/boston/left.png",
+      "bags/boston/right.png",
+      "bags/boston/bottom.png"
+    ],
     "source": "https://www.greetingsfromthepast.com/product/trader-joes-reusable-grocery-tote-bag-from-boston-massachusetts/"
   },
   {
@@ -146,6 +249,13 @@
     "type": "state",
     "state": "Maryland",
     "stateCode": "MD",
+    "referencePhotos": [
+      "bags/maryland/front.png",
+      "bags/maryland/back.png",
+      "bags/maryland/left.png",
+      "bags/maryland/right.png",
+      "bags/maryland/bottom.png"
+    ],
     "source": "https://www.mercari.com/us/item/m34048365256/"
   },
   {
@@ -154,6 +264,13 @@
     "type": "state",
     "state": "Michigan",
     "stateCode": "MI",
+    "referencePhotos": [
+      "bags/michigan/front.png",
+      "bags/michigan/back.png",
+      "bags/michigan/left.png",
+      "bags/michigan/right.png",
+      "bags/michigan/bottom.png"
+    ],
     "source": "https://www.mercari.com/us/item/m50643698603/"
   },
   {
@@ -162,6 +279,13 @@
     "type": "state",
     "state": "Minnesota",
     "stateCode": "MN",
+    "referencePhotos": [
+      "bags/minnesota/front.png",
+      "bags/minnesota/back.png",
+      "bags/minnesota/left.png",
+      "bags/minnesota/right.png",
+      "bags/minnesota/bottom.png"
+    ],
     "source": "https://poshmark.com/listing/Trader-Joes-Minnesota-State-Reusable-Grocery-Bag-68364371bd4ce389ce68c154"
   },
   {
@@ -170,6 +294,13 @@
     "type": "state",
     "state": "Missouri",
     "stateCode": "MO",
+    "referencePhotos": [
+      "bags/missouri/front.png",
+      "bags/missouri/back.png",
+      "bags/missouri/left.png",
+      "bags/missouri/right.png",
+      "bags/missouri/bottom.png"
+    ],
     "source": "https://www.mercari.com/us/item/m54017221998/"
   },
   {
@@ -178,6 +309,13 @@
     "type": "state",
     "state": "North Carolina",
     "stateCode": "NC",
+    "referencePhotos": [
+      "bags/north-carolina/front.png",
+      "bags/north-carolina/back.png",
+      "bags/north-carolina/left.png",
+      "bags/north-carolina/right.png",
+      "bags/north-carolina/bottom.png"
+    ],
     "source": "https://www.greetingsfromthepast.com/product/trader-joes-reusable-grocery-tote-bag-from-north-carolina/"
   },
   {
@@ -186,6 +324,13 @@
     "type": "state",
     "state": "Nebraska",
     "stateCode": "NE",
+    "referencePhotos": [
+      "bags/nebraska/front.png",
+      "bags/nebraska/back.png",
+      "bags/nebraska/left.png",
+      "bags/nebraska/right.png",
+      "bags/nebraska/bottom.png"
+    ],
     "source": "https://www.mercari.com/us/item/m17768255661/"
   },
   {
@@ -194,6 +339,13 @@
     "type": "state",
     "state": "New Hampshire",
     "stateCode": "NH",
+    "referencePhotos": [
+      "bags/new-hampshire/front.png",
+      "bags/new-hampshire/back.png",
+      "bags/new-hampshire/left.png",
+      "bags/new-hampshire/right.png",
+      "bags/new-hampshire/bottom.png"
+    ],
     "source": "https://academy.groundhogapps.com/products/trader-joes-new-hampshire-reusable-shopping-bag-carry-tote/51030308/"
   },
   {
@@ -202,6 +354,13 @@
     "type": "state",
     "state": "New Jersey",
     "stateCode": "NJ",
+    "referencePhotos": [
+      "bags/new-jersey/front.png",
+      "bags/new-jersey/back.png",
+      "bags/new-jersey/left.png",
+      "bags/new-jersey/right.png",
+      "bags/new-jersey/bottom.png"
+    ],
     "source": "https://angiesamericansweetsandtreats.com/products/trader-joe-s-eco-fun-reusable-grocery-bag-new-jersey"
   },
   {
@@ -210,6 +369,13 @@
     "type": "state",
     "state": "New Mexico",
     "stateCode": "NM",
+    "referencePhotos": [
+      "bags/new-mexico/front.png",
+      "bags/new-mexico/back.png",
+      "bags/new-mexico/left.png",
+      "bags/new-mexico/right.png",
+      "bags/new-mexico/bottom.png"
+    ],
     "source": "https://www.facebook.com/groups/Santafefoodies/posts/3349406342008072/"
   },
   {
@@ -218,6 +384,13 @@
     "type": "state",
     "state": "Nevada",
     "stateCode": "NV",
+    "referencePhotos": [
+      "bags/nevada/front.png",
+      "bags/nevada/back.png",
+      "bags/nevada/left.png",
+      "bags/nevada/right.png",
+      "bags/nevada/bottom.png"
+    ],
     "source": "https://poshmark.com/listing/Trader-Joes-Reusable-Grocery-Tote-Bag-NV-Casino-Chip-65613ff052eee17c6c1e80a8"
   },
   {
@@ -226,23 +399,28 @@
     "type": "state",
     "state": "New York",
     "stateCode": "NY",
+    "referencePhotos": [
+      "bags/new-york/front.png",
+      "bags/new-york/back.png",
+      "bags/new-york/left.png",
+      "bags/new-york/right.png",
+      "bags/new-york/bottom.png"
+    ],
     "source": "https://angiesamericansweetsandtreats.com/products/trader-joe-s-eco-fun-reusable-grocery-bag-new-york"
   },
-  {
-    "id": "ny-brooklyn",
-    "name": "Brooklyn",
-    "type": "state",
-    "state": "New York",
-    "stateCode": "NY",
-    "region": "Brooklyn / NYC",
-    "source": "https://www.mercari.com/us/item/m77558061813/"
-  },
-  {
+{
     "id": "oh",
     "name": "Ohio",
     "type": "state",
     "state": "Ohio",
     "stateCode": "OH",
+    "referencePhotos": [
+      "bags/ohio/front.png",
+      "bags/ohio/back.png",
+      "bags/ohio/left.png",
+      "bags/ohio/right.png",
+      "bags/ohio/bottom.png"
+    ],
     "source": "https://www.mercari.com/us/item/m83574903959/"
   },
   {
@@ -251,15 +429,14 @@
     "type": "state",
     "state": "Oklahoma",
     "stateCode": "OK",
+    "referencePhotos": [
+      "bags/oklahoma/front.png",
+      "bags/oklahoma/back.png",
+      "bags/oklahoma/left.png",
+      "bags/oklahoma/right.png",
+      "bags/oklahoma/bottom.png"
+    ],
     "source": "https://www.mercari.com/us/item/m83574903959/"
-  },
-  {
-    "id": "or",
-    "name": "Oregon",
-    "type": "state",
-    "state": "Oregon",
-    "stateCode": "OR",
-    "source": "https://poshmark.com/listing/Oregon-Trader-Joes-bag-691d1b03ff03204338f82d48"
   },
   {
     "id": "or-portland",
@@ -268,6 +445,13 @@
     "state": "Oregon",
     "stateCode": "OR",
     "region": "Portland (PDX)",
+    "referencePhotos": [
+      "bags/portland/front.png",
+      "bags/portland/back.png",
+      "bags/portland/left.png",
+      "bags/portland/right.png",
+      "bags/portland/bottom.png"
+    ],
     "source": "https://poshmark.com/listing/Trader-Joes-Reusable-Bag-Portland-Oregon-PDX-691485169f19e24677c7240f"
   },
   {
@@ -277,6 +461,13 @@
     "state": "Pennsylvania",
     "stateCode": "PA",
     "region": "Philadelphia",
+    "referencePhotos": [
+      "bags/philadelphia/front.png",
+      "bags/philadelphia/back.png",
+      "bags/philadelphia/left.png",
+      "bags/philadelphia/right.png",
+      "bags/philadelphia/bottom.png"
+    ],
     "source": "https://www.mercari.com/us/item/m39051202187/"
   },
   {
@@ -285,6 +476,13 @@
     "type": "state",
     "state": "Rhode Island",
     "stateCode": "RI",
+    "referencePhotos": [
+      "bags/rhode-island/front.png",
+      "bags/rhode-island/back.png",
+      "bags/rhode-island/left.png",
+      "bags/rhode-island/right.png",
+      "bags/rhode-island/bottom.png"
+    ],
     "source": "https://www.greetingsfromthepast.com/product/trader-joes-reusable-grocery-tote-bag-from-rhode-island/"
   },
   {
@@ -293,6 +491,13 @@
     "type": "state",
     "state": "South Carolina",
     "stateCode": "SC",
+    "referencePhotos": [
+      "bags/south-carolina/front.png",
+      "bags/south-carolina/back.png",
+      "bags/south-carolina/left.png",
+      "bags/south-carolina/right.png",
+      "bags/south-carolina/bottom.png"
+    ],
     "source": "https://www.greetingsfromthepast.com/product/trader-joes-reusable-grocery-tote-bag-from-south-carolina-new-design/"
   },
   {
@@ -302,6 +507,13 @@
     "state": "Tennessee",
     "stateCode": "TN",
     "region": "Nashville",
+    "referencePhotos": [
+      "bags/nashville/front.png",
+      "bags/nashville/back.png",
+      "bags/nashville/left.png",
+      "bags/nashville/right.png",
+      "bags/nashville/bottom.png"
+    ],
     "source": "https://www.kmart.com/tjoe-1-trader-joe-s-nashville-tenn-theme-reusable/p-A081321145"
   },
   {
@@ -310,6 +522,13 @@
     "type": "state",
     "state": "Texas",
     "stateCode": "TX",
+    "referencePhotos": [
+      "bags/texas/front.png",
+      "bags/texas/back.png",
+      "bags/texas/left.png",
+      "bags/texas/right.png",
+      "bags/texas/bottom.png"
+    ],
     "source": "https://www.greetingsfromthepast.com/product/trader-joes-reusable-grocery-tote-bag-from-texas/"
   },
   {
@@ -318,6 +537,13 @@
     "type": "state",
     "state": "Utah",
     "stateCode": "UT",
+    "referencePhotos": [
+      "bags/utah/front.png",
+      "bags/utah/back.png",
+      "bags/utah/left.png",
+      "bags/utah/right.png",
+      "bags/utah/bottom.png"
+    ],
     "source": "https://www.mercari.com/us/item/m24081227052/"
   },
   {
@@ -326,6 +552,13 @@
     "type": "state",
     "state": "Virginia",
     "stateCode": "VA",
+    "referencePhotos": [
+      "bags/virginia/front.png",
+      "bags/virginia/back.png",
+      "bags/virginia/left.png",
+      "bags/virginia/right.png",
+      "bags/virginia/bottom.png"
+    ],
     "source": "https://www.greetingsfromthepast.com/product/trader-joes-reusable-grocery-tote-bag-from-virginia/"
   },
   {
@@ -334,6 +567,13 @@
     "type": "state",
     "state": "Washington",
     "stateCode": "WA",
+    "referencePhotos": [
+      "bags/washington/front.png",
+      "bags/washington/back.png",
+      "bags/washington/left.png",
+      "bags/washington/right.png",
+      "bags/washington/bottom.png"
+    ],
     "description": "\"The Evergreen State\" tagline.",
     "source": "https://www.mercari.com/us/item/m56237322925/"
   },
@@ -343,6 +583,13 @@
     "type": "state",
     "state": "Wisconsin",
     "stateCode": "WI",
+    "referencePhotos": [
+      "bags/wisconsin/front.png",
+      "bags/wisconsin/back.png",
+      "bags/wisconsin/left.png",
+      "bags/wisconsin/right.png",
+      "bags/wisconsin/bottom.png"
+    ],
     "source": "https://www.greetingsfromthepast.com/product/trader-joes-reusable-grocery-tote-bag-from-wisconsin/"
   },
 
