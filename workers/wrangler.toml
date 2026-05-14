@@ -7,7 +7,7 @@ compatibility_date = "2025-01-01"
 
 # Public-ish config. Update GITHUB_REPO and ALLOWED_ORIGIN for your deploy.
 [vars]
-GITHUB_REPO = "kayleyseow/tjBags"
+GITHUB_REPO = "kayleyseow/bag-bazaar"
 GITHUB_BRANCH = "main"
 COLLECTION_PATH = "public/data/collection.json"
 PHOTOS_PATH_PREFIX = "public/photos"

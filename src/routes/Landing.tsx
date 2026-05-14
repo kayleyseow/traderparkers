@@ -32,7 +32,7 @@ export default function Landing() {
 
       <section className={styles.hero}>
         <h1 className={styles.wordmark}>
-          <span className={styles.parkerJoes}>Parker Joe's</span>
+          <span className={styles.traderParkers}>Trader Parker's</span>
           <span className={styles.bagBazaar}>Bag Bazaar</span>
         </h1>
 

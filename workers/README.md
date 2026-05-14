@@ -4,7 +4,7 @@ This is the small backend that powers two things on the static GH Pages site:
 
 | Endpoint | Who can call it | What it does |
 |---|---|---|
-| `POST /collection` | Parker (password-gated) | Commits a new bag entry + photos to the `tjBags` GitHub repo. GH Pages then rebuilds and the bag appears. |
+| `POST /collection` | Parker (password-gated) | Commits a new bag entry + photos to the `bag-bazaar` GitHub repo. GH Pages then rebuilds and the bag appears. |
 | `POST /suggestions` | Anyone (Turnstile-protected) | Opens a GitHub issue with a proposed catalog entry. You review and decide whether to add it. |
 
 Without this Worker deployed, the site still works — the admin form falls back to "show me JSON to copy-paste manually." Deploying the Worker is what flips the site into "Parker can actually save bags from her phone" mode.
@@ -37,7 +37,7 @@ npx wrangler login          # opens a browser; click "Allow"
 1. Go to <https://github.com/settings/personal-access-tokens/new>.
 2. **Token name:** `parker-bags-worker`
 3. **Expiration:** whatever you're comfortable with (90 days is fine; you'll get an email before it expires).
-4. **Repository access:** select **Only select repositories** → pick `tjBags`.
+4. **Repository access:** select **Only select repositories** → pick `bag-bazaar`.
 5. **Repository permissions:** set these (everything else stays "No access"):
    - **Contents** → **Read and write** *(needed to commit `collection.json` and photos)*
    - **Issues** → **Read and write** *(needed to create suggestion issues)*
@@ -91,7 +91,7 @@ Each one prompts for the value. They get encrypted by Cloudflare and are never v
 
 Open `wrangler.toml` and update:
 
-- `GITHUB_REPO` — set to `<your-github-username>/tjBags`
+- `GITHUB_REPO` — set to `<your-github-username>/bag-bazaar`
 - `ALLOWED_ORIGINS` — comma-separated list of origins allowed to call this Worker. Should include your GH Pages URL (e.g. `https://kayle.github.io`) and the local Vite ports (`http://localhost:5173`, etc.).
 
 ---
