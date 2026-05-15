@@ -13,14 +13,5 @@
       "bags/alabama/right.png",
       "bags/alabama/bottom.png"
     ]
-  },
-  {
-    "slug": "al-2026-05-15",
-    "encyclopediaId": "al",
-    "name": "Alabama",
-    "storeNumber": "737",
-    "dateAcquired": "2026-05-15",
-    "memory": "blah blah",
-    "photos": []
   }
 ]
