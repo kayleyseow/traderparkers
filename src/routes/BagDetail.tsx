@@ -92,8 +92,8 @@ function BagView({
     <main className="relative min-h-screen bg-[var(--tj-cream)] text-[var(--tj-ink)] overflow-hidden">
       <CrumpleOverlay />
 
-      <div className="relative z-10 max-w-4xl mx-auto px-6 py-12 md:py-16">
-        <TopNav backTo="/pantry" backLabel="The Pantry" />
+      <div className="relative z-10 max-w-4xl mx-auto px-6 pt-6 pb-12 md:pt-8 md:pb-16">
+        <TopNav />
 
         <header className="text-center mt-2">
           <p className="font-[var(--tj-body)] tracking-[0.4em] text-xs uppercase font-semibold border border-[var(--tj-ink)] inline-block px-4 py-1.5 mb-6">
@@ -248,7 +248,7 @@ function BagView({
 
 function encyclopediaTypeLabel(entry: EncyclopediaBag | undefined): string {
   if (!entry) return 'Unencyclopediaed Bag'
-  if (entry.type === 'state') return `${entry.state ?? 'State'} · State Bag`
+  if (entry.type === 'state') return `${entry.state ?? 'State'} ★ State Bag`
   if (entry.type === 'special') return 'Special Edition'
   if (entry.type === 'seasonal') return 'Seasonal Bag'
   return 'Standard Bag'
@@ -288,7 +288,7 @@ function NotLogged({ slug }: { slug?: string }) {
     <main className="relative min-h-screen bg-[var(--tj-cream)] text-[var(--tj-ink)] overflow-hidden">
       <CrumpleOverlay />
       <div className="relative z-10 max-w-2xl mx-auto px-6 py-16 text-center">
-        <TopNav backTo="/pantry" backLabel="The Pantry" />
+        <TopNav />
         <p className="font-[var(--tj-body)] tracking-[0.4em] text-xs uppercase font-semibold border border-[var(--tj-ink)] inline-block px-4 py-1.5 mb-6">
           Not Yet Logged
         </p>

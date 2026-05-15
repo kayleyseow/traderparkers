@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router'
-import type { PantryBag, Store } from '../types'
+import type { EncyclopediaBag, PantryBag, ProgressStats, Store } from '../types'
 import TopNav from '../TopNav'
 import Footer from '../Footer'
 
@@ -9,15 +9,46 @@ const BASE = import.meta.env.BASE_URL
 export default function Pantry() {
   const [bags, setBags] = useState<PantryBag[] | null>(null)
   const [stores, setStores] = useState<Map<string, Store>>(new Map())
+  const [stats, setStats] = useState<ProgressStats | null>(null)
 
   useEffect(() => {
     Promise.all([
       fetch(`${BASE}data/pantry.json`).then((r) => r.json() as Promise<PantryBag[]>),
       fetch(`${BASE}data/stores.json`).then((r) => r.json() as Promise<Store[]>),
+      fetch(`${BASE}data/encyclopedia.json`).then((r) => r.json() as Promise<EncyclopediaBag[]>),
     ])
-      .then(([pantry, storeList]) => {
+      .then(([pantry, storeList, encyclopedia]) => {
         setBags(pantry)
         setStores(new Map(storeList.map((s) => [s.storeNumber, s])))
+
+        const totalStates = new Set(
+          encyclopedia
+            .filter((b) => b.type === 'state' && b.stateCode)
+            .map((b) => b.stateCode as string),
+        ).size
+        const totalSpecials = encyclopedia.filter((b) => b.type === 'special').length
+
+        const byId = new Map(encyclopedia.map((b) => [b.id, b]))
+        const collectedStateCodes = new Set<string>()
+        let specialsCollected = 0
+        for (const bag of pantry) {
+          if (!bag.encyclopediaId) continue
+          const entry = byId.get(bag.encyclopediaId)
+          if (!entry) continue
+          if (entry.type === 'state' && entry.stateCode) {
+            collectedStateCodes.add(entry.stateCode)
+          } else if (entry.type === 'special') {
+            specialsCollected++
+          }
+        }
+
+        setStats({
+          totalBags: pantry.length,
+          statesCollected: collectedStateCodes.size,
+          totalStates,
+          specialsCollected,
+          totalSpecials,
+        })
       })
       .catch(() => setBags([]))
   }, [])
@@ -25,12 +56,12 @@ export default function Pantry() {
   return (
     <main
       id="pantry"
-      className="relative min-h-screen bg-[var(--tj-cream)] text-[var(--tj-ink)] px-6 py-12 md:py-16 overflow-hidden"
+      className="relative min-h-screen bg-[var(--tj-cream)] text-[var(--tj-ink)] px-6 pt-6 pb-12 md:pt-8 md:pb-16 overflow-hidden"
     >
       <CrumpleOverlay />
 
       <div className="relative z-10 max-w-6xl mx-auto">
-        <TopNav backTo="/" backLabel="The Bazaar" />
+        <TopNav />
 
         <header className="text-center mb-14">
           <p className="font-[var(--tj-body)] tracking-[0.4em] text-xs uppercase font-semibold border border-[var(--tj-ink)] inline-block px-4 py-1.5 mb-6">
@@ -47,6 +78,8 @@ export default function Pantry() {
           </p>
           <div className="mx-auto mt-6 h-px w-32 bg-[var(--tj-ink)]/40" />
         </header>
+
+        {stats && <StatsRow stats={stats} />}
 
         {bags === null && <LoadingState />}
         {bags && bags.length === 0 && <EmptyState />}
@@ -95,6 +128,35 @@ function CrumpleOverlay() {
       </defs>
       <rect width="100%" height="100%" filter="url(#paperCrumpleLight)" />
     </svg>
+  )
+}
+
+function StatsRow({ stats }: { stats: ProgressStats }) {
+  return (
+    <div className="flex items-center justify-center gap-10 py-3 mb-12 mx-auto w-fit border-y-2 border-[var(--tj-ink)] font-[var(--tj-body)] font-semibold tracking-[0.18em] text-sm">
+      <Stat value={String(stats.totalBags)} label="Bags Logged" />
+      <div className="w-px h-6 bg-[var(--tj-ink)]" />
+      <Stat
+        value={`${stats.statesCollected}/${stats.totalStates || '—'}`}
+        label="States"
+      />
+      <div className="w-px h-6 bg-[var(--tj-ink)]" />
+      <Stat
+        value={`${stats.specialsCollected}/${stats.totalSpecials || '—'}`}
+        label="Special Editions"
+      />
+    </div>
+  )
+}
+
+function Stat({ value, label }: { value: string; label: string }) {
+  return (
+    <div className="text-center">
+      <strong className="block text-3xl leading-none text-[var(--tj-red)] font-bold tracking-normal">
+        {value}
+      </strong>
+      <span className="text-[0.7rem]">{label.toUpperCase()}</span>
+    </div>
   )
 }
 

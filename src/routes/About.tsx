@@ -4,9 +4,9 @@ import Footer from '../Footer'
 
 export default function About() {
   return (
-    <main className="relative min-h-screen bg-[var(--tj-cream)] text-[var(--tj-ink)] px-6 py-12 md:py-16 overflow-hidden">
+    <main className="relative min-h-screen bg-[var(--tj-cream)] text-[var(--tj-ink)] px-6 pt-6 pb-12 md:pt-8 md:pb-16 overflow-hidden">
       <div className="relative z-10 max-w-2xl mx-auto">
-        <TopNav backTo="/" backLabel="The Bazaar" />
+        <TopNav />
 
         <header className="text-center mb-10">
           <p className="font-[var(--tj-body)] tracking-[0.4em] text-xs uppercase font-semibold border border-[var(--tj-ink)] inline-block px-4 py-1.5 mb-6">

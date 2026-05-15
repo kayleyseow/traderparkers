@@ -97,12 +97,12 @@ export default function Encyclopedia() {
   return (
     <main
       id="encyclopedia"
-      className="relative min-h-screen bg-[var(--tj-cream)] text-[var(--tj-ink)] px-6 py-12 md:py-16 overflow-hidden"
+      className="relative min-h-screen bg-[var(--tj-cream)] text-[var(--tj-ink)] px-6 pt-6 pb-12 md:pt-8 md:pb-16 overflow-hidden"
     >
       <CrumpleOverlay />
 
       <div className="relative z-10 max-w-6xl mx-auto">
-        <TopNav backTo="/" backLabel="The Bazaar" />
+        <TopNav />
 
         <header className="text-center mb-10">
           <p className="font-[var(--tj-body)] tracking-[0.4em] text-xs uppercase font-semibold border border-[var(--tj-ink)] inline-block px-4 py-1.5 mb-6">
@@ -311,7 +311,7 @@ function GalleryCard({
               src={photoUrl(front)}
               alt={bag.region ?? bag.name}
               loading="lazy"
-              className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${back ? 'group-hover:opacity-0' : ''}`}
+              className={`absolute inset-0 w-full h-full object-contain p-3 transition-opacity duration-300 ${back ? 'group-hover:opacity-0' : ''}`}
             />
             {back && (
               <img
@@ -319,7 +319,7 @@ function GalleryCard({
                 alt=""
                 aria-hidden
                 loading="lazy"
-                className="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                className="absolute inset-0 w-full h-full object-contain p-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
               />
             )}
             {back && (

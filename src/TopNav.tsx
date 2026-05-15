@@ -8,23 +8,24 @@ const SECONDARY: SecondaryItem[] = [
   { to: '/about',      label: 'About',      matches: (p) => p === '/about' },
 ]
 
-export default function TopNav({
-  backTo,
-  backLabel,
-}: {
-  backTo: string
-  backLabel: string
-}) {
+export default function TopNav() {
   const { pathname } = useLocation()
   const visible = SECONDARY.filter((item) => !item.matches(pathname))
 
   return (
     <nav className="mb-10 flex items-center justify-between flex-wrap gap-3">
       <Link
-        to={backTo}
-        className="font-[var(--tj-body)] font-semibold tracking-[0.25em] text-[0.7rem] uppercase border-2 border-[var(--tj-ink)] px-4 py-2 hover:bg-[var(--tj-ink)] hover:text-[var(--tj-cream)] transition-colors"
+        to="/"
+        aria-label="Trader Parker's Bag Bazaar — home"
+        className="group flex flex-col items-center transition-transform hover:-translate-y-0.5"
+        style={{ fontFamily: 'var(--tj-script)' }}
       >
-        ← {backLabel}
+        <span className="text-[var(--tj-red)] text-3xl leading-none group-hover:text-[var(--tj-ink)] transition-colors">
+          Trader Parker's
+        </span>
+        <span className="text-[var(--tj-red)] text-lg leading-none -mt-1 group-hover:text-[var(--tj-ink)] transition-colors">
+          Bag Bazaar
+        </span>
       </Link>
       <div className="flex items-center gap-3 flex-wrap">
         {visible.map((item) => (

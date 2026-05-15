@@ -70,7 +70,7 @@ function FooterLink({ to, children }: { to: string; children: React.ReactNode })
 function Separator() {
   return (
     <span aria-hidden className="opacity-30 text-[0.7rem]">
-      ·
+      ★
     </span>
   )
 }

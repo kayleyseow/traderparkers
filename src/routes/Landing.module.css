@@ -34,10 +34,24 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
   gap: 2rem;
 
   font-family: var(--tj-body);
+}
+
+/* Holds topLabel + hero and locks them into a fixed-height first viewport
+   so revealed content slots in below the fold instead of pushing the hero
+   up. min-height accounts for bag's top/bottom padding (~7rem) + the gap
+   below firstScreen + the footer (~3rem). */
+.firstScreen {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  min-height: calc(100vh - 10rem);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
 }
 
 .crumple {
@@ -59,6 +73,48 @@
 @keyframes crumpleScroll {
   from { transform: translateY(0); }
   to   { transform: translateY(80px); }
+}
+
+/* Decorative utensils framing the hero — fork on the left, spoon on the
+   right, mirroring the real TJ paper-bag illustration. Sit between the
+   kraft background and the stitched border so text/buttons stay on top. */
+.utensils {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.fork,
+.spoon {
+  position: absolute;
+  height: min(85vh, 760px);
+  width: auto;
+  opacity: 0.6;
+  transform-origin: center;
+}
+
+.spoon {
+  left: clamp(-2rem, 2vw, 3rem);
+  top: 46%;
+  transform: translateY(-50%) rotate(-10deg);
+}
+
+.fork {
+  right: clamp(-2rem, 2vw, 3rem);
+  top: 54%;
+  transform: translateY(-50%) rotate(20deg);
+}
+
+@media (max-width: 720px) {
+  .fork,
+  .spoon {
+    height: 70vh;
+    opacity: 0.4;
+  }
+  .spoon { left: -3rem; }
+  .fork  { right: -3rem; }
 }
 
 /* Stitched border that frames the bag content */
@@ -146,44 +202,6 @@
   animation: fadeUp 0.6s ease 1.05s forwards;
 }
 
-.stats {
-  position: relative;
-  z-index: 1;
-  display: flex;
-  align-items: center;
-  gap: 2.5rem;
-  font-family: var(--tj-body);
-  font-weight: 600;
-  letter-spacing: 0.18em;
-  font-size: 0.85rem;
-  padding: 0.75rem 0;
-  border-top: 2px solid var(--tj-ink);
-  border-bottom: 2px solid var(--tj-ink);
-  margin: 0 auto;
-
-  opacity: 0;
-  animation: fadeUp 0.6s ease 1.25s forwards;
-}
-
-.statDivider {
-  width: 1px;
-  height: 1.5rem;
-  background: var(--tj-ink);
-}
-
-.stat strong {
-  display: block;
-  font-size: 1.8rem;
-  line-height: 1;
-  color: var(--tj-red);
-  font-weight: 700;
-  letter-spacing: 0;
-}
-
-.stat span {
-  font-size: 0.7rem;
-}
-
 .ctaRow {
   position: relative;
   z-index: 1;
@@ -267,7 +285,7 @@
 }
 
 .ctaGhost {
-  background: transparent;
+  background: var(--tj-cream);
   color: var(--tj-ink);
 }
 
@@ -293,7 +311,7 @@
 
 .yesNoRow {
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
   flex-wrap: wrap;
   justify-content: center;
 }
@@ -404,7 +422,7 @@
 @media (prefers-reduced-motion: reduce) {
   .topLabel, .wordmark, .tagline,
   .parkerQuestion, .visitorTag,
-  .stats, .ctaRow, .footer {
+  .ctaRow, .footer {
     animation: none !important;
     opacity: 1 !important;
     transform: none !important;
