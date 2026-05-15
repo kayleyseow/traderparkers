@@ -12,11 +12,13 @@ export default function Footer() {
   return (
     <footer
       role="contentinfo"
-      className="relative z-10 mt-20 border-t border-[var(--tj-ink)]/30"
+      className="relative z-10 mt-10 border-t border-[var(--tj-ink)]/30"
     >
-      <div className="max-w-6xl mx-auto px-6 pt-8 pb-10">
-        {/* Top row: identity + secondary nav */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-4 mb-5">
+      <div className="max-w-6xl mx-auto px-6 pt-4 pb-2">
+        {/* Top row: identity + secondary nav. Non-affiliation note lives
+            on the About page under "A Note" — kept off the footer to leave
+            it lean. */}
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
           <Link
             to="/"
             className="font-[var(--tj-body)] font-semibold tracking-[0.25em] text-[0.7rem] uppercase opacity-80 hover:opacity-100 underline-offset-4 hover:underline"
@@ -25,7 +27,7 @@ export default function Footer() {
           </Link>
           <nav
             aria-label="Footer navigation"
-            className="flex items-center gap-3 flex-wrap justify-center"
+            className="flex items-center gap-x-4 gap-y-1 md:gap-3 flex-wrap justify-center"
           >
             <FooterLink to="/pantry">Pantry</FooterLink>
             <Separator />
@@ -35,14 +37,8 @@ export default function Footer() {
           </nav>
         </div>
 
-        {/* Disclaimer */}
-        <p className="font-[var(--tj-body)] italic text-xs opacity-60 text-center max-w-xl mx-auto leading-relaxed">
-          A non-commercial fan project. Trader Joe's wordmark and visual
-          identity belong to Trader Joe's Company.
-        </p>
-
         {/* Sign-off */}
-        <p className="font-[var(--tj-body)] tracking-[0.2em] text-[0.65rem] uppercase font-semibold text-center mt-5 opacity-75 flex items-center justify-center gap-2">
+        <p className="font-[var(--tj-body)] tracking-[0.2em] text-[0.65rem] uppercase font-semibold text-center mt-3 opacity-75 flex items-center justify-center gap-2">
           <span aria-hidden className="text-[var(--tj-red)]">
             ★
           </span>
@@ -60,7 +56,9 @@ function FooterLink({ to, children }: { to: string; children: React.ReactNode })
   return (
     <Link
       to={to}
-      className="font-[var(--tj-body)] font-semibold tracking-[0.25em] text-[0.7rem] uppercase opacity-70 hover:opacity-100 underline-offset-4 hover:underline"
+      // Tighter tracking/size on phones so all three nav items fit on one
+      // line at ~360px without wrapping; restores at md+.
+      className="font-[var(--tj-body)] font-semibold tracking-[0.18em] md:tracking-[0.25em] text-[0.65rem] md:text-[0.7rem] uppercase opacity-70 hover:opacity-100 underline-offset-4 hover:underline"
     >
       {children}
     </Link>
@@ -68,8 +66,10 @@ function FooterLink({ to, children }: { to: string; children: React.ReactNode })
 }
 
 function Separator() {
+  // Hidden on phones — the gap-x-4 between links is enough separation, and
+  // the stars push the row past the viewport width at narrow widths.
   return (
-    <span aria-hidden className="opacity-30 text-[0.7rem]">
+    <span aria-hidden className="hidden md:inline opacity-30 text-[0.7rem]">
       ★
     </span>
   )

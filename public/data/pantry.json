@@ -24,5 +24,50 @@
     "photos": [
       "/pantry-photos/ca-norcal-2026-05-15-9dd5ee.png"
     ]
+  },
+  {
+    "slug": "az-2026-04-22",
+    "encyclopediaId": "az",
+    "name": "Arizona",
+    "storeNumber": "084",
+    "dateAcquired": "2026-04-22",
+    "memory": "Grabbed at the Tempe TJ on the way home from the airport. Didn't even unpack the groceries before flipping the bag over to read all four panels.",
+    "photos": []
+  },
+  {
+    "slug": "co-2026-03-08",
+    "encyclopediaId": "co",
+    "name": "Colorado",
+    "storeNumber": "051",
+    "dateAcquired": "2026-03-08",
+    "memory": "Boulder TJ on a snowy Sunday. The mountain illustration on the back made me audibly say 'oh come on' in the checkout line. The cashier just smiled — apparently that happens a lot.",
+    "photos": [
+      "bags/colorado/front.png",
+      "bags/colorado/back.png"
+    ]
+  },
+  {
+    "slug": "il-chicago-2026-02-14",
+    "encyclopediaId": "il-chicago",
+    "name": "Chicago (Illinois)",
+    "storeNumber": "690",
+    "dateAcquired": "2026-02-14",
+    "memory": "Lincoln Park TJ with M. on a Valentine's-Day-but-actually-just-groceries trip. We had a whole debate in the aisle about whether the Chicago bag's L-train panel was more iconic than the hot dog one (it's the L-train — sorry, hot dog). Walked home in a windchill that bit through three layers but the bag was warm against my hip the whole way, full of pasta and the good olive oil. The kind of grocery run you remember years later for reasons that have nothing to do with what you bought.",
+    "photos": [
+      "bags/chicago/front.png",
+      "bags/chicago/back.png",
+      "bags/chicago/left.png",
+      "bags/chicago/right.png",
+      "bags/chicago/bottom.png"
+    ]
+  },
+  {
+    "slug": "pickle-cotton-bag-2025-08-15",
+    "encyclopediaId": "pickle-cotton-bag",
+    "name": "Pickle Cotton Bag",
+    "storeNumber": "542",
+    "dateAcquired": "2025-08-15",
+    "memory": "A pickle. On a bag. It's not deep — I just liked it.",
+    "photos": []
   }
 ]

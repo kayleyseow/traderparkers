@@ -1,5 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
-import type { EncyclopediaBag, PantryBag, Store } from '../../types'
+import type { CategoryVisibility, EncyclopediaBag, PantryBag, Store } from '../../types'
+import { DEFAULT_VISIBILITY } from '../../types'
 import StoreSelect from './StoreSelect'
 
 const BASE = import.meta.env.BASE_URL
@@ -14,7 +15,9 @@ type Status =
   | { kind: 'error'; message: string }
 
 export default function BagForm({ password }: Props) {
-  const [encyclopedia, setEncyclopedia] = useState<EncyclopediaBag[] | null>(null)
+  const [rawEncyclopedia, setRawEncyclopedia] = useState<EncyclopediaBag[] | null>(null)
+  const [visibility, setVisibility] = useState<CategoryVisibility>(DEFAULT_VISIBILITY)
+  const [existingSlugs, setExistingSlugs] = useState<Set<string>>(new Set())
   const [encyclopediaId, setEncyclopediaId] = useState('')
   const [store, setStore] = useState<Store | null>(null)
   const [date, setDate] = useState(todayISO())
@@ -25,17 +28,54 @@ export default function BagForm({ password }: Props) {
   useEffect(() => {
     fetch(`${BASE}data/encyclopedia.json`)
       .then((r) => r.json() as Promise<EncyclopediaBag[]>)
-      .then(setEncyclopedia)
-      .catch(() => setEncyclopedia([]))
+      .then(setRawEncyclopedia)
+      .catch(() => setRawEncyclopedia([]))
+    // Slugs are deterministic (`${encyclopediaId}-${date}`), so we can warn
+    // the user before submit if a duplicate is brewing. The Worker enforces
+    // this server-side too — this is just for instant feedback.
+    fetch(`${BASE}data/pantry.json`)
+      .then((r) => r.json() as Promise<PantryBag[]>)
+      .then((pantry) => setExistingSlugs(new Set(pantry.map((b) => b.slug))))
+      .catch(() => {
+        /* empty set is fine — server is still the source of truth */
+      })
+    // Hide categories that admin has toggled off from the picker. State bags
+    // always show. Mirrors the filter on the public encyclopedia.
+    fetch(`${BASE}data/visibility.json`)
+      .then((r) => (r.ok ? (r.json() as Promise<CategoryVisibility>) : null))
+      .then((v) => {
+        if (v) setVisibility({ ...DEFAULT_VISIBILITY, ...v })
+      })
+      .catch(() => {
+        /* keep defaults */
+      })
   }, [])
+
+  const encyclopedia = useMemo(() => {
+    if (rawEncyclopedia === null) return null
+    return rawEncyclopedia.filter((bag) => {
+      if (bag.type === 'state') return visibility.state
+      if (bag.type === 'special') return visibility.special
+      if (bag.type === 'seasonal') return visibility.seasonal
+      if (bag.type === 'standard') return visibility.standard
+      return true
+    })
+  }, [rawEncyclopedia, visibility])
 
   const selectedEncyclopediaBag = useMemo(
     () => encyclopedia?.find((b) => b.id === encyclopediaId) ?? null,
     [encyclopedia, encyclopediaId],
   )
 
+  const pendingSlug = selectedEncyclopediaBag ? `${selectedEncyclopediaBag.id}-${date}` : ''
+  const duplicate = pendingSlug !== '' && existingSlugs.has(pendingSlug)
+
   const valid =
-    selectedEncyclopediaBag !== null && store !== null && date !== '' && memory.trim().length > 0
+    selectedEncyclopediaBag !== null &&
+    store !== null &&
+    date !== '' &&
+    memory.trim().length > 0 &&
+    !duplicate
 
   function reset() {
     setEncyclopediaId('')
@@ -51,7 +91,7 @@ export default function BagForm({ password }: Props) {
     if (!valid || !selectedEncyclopediaBag || !store || status.kind === 'saving') return
 
     const bag = {
-      slug: `${selectedEncyclopediaBag.id}-${date}`,
+      slug: pendingSlug,
       name: bagDisplayName(selectedEncyclopediaBag),
       encyclopediaId: selectedEncyclopediaBag.id,
       storeNumber: store.storeNumber,
@@ -175,6 +215,18 @@ export default function BagForm({ password }: Props) {
           {memory.length} / 1200
         </div>
       </Field>
+
+      {duplicate && (
+        <div className="border-2 border-[var(--tj-red)] bg-[var(--tj-red)]/10 px-4 py-3 text-sm">
+          <strong className="font-[var(--tj-body)] tracking-[0.15em] text-xs uppercase block mb-1">
+            Already in the pantry
+          </strong>
+          <span className="italic opacity-90">
+            This bag is already logged for {date}. Pick a different date if you got
+            another one, or check the pantry to see the existing entry.
+          </span>
+        </div>
+      )}
 
       {status.kind === 'error' && (
         <div className="border-2 border-[var(--tj-red)] bg-[var(--tj-red)]/10 px-4 py-3 text-sm">

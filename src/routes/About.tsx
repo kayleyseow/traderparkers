@@ -4,7 +4,7 @@ import Footer from '../Footer'
 
 export default function About() {
   return (
-    <main className="relative min-h-screen bg-[var(--tj-cream)] text-[var(--tj-ink)] px-6 pt-6 pb-12 md:pt-8 md:pb-16 overflow-hidden">
+    <main className="relative min-h-screen bg-[var(--tj-cream)] text-[var(--tj-ink)] px-6 pt-6 md:pt-8 overflow-hidden">
       <div className="relative z-10 max-w-6xl mx-auto">
         <TopNav />
 

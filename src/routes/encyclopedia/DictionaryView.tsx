@@ -4,6 +4,12 @@ import type { BagType, PantryBag, EncyclopediaBag } from '../../types'
 import { US_LOCALES } from '../../usLocales'
 import { DESIGN_NOTES } from '../../bagPhotos'
 import { MATERIAL_LABEL } from '../../materials'
+import SectionHeader from './SectionHeader'
+import {
+  NON_LOCATION_SECTIONS,
+  STATES_SECTION,
+  SUGGEST_SECTION,
+} from './sections'
 
 /* ────────────────────────────────────────────────────────────────────
    Dictionary view — bags rendered as flowing encyclopedia entries
@@ -20,12 +26,6 @@ type ScrubberItem = {
   /** 'section' is a major heading; 'letter' is an alpha subdivider inside States */
   kind: 'section' | 'letter'
 }
-
-const NON_LOCATION_SECTIONS: { type: BagType; id: string; label: string }[] = [
-  { type: 'special',  id: 'enc-special',  label: 'Special Editions' },
-  { type: 'seasonal', id: 'enc-seasonal', label: 'Seasonal' },
-  { type: 'standard', id: 'enc-standard', label: 'Standard Bags' },
-]
 
 export default function DictionaryView({
   bags,
@@ -73,20 +73,34 @@ export default function DictionaryView({
     return map
   }, [bags])
 
+  const stateBagsCount = useMemo(
+    () => bags.filter((b) => b.type === 'state').length,
+    [bags],
+  )
+
   /* Build the linear list of scrubber stops in document order. */
   const scrubberItems = useMemo<ScrubberItem[]>(() => {
     const items: ScrubberItem[] = []
     if (localesByLetter.size > 0) {
-      items.push({ id: 'enc-states', label: 'States', kind: 'section' })
+      items.push({
+        id: STATES_SECTION.id,
+        label: STATES_SECTION.scrubberLabel ?? STATES_SECTION.label,
+        kind: 'section',
+      })
       for (const letter of localesByLetter.keys()) {
         items.push({ id: `enc-letter-${letter.toLowerCase()}`, label: letter, kind: 'letter' })
       }
     }
-    for (const { type, id, label } of NON_LOCATION_SECTIONS) {
+    for (const { type, id, label, scrubberLabel } of NON_LOCATION_SECTIONS) {
       if (bagsByType.get(type)?.length) {
-        items.push({ id, label, kind: 'section' })
+        items.push({ id, label: scrubberLabel ?? label, kind: 'section' })
       }
     }
+    items.push({
+      id: SUGGEST_SECTION.id,
+      label: SUGGEST_SECTION.scrubberLabel ?? SUGGEST_SECTION.label,
+      kind: 'section',
+    })
     return items
   }, [localesByLetter, bagsByType])
 
@@ -98,7 +112,12 @@ export default function DictionaryView({
         {/* ── States ── */}
         {localesByLetter.size > 0 && (
           <section>
-            <SectionHeading id="enc-states" label="States" />
+            <SectionHeader
+              id={STATES_SECTION.id}
+              label={STATES_SECTION.label}
+              count={stateBagsCount}
+              blurb={STATES_SECTION.blurb}
+            />
             {[...localesByLetter.entries()].map(([letter, locales]) => (
               <div key={letter}>
                 <LetterHeading letter={letter} />
@@ -117,12 +136,12 @@ export default function DictionaryView({
         )}
 
         {/* ── Non-state sections ── */}
-        {NON_LOCATION_SECTIONS.map(({ type, id, label }) => {
+        {NON_LOCATION_SECTIONS.map(({ type, id, label, blurb }) => {
           const list = bagsByType.get(type)
           if (!list || list.length === 0) return null
           return (
             <section key={type}>
-              <SectionHeading id={id} label={label} />
+              <SectionHeader id={id} label={label} count={list.length} blurb={blurb} />
               {list.map((bag) => (
                 <DictionaryEntry
                   key={bag.id}
@@ -139,18 +158,6 @@ export default function DictionaryView({
 }
 
 /* ──────────────────────── PIECES ──────────────────────── */
-
-function SectionHeading({ id, label }: { id: string; label: string }) {
-  return (
-    <h2
-      id={id}
-      className="text-[var(--tj-red)] text-4xl md:text-5xl mt-14 mb-4 scroll-mt-24"
-      style={{ fontFamily: 'var(--tj-script)' }}
-    >
-      {label}
-    </h2>
-  )
-}
 
 function LetterHeading({ letter }: { letter: string }) {
   return (

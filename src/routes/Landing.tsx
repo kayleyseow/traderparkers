@@ -3,6 +3,7 @@ import { Link } from 'react-router'
 import type { EncyclopediaBag, PinnedBag } from '../types'
 import PinnedFavorites from '../PinnedFavorites'
 import styles from './Landing.module.css'
+import sealSvg from '../assets/icons/tp_paper_bag_transparent.svg?raw'
 
 const BASE = import.meta.env.BASE_URL
 
@@ -44,14 +45,29 @@ export default function Landing() {
         <div className={styles.topLabel}>Est. 2026 · A Tote Compendium</div>
 
         <section className={styles.hero}>
-          <h1 className={styles.wordmark}>
-            <span className={styles.traderParkers}>Trader Parker's</span>
-            <span className={styles.bagBazaar}>Bag Bazaar</span>
+          <h1 className={styles.wordmark} aria-label="Trader Parker's Bag Bazaar">
+            <span className={styles.sealComposite}>
+              <svg
+                className={styles.sealRing}
+                viewBox="0 0 200 200"
+                aria-hidden
+              >
+                <defs>
+                  <path id="seal-bottom" d="M 1,100 A 99,99 0 0,0 199,100" fill="none" />
+                </defs>
+                <text className={styles.sealRingText}>
+                  <textPath href="#seal-bottom" startOffset="50%" textAnchor="start">
+                    BAG BAZAAR
+                  </textPath>
+                </text>
+              </svg>
+              <span
+                className={styles.sealImage}
+                aria-hidden
+                dangerouslySetInnerHTML={{ __html: sealSvg }}
+              />
+            </span>
           </h1>
-
-          <p className={styles.tagline}>
-            A tour of Trader Joe's totes, collected one grocery run at a time.
-          </p>
 
           <div className={styles.parkerQuestion}>
             <h2 className={styles.parkerQuestionTitle}>Are you Parker?</h2>
@@ -82,28 +98,30 @@ export default function Landing() {
                 onClick={() => setRevealed(true)}
                 className={`${styles.cta} ${styles.ctaGhost}`}
               >
-                Just Browsing
+                Nope, Just Browsing
               </button>
             </div>
           </div>
         </section>
+
+        <div className={styles.revealedSlot} aria-live="polite">
+          {revealed && (
+            <>
+              <p className={styles.visitorTag}>
+                Welcome, fellow TP's bag enthusiast!
+              </p>
+
+              <PinnedFavorites pins={pins} encyclopediaById={encyclopediaById} />
+
+              <div className={styles.ctaRow}>
+                <Link className={`${styles.cta} ${styles.ctaGhost}`} to="/pantry">Peer into Parker's Pantry</Link>
+                <Link className={`${styles.cta} ${styles.ctaGhost}`} to="/encyclopedia">Explore the Encyclopedia</Link>
+                <Link className={`${styles.cta} ${styles.ctaGhost}`} to="/about">About the Bazaar</Link>
+              </div>
+            </>
+          )}
+        </div>
       </div>
-
-      {revealed && (
-        <>
-          <p className={styles.visitorTag}>
-            Welcome, fellow TP's bag enthusiast!
-          </p>
-
-          <PinnedFavorites pins={pins} encyclopediaById={encyclopediaById} />
-
-          <div className={styles.ctaRow}>
-            <Link className={`${styles.cta} ${styles.ctaGhost}`} to="/pantry">Peer into Parker's Pantry</Link>
-            <Link className={`${styles.cta} ${styles.ctaGhost}`} to="/encyclopedia">Explore the Encyclopedia</Link>
-            <Link className={`${styles.cta} ${styles.ctaGhost}`} to="/about">About the Bazaar</Link>
-          </div>
-        </>
-      )}
 
       <div className={styles.footer}>
         <span>★ Happy Birthday Parker! · Est. 2026 ★</span>
@@ -111,11 +129,6 @@ export default function Landing() {
     </main>
   )
 }
-
-/* ───────────────── CRUMPLED-PAPER BACKGROUND ─────────────────
-   Inline SVG noise filter with a slowly-animating seed. The rendered
-   noise is multiplied onto the kraft background to produce ridge-and-
-   valley shading, like a hand-crumpled grocery bag. */
 
 function CrumpleOverlay() {
   return (
@@ -135,8 +148,6 @@ function CrumpleOverlay() {
             stitchTiles="stitch"
             result="noise"
           />
-          {/* Convert noise intensity into a dark, semi-transparent shadow
-              so the multiply blend mode etches ridges into the kraft. */}
           <feColorMatrix
             type="matrix"
             values="

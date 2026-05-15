@@ -85,7 +85,35 @@ app.post('/pantry', async (c) => {
     return c.json({ error: 'Too many photos (max 8)' }, 400)
   }
 
-  // 3. Commit each photo; collect their public paths for the bag record.
+  // 3. Read pantry.json early and reject duplicate slugs BEFORE uploading photos,
+  //    so a rejected submission doesn't leave orphan photo commits behind.
+  let existing: { content: string; sha: string }
+  try {
+    existing = await ghReadFile(c.env, c.env.PANTRY_PATH)
+  } catch (err) {
+    return c.json({ error: `Failed to read pantry: ${(err as Error).message}` }, 502)
+  }
+
+  let pantry: { slug?: string }[]
+  try {
+    const parsed = JSON.parse(existing.content)
+    if (!Array.isArray(parsed)) throw new Error('not an array')
+    pantry = parsed
+  } catch {
+    return c.json({ error: 'pantry.json is not valid JSON array' }, 502)
+  }
+
+  if (pantry.some((b) => b.slug === bag.slug)) {
+    return c.json(
+      {
+        error: `A bag with slug "${bag.slug}" is already logged. Pick a different date or encyclopedia entry.`,
+        code: 'duplicate_slug',
+      },
+      409,
+    )
+  }
+
+  // 4. Commit each photo; collect their public paths for the bag record.
   const photoPaths: string[] = []
   for (const photo of photos) {
     const ext = sanitizeExtension(photo.name)
@@ -97,22 +125,6 @@ app.post('/pantry', async (c) => {
     }
     // Public URL path (pantry.json stores leading-slash absolute paths under public/).
     photoPaths.push('/' + path.replace(/^public\//, ''))
-  }
-
-  // 4. Read existing pantry.json, append the new bag, commit it back.
-  let existing: { content: string; sha: string }
-  try {
-    existing = await ghReadFile(c.env, c.env.PANTRY_PATH)
-  } catch (err) {
-    return c.json({ error: `Failed to read pantry: ${(err as Error).message}` }, 502)
-  }
-
-  let pantry: unknown[]
-  try {
-    pantry = JSON.parse(existing.content)
-    if (!Array.isArray(pantry)) throw new Error('not an array')
-  } catch {
-    return c.json({ error: 'pantry.json is not valid JSON array' }, 502)
   }
 
   const newEntry = {
@@ -160,6 +172,67 @@ function validateBag(bag: IncomingBag): string | null {
   if (!bag.memory || bag.memory.length > 4000) return 'Invalid memory'
   return null
 }
+
+/* ──────────────────────────  /settings  ──────────────────────────
+   Generic settings endpoint that persists a JSON value at a known
+   per-key file path. Keys are allowlisted so the path can't be
+   injected. Use a single shared endpoint instead of one per setting
+   so future toggles (e.g. wiring up pins) reuse this surface. */
+
+const SETTINGS_FILES: Record<string, string> = {
+  visibility: 'public/data/visibility.json',
+  pins: 'public/data/pins.json',
+}
+
+app.post('/settings', async (c) => {
+  let body: { password?: string; key?: string; value?: unknown }
+  try {
+    body = await c.req.json()
+  } catch {
+    return c.json({ error: 'Invalid JSON' }, 400)
+  }
+
+  const { password, key, value } = body
+  if (!password) return c.json({ error: 'Missing password' }, 400)
+  if (!key || typeof key !== 'string' || !(key in SETTINGS_FILES)) {
+    return c.json({ error: 'Unknown settings key' }, 400)
+  }
+  if (value === undefined) return c.json({ error: 'Missing value' }, 400)
+
+  const incomingHash = await sha256Hex(password)
+  if (!constantTimeEqual(incomingHash, c.env.ADMIN_HASH)) {
+    return c.json({ error: 'Wrong password' }, 401)
+  }
+
+  const path = SETTINGS_FILES[key]
+
+  // We need the existing sha to PUT an update via the contents API; if the
+  // file doesn't exist yet (404), fall through and let the write create it.
+  let sha: string | undefined
+  try {
+    const existing = await ghReadFile(c.env, path)
+    sha = existing.sha
+  } catch (err) {
+    const msg = (err as Error).message
+    if (!msg.includes('404')) {
+      return c.json({ error: `Failed to read ${key}: ${msg}` }, 502)
+    }
+  }
+
+  const content = JSON.stringify(value, null, 2) + '\n'
+  try {
+    const result = await ghWriteFile(
+      c.env,
+      path,
+      utf8ToBase64(content),
+      `Update ${key} settings`,
+      sha,
+    )
+    return c.json({ ok: true, key, commitUrl: result.commit.html_url })
+  } catch (err) {
+    return c.json({ error: `Failed to commit ${key}: ${(err as Error).message}` }, 502)
+  }
+})
 
 /* ──────────────────────────  /suggestions  ───────────────────────── */
 

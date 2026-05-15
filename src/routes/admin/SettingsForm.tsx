@@ -1,8 +1,10 @@
 import { useEffect, useMemo, useState } from 'react'
-import type { EncyclopediaBag, PinnedBag } from '../../types'
+import type { CategoryVisibility, EncyclopediaBag, PinnedBag } from '../../types'
+import { DEFAULT_VISIBILITY } from '../../types'
 import { inferAngleMap, photoUrl } from '../../bagPhotos'
 
 const BASE = import.meta.env.BASE_URL
+const WORKER_URL = import.meta.env.VITE_WORKER_URL
 const MAX_PINS = 4
 
 /* ────────────────────────────────────────────────────────────────────
@@ -13,7 +15,7 @@ const MAX_PINS = 4
    public/data/pins.json) until the Worker is wired.
    ──────────────────────────────────────────────────────────────────── */
 
-export default function SettingsForm({ password: _password }: { password: string }) {
+export default function SettingsForm({ password }: { password: string }) {
   const [encyclopedia, setEncyclopedia] = useState<EncyclopediaBag[] | null>(null)
   const [pins, setPins] = useState<PinnedBag[]>([])
   const [submitted, setSubmitted] = useState<PinnedBag[] | null>(null)
@@ -98,7 +100,13 @@ export default function SettingsForm({ password: _password }: { password: string
   }
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <div className="space-y-10">
+      <VisibilitySection password={password} />
+
+      <form
+        onSubmit={handleSubmit}
+        className="space-y-6 border-t-2 border-[var(--tj-ink)]/20 pt-8"
+      >
       <div>
         <h3 className="font-[var(--tj-body)] tracking-[0.22em] text-[0.75rem] uppercase font-semibold mb-1">
           Pinned Favorites
@@ -185,7 +193,8 @@ export default function SettingsForm({ password: _password }: { password: string
           Preview pins.json
         </button>
       </div>
-    </form>
+      </form>
+    </div>
   )
 }
 
@@ -274,6 +283,205 @@ function PinRow({
         </button>
       </div>
     </li>
+  )
+}
+
+/* ──────────────────────────  Visibility section  ─────────────────
+   Four toggles controlling whether each bag category appears in the
+   public encyclopedia, the Pantry stats row, and the Log-a-Bag picker.
+   Saves go through the Worker's /settings endpoint; if the Worker isn't
+   configured, we fall back to showing the JSON for manual commit. */
+
+const CATEGORY_LABELS: { key: keyof CategoryVisibility; label: string; blurb: string }[] = [
+  {
+    key: 'state',
+    label: 'State Bags',
+    blurb: 'The 50-state collection — one design per locale.',
+  },
+  {
+    key: 'special',
+    label: 'Special Editions',
+    blurb: 'Themed bags — pickle, sardine, cheese, wine.',
+  },
+  {
+    key: 'seasonal',
+    label: 'Seasonal',
+    blurb: 'Holiday and seasonal releases that change year to year.',
+  },
+  {
+    key: 'standard',
+    label: 'Standard Bags',
+    blurb: 'The everyday lineup — insulated, canvas, washable paper.',
+  },
+]
+
+type SaveStatus =
+  | { kind: 'idle' }
+  | { kind: 'saving' }
+  | { kind: 'saved'; commitUrl?: string; jsonFallback?: string }
+  | { kind: 'error'; message: string }
+
+function VisibilitySection({ password }: { password: string }) {
+  const [initial, setInitial] = useState<CategoryVisibility | null>(null)
+  const [visibility, setVisibility] = useState<CategoryVisibility>(DEFAULT_VISIBILITY)
+  const [status, setStatus] = useState<SaveStatus>({ kind: 'idle' })
+
+  useEffect(() => {
+    fetch(`${BASE}data/visibility.json`)
+      .then((r) => (r.ok ? (r.json() as Promise<CategoryVisibility>) : DEFAULT_VISIBILITY))
+      .then((v) => {
+        // Merge with defaults so a partial file still resolves all three keys.
+        const merged = { ...DEFAULT_VISIBILITY, ...v }
+        setVisibility(merged)
+        setInitial(merged)
+      })
+      .catch(() => {
+        setVisibility(DEFAULT_VISIBILITY)
+        setInitial(DEFAULT_VISIBILITY)
+      })
+  }, [])
+
+  const dirty =
+    initial !== null &&
+    (visibility.state !== initial.state ||
+      visibility.special !== initial.special ||
+      visibility.seasonal !== initial.seasonal ||
+      visibility.standard !== initial.standard)
+
+  function toggle(key: keyof CategoryVisibility) {
+    setVisibility((v) => ({ ...v, [key]: !v[key] }))
+    if (status.kind === 'saved' || status.kind === 'error') {
+      setStatus({ kind: 'idle' })
+    }
+  }
+
+  async function handleSave() {
+    if (!dirty || status.kind === 'saving') return
+
+    if (!WORKER_URL) {
+      setStatus({
+        kind: 'saved',
+        jsonFallback: JSON.stringify(visibility, null, 2),
+      })
+      setInitial(visibility)
+      return
+    }
+
+    setStatus({ kind: 'saving' })
+    try {
+      const res = await fetch(`${WORKER_URL}/settings`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ password, key: 'visibility', value: visibility }),
+      })
+      const data = (await res.json().catch(() => ({}))) as {
+        ok?: boolean
+        error?: string
+        commitUrl?: string
+      }
+      if (!res.ok || !data.ok) {
+        setStatus({ kind: 'error', message: data.error ?? `Save failed (${res.status})` })
+        return
+      }
+      setStatus({ kind: 'saved', commitUrl: data.commitUrl })
+      setInitial(visibility)
+    } catch (err) {
+      setStatus({ kind: 'error', message: (err as Error).message })
+    }
+  }
+
+  return (
+    <section>
+      <div className="mb-4">
+        <h3 className="font-[var(--tj-body)] tracking-[0.22em] text-[0.75rem] uppercase font-semibold mb-1">
+          Category Visibility
+        </h3>
+        <p className="font-[var(--tj-body)] italic text-sm opacity-75">
+          Decide which categories appear on the public encyclopedia, the
+          Pantry stats row, and the Log-a-Bag picker.
+        </p>
+      </div>
+
+      <ul className="space-y-2">
+        {CATEGORY_LABELS.map(({ key, label, blurb }) => {
+          const on = visibility[key]
+          return (
+            <li key={key}>
+              <label className="flex items-start gap-3 border-2 border-[var(--tj-ink)]/40 bg-white p-3 cursor-pointer hover:border-[var(--tj-ink)] transition-colors">
+                <input
+                  type="checkbox"
+                  checked={on}
+                  onChange={() => toggle(key)}
+                  className="mt-1 w-5 h-5 accent-[var(--tj-red)] cursor-pointer"
+                />
+                <span className="flex-1">
+                  <span className="block font-[var(--tj-body)] font-bold tracking-[0.05em]">
+                    {label}{' '}
+                    <span
+                      className={`ml-1 font-[var(--tj-body)] tracking-[0.18em] text-[0.6rem] uppercase font-semibold ${on ? 'text-[var(--tj-red)]/80' : 'opacity-50'}`}
+                    >
+                      {on ? 'Shown' : 'Hidden'}
+                    </span>
+                  </span>
+                  <span className="block font-[var(--tj-body)] italic text-sm opacity-70 mt-0.5">
+                    {blurb}
+                  </span>
+                </span>
+              </label>
+            </li>
+          )
+        })}
+      </ul>
+
+      {status.kind === 'error' && (
+        <div className="mt-4 border-2 border-[var(--tj-red)] bg-[var(--tj-red)]/10 px-4 py-3 text-sm">
+          <strong className="font-[var(--tj-body)] tracking-[0.15em] text-xs uppercase block mb-1">
+            Save failed
+          </strong>
+          <span className="italic opacity-90">{status.message}</span>
+        </div>
+      )}
+
+      {status.kind === 'saved' && status.jsonFallback && (
+        <div className="mt-4 border-2 border-[var(--tj-ink)] bg-[var(--tj-cream)] p-4 text-sm space-y-2">
+          <p className="italic opacity-80">
+            Worker isn't configured — paste the JSON below into{' '}
+            <code className="bg-[var(--tj-kraft)]/40 px-1.5 py-0.5">public/data/visibility.json</code>{' '}
+            and commit.
+          </p>
+          <pre className="bg-white border border-[var(--tj-ink)] p-3 text-xs overflow-x-auto font-mono">
+            {status.jsonFallback}
+          </pre>
+        </div>
+      )}
+
+      {status.kind === 'saved' && !status.jsonFallback && (
+        <p className="mt-4 italic text-sm opacity-80">
+          Saved.{' '}
+          {status.commitUrl && (
+            <a
+              href={status.commitUrl}
+              target="_blank"
+              rel="noreferrer"
+              className="underline underline-offset-2 hover:text-[var(--tj-red)]"
+            >
+              View the commit →
+            </a>
+          )}
+        </p>
+      )}
+
+      <div className="pt-4 flex items-center justify-end">
+        <button
+          type="button"
+          onClick={handleSave}
+          disabled={!dirty || status.kind === 'saving'}
+          className="font-[var(--tj-body)] font-semibold tracking-[0.25em] text-xs uppercase border-2 border-[var(--tj-ink)] bg-[var(--tj-ink)] text-[var(--tj-cream)] px-6 py-3 hover:bg-transparent hover:text-[var(--tj-ink)] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          {status.kind === 'saving' ? 'Saving…' : 'Save Visibility'}
+        </button>
+      </div>
+    </section>
   )
 }
 

@@ -10,6 +10,10 @@ export default function PasswordGate({
   const [password, setPassword] = useState('')
   const [error, setError] = useState(false)
   const [checking, setChecking] = useState(false)
+  // Browser-built-in reveal eyes are only rendered by Edge / some Chrome on
+  // desktop — mobile Safari and Chrome don't show one. Roll our own so the
+  // toggle exists everywhere.
+  const [revealed, setRevealed] = useState(false)
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -46,21 +50,41 @@ export default function PasswordGate({
             <span className="font-[var(--tj-body)] tracking-[0.2em] text-[0.65rem] uppercase block mb-1.5">
               Password
             </span>
-            <input
-              type="password"
-              autoFocus
-              value={password}
-              onChange={(e) => {
-                setPassword(e.target.value)
-                if (error) setError(false)
-              }}
-              className={`w-full border-2 bg-[var(--tj-cream)] px-3 py-2.5 font-serif text-base outline-none focus:bg-white transition-colors ${
-                error
-                  ? 'border-[var(--tj-red)] animate-[shake_0.4s_ease]'
-                  : 'border-[var(--tj-ink)]'
-              }`}
-              placeholder="••••••••••••"
-            />
+            <div className="relative">
+              <input
+                type={revealed ? 'text' : 'password'}
+                autoFocus
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value)
+                  if (error) setError(false)
+                }}
+                className={`w-full border-2 bg-[var(--tj-cream)] pl-3 pr-12 py-2.5 font-serif text-base outline-none focus:bg-white transition-colors ${
+                  error
+                    ? 'border-[var(--tj-red)] animate-[shake_0.4s_ease]'
+                    : 'border-[var(--tj-ink)]'
+                }`}
+                placeholder="••••••••••••"
+                // Keep autofill/correct behavior reasonable when shown as text.
+                autoComplete="current-password"
+                autoCapitalize="off"
+                autoCorrect="off"
+                spellCheck={false}
+              />
+              <button
+                type="button"
+                onClick={() => setRevealed((r) => !r)}
+                aria-label={revealed ? 'Hide password' : 'Show password'}
+                aria-pressed={revealed}
+                // Tapping the eye on mobile would otherwise blur the password
+                // input, which can dismiss the keyboard mid-typing. Prevent
+                // default on mousedown to keep focus where it is.
+                onMouseDown={(e) => e.preventDefault()}
+                className="absolute right-0 top-0 h-full w-11 flex items-center justify-center text-[var(--tj-ink)] opacity-60 hover:opacity-100 transition-opacity"
+              >
+                {revealed ? <EyeOffIcon /> : <EyeIcon />}
+              </button>
+            </div>
             {error && (
               <span className="block mt-1.5 text-xs italic text-[var(--tj-red)]">
                 That doesn't look right. Try again, Parker.
@@ -95,5 +119,45 @@ export default function PasswordGate({
         }
       `}</style>
     </main>
+  )
+}
+
+function EyeIcon() {
+  return (
+    <svg
+      aria-hidden
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7Z" />
+      <circle cx="12" cy="12" r="3" />
+    </svg>
+  )
+}
+
+function EyeOffIcon() {
+  return (
+    <svg
+      aria-hidden
+      width="20"
+      height="20"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.8"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M17.94 17.94A10.94 10.94 0 0 1 12 19c-6.5 0-10-7-10-7a18.45 18.45 0 0 1 5.06-5.94" />
+      <path d="M9.9 4.24A10.94 10.94 0 0 1 12 4c6.5 0 10 7 10 7a18.5 18.5 0 0 1-2.16 3.19" />
+      <path d="M14.12 14.12a3 3 0 1 1-4.24-4.24" />
+      <line x1="2" y1="2" x2="22" y2="22" />
+    </svg>
   )
 }

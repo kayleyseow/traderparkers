@@ -115,10 +115,28 @@ export type PinnedBag = {
 
 /* ──────────────────────────  PROGRESS HELPERS  ────────────────────── */
 
+export type CategoryProgress = { collected: number; total: number }
+
 export type ProgressStats = {
   totalBags: number
-  statesCollected: number
-  totalStates: number
-  specialsCollected: number
-  totalSpecials: number
+  byType: Record<BagType, CategoryProgress>
+}
+
+/* ──────────────────────────  CATEGORY VISIBILITY  ──────────────────
+   Admin toggle for which bag categories appear on the public encyclopedia,
+   the Pantry stats row, and the Log-a-Bag picker. One boolean per BagType.
+   Stored in public/data/visibility.json. */
+
+export type CategoryVisibility = {
+  state: boolean
+  special: boolean
+  seasonal: boolean
+  standard: boolean
+}
+
+export const DEFAULT_VISIBILITY: CategoryVisibility = {
+  state: true,
+  special: true,
+  seasonal: true,
+  standard: true,
 }

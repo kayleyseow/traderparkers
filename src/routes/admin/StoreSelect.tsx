@@ -24,11 +24,17 @@ export default function StoreSelect({ value, onChange }: Props) {
 
   useEffect(() => {
     if (!open) return
-    function onClick(e: MouseEvent) {
+    function close(e: Event) {
       if (!containerRef.current?.contains(e.target as Node)) setOpen(false)
     }
-    document.addEventListener('mousedown', onClick)
-    return () => document.removeEventListener('mousedown', onClick)
+    // touchstart covers mobile taps outside the dropdown where the synthesized
+    // mousedown can be unreliable (especially while the soft keyboard is up).
+    document.addEventListener('mousedown', close)
+    document.addEventListener('touchstart', close)
+    return () => {
+      document.removeEventListener('mousedown', close)
+      document.removeEventListener('touchstart', close)
+    }
   }, [open])
 
   const filtered = useMemo(() => {
@@ -95,6 +101,12 @@ export default function StoreSelect({ value, onChange }: Props) {
                   <li key={s.storeNumber}>
                     <button
                       type="button"
+                      // Preventing default on mousedown stops the input from
+                      // losing focus on tap. On iOS Safari that focus loss
+                      // dismisses the soft keyboard and reflows the layout,
+                      // which can swallow the synthesized click — so tapping
+                      // a suggestion would do nothing.
+                      onMouseDown={(e) => e.preventDefault()}
                       onClick={() => selectStore(s)}
                       className="w-full text-left px-3 py-2 hover:bg-[var(--tj-kraft)] focus:bg-[var(--tj-kraft)] focus:outline-none border-b border-[var(--tj-ink)]/15 last:border-b-0"
                     >

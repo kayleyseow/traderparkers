@@ -364,7 +364,7 @@ function NotInEncyclopedia({ id }: { id?: string }) {
   return (
     <main className="relative min-h-screen bg-[var(--tj-cream)] text-[var(--tj-ink)] overflow-hidden">
       <CrumpleOverlay />
-      <div className="relative z-10 max-w-2xl mx-auto px-6 py-16 text-center">
+      <div className="relative z-10 max-w-4xl mx-auto px-6 py-16 text-center">
         <TopNav />
         <p className="font-[var(--tj-body)] tracking-[0.4em] text-xs uppercase font-semibold border border-[var(--tj-ink)] inline-block px-4 py-1.5 mb-6">
           Not Found

@@ -46,7 +46,7 @@ export default function SuggestForm() {
       <div className="border-2 border-dashed border-[var(--tj-ink)]/40 bg-[var(--tj-kraft)]/10 p-6 text-center max-w-2xl mx-auto">
         <p className="font-[var(--tj-body)] italic text-sm opacity-75">
           The Suggest-a-Bag form will appear here once the Cloudflare Worker is
-          configured. In the meantime, spotted a missing bag? Tell Parker directly.
+          configured. In the meantime, spotted a missing bag? Reach out to the maintainer directly.
         </p>
       </div>
     )
@@ -115,7 +115,7 @@ export default function SuggestForm() {
           Thanks!
         </p>
         <p className="font-[var(--tj-body)] italic text-sm opacity-80">
-          Your suggestion was filed. Parker will review it and add the bag to the
+          Your suggestion was filed. The maintainer will review it and add the bag to the
           encyclopedia if it checks out.
           {status.issueUrl && (
             <>
@@ -148,8 +148,8 @@ export default function SuggestForm() {
       className="max-w-2xl mx-auto border-2 border-[var(--tj-ink)] bg-[var(--tj-cream)] p-6 md:p-8 space-y-5"
     >
       <p className="font-[var(--tj-body)] italic text-sm opacity-75 -mb-1">
-        Spotted a TJ bag that's not in the encyclopedia? Tell Parker about it. Suggestions
-        get filed as a GitHub issue she'll review.
+        Spotted a TJ bag that's not in the encyclopedia? Tell us about it. Suggestions
+        get filed as a GitHub issue the maintainer will review.
       </p>
 
       <Field label="Bag Name" required>
@@ -268,7 +268,7 @@ export default function SuggestForm() {
 
       <Field
         label="Your Contact (optional)"
-        hint="Email or social handle, only if you want Parker to follow up."
+        hint="Email or social handle, only if you want the maintainer to follow up."
       >
         <input
           type="text"

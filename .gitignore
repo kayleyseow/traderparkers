@@ -37,9 +37,6 @@ dist-ssr
 # TypeScript incremental build cache
 *.tsbuildinfo
 
-# Empty asset scaffolding folders — not tracked until populated.
-src/assets/
-
 # Work-in-progress logo variants — keep alongside the real ones locally
 # but don't commit them.
 src/assets/icons/*_temp.png

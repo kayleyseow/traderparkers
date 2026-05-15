@@ -1,4 +1,5 @@
-import { BrowserRouter, Routes, Route } from 'react-router'
+import { useEffect } from 'react'
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router'
 import Landing from './routes/Landing'
 import Pantry from './routes/Pantry'
 import Encyclopedia from './routes/Encyclopedia'
@@ -11,6 +12,7 @@ import NotFound from './routes/NotFound'
 export default function App() {
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL}>
+      <ScrollToTop />
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/pantry" element={<Pantry />} />
@@ -23,4 +25,17 @@ export default function App() {
       </Routes>
     </BrowserRouter>
   )
+}
+
+/* React Router's declarative mode preserves scroll position across navigations,
+   so clicking a footer link (which sits at the bottom of the previous page)
+   lands the new page mid-content. Reset to the top on every pathname change.
+   `behavior: 'instant'` overrides the global `html { scroll-behavior: smooth }`
+   so the reset doesn't animate during page transitions. */
+function ScrollToTop() {
+  const { pathname } = useLocation()
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'instant' as ScrollBehavior })
+  }, [pathname])
+  return null
 }

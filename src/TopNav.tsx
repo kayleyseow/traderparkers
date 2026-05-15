@@ -13,21 +13,24 @@ export default function TopNav() {
   const visible = SECONDARY.filter((item) => !item.matches(pathname))
 
   return (
-    <nav className="mb-10 flex items-center justify-between flex-wrap gap-3">
+    // Phones: stack wordmark on top, nav cluster centered underneath. md+
+    // restores the original "wordmark left, nav right" layout. This swaps an
+    // awkward 3-line wrap on narrow screens for a 2-row intentional banner.
+    <nav className="mb-10 flex flex-col items-center gap-4 md:flex-row md:justify-between md:gap-3">
       <Link
         to="/"
         aria-label="Trader Parker's Bag Bazaar — home"
         className="group flex flex-col items-center transition-transform hover:-translate-y-0.5"
         style={{ fontFamily: 'var(--tj-script)' }}
       >
-        <span className="text-[var(--tj-red)] text-3xl leading-none group-hover:text-[var(--tj-ink)] transition-colors">
+        <span className="text-[var(--tj-red)] text-2xl md:text-3xl leading-none group-hover:text-[var(--tj-ink)] transition-colors">
           Trader Parker's
         </span>
-        <span className="text-[var(--tj-red)] text-lg leading-none -mt-1 group-hover:text-[var(--tj-ink)] transition-colors">
+        <span className="text-[var(--tj-red)] text-base md:text-lg leading-none -mt-1 group-hover:text-[var(--tj-ink)] transition-colors">
           Bag Bazaar
         </span>
       </Link>
-      <div className="flex items-center gap-3 flex-wrap">
+      <div className="flex items-center justify-center gap-3 flex-wrap">
         {visible.map((item) => (
           <Link
             key={item.to}

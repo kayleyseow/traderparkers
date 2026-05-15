@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_2" data-name="Layer 2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 736 736">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: #cd0e2d;
+      }
+
+      .cls-2 {
+        font-size: 158.75px;
+      }
+
+      .cls-2, .cls-3 {
+        fill: #fff;
+        font-family: TraderJoesRegular, 'Trader Joes';
+      }
+
+      .cls-3 {
+        font-size: 158.75px;
+      }
+    </style>
+  </defs>
+  <g id="Layer_1-2" data-name="Layer 1">
+    <g>
+      <circle class="cls-1" cx="368" cy="368" r="368"/>
+      <text class="cls-3" transform="translate(61.33 327.2)"><tspan x="0" y="0">Trader</tspan></text>
+      <text class="cls-2" transform="translate(25.28 486) scale(.92 1)"><tspan x="0" y="0">Parker’</tspan></text>
+      <text class="cls-2" transform="translate(619.8 486) scale(.92 1)"><tspan x="0" y="0">s</tspan></text>
+    </g>
+  </g>
+</svg>

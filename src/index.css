@@ -2,9 +2,23 @@
 
 /* Trader Joe's-style script font by Fontopia (CC BY-NC).
    File lives at: public/fonts/TraderJoes-JYrx.otf
-   Download from: https://www.fontspace.com/trader-joes-font-f34830 */
+   Download from: https://www.fontspace.com/trader-joes-font-f34830
+
+   Registered under multiple names so SVGs exported from Illustrator
+   (which embed the font's PostScript names "TraderJoesRegular" / "Trader Joes")
+   pick up the same file we use for HTML text. */
 @font-face {
   font-family: "TraderJoes";
+  src: url("/fonts/TraderJoes-JYrx.otf") format("opentype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "TraderJoesRegular";
+  src: url("/fonts/TraderJoes-JYrx.otf") format("opentype");
+  font-display: swap;
+}
+@font-face {
+  font-family: "Trader Joes";
   src: url("/fonts/TraderJoes-JYrx.otf") format("opentype");
   font-display: swap;
 }
@@ -100,10 +114,36 @@ body {
   border-bottom-width: 3px;
   border-right-width: 3px;
 }
+/* Pantry polaroid hover wiggle. Each polaroid sets a `--tilt` CSS var
+   (its resting rotation), and the keyframe wobbles around it — composing
+   the wiggle with the static tilt instead of overriding it back to 0. The
+   hover: hover guard keeps the wiggle off touch devices, where a sticky
+   :hover after tap would leave a polaroid mid-wobble. */
+.polaroid {
+  transform: rotate(var(--tilt, 0deg));
+  transition: box-shadow 0.2s ease;
+}
+@keyframes polaroid-wiggle {
+  0%, 100% { transform: rotate(var(--tilt, 0deg)) translateY(0); }
+  20%      { transform: rotate(calc(var(--tilt, 0deg) + 3deg))   translateY(-3px); }
+  40%      { transform: rotate(calc(var(--tilt, 0deg) - 2.5deg)) translateY(-4px); }
+  60%      { transform: rotate(calc(var(--tilt, 0deg) + 1.5deg)) translateY(-3px); }
+  80%      { transform: rotate(calc(var(--tilt, 0deg) - 0.6deg)) translateY(-1px); }
+}
+@media (hover: hover) {
+  .polaroid:hover {
+    animation: polaroid-wiggle 0.55s ease-out;
+    box-shadow:
+      0 4px 0 rgba(42, 31, 20, 0.12),
+      0 18px 30px -10px rgba(42, 31, 20, 0.40);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .parker-wave { animation: none; }
   .parker-only-btn,
   .parker-only-btn::before,
   .parker-only-btn::after { transition: none; }
   .parker-only-btn:hover { transform: none; }
+  .polaroid:hover { animation: none; }
 }

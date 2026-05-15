@@ -1,39 +1,29 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link } from 'react-router'
-import type { BagType, EncyclopediaBag, PantryBag } from '../types'
+import type { BagType, CategoryVisibility, EncyclopediaBag, PantryBag } from '../types'
+import { DEFAULT_VISIBILITY } from '../types'
 import { US_LOCALES } from '../usLocales'
 import { inferAngleMap, photoUrl } from '../bagPhotos'
 import TopNav from '../TopNav'
 import Footer from '../Footer'
 import SuggestForm from './encyclopedia/SuggestForm'
 import DictionaryView from './encyclopedia/DictionaryView'
+import SectionHeader from './encyclopedia/SectionHeader'
+import {
+  NON_LOCATION_SECTIONS,
+  STATES_SECTION,
+  SUGGEST_SECTION,
+} from './encyclopedia/sections'
 
 const BASE = import.meta.env.BASE_URL
 
 type EncyclopediaView = 'gallery' | 'dictionary'
 const VIEW_STORAGE_KEY = 'encyclopedia-view'
 
-const NON_LOCATION_GROUPS: { type: BagType; label: string; blurb: string }[] = [
-  {
-    type: 'special',
-    label: 'Special Editions',
-    blurb: 'Themed bags that aren’t tied to a state — pickle, sardine, cheese, wine.',
-  },
-  {
-    type: 'seasonal',
-    label: 'Seasonal',
-    blurb: 'Released around a holiday or season; designs change year to year.',
-  },
-  {
-    type: 'standard',
-    label: 'Standard Bags',
-    blurb: 'The everyday lineup — insulated, mini canvas, washable paper, and more.',
-  },
-]
-
 export default function Encyclopedia() {
-  const [encyclopedia, setEncyclopedia] = useState<EncyclopediaBag[] | null>(null)
+  const [rawEncyclopedia, setRawEncyclopedia] = useState<EncyclopediaBag[] | null>(null)
   const [pantry, setPantry] = useState<PantryBag[]>([])
+  const [visibility, setVisibility] = useState<CategoryVisibility>(DEFAULT_VISIBILITY)
   const [view, setView] = useState<EncyclopediaView>(() => {
     if (typeof window === 'undefined') return 'gallery'
     const stored = localStorage.getItem(VIEW_STORAGE_KEY)
@@ -50,11 +40,33 @@ export default function Encyclopedia() {
       fetch(`${BASE}data/pantry.json`).then((r) => r.json() as Promise<PantryBag[]>),
     ])
       .then(([cat, col]) => {
-        setEncyclopedia(cat)
+        setRawEncyclopedia(cat)
         setPantry(col)
       })
-      .catch(() => setEncyclopedia([]))
+      .catch(() => setRawEncyclopedia([]))
+    // Visibility is optional — missing file just means "show everything."
+    fetch(`${BASE}data/visibility.json`)
+      .then((r) => (r.ok ? (r.json() as Promise<CategoryVisibility>) : null))
+      .then((v) => {
+        if (v) setVisibility({ ...DEFAULT_VISIBILITY, ...v })
+      })
+      .catch(() => {
+        /* keep defaults */
+      })
   }, [])
+
+  // Apply category visibility before any downstream grouping/rendering — one
+  // toggle per BagType, mirroring the admin Settings form.
+  const encyclopedia = useMemo(() => {
+    if (rawEncyclopedia === null) return null
+    return rawEncyclopedia.filter((bag) => {
+      if (bag.type === 'state') return visibility.state
+      if (bag.type === 'special') return visibility.special
+      if (bag.type === 'seasonal') return visibility.seasonal
+      if (bag.type === 'standard') return visibility.standard
+      return true
+    })
+  }, [rawEncyclopedia, visibility])
 
   const ownedByEncyclopediaId = useMemo(() => {
     const map = new Map<string, PantryBag>()
@@ -97,7 +109,7 @@ export default function Encyclopedia() {
   return (
     <main
       id="encyclopedia"
-      className="relative min-h-screen bg-[var(--tj-cream)] text-[var(--tj-ink)] px-6 pt-6 pb-12 md:pt-8 md:pb-16 overflow-hidden"
+      className="relative min-h-screen bg-[var(--tj-cream)] text-[var(--tj-ink)] px-6 pt-6 md:pt-8 overflow-hidden"
     >
       <CrumpleOverlay />
 
@@ -153,54 +165,56 @@ export default function Encyclopedia() {
               />
             ) : (
               <>
-                <ul className={GALLERY_GRID}>
-                  {US_LOCALES.filter((locale) => byState.has(locale.code))
+                {(() => {
+                  const stateBags = US_LOCALES.filter((locale) => byState.has(locale.code))
                     .flatMap((locale) => byState.get(locale.code)!)
-                    .map((bag) => (
-                      <li key={bag.id}>
-                        <GalleryCard bag={bag} ownedBag={ownedByEncyclopediaId.get(bag.id)} />
-                      </li>
-                    ))}
-                </ul>
+                  if (stateBags.length === 0) return null
+                  return (
+                    <section>
+                      <SectionHeader
+                        id={STATES_SECTION.id}
+                        label={STATES_SECTION.label}
+                        count={stateBags.length}
+                        blurb={STATES_SECTION.blurb}
+                      />
+                      <ul className={GALLERY_GRID}>
+                        {stateBags.map((bag) => (
+                          <li key={bag.id}>
+                            <GalleryCard bag={bag} ownedBag={ownedByEncyclopediaId.get(bag.id)} />
+                          </li>
+                        ))}
+                      </ul>
+                    </section>
+                  )
+                })()}
 
-                {NON_LOCATION_GROUPS.some((g) => byType.has(g.type)) && (
-                  <>
-                    <div className="my-16 flex items-center gap-6">
-                      <div className="flex-1 h-px bg-[var(--tj-ink)]/40" />
-                      <p className="font-[var(--tj-body)] tracking-[0.4em] text-xs uppercase font-semibold opacity-70">
-                        Beyond the States
-                      </p>
-                      <div className="flex-1 h-px bg-[var(--tj-ink)]/40" />
-                    </div>
-
-                    <div className="space-y-10">
-                      {NON_LOCATION_GROUPS.map((group) => {
-                        const bags = byType.get(group.type)
-                        if (!bags || bags.length === 0) return null
-                        return (
-                          <TypeSection
-                            key={group.type}
-                            label={group.label}
-                            blurb={group.blurb}
-                            bags={bags}
-                            ownedByEncyclopediaId={ownedByEncyclopediaId}
-                          />
-                        )
-                      })}
-                    </div>
-                  </>
-                )}
+                {NON_LOCATION_SECTIONS.map((group) => {
+                  const bags = byType.get(group.type)
+                  if (!bags || bags.length === 0) return null
+                  return (
+                    <TypeSection
+                      key={group.type}
+                      id={group.id}
+                      label={group.label}
+                      blurb={group.blurb}
+                      bags={bags}
+                      ownedByEncyclopediaId={ownedByEncyclopediaId}
+                    />
+                  )
+                })}
               </>
             )}
 
-            <div className="my-16 flex items-center gap-6">
-              <div className="flex-1 h-px bg-[var(--tj-ink)]/40" />
-              <p className="font-[var(--tj-body)] tracking-[0.4em] text-xs uppercase font-semibold opacity-70">
-                Suggest a Bag
-              </p>
-              <div className="flex-1 h-px bg-[var(--tj-ink)]/40" />
-            </div>
-            <SuggestForm />
+            <section>
+              <div className="max-w-2xl mx-auto">
+                <SectionHeader
+                  id={SUGGEST_SECTION.id}
+                  label={SUGGEST_SECTION.label}
+                  blurb={SUGGEST_SECTION.blurb}
+                />
+              </div>
+              <SuggestForm />
+            </section>
           </>
         )}
       </div>
@@ -212,11 +226,13 @@ export default function Encyclopedia() {
 const GALLERY_GRID = 'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4'
 
 function TypeSection({
+  id,
   label,
   blurb,
   bags,
   ownedByEncyclopediaId,
 }: {
+  id: string
   label: string
   blurb: string
   bags: EncyclopediaBag[]
@@ -224,18 +240,7 @@ function TypeSection({
 }) {
   return (
     <section>
-      <header className="flex items-baseline gap-4 mb-1 border-b border-[var(--tj-ink)]/30 pb-2">
-        <h2
-          className="text-3xl md:text-4xl text-[var(--tj-ink)]"
-          style={{ fontFamily: 'var(--tj-script)' }}
-        >
-          {label}
-        </h2>
-        <span className="ml-auto font-[var(--tj-body)] italic text-sm opacity-60">
-          {bags.length} {bags.length === 1 ? 'design' : 'designs'}
-        </span>
-      </header>
-      <p className="font-[var(--tj-body)] italic text-sm opacity-70 mb-4">{blurb}</p>
+      <SectionHeader id={id} label={label} count={bags.length} blurb={blurb} />
       <ul className={GALLERY_GRID}>
         {bags.map((bag) => (
           <li key={bag.id}>
