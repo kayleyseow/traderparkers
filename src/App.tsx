@@ -6,6 +6,7 @@ import Admin from './routes/Admin'
 import BagDetail from './routes/BagDetail'
 import EncyclopediaDetail from './routes/EncyclopediaDetail'
 import About from './routes/About'
+import NotFound from './routes/NotFound'
 
 export default function App() {
   return (
@@ -18,6 +19,7 @@ export default function App() {
         <Route path="/admin" element={<Admin />} />
         <Route path="/about" element={<About />} />
         <Route path="/bags/:slug" element={<BagDetail />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
   )

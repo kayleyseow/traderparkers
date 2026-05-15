@@ -160,7 +160,8 @@
   align-items: center;
   gap: 1rem;
   flex-grow: 1;
-  justify-content: center;
+  justify-content: flex-start;
+  padding-top: clamp(1.5rem, 6vh, 5rem);
 }
 
 .wordmark {

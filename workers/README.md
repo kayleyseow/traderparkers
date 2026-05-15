@@ -4,7 +4,7 @@ This is the small backend that powers two things on the static GH Pages site:
 
 | Endpoint | Who can call it | What it does |
 |---|---|---|
-| `POST /collection` | Parker (password-gated) | Commits a new bag entry + photos to the `bag-bazaar` GitHub repo. GH Pages then rebuilds and the bag appears. |
+| `POST /pantry` | Parker (password-gated) | Commits a new bag entry + photos to the `tjbags` GitHub repo. GH Pages then rebuilds and the bag appears. |
 | `POST /suggestions` | Anyone (Turnstile-protected) | Opens a GitHub issue with a proposed encyclopedia entry. You review and decide whether to add it. |
 
 Without this Worker deployed, the site still works — the admin form falls back to "show me JSON to copy-paste manually." Deploying the Worker is what flips the site into "Parker can actually save bags from her phone" mode.
@@ -37,9 +37,9 @@ npx wrangler login          # opens a browser; click "Allow"
 1. Go to <https://github.com/settings/personal-access-tokens/new>.
 2. **Token name:** `parker-bags-worker`
 3. **Expiration:** whatever you're comfortable with (90 days is fine; you'll get an email before it expires).
-4. **Repository access:** select **Only select repositories** → pick `bag-bazaar`.
+4. **Repository access:** select **Only select repositories** → pick `tjbags`.
 5. **Repository permissions:** set these (everything else stays "No access"):
-   - **Contents** → **Read and write** *(needed to commit `collection.json` and photos)*
+   - **Contents** → **Read and write** *(needed to commit `pantry.json` and photos)*
    - **Issues** → **Read and write** *(needed to create suggestion issues)*
    - **Metadata** → **Read-only** *(GitHub auto-requires this)*
 6. Click **Generate token**, then **copy the token string immediately** (it starts with `github_pat_…`). GitHub will not show it again.
@@ -55,7 +55,7 @@ Turnstile is Cloudflare's free, invisible bot-detection widget. The public Sugge
 1. Go to <https://dash.cloudflare.com/?to=/:account/turnstile>.
 2. **Add a site.**
 3. **Site name:** `parker-bag-bazaar`
-4. **Domain:** add your live site domain (e.g. `kayle.github.io`) AND `localhost` for local dev.
+4. **Domain:** add your live site domain (`kayleyseow.github.io`) AND `localhost` for local dev.
 5. **Widget mode:** Managed (recommended — Cloudflare picks invisible vs. interactive automatically).
 6. After creating, copy two values:
    - **Site key** (starts `0x4AAAA…`) → goes into the **frontend** `.env.local` as `VITE_TURNSTILE_SITE_KEY`
@@ -89,10 +89,10 @@ Each one prompts for the value. They get encrypted by Cloudflare and are never v
 
 ## Step 5 — Update `wrangler.toml` for your repo
 
-Open `wrangler.toml` and update:
+`wrangler.toml` already points at `kayleyseow/tjbags` with the correct paths. If you fork this repo or rename anything, update these:
 
-- `GITHUB_REPO` — set to `<your-github-username>/bag-bazaar`
-- `ALLOWED_ORIGINS` — comma-separated list of origins allowed to call this Worker. Should include your GH Pages URL (e.g. `https://kayle.github.io`) and the local Vite ports (`http://localhost:5173`, etc.).
+- `GITHUB_REPO` — `<your-github-username>/tjbags`
+- `ALLOWED_ORIGINS` — comma-separated list of origins allowed to call this Worker. Should include your GH Pages URL (e.g. `https://kayleyseow.github.io`) and the local Vite ports (`http://localhost:5173`, etc.).
 
 ---
 
@@ -167,4 +167,4 @@ Free, for this scale. Cloudflare's Workers free tier is 100,000 requests/day. Pa
 npx wrangler delete
 ```
 
-Removes the Worker. Site falls back to the JSON-snippet manual flow. No data is lost — `collection.json` lives in your repo.
+Removes the Worker. Site falls back to the JSON-snippet manual flow. No data is lost — `pantry.json` lives in your repo.

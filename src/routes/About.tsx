@@ -5,8 +5,10 @@ import Footer from '../Footer'
 export default function About() {
   return (
     <main className="relative min-h-screen bg-[var(--tj-cream)] text-[var(--tj-ink)] px-6 pt-6 pb-12 md:pt-8 md:pb-16 overflow-hidden">
-      <div className="relative z-10 max-w-2xl mx-auto">
+      <div className="relative z-10 max-w-6xl mx-auto">
         <TopNav />
+
+        <div className="max-w-2xl mx-auto">
 
         <header className="text-center mb-10">
           <p className="font-[var(--tj-body)] tracking-[0.4em] text-xs uppercase font-semibold border border-[var(--tj-ink)] inline-block px-4 py-1.5 mb-6">
@@ -136,6 +138,8 @@ export default function About() {
             See the Pantry
           </Link>
         </footer>
+
+        </div>
       </div>
       <Footer />
     </main>

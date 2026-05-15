@@ -15,7 +15,7 @@ type Env = {
   // Vars (wrangler.toml)
   GITHUB_REPO: string
   GITHUB_BRANCH: string
-  COLLECTION_PATH: string
+  PANTRY_PATH: string
   PHOTOS_PATH_PREFIX: string
   ALLOWED_ORIGINS: string
   // Secrets (wrangler secret put)
@@ -102,7 +102,7 @@ app.post('/pantry', async (c) => {
   // 4. Read existing pantry.json, append the new bag, commit it back.
   let existing: { content: string; sha: string }
   try {
-    existing = await ghReadFile(c.env, c.env.COLLECTION_PATH)
+    existing = await ghReadFile(c.env, c.env.PANTRY_PATH)
   } catch (err) {
     return c.json({ error: `Failed to read pantry: ${(err as Error).message}` }, 502)
   }
@@ -130,7 +130,7 @@ app.post('/pantry', async (c) => {
   try {
     const result = await ghWriteFile(
       c.env,
-      c.env.COLLECTION_PATH,
+      c.env.PANTRY_PATH,
       utf8ToBase64(newContent),
       `Add bag: ${bag.name}`,
       existing.sha,
@@ -193,8 +193,10 @@ app.post('/suggestions', async (c) => {
 
   // 1. Verify Turnstile token.
   const remoteIp = c.req.header('CF-Connecting-IP') ?? undefined
-  const passed = await verifyTurnstile(c.env.TURNSTILE_SECRET, body.turnstileToken, remoteIp)
-  if (!passed) return c.json({ error: 'Captcha failed' }, 403)
+  const verifyResult = await verifyTurnstile(c.env.TURNSTILE_SECRET, body.turnstileToken, remoteIp)
+  if (!verifyResult.success) {
+    return c.json({ error: 'Captcha failed', codes: verifyResult.errorCodes }, 403)
+  }
 
   // 2. Open a GitHub issue.
   try {
@@ -307,19 +309,26 @@ async function verifyTurnstile(
   secret: string,
   token: string,
   remoteIp?: string,
-): Promise<boolean> {
-  const form = new FormData()
-  form.append('secret', secret)
-  form.append('response', token)
-  if (remoteIp) form.append('remoteip', remoteIp)
+): Promise<{ success: boolean; errorCodes?: string[] }> {
+  const params = new URLSearchParams()
+  params.append('secret', secret)
+  params.append('response', token)
+  if (remoteIp) params.append('remoteip', remoteIp)
 
   const res = await fetch('https://challenges.cloudflare.com/turnstile/v0/siteverify', {
     method: 'POST',
-    body: form,
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: params,
   })
-  if (!res.ok) return false
-  const data = (await res.json()) as { success: boolean }
-  return data.success === true
+  if (!res.ok) {
+    const text = await res.text().catch(() => '')
+    return {
+      success: false,
+      errorCodes: [`http-${res.status}`, text.slice(0, 200) || 'no-body'],
+    }
+  }
+  const data = (await res.json()) as { success: boolean; 'error-codes'?: string[] }
+  return { success: data.success === true, errorCodes: data['error-codes'] }
 }
 
 /* ──────────────────────────  Crypto/encoding utils  ──────────────── */

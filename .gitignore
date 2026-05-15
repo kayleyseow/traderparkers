@@ -11,6 +11,15 @@ dist
 dist-ssr
 *.local
 
+# Env files — only `.env.example` is committed (see that file for shape).
+# `*.local` above already catches `.env.local`; these catch the other variants.
+.env
+.env.*
+!.env.example
+
+# Wrangler's local state at the repo root (in case anyone runs it from here).
+.wrangler/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
@@ -30,3 +39,11 @@ dist-ssr
 
 # Empty asset scaffolding folders — not tracked until populated.
 src/assets/
+
+# Work-in-progress logo variants — keep alongside the real ones locally
+# but don't commit them.
+src/assets/icons/*_temp.png
+src/assets/icons/*_temp.svg
+
+# Illustrator source files — large binaries, not meant for git.
+trader_parkers_bag_logo.ai

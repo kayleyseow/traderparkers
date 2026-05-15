@@ -7,10 +7,10 @@ compatibility_date = "2025-01-01"
 
 # Public-ish config. Update GITHUB_REPO and ALLOWED_ORIGIN for your deploy.
 [vars]
-GITHUB_REPO = "kayleyseow/bag-bazaar"
+GITHUB_REPO = "kayleyseow/tjbags"
 GITHUB_BRANCH = "main"
-COLLECTION_PATH = "public/data/collection.json"
-PHOTOS_PATH_PREFIX = "public/photos"
+PANTRY_PATH = "public/data/pantry.json"
+PHOTOS_PATH_PREFIX = "public/pantry-photos"
 # CORS: which site is allowed to call this Worker. Comma-separated for multi-origin.
 # Includes localhost so the Vite dev server can talk to the deployed Worker.
 ALLOWED_ORIGINS = "https://kayleyseow.github.io,http://localhost:5173,http://localhost:5174,http://localhost:5175"
