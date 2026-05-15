@@ -44,3 +44,66 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+@keyframes parkerWave {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-3px); }
+}
+.parker-wave {
+  display: inline-block;
+  animation: parkerWave 0.7s ease-in-out infinite;
+}
+
+/* Parker Only nav button — hard offset shadow + L-bracket corner details,
+   TJ.com flavor. On hover: red fill, thicker frame, button lifts. */
+.parker-only-btn {
+  position: relative;
+  border: 2px solid var(--tj-ink);
+  background: var(--tj-cream);
+  box-shadow: 3px 3px 0 var(--tj-ink);
+  transition: background-color 0.18s, box-shadow 0.18s, transform 0.18s;
+}
+.parker-only-btn::before,
+.parker-only-btn::after {
+  content: '';
+  position: absolute;
+  width: 0.55rem;
+  height: 0.55rem;
+  pointer-events: none;
+  border-color: var(--tj-ink);
+  transition: border-width 0.15s, border-color 0.18s;
+}
+.parker-only-btn::before {
+  top: 3px;
+  left: 3px;
+  border-top: 1.5px solid;
+  border-left: 1.5px solid;
+}
+.parker-only-btn::after {
+  bottom: 3px;
+  right: 3px;
+  border-bottom: 1.5px solid;
+  border-right: 1.5px solid;
+}
+.parker-only-btn:hover {
+  background: var(--tj-red);
+  box-shadow: 5px 5px 0 var(--tj-ink);
+  transform: translate(-1px, -1px);
+}
+.parker-only-btn:hover::before {
+  border-color: var(--tj-cream);
+  border-top-width: 3px;
+  border-left-width: 3px;
+}
+.parker-only-btn:hover::after {
+  border-color: var(--tj-cream);
+  border-bottom-width: 3px;
+  border-right-width: 3px;
+}
+@media (prefers-reduced-motion: reduce) {
+  .parker-wave { animation: none; }
+  .parker-only-btn,
+  .parker-only-btn::before,
+  .parker-only-btn::after { transition: none; }
+  .parker-only-btn:hover { transform: none; }
+}
