@@ -85,8 +85,9 @@ app.post('/pantry', async (c) => {
     return c.json({ error: 'Too many photos (max 8)' }, 400)
   }
 
-  // 3. Read pantry.json early and reject duplicate slugs BEFORE uploading photos,
-  //    so a rejected submission doesn't leave orphan photo commits behind.
+  // 3. Read pantry.json so we can reject duplicate slugs and append the new
+  //    entry. The whole submission is committed atomically below, so there's
+  //    no orphan-photo risk if anything later fails.
   let existing: { content: string; sha: string }
   try {
     existing = await ghReadFile(c.env, c.env.PANTRY_PATH)
@@ -113,16 +114,14 @@ app.post('/pantry', async (c) => {
     )
   }
 
-  // 4. Commit each photo; collect their public paths for the bag record.
+  // 4. Stage every file in memory before touching GitHub: photos at random
+  //    suffixes + the updated pantry.json. Then commit them all in one shot.
   const photoPaths: string[] = []
+  const files: { path: string; contentBase64: string }[] = []
   for (const photo of photos) {
     const ext = sanitizeExtension(photo.name)
     const path = `${c.env.PHOTOS_PATH_PREFIX}/${bag.slug}-${randomId(6)}${ext}`
-    try {
-      await ghWriteFile(c.env, path, photo.base64, `Add photo for bag: ${bag.name}`)
-    } catch (err) {
-      return c.json({ error: `Failed to upload photo: ${(err as Error).message}` }, 502)
-    }
+    files.push({ path, contentBase64: photo.base64 })
     // Public URL path (pantry.json stores leading-slash absolute paths under public/).
     photoPaths.push('/' + path.replace(/^public\//, ''))
   }
@@ -139,22 +138,18 @@ app.post('/pantry', async (c) => {
   pantry.push(newEntry)
 
   const newContent = JSON.stringify(pantry, null, 2) + '\n'
+  files.push({ path: c.env.PANTRY_PATH, contentBase64: utf8ToBase64(newContent) })
+
   try {
-    const result = await ghWriteFile(
-      c.env,
-      c.env.PANTRY_PATH,
-      utf8ToBase64(newContent),
-      `Add bag: ${bag.name}`,
-      existing.sha,
-    )
+    const result = await ghCommitMany(c.env, files, `Add bag: ${bag.name}`)
     return c.json({
       ok: true,
       slug: bag.slug,
       photoPaths,
-      commitUrl: result.commit.html_url,
+      commitUrl: result.commitUrl,
     })
   } catch (err) {
-    return c.json({ error: `Failed to commit pantry: ${(err as Error).message}` }, 502)
+    return c.json({ error: `Failed to commit: ${(err as Error).message}` }, 502)
   }
 })
 
@@ -354,6 +349,109 @@ async function ghWriteFile(
     commit: { html_url: string; sha: string }
     content: { sha: string }
   }>
+}
+
+/**
+ * Commit any number of files (create-or-update) in a single commit via the
+ * Git Data API. Why this instead of the simpler contents API: contents-API
+ * writes are one-file-per-commit, so a bag submission with N photos used to
+ * land as N+1 commits — each kicking off a Pages deploy that the next one
+ * cancelled. This bundles everything into one commit, one deploy, atomic.
+ *
+ * Sequence: create a blob per file (parallel) → look up the branch head's
+ * commit + tree → build a new tree layered on top → create a new commit
+ * pointing at it → fast-forward the branch ref.
+ */
+async function ghCommitMany(
+  env: Env,
+  files: { path: string; contentBase64: string }[],
+  message: string,
+): Promise<{ commitUrl: string; commitSha: string }> {
+  const jsonHeaders = { ...ghHeaders(env), 'Content-Type': 'application/json' }
+  const repoBase = `${GH_API}/repos/${env.GITHUB_REPO}`
+  const branchRef = `heads/${encodeURIComponent(env.GITHUB_BRANCH)}`
+
+  // 1. Create one blob per file (parallelizable — no cross-blob ordering).
+  const blobs = await Promise.all(
+    files.map(async (f) => {
+      const res = await fetch(`${repoBase}/git/blobs`, {
+        method: 'POST',
+        headers: jsonHeaders,
+        body: JSON.stringify({ content: f.contentBase64, encoding: 'base64' }),
+      })
+      if (!res.ok) {
+        throw new Error(`Create blob ${f.path}: ${res.status} ${await res.text()}`)
+      }
+      const data = (await res.json()) as { sha: string }
+      return { path: f.path, sha: data.sha }
+    }),
+  )
+
+  // 2. Branch ref → head commit sha.
+  const refRes = await fetch(`${repoBase}/git/ref/${branchRef}`, {
+    headers: ghHeaders(env),
+  })
+  if (!refRes.ok) {
+    throw new Error(`Read ref: ${refRes.status} ${await refRes.text()}`)
+  }
+  const headSha = ((await refRes.json()) as { object: { sha: string } }).object.sha
+
+  // 3. Head commit → base tree sha.
+  const commitRes = await fetch(`${repoBase}/git/commits/${headSha}`, {
+    headers: ghHeaders(env),
+  })
+  if (!commitRes.ok) {
+    throw new Error(`Read commit: ${commitRes.status} ${await commitRes.text()}`)
+  }
+  const baseTreeSha = ((await commitRes.json()) as { tree: { sha: string } }).tree.sha
+
+  // 4. New tree layered on top of base tree.
+  const treeRes = await fetch(`${repoBase}/git/trees`, {
+    method: 'POST',
+    headers: jsonHeaders,
+    body: JSON.stringify({
+      base_tree: baseTreeSha,
+      tree: blobs.map((b) => ({
+        path: b.path,
+        mode: '100644',
+        type: 'blob',
+        sha: b.sha,
+      })),
+    }),
+  })
+  if (!treeRes.ok) {
+    throw new Error(`Create tree: ${treeRes.status} ${await treeRes.text()}`)
+  }
+  const newTreeSha = ((await treeRes.json()) as { sha: string }).sha
+
+  // 5. Commit pointing at the new tree, parented on the current head.
+  const newCommitRes = await fetch(`${repoBase}/git/commits`, {
+    method: 'POST',
+    headers: jsonHeaders,
+    body: JSON.stringify({
+      message,
+      tree: newTreeSha,
+      parents: [headSha],
+    }),
+  })
+  if (!newCommitRes.ok) {
+    throw new Error(`Create commit: ${newCommitRes.status} ${await newCommitRes.text()}`)
+  }
+  const newCommit = (await newCommitRes.json()) as { sha: string; html_url: string }
+
+  // 6. Fast-forward the branch. A 422 here means someone raced us — fine,
+  //    surface a clear error and let the admin retry; the duplicate-slug
+  //    check already prevents double-adds.
+  const patchRes = await fetch(`${repoBase}/git/refs/${branchRef}`, {
+    method: 'PATCH',
+    headers: jsonHeaders,
+    body: JSON.stringify({ sha: newCommit.sha }),
+  })
+  if (!patchRes.ok) {
+    throw new Error(`Update ref: ${patchRes.status} ${await patchRes.text()}`)
+  }
+
+  return { commitUrl: newCommit.html_url, commitSha: newCommit.sha }
 }
 
 async function ghCreateIssue(
