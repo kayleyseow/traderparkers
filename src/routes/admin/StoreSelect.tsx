@@ -101,13 +101,21 @@ export default function StoreSelect({ value, onChange }: Props) {
                   <li key={s.storeNumber}>
                     <button
                       type="button"
-                      // Preventing default on mousedown stops the input from
-                      // losing focus on tap. On iOS Safari that focus loss
-                      // dismisses the soft keyboard and reflows the layout,
-                      // which can swallow the synthesized click — so tapping
-                      // a suggestion would do nothing.
+                      // On iOS Safari, tapping a non-input element blurs the
+                      // focused input *before* the synthesized mousedown fires,
+                      // so preventDefault on mousedown is too late — the
+                      // keyboard dismisses, the layout reflows, and the
+                      // synthesized click lands on the wrong element. Handling
+                      // selection on touchend (non-passive in React) and
+                      // preventing default there fires the selection *before*
+                      // the reflow and suppresses the stray click.
                       onMouseDown={(e) => e.preventDefault()}
+                      onTouchEnd={(e) => {
+                        e.preventDefault()
+                        selectStore(s)
+                      }}
                       onClick={() => selectStore(s)}
+                      style={{ touchAction: 'manipulation' }}
                       className="w-full text-left px-3 py-2 hover:bg-[var(--tj-kraft)] focus:bg-[var(--tj-kraft)] focus:outline-none border-b border-[var(--tj-ink)]/15 last:border-b-0"
                     >
                       <div className="font-serif font-semibold leading-tight">
