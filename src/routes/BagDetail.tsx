@@ -5,7 +5,6 @@ import {
   ANGLE_LABEL,
   ANGLE_ORDER,
   DESIGN_NOTES,
-  type Angle,
   type DesignNotes,
   inferAngleMap,
   photoUrl,
@@ -71,20 +70,22 @@ function BagView({
   store: Store | undefined
   design: DesignNotes
 }) {
-  const angleMap = useMemo(() => inferAngleMap(bag.photos), [bag.photos])
-  const availableAngles = ANGLE_ORDER.filter((a) => angleMap[a])
-  const initialAngle: Angle = availableAngles[0] ?? 'front'
-  const [angle, setAngle] = useState<Angle>(initialAngle)
+  // Two upload paths feed photos in: the curated encyclopedia convention
+  // (filenames front/back/left/right/bottom, hand-named) and the Worker
+  // upload flow (filenames like `{slug}-{randomId}.jpg`). Treat them
+  // uniformly as a slide list — angle-tagged when filenames opt in,
+  // otherwise plain ordered "Photo 1, Photo 2, …".
+  const slides = useMemo(() => buildSlides(bag.photos, design), [bag.photos, design])
+  const [idx, setIdx] = useState(0)
 
-  const cycleAngle = (dir: 1 | -1) => {
-    if (availableAngles.length < 2) return
-    const i = availableAngles.indexOf(angle)
-    const next = (i + dir + availableAngles.length) % availableAngles.length
-    setAngle(availableAngles[next])
+  const cycle = (dir: 1 | -1) => {
+    if (slides.length < 2) return
+    setIdx((i) => (i + dir + slides.length) % slides.length)
   }
 
-  const activeUrl = angleMap[angle] ? photoUrl(angleMap[angle]!) : undefined
-  const activeCaption = design.angleCaptions?.[angle]
+  const active = slides[idx]
+  const activeUrl = active?.url
+  const activeCaption = active?.caption
 
   const displayName = encyclopediaEntry?.region ?? encyclopediaEntry?.name ?? bag.name ?? bag.slug
 
@@ -141,9 +142,9 @@ function BagView({
             <PanelGrain />
             {activeUrl ? (
               <img
-                key={angle}
+                key={idx}
                 src={activeUrl}
-                alt={`${displayName} bag, ${ANGLE_LABEL[angle].toLowerCase()} view`}
+                alt={`${displayName} bag, ${active.label.toLowerCase()}`}
                 className="relative z-10 w-full h-full object-contain p-6 animate-[bagFade_0.35s_ease]"
                 draggable={false}
               />
@@ -153,20 +154,20 @@ function BagView({
               </div>
             )}
 
-            {availableAngles.length > 1 && (
+            {slides.length > 1 && (
               <>
                 <button
                   type="button"
-                  onClick={() => cycleAngle(-1)}
-                  aria-label="Previous view"
+                  onClick={() => cycle(-1)}
+                  aria-label="Previous photo"
                   className="absolute z-20 top-1/2 left-2 -translate-y-1/2 w-9 h-12 flex items-center justify-center bg-[var(--tj-ink)]/75 text-[var(--tj-cream)] hover:bg-[var(--tj-ink)] transition-colors text-xl border-2 border-[var(--tj-ink)] leading-none"
                 >
                   ‹
                 </button>
                 <button
                   type="button"
-                  onClick={() => cycleAngle(1)}
-                  aria-label="Next view"
+                  onClick={() => cycle(1)}
+                  aria-label="Next photo"
                   className="absolute z-20 top-1/2 right-2 -translate-y-1/2 w-9 h-12 flex items-center justify-center bg-[var(--tj-ink)]/75 text-[var(--tj-cream)] hover:bg-[var(--tj-ink)] transition-colors text-xl border-2 border-[var(--tj-ink)] leading-none"
                 >
                   ›
@@ -181,22 +182,22 @@ function BagView({
             </p>
           )}
 
-          {availableAngles.length > 1 && (
+          {slides.length > 1 && (
             <div className="flex justify-center gap-2 mt-5 flex-wrap">
-              {availableAngles.map((a) => {
-                const isActive = a === angle
+              {slides.map((s, i) => {
+                const isActive = i === idx
                 return (
                   <button
-                    key={a}
+                    key={s.url}
                     type="button"
-                    onClick={() => setAngle(a)}
+                    onClick={() => setIdx(i)}
                     className={`font-[var(--tj-body)] font-semibold tracking-[0.2em] text-[0.65rem] uppercase border-2 border-[var(--tj-ink)] px-3 py-1.5 transition-colors ${
                       isActive
                         ? 'bg-[var(--tj-ink)] text-[var(--tj-cream)]'
                         : 'bg-transparent text-[var(--tj-ink)] hover:bg-[var(--tj-ink)]/10'
                     }`}
                   >
-                    {ANGLE_LABEL[a]}
+                    {s.label}
                   </button>
                 )
               })}
@@ -245,6 +246,24 @@ function BagView({
 }
 
 /* ──────────────────────── HELPERS ──────────────────────── */
+
+type Slide = { url: string; label: string; caption?: string }
+
+function buildSlides(photos: string[], design: DesignNotes): Slide[] {
+  const angleMap = inferAngleMap(photos)
+  const angled = ANGLE_ORDER.filter((a) => angleMap[a])
+  // Use angle navigation only when every photo opted in to the
+  // front/back/left/right/bottom naming convention. Mixed sets fall
+  // through to ordered navigation so no photo gets dropped.
+  if (angled.length > 0 && angled.length === photos.length) {
+    return angled.map((a) => ({
+      url: photoUrl(angleMap[a]!),
+      label: ANGLE_LABEL[a],
+      caption: design.angleCaptions?.[a],
+    }))
+  }
+  return photos.map((p, i) => ({ url: photoUrl(p), label: `Photo ${i + 1}` }))
+}
 
 function encyclopediaTypeLabel(entry: EncyclopediaBag | undefined): string {
   if (!entry) return 'Unencyclopediaed Bag'
