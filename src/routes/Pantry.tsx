@@ -1,20 +1,22 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router'
-import type { CollectionBag, Store } from '../types'
+import type { PantryBag, Store } from '../types'
+import TopNav from '../TopNav'
+import Footer from '../Footer'
 
 const BASE = import.meta.env.BASE_URL
 
-export default function Gallery() {
-  const [bags, setBags] = useState<CollectionBag[] | null>(null)
+export default function Pantry() {
+  const [bags, setBags] = useState<PantryBag[] | null>(null)
   const [stores, setStores] = useState<Map<string, Store>>(new Map())
 
   useEffect(() => {
     Promise.all([
-      fetch(`${BASE}data/collection.json`).then((r) => r.json() as Promise<CollectionBag[]>),
+      fetch(`${BASE}data/pantry.json`).then((r) => r.json() as Promise<PantryBag[]>),
       fetch(`${BASE}data/stores.json`).then((r) => r.json() as Promise<Store[]>),
     ])
-      .then(([collection, storeList]) => {
-        setBags(collection)
+      .then(([pantry, storeList]) => {
+        setBags(pantry)
         setStores(new Map(storeList.map((s) => [s.storeNumber, s])))
       })
       .catch(() => setBags([]))
@@ -22,44 +24,17 @@ export default function Gallery() {
 
   return (
     <main
-      id="collection"
+      id="pantry"
       className="relative min-h-screen bg-[var(--tj-cream)] text-[var(--tj-ink)] px-6 py-12 md:py-16 overflow-hidden"
     >
       <CrumpleOverlay />
 
       <div className="relative z-10 max-w-6xl mx-auto">
-        <nav className="mb-10 flex items-center justify-between flex-wrap gap-3">
-          <Link
-            to="/"
-            className="font-[var(--tj-body)] font-semibold tracking-[0.25em] text-[0.7rem] uppercase border-2 border-[var(--tj-ink)] px-4 py-2 hover:bg-[var(--tj-ink)] hover:text-[var(--tj-cream)] transition-colors"
-          >
-            ← The Bazaar
-          </Link>
-          <div className="flex items-center gap-3">
-            <Link
-              to="/catalog"
-              className="font-[var(--tj-body)] font-semibold tracking-[0.25em] text-[0.7rem] uppercase opacity-70 hover:opacity-100 underline-offset-4 hover:underline"
-            >
-              Catalog
-            </Link>
-            <Link
-              to="/about"
-              className="font-[var(--tj-body)] font-semibold tracking-[0.25em] text-[0.7rem] uppercase opacity-70 hover:opacity-100 underline-offset-4 hover:underline"
-            >
-              About
-            </Link>
-            <Link
-              to="/admin"
-              className="font-[var(--tj-body)] font-semibold tracking-[0.25em] text-[0.7rem] uppercase border-2 border-[var(--tj-ink)] bg-[var(--tj-ink)] text-[var(--tj-cream)] px-4 py-2 hover:bg-transparent hover:text-[var(--tj-ink)] transition-colors"
-            >
-              Parker Only
-            </Link>
-          </div>
-        </nav>
+        <TopNav backTo="/" backLabel="The Bazaar" />
 
         <header className="text-center mb-14">
           <p className="font-[var(--tj-body)] tracking-[0.4em] text-xs uppercase font-semibold border border-[var(--tj-ink)] inline-block px-4 py-1.5 mb-6">
-            The Collection
+            The Pantry
           </p>
           <h1
             className="text-[var(--tj-red)] text-6xl md:text-7xl leading-none"
@@ -85,6 +60,7 @@ export default function Gallery() {
           </ul>
         )}
       </div>
+      <Footer />
     </main>
   )
 }
@@ -97,7 +73,7 @@ function CrumpleOverlay() {
       aria-hidden
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="none"
-      className="absolute inset-0 w-full h-full pointer-events-none mix-blend-multiply opacity-30"
+      className="absolute inset-0 w-full h-full pointer-events-none mix-blend-multiply opacity-50"
     >
       <defs>
         <filter id="paperCrumpleLight" x="0" y="0" width="100%" height="100%">
@@ -106,22 +82,14 @@ function CrumpleOverlay() {
             baseFrequency="0.015"
             numOctaves="3"
             seed="5"
-          >
-            <animate
-              attributeName="seed"
-              values="5;17;9;22;5"
-              keyTimes="0;0.25;0.5;0.75;1"
-              dur="60s"
-              repeatCount="indefinite"
-            />
-          </feTurbulence>
+          />
           <feColorMatrix
             type="matrix"
             values="
               0 0 0 0 0.20
               0 0 0 0 0.14
               0 0 0 0 0.08
-              0 0 0 0.28 0"
+              0 0 0 0.40 0"
           />
         </filter>
       </defs>
@@ -144,7 +112,7 @@ function EmptyState() {
         No Bags Logged Yet
       </h3>
       <p className="italic text-sm mb-6">
-        Parker hasn't added any bags to the collection. <br />
+        Parker hasn't added any bags to the pantry. <br />
         First one's just a click away.
       </p>
       <Link
@@ -157,7 +125,7 @@ function EmptyState() {
   )
 }
 
-function BagCard({ bag, store }: { bag: CollectionBag; store: Store | undefined }) {
+function BagCard({ bag, store }: { bag: PantryBag; store: Store | undefined }) {
   const hero = bag.photos[0]
   const heroUrl = hero?.startsWith('http') ? hero : `${BASE}${hero?.replace(/^\//, '')}`
   return (

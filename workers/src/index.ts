@@ -2,7 +2,7 @@
  * Parker's Bag Bazaar — Cloudflare Worker
  *
  * Two endpoints:
- *   POST /collection   — password-gated; commits a new bag + photos to the GitHub repo
+ *   POST /pantry   — password-gated; commits a new bag + photos to the GitHub repo
  *   POST /suggestions  — public (Turnstile-protected); opens a GitHub issue with the suggestion
  *
  * Setup: see workers/README.md
@@ -39,16 +39,16 @@ app.use('*', async (c, next) => {
 app.get('/', (c) =>
   c.json({
     name: 'parker-bags',
-    endpoints: ['POST /collection', 'POST /suggestions'],
+    endpoints: ['POST /pantry', 'POST /suggestions'],
   }),
 )
 
-/* ──────────────────────────  /collection  ────────────────────────── */
+/* ──────────────────────────  /pantry  ────────────────────────── */
 
 type IncomingBag = {
   slug: string
   name: string
-  catalogId?: string
+  encyclopediaId?: string
   storeNumber: string
   dateAcquired: string
   memory: string
@@ -59,7 +59,7 @@ type IncomingPhoto = {
   base64: string
 }
 
-app.post('/collection', async (c) => {
+app.post('/pantry', async (c) => {
   let body: { password?: string; bag?: IncomingBag; photos?: IncomingPhoto[] }
   try {
     body = await c.req.json()
@@ -95,38 +95,38 @@ app.post('/collection', async (c) => {
     } catch (err) {
       return c.json({ error: `Failed to upload photo: ${(err as Error).message}` }, 502)
     }
-    // Public URL path (collection.json stores leading-slash absolute paths under public/).
+    // Public URL path (pantry.json stores leading-slash absolute paths under public/).
     photoPaths.push('/' + path.replace(/^public\//, ''))
   }
 
-  // 4. Read existing collection.json, append the new bag, commit it back.
+  // 4. Read existing pantry.json, append the new bag, commit it back.
   let existing: { content: string; sha: string }
   try {
     existing = await ghReadFile(c.env, c.env.COLLECTION_PATH)
   } catch (err) {
-    return c.json({ error: `Failed to read collection: ${(err as Error).message}` }, 502)
+    return c.json({ error: `Failed to read pantry: ${(err as Error).message}` }, 502)
   }
 
-  let collection: unknown[]
+  let pantry: unknown[]
   try {
-    collection = JSON.parse(existing.content)
-    if (!Array.isArray(collection)) throw new Error('not an array')
+    pantry = JSON.parse(existing.content)
+    if (!Array.isArray(pantry)) throw new Error('not an array')
   } catch {
-    return c.json({ error: 'collection.json is not valid JSON array' }, 502)
+    return c.json({ error: 'pantry.json is not valid JSON array' }, 502)
   }
 
   const newEntry = {
     slug: bag.slug,
-    catalogId: bag.catalogId,
+    encyclopediaId: bag.encyclopediaId,
     name: bag.name,
     storeNumber: bag.storeNumber,
     dateAcquired: bag.dateAcquired,
     memory: bag.memory,
     photos: photoPaths,
   }
-  collection.push(newEntry)
+  pantry.push(newEntry)
 
-  const newContent = JSON.stringify(collection, null, 2) + '\n'
+  const newContent = JSON.stringify(pantry, null, 2) + '\n'
   try {
     const result = await ghWriteFile(
       c.env,
@@ -142,7 +142,7 @@ app.post('/collection', async (c) => {
       commitUrl: result.commit.html_url,
     })
   } catch (err) {
-    return c.json({ error: `Failed to commit collection: ${(err as Error).message}` }, 502)
+    return c.json({ error: `Failed to commit pantry: ${(err as Error).message}` }, 502)
   }
 })
 
@@ -170,6 +170,7 @@ type IncomingSuggestion = {
   stateCode?: string
   region?: string
   year?: number
+  materials?: ('canvas' | 'polypropylene' | 'jute' | 'paper' | 'insulated' | 'nylon')[]
   notes?: string
   submitterContact?: string
   turnstileToken: string
@@ -216,9 +217,10 @@ function formatSuggestionBody(s: IncomingSuggestion): string {
   if (s.state) lines.push(`**State:** ${s.state}${s.stateCode ? ` (${s.stateCode})` : ''}`)
   if (s.region) lines.push(`**Region/city:** ${s.region}`)
   if (s.year) lines.push(`**Year:** ${s.year}`)
+  if (s.materials?.length) lines.push(`**Materials:** ${s.materials.join(', ')}`)
   if (s.notes) lines.push('', '**Notes:**', s.notes)
   if (s.submitterContact) lines.push('', `_Submitted by:_ ${s.submitterContact}`)
-  lines.push('', '---', '_Submitted via the public suggestion form on the catalog page._')
+  lines.push('', '---', '_Submitted via the public suggestion form on the encyclopedia page._')
   return lines.join('\n')
 }
 

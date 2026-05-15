@@ -1,4 +1,4 @@
-/** US states + DC, sorted alphabetically by name. Used by the catalog grouping and the suggestion form's state picker. */
+/** US states + DC, sorted alphabetically by name. Used by the encyclopedia grouping and the suggestion form's state picker. */
 export const US_LOCALES: { code: string; name: string }[] = [
   { code: 'AL', name: 'Alabama' },
   { code: 'AK', name: 'Alaska' },

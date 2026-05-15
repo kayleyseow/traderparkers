@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import type { CatalogBag, CollectionBag, Store } from '../../types'
+import type { EncyclopediaBag, PantryBag, Store } from '../../types'
 import StoreSelect from './StoreSelect'
 
 const BASE = import.meta.env.BASE_URL
@@ -14,8 +14,8 @@ type Status =
   | { kind: 'error'; message: string }
 
 export default function BagForm({ password }: Props) {
-  const [catalog, setCatalog] = useState<CatalogBag[] | null>(null)
-  const [catalogId, setCatalogId] = useState('')
+  const [encyclopedia, setEncyclopedia] = useState<EncyclopediaBag[] | null>(null)
+  const [encyclopediaId, setEncyclopediaId] = useState('')
   const [store, setStore] = useState<Store | null>(null)
   const [date, setDate] = useState(todayISO())
   const [memory, setMemory] = useState('')
@@ -23,22 +23,22 @@ export default function BagForm({ password }: Props) {
   const [status, setStatus] = useState<Status>({ kind: 'idle' })
 
   useEffect(() => {
-    fetch(`${BASE}data/catalog.json`)
-      .then((r) => r.json() as Promise<CatalogBag[]>)
-      .then(setCatalog)
-      .catch(() => setCatalog([]))
+    fetch(`${BASE}data/encyclopedia.json`)
+      .then((r) => r.json() as Promise<EncyclopediaBag[]>)
+      .then(setEncyclopedia)
+      .catch(() => setEncyclopedia([]))
   }, [])
 
-  const selectedCatalogBag = useMemo(
-    () => catalog?.find((b) => b.id === catalogId) ?? null,
-    [catalog, catalogId],
+  const selectedEncyclopediaBag = useMemo(
+    () => encyclopedia?.find((b) => b.id === encyclopediaId) ?? null,
+    [encyclopedia, encyclopediaId],
   )
 
   const valid =
-    selectedCatalogBag !== null && store !== null && date !== '' && memory.trim().length > 0
+    selectedEncyclopediaBag !== null && store !== null && date !== '' && memory.trim().length > 0
 
   function reset() {
-    setCatalogId('')
+    setEncyclopediaId('')
     setStore(null)
     setDate(todayISO())
     setMemory('')
@@ -48,12 +48,12 @@ export default function BagForm({ password }: Props) {
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    if (!valid || !selectedCatalogBag || !store || status.kind === 'saving') return
+    if (!valid || !selectedEncyclopediaBag || !store || status.kind === 'saving') return
 
     const bag = {
-      slug: `${selectedCatalogBag.id}-${date}`,
-      name: bagDisplayName(selectedCatalogBag),
-      catalogId: selectedCatalogBag.id,
+      slug: `${selectedEncyclopediaBag.id}-${date}`,
+      name: bagDisplayName(selectedEncyclopediaBag),
+      encyclopediaId: selectedEncyclopediaBag.id,
       storeNumber: store.storeNumber,
       dateAcquired: date,
       memory: memory.trim(),
@@ -61,7 +61,7 @@ export default function BagForm({ password }: Props) {
 
     // Fallback when the Worker isn't deployed yet — show JSON for manual commit.
     if (!WORKER_URL) {
-      const localBag: CollectionBag = { ...bag, photos: [] }
+      const localBag: PantryBag = { ...bag, photos: [] }
       setStatus({ kind: 'saved' })
       setShowJsonFallback(JSON.stringify(localBag, null, 2))
       return
@@ -76,7 +76,7 @@ export default function BagForm({ password }: Props) {
         })),
       )
 
-      const res = await fetch(`${WORKER_URL}/collection`, {
+      const res = await fetch(`${WORKER_URL}/pantry`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ password, bag, photos: encoded }),
@@ -120,12 +120,12 @@ export default function BagForm({ password }: Props) {
     <form onSubmit={handleSubmit} className="space-y-6">
       <Field
         label="Which Bag?"
-        hint="Pick from the catalog. Don't see it? Use the Suggest a Bag form on the catalog page first, then come back."
+        hint="Pick from the encyclopedia. Don't see it? Use the Suggest a Bag form on the encyclopedia page first, then come back."
       >
-        <CatalogPicker
-          catalog={catalog}
-          value={catalogId}
-          onChange={setCatalogId}
+        <EncyclopediaPicker
+          encyclopedia={encyclopedia}
+          value={encyclopediaId}
+          onChange={setEncyclopediaId}
         />
       </Field>
 
@@ -171,14 +171,14 @@ export default function BagForm({ password }: Props) {
           placeholder="Once upon a Saturday morning at Trader Joe's…"
           className="w-full border-2 border-[var(--tj-ink)] bg-[var(--tj-cream)] px-3 py-2.5 font-serif text-base outline-none focus:bg-white transition-colors resize-y"
         />
-        <div className="text-right text-[0.65rem] opacity-50 font-sans tracking-wider mt-1">
+        <div className="text-right text-[0.65rem] opacity-50 font-[var(--tj-body)] tracking-wider mt-1">
           {memory.length} / 1200
         </div>
       </Field>
 
       {status.kind === 'error' && (
         <div className="border-2 border-[var(--tj-red)] bg-[var(--tj-red)]/10 px-4 py-3 text-sm">
-          <strong className="font-sans tracking-[0.15em] text-xs uppercase block mb-1">
+          <strong className="font-[var(--tj-body)] tracking-[0.15em] text-xs uppercase block mb-1">
             Save failed
           </strong>
           <span className="italic opacity-90">{status.message}</span>
@@ -194,7 +194,7 @@ export default function BagForm({ password }: Props) {
         <button
           type="submit"
           disabled={!valid || status.kind === 'saving'}
-          className="font-sans tracking-[0.25em] text-xs uppercase border-2 border-[var(--tj-ink)] bg-[var(--tj-ink)] text-[var(--tj-cream)] px-6 py-3 hover:bg-transparent hover:text-[var(--tj-ink)] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+          className="font-[var(--tj-body)] tracking-[0.25em] text-xs uppercase border-2 border-[var(--tj-ink)] bg-[var(--tj-ink)] text-[var(--tj-cream)] px-6 py-3 hover:bg-transparent hover:text-[var(--tj-ink)] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
         >
           {status.kind === 'saving' ? 'Saving…' : 'Save Bag'}
         </button>
@@ -214,7 +214,7 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="font-sans tracking-[0.2em] text-[0.7rem] uppercase block mb-1">
+      <span className="font-[var(--tj-body)] tracking-[0.2em] text-[0.7rem] uppercase block mb-1">
         {label}
       </span>
       {hint && <span className="block text-xs italic opacity-65 mb-2">{hint}</span>}
@@ -223,22 +223,22 @@ function Field({
   )
 }
 
-function CatalogPicker({
-  catalog,
+function EncyclopediaPicker({
+  encyclopedia,
   value,
   onChange,
 }: {
-  catalog: CatalogBag[] | null
+  encyclopedia: EncyclopediaBag[] | null
   value: string
   onChange: (id: string) => void
 }) {
-  const grouped = useMemo(() => groupCatalog(catalog ?? []), [catalog])
-  const placeholder = catalog === null ? 'Loading catalog…' : 'Pick a bag from the catalog'
+  const grouped = useMemo(() => groupEncyclopedia(encyclopedia ?? []), [encyclopedia])
+  const placeholder = encyclopedia === null ? 'Loading encyclopedia…' : 'Pick a bag from the encyclopedia'
   return (
     <select
       value={value}
       onChange={(e) => onChange(e.target.value)}
-      disabled={catalog === null}
+      disabled={encyclopedia === null}
       required
       className="w-full border-2 border-[var(--tj-ink)] bg-[var(--tj-cream)] px-3 py-2.5 font-serif text-base outline-none focus:bg-white transition-colors disabled:opacity-60"
     >
@@ -283,7 +283,7 @@ function PhotoPicker({
           onFilesPicked(e.target.files)
           e.target.value = ''
         }}
-        className="w-full text-sm font-serif file:mr-3 file:border-2 file:border-[var(--tj-ink)] file:bg-[var(--tj-cream)] file:px-3 file:py-2 file:font-sans file:tracking-[0.15em] file:text-[0.7rem] file:uppercase file:cursor-pointer hover:file:bg-[var(--tj-ink)] hover:file:text-[var(--tj-cream)]"
+        className="w-full text-sm font-serif file:mr-3 file:border-2 file:border-[var(--tj-ink)] file:bg-[var(--tj-cream)] file:px-3 file:py-2 file:font-[var(--tj-body)] file:tracking-[0.15em] file:text-[0.7rem] file:uppercase file:cursor-pointer hover:file:bg-[var(--tj-ink)] hover:file:text-[var(--tj-cream)]"
       />
       {photos.length > 0 && (
         <ul className="grid grid-cols-3 sm:grid-cols-4 gap-2">
@@ -347,7 +347,7 @@ function SavedPanel({
   return (
     <div className="space-y-5">
       <div className="border-2 border-[var(--tj-ink)] bg-[var(--tj-cream)] p-5">
-        <h2 className="font-sans tracking-[0.25em] text-xs uppercase mb-3">
+        <h2 className="font-[var(--tj-body)] tracking-[0.25em] text-xs uppercase mb-3">
           {jsonFallback ? 'Bag Saved (Pending Commit)' : 'Bag Saved!'}
         </h2>
         {jsonFallback ? (
@@ -356,7 +356,7 @@ function SavedPanel({
               The Cloudflare Worker isn't configured yet, so to make this bag show up on
               the site, append the JSON below to{' '}
               <code className="bg-[var(--tj-kraft)]/40 px-1.5 py-0.5">
-                public/data/collection.json
+                public/data/pantry.json
               </code>{' '}
               and commit. Once <code className="bg-[var(--tj-kraft)]/40 px-1.5 py-0.5">VITE_WORKER_URL</code> is set, this step goes away.
             </p>
@@ -367,7 +367,7 @@ function SavedPanel({
               <button
                 type="button"
                 onClick={copy}
-                className="absolute top-2 right-2 font-sans tracking-[0.15em] text-[0.65rem] uppercase border border-[var(--tj-ink)] bg-[var(--tj-cream)] px-2.5 py-1 hover:bg-[var(--tj-ink)] hover:text-[var(--tj-cream)] transition-colors"
+                className="absolute top-2 right-2 font-[var(--tj-body)] tracking-[0.15em] text-[0.65rem] uppercase border border-[var(--tj-ink)] bg-[var(--tj-cream)] px-2.5 py-1 hover:bg-[var(--tj-ink)] hover:text-[var(--tj-cream)] transition-colors"
               >
                 {copied ? 'Copied!' : 'Copy'}
               </button>
@@ -398,7 +398,7 @@ function SavedPanel({
         <button
           type="button"
           onClick={onReset}
-          className="font-sans tracking-[0.25em] text-xs uppercase border-2 border-[var(--tj-ink)] px-5 py-2.5 hover:bg-[var(--tj-ink)] hover:text-[var(--tj-cream)] transition-colors"
+          className="font-[var(--tj-body)] tracking-[0.25em] text-xs uppercase border-2 border-[var(--tj-ink)] px-5 py-2.5 hover:bg-[var(--tj-ink)] hover:text-[var(--tj-cream)] transition-colors"
         >
           + Log Another
         </button>
@@ -413,13 +413,13 @@ function todayISO(): string {
   return new Date().toISOString().slice(0, 10)
 }
 
-function bagDisplayName(bag: CatalogBag): string {
+function bagDisplayName(bag: EncyclopediaBag): string {
   if (bag.region) return `${bag.region} (${bag.state ?? bag.stateCode ?? ''})`.trim()
   return bag.name
 }
 
-function groupCatalog(catalog: CatalogBag[]): { label: string; bags: CatalogBag[] }[] {
-  const order: { type: CatalogBag['type']; label: string }[] = [
+function groupEncyclopedia(encyclopedia: EncyclopediaBag[]): { label: string; bags: EncyclopediaBag[] }[] {
+  const order: { type: EncyclopediaBag['type']; label: string }[] = [
     { type: 'state', label: 'Locale Bags' },
     { type: 'special', label: 'Special Editions' },
     { type: 'seasonal', label: 'Seasonal' },
@@ -428,7 +428,7 @@ function groupCatalog(catalog: CatalogBag[]): { label: string; bags: CatalogBag[
   return order
     .map(({ type, label }) => ({
       label,
-      bags: catalog
+      bags: encyclopedia
         .filter((b) => b.type === type)
         .sort((a, b) => bagDisplayName(a).localeCompare(bagDisplayName(b))),
     }))

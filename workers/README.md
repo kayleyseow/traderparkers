@@ -5,7 +5,7 @@ This is the small backend that powers two things on the static GH Pages site:
 | Endpoint | Who can call it | What it does |
 |---|---|---|
 | `POST /collection` | Parker (password-gated) | Commits a new bag entry + photos to the `bag-bazaar` GitHub repo. GH Pages then rebuilds and the bag appears. |
-| `POST /suggestions` | Anyone (Turnstile-protected) | Opens a GitHub issue with a proposed catalog entry. You review and decide whether to add it. |
+| `POST /suggestions` | Anyone (Turnstile-protected) | Opens a GitHub issue with a proposed encyclopedia entry. You review and decide whether to add it. |
 
 Without this Worker deployed, the site still works — the admin form falls back to "show me JSON to copy-paste manually." Deploying the Worker is what flips the site into "Parker can actually save bags from her phone" mode.
 
@@ -121,7 +121,7 @@ VITE_WORKER_URL=https://parker-bags.<your-cf-subdomain>.workers.dev
 VITE_TURNSTILE_SITE_KEY=0x4AAAA...                   # site key from Step 3
 ```
 
-Restart the Vite dev server. The admin form now POSTs to the Worker; the suggestion form on `/catalog` becomes active.
+Restart the Vite dev server. The admin form now POSTs to the Worker; the suggestion form on `/encyclopedia` becomes active.
 
 For the production GH Pages build, set those same env vars in your GitHub Actions deploy workflow (whenever you set that up — `.env.local` is for local dev only).
 

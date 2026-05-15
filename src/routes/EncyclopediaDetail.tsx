@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router'
-import type { CatalogBag, CollectionBag } from '../types'
+import type { EncyclopediaBag, PantryBag } from '../types'
 import {
   ANGLE_LABEL,
   ANGLE_ORDER,
@@ -9,60 +9,63 @@ import {
   inferAngleMap,
   photoUrl,
 } from '../bagPhotos'
+import TopNav from '../TopNav'
+import Footer from '../Footer'
+import MaterialChips from '../MaterialChips'
 
 const BASE = import.meta.env.BASE_URL
 
 type LoadedData = {
-  catalog: CatalogBag[]
-  collection: CollectionBag[]
+  encyclopedia: EncyclopediaBag[]
+  pantry: PantryBag[]
 }
 
-export default function CatalogDetail() {
+export default function EncyclopediaDetail() {
   const { id } = useParams<{ id: string }>()
   const [data, setData] = useState<LoadedData | null>(null)
 
   useEffect(() => {
     Promise.all([
-      fetch(`${BASE}data/catalog.json`).then((r) => r.json() as Promise<CatalogBag[]>),
-      fetch(`${BASE}data/collection.json`).then((r) => r.json() as Promise<CollectionBag[]>),
+      fetch(`${BASE}data/encyclopedia.json`).then((r) => r.json() as Promise<EncyclopediaBag[]>),
+      fetch(`${BASE}data/pantry.json`).then((r) => r.json() as Promise<PantryBag[]>),
     ])
-      .then(([catalog, collection]) => setData({ catalog, collection }))
-      .catch(() => setData({ catalog: [], collection: [] }))
+      .then(([encyclopedia, pantry]) => setData({ encyclopedia, pantry }))
+      .catch(() => setData({ encyclopedia: [], pantry: [] }))
   }, [])
 
   if (!data) return <LoadingState />
 
-  const entry = data.catalog.find((c) => c.id === id)
-  if (!entry) return <NotInCatalog id={id} />
+  const entry = data.encyclopedia.find((c) => c.id === id)
+  if (!entry) return <NotInEncyclopedia id={id} />
 
-  const ownedBag = data.collection.find((b) => b.catalogId === entry.id)
+  const ownedBag = data.pantry.find((b) => b.encyclopediaId === entry.id)
 
   // Prev/next within the state-type subset only (the "locales").
   // Non-state entries get no prev/next nav.
-  const locales = data.catalog.filter((c) => c.type === 'state')
+  const locales = data.encyclopedia.filter((c) => c.type === 'state')
   const idx = locales.findIndex((c) => c.id === entry.id)
   const prev = idx > 0 ? locales[idx - 1] : undefined
   const next = idx >= 0 && idx < locales.length - 1 ? locales[idx + 1] : undefined
 
-  return <CatalogView entry={entry} ownedBag={ownedBag} prev={prev} next={next} />
+  return <EncyclopediaView entry={entry} ownedBag={ownedBag} prev={prev} next={next} />
 }
 
 /* ──────────────────────── VIEW ──────────────────────── */
 
-function CatalogView({
+function EncyclopediaView({
   entry,
   ownedBag,
   prev,
   next,
 }: {
-  entry: CatalogBag
-  ownedBag: CollectionBag | undefined
-  prev: CatalogBag | undefined
-  next: CatalogBag | undefined
+  entry: EncyclopediaBag
+  ownedBag: PantryBag | undefined
+  prev: EncyclopediaBag | undefined
+  next: EncyclopediaBag | undefined
 }) {
   const design = DESIGN_NOTES[entry.id] ?? {}
 
-  // Catalog reference photos first; fall back to the single referencePhoto.
+  // Encyclopedia reference photos first; fall back to the single referencePhoto.
   const photos = useMemo(() => {
     if (entry.referencePhotos?.length) return entry.referencePhotos
     if (entry.referencePhoto) return [entry.referencePhoto]
@@ -101,11 +104,11 @@ function CatalogView({
       <CrumpleOverlay />
 
       <div className="relative z-10 max-w-4xl mx-auto px-6 py-12 md:py-16">
-        <TopNav />
+        <TopNav backTo="/encyclopedia" backLabel="The Encyclopedia" />
 
         <header className="text-center mt-2">
           <p className="font-[var(--tj-body)] tracking-[0.4em] text-xs uppercase font-semibold border border-[var(--tj-ink)] inline-block px-4 py-1.5 mb-6">
-            {catalogTypeLabel(entry)}
+            {encyclopediaTypeLabel(entry)}
           </p>
           <h1
             className="text-[var(--tj-red)] text-6xl md:text-8xl leading-none"
@@ -121,6 +124,8 @@ function CatalogView({
               {design.subtitle}
             </p>
           )}
+
+          <MaterialChips materials={entry.materials} className="justify-center mt-6" />
 
           <div className="mx-auto mt-6 h-px w-32 bg-[var(--tj-ink)]/40" />
         </header>
@@ -231,7 +236,7 @@ function CatalogView({
           )}
           <div>
             <h2 className="font-[var(--tj-body)] tracking-[0.3em] text-[0.7rem] uppercase font-bold mb-3 opacity-80">
-              Catalog details
+              Encyclopedia details
             </h2>
             <dl className="text-sm md:text-base leading-relaxed space-y-1.5">
               {entry.state && (
@@ -247,7 +252,7 @@ function CatalogView({
                 </div>
               )}
               <div className="flex gap-3">
-                <dt className="opacity-60 min-w-[5rem]">Catalog ID</dt>
+                <dt className="opacity-60 min-w-[5rem]">Encyclopedia ID</dt>
                 <dd className="font-mono text-sm">{entry.id}</dd>
               </div>
               {entry.source && (
@@ -273,7 +278,7 @@ function CatalogView({
                       to={`/bags/${ownedBag.slug}`}
                       className="underline underline-offset-4"
                     >
-                      Parker’s collection →
+                      Parker’s pantry →
                     </Link>
                   </dd>
                 </div>
@@ -286,7 +291,7 @@ function CatalogView({
           <nav className="mt-14 pt-6 border-t border-[var(--tj-ink)]/30 grid grid-cols-2 gap-4 items-start">
             <div>
               {prev && (
-                <Link to={`/catalog/${prev.id}`} className="block group">
+                <Link to={`/encyclopedia/${prev.id}`} className="block group">
                   <p className="font-[var(--tj-body)] tracking-[0.25em] text-[0.6rem] uppercase font-semibold opacity-60 mb-1">
                     ← Previous
                   </p>
@@ -301,7 +306,7 @@ function CatalogView({
             </div>
             <div className="text-right">
               {next && (
-                <Link to={`/catalog/${next.id}`} className="block group">
+                <Link to={`/encyclopedia/${next.id}`} className="block group">
                   <p className="font-[var(--tj-body)] tracking-[0.25em] text-[0.6rem] uppercase font-semibold opacity-60 mb-1">
                     Next →
                   </p>
@@ -318,11 +323,11 @@ function CatalogView({
         )}
 
         <footer className="mt-10 pt-6 border-t border-[var(--tj-ink)]/30 flex items-center justify-between font-[var(--tj-body)] tracking-[0.22em] font-semibold text-[0.65rem] uppercase opacity-75 flex-wrap gap-2">
-          <Link to="/catalog" className="underline underline-offset-4 hover:opacity-100">
-            ← Back to the catalog
+          <Link to="/encyclopedia" className="underline underline-offset-4 hover:opacity-100">
+            ← Back to the encyclopedia
           </Link>
           {entry.type !== 'state' && (
-            <span>{catalogTypeLabel(entry)}</span>
+            <span>{encyclopediaTypeLabel(entry)}</span>
           )}
         </footer>
       </div>
@@ -333,60 +338,34 @@ function CatalogView({
           to   { opacity: 1; transform: translateY(0); }
         }
       `}</style>
+      <Footer />
     </main>
   )
 }
 
 /* ──────────────────────── PIECES ──────────────────────── */
 
-function catalogTypeLabel(entry: CatalogBag): string {
+function encyclopediaTypeLabel(entry: EncyclopediaBag): string {
   if (entry.type === 'state') return `${entry.state ?? 'State'} · State Bag`
   if (entry.type === 'special') return 'Special Edition'
   if (entry.type === 'seasonal') return 'Seasonal Bag'
   return 'Standard Bag'
 }
 
-function TopNav() {
-  return (
-    <nav className="mb-10 flex items-center justify-between flex-wrap gap-3">
-      <Link
-        to="/catalog"
-        className="font-[var(--tj-body)] font-semibold tracking-[0.25em] text-[0.7rem] uppercase border-2 border-[var(--tj-ink)] px-4 py-2 hover:bg-[var(--tj-ink)] hover:text-[var(--tj-cream)] transition-colors"
-      >
-        ← The Catalog
-      </Link>
-      <div className="flex items-center gap-3">
-        <Link
-          to="/collection"
-          className="font-[var(--tj-body)] font-semibold tracking-[0.25em] text-[0.7rem] uppercase opacity-70 hover:opacity-100 underline-offset-4 hover:underline"
-        >
-          Collection
-        </Link>
-        <Link
-          to="/about"
-          className="font-[var(--tj-body)] font-semibold tracking-[0.25em] text-[0.7rem] uppercase opacity-70 hover:opacity-100 underline-offset-4 hover:underline"
-        >
-          About
-        </Link>
-      </div>
-    </nav>
-  )
-}
-
 function LoadingState() {
   return (
     <main className="relative min-h-screen bg-[var(--tj-cream)] text-[var(--tj-ink)] flex items-center justify-center">
-      <p className="italic opacity-50">Pulling the catalog entry…</p>
+      <p className="italic opacity-50">Pulling the encyclopedia entry…</p>
     </main>
   )
 }
 
-function NotInCatalog({ id }: { id?: string }) {
+function NotInEncyclopedia({ id }: { id?: string }) {
   return (
     <main className="relative min-h-screen bg-[var(--tj-cream)] text-[var(--tj-ink)] overflow-hidden">
       <CrumpleOverlay />
       <div className="relative z-10 max-w-2xl mx-auto px-6 py-16 text-center">
-        <TopNav />
+        <TopNav backTo="/encyclopedia" backLabel="The Encyclopedia" />
         <p className="font-[var(--tj-body)] tracking-[0.4em] text-xs uppercase font-semibold border border-[var(--tj-ink)] inline-block px-4 py-1.5 mb-6">
           Not Found
         </p>
@@ -397,9 +376,9 @@ function NotInCatalog({ id }: { id?: string }) {
           {id ?? 'Unknown'}
         </h1>
         <p className="italic mt-6 opacity-70">
-          No catalog entry by that ID.{' '}
-          <Link to="/catalog" className="underline underline-offset-4">
-            Browse the full catalog
+          No encyclopedia entry by that ID.{' '}
+          <Link to="/encyclopedia" className="underline underline-offset-4">
+            Browse the full encyclopedia
           </Link>{' '}
           to find what you’re looking for.
         </p>
@@ -414,30 +393,22 @@ function CrumpleOverlay() {
       aria-hidden
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="none"
-      className="absolute inset-0 w-full h-full pointer-events-none mix-blend-multiply opacity-30"
+      className="absolute inset-0 w-full h-full pointer-events-none mix-blend-multiply opacity-50"
     >
       <defs>
-        <filter id="paperCrumpleCatalogDetail" x="0" y="0" width="100%" height="100%">
-          <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="3" seed="13">
-            <animate
-              attributeName="seed"
-              values="13;25;7;19;13"
-              keyTimes="0;0.25;0.5;0.75;1"
-              dur="60s"
-              repeatCount="indefinite"
-            />
-          </feTurbulence>
+        <filter id="paperCrumpleEncyclopediaDetail" x="0" y="0" width="100%" height="100%">
+          <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="3" seed="13" />
           <feColorMatrix
             type="matrix"
             values="
               0 0 0 0 0.20
               0 0 0 0 0.14
               0 0 0 0 0.08
-              0 0 0 0.28 0"
+              0 0 0 0.40 0"
           />
         </filter>
       </defs>
-      <rect width="100%" height="100%" filter="url(#paperCrumpleCatalogDetail)" />
+      <rect width="100%" height="100%" filter="url(#paperCrumpleEncyclopediaDetail)" />
     </svg>
   )
 }
@@ -451,7 +422,7 @@ function PanelGrain() {
       className="absolute inset-0 w-full h-full pointer-events-none mix-blend-multiply opacity-25"
     >
       <defs>
-        <filter id="panelGrainCatalog" x="0" y="0" width="100%" height="100%">
+        <filter id="panelGrainEncyclopedia" x="0" y="0" width="100%" height="100%">
           <feTurbulence type="fractalNoise" baseFrequency="0.018" numOctaves="2" seed="3" />
           <feColorMatrix
             type="matrix"
@@ -463,7 +434,7 @@ function PanelGrain() {
           />
         </filter>
       </defs>
-      <rect width="100%" height="100%" filter="url(#panelGrainCatalog)" />
+      <rect width="100%" height="100%" filter="url(#panelGrainEncyclopedia)" />
     </svg>
   )
 }

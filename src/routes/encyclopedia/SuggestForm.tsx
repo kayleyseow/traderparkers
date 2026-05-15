@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
-import type { BagType } from '../../types'
+import type { BagType, Material } from '../../types'
 import { US_LOCALES } from '../../usLocales'
+import { MATERIAL_LABEL, MATERIAL_ORDER } from '../../materials'
 
 const WORKER_URL = import.meta.env.VITE_WORKER_URL
 const TURNSTILE_SITE_KEY = import.meta.env.VITE_TURNSTILE_SITE_KEY
@@ -17,6 +18,7 @@ type FormState = {
   stateCode: string
   region: string
   year: string
+  materials: Material[]
   notes: string
   contact: string
 }
@@ -27,6 +29,7 @@ const EMPTY: FormState = {
   stateCode: '',
   region: '',
   year: '',
+  materials: [],
   notes: '',
   contact: '',
 }
@@ -74,6 +77,7 @@ export default function SuggestForm() {
           stateCode: locale?.code,
           region: form.region.trim() || undefined,
           year: yearNum && Number.isFinite(yearNum) ? yearNum : undefined,
+          materials: form.materials.length > 0 ? form.materials : undefined,
           notes: form.notes.trim() || undefined,
           submitterContact: form.contact.trim() || undefined,
           turnstileToken: token,
@@ -112,7 +116,7 @@ export default function SuggestForm() {
         </p>
         <p className="font-[var(--tj-body)] italic text-sm opacity-80">
           Your suggestion was filed. Parker will review it and add the bag to the
-          catalog if it checks out.
+          encyclopedia if it checks out.
           {status.issueUrl && (
             <>
               {' '}
@@ -144,7 +148,7 @@ export default function SuggestForm() {
       className="max-w-2xl mx-auto border-2 border-[var(--tj-ink)] bg-[var(--tj-cream)] p-6 md:p-8 space-y-5"
     >
       <p className="font-[var(--tj-body)] italic text-sm opacity-75 -mb-1">
-        Spotted a TJ bag that's not in the catalog? Tell Parker about it. Suggestions
+        Spotted a TJ bag that's not in the encyclopedia? Tell Parker about it. Suggestions
         get filed as a GitHub issue she'll review.
       </p>
 
@@ -217,6 +221,38 @@ export default function SuggestForm() {
       </div>
 
       <Field
+        label="Materials (optional)"
+        hint="Tick any that apply. Insulated coolers usually have a polypropylene shell + insulated liner."
+      >
+        <div className="flex flex-wrap gap-x-4 gap-y-2 pt-1">
+          {MATERIAL_ORDER.map((m) => {
+            const checked = form.materials.includes(m)
+            return (
+              <label
+                key={m}
+                className="inline-flex items-center gap-2 cursor-pointer font-serif text-sm select-none"
+              >
+                <input
+                  type="checkbox"
+                  checked={checked}
+                  onChange={(e) =>
+                    update(
+                      'materials',
+                      e.target.checked
+                        ? [...form.materials, m]
+                        : form.materials.filter((x) => x !== m),
+                    )
+                  }
+                  className="accent-[var(--tj-ink)] w-4 h-4"
+                />
+                {MATERIAL_LABEL[m]}
+              </label>
+            )
+          })}
+        </div>
+      </Field>
+
+      <Field
         label="Notes"
         hint="Where you saw it, what it looks like, anything that'd help confirm it."
       >
@@ -247,7 +283,7 @@ export default function SuggestForm() {
 
       {status.kind === 'error' && (
         <div className="border-2 border-[var(--tj-red)] bg-[var(--tj-red)]/10 px-4 py-3 text-sm">
-          <strong className="font-sans tracking-[0.15em] text-xs uppercase block mb-1">
+          <strong className="font-[var(--tj-body)] tracking-[0.15em] text-xs uppercase block mb-1">
             Submission failed
           </strong>
           <span className="italic opacity-90">{status.message}</span>
@@ -280,7 +316,7 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="font-sans tracking-[0.2em] text-[0.65rem] uppercase font-semibold block mb-1">
+      <span className="font-[var(--tj-body)] tracking-[0.2em] text-[0.65rem] uppercase font-semibold block mb-1">
         {label}
         {required && <span className="text-[var(--tj-red)] ml-1">*</span>}
       </span>

@@ -66,7 +66,7 @@ export default function StoreSelect({ value, onChange }: Props) {
               {value.streetAddress ? ` · ${value.streetAddress}` : ''}
             </span>
           </span>
-          <span className="font-sans text-[0.65rem] tracking-[0.2em] uppercase opacity-60 shrink-0">
+          <span className="font-[var(--tj-body)] text-[0.65rem] tracking-[0.2em] uppercase opacity-60 shrink-0">
             Change
           </span>
         </button>

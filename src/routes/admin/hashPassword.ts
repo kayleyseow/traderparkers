@@ -8,7 +8,7 @@
  * while keeping the auth flow simple and serverless.
  *
  * The same hash value is mirrored as the ADMIN_HASH secret on the Cloudflare
- * Worker — that's how the Worker verifies that a /collection request actually
+ * Worker — that's how the Worker verifies that a /pantry request actually
  * came from someone who knows the password.
  *
  * To change the password:

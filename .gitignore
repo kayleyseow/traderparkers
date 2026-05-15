@@ -27,3 +27,6 @@ dist-ssr
 
 # TypeScript incremental build cache
 *.tsbuildinfo
+
+# Empty asset scaffolding folders — not tracked until populated.
+src/assets/

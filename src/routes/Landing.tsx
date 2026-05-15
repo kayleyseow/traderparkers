@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Link } from 'react-router'
-import type { CatalogBag, CollectionBag, ProgressStats } from '../types'
+import type { EncyclopediaBag, PantryBag, PinnedBag, ProgressStats } from '../types'
+import PinnedFavorites from '../PinnedFavorites'
 import styles from './Landing.module.css'
 
 const BASE = import.meta.env.BASE_URL
@@ -13,26 +14,39 @@ export default function Landing() {
     specialsCollected: 0,
     totalSpecials: 0,
   })
+  const [revealed, setRevealed] = useState(false)
+  const [pins, setPins] = useState<PinnedBag[]>([])
+  const [encyclopediaById, setEncyclopediaById] = useState<Map<string, EncyclopediaBag>>(new Map())
+
+  useEffect(() => {
+    fetch(`${BASE}data/pins.json`)
+      .then((r) => r.json() as Promise<PinnedBag[]>)
+      .then(setPins)
+      .catch(() => {
+        /* pins are optional — silently skip if the file is missing */
+      })
+  }, [])
 
   useEffect(() => {
     Promise.all([
-      fetch(`${BASE}data/catalog.json`).then((r) => r.json() as Promise<CatalogBag[]>),
-      fetch(`${BASE}data/collection.json`).then((r) => r.json() as Promise<CollectionBag[]>),
+      fetch(`${BASE}data/encyclopedia.json`).then((r) => r.json() as Promise<EncyclopediaBag[]>),
+      fetch(`${BASE}data/pantry.json`).then((r) => r.json() as Promise<PantryBag[]>),
     ])
-      .then(([catalog, collection]) => {
+      .then(([encyclopedia, pantry]) => {
+        setEncyclopediaById(new Map(encyclopedia.map((b) => [b.id, b])))
         const totalStates = new Set(
-          catalog
+          encyclopedia
             .filter((b) => b.type === 'state' && b.stateCode)
             .map((b) => b.stateCode as string),
         ).size
-        const totalSpecials = catalog.filter((b) => b.type === 'special').length
+        const totalSpecials = encyclopedia.filter((b) => b.type === 'special').length
 
-        const byId = new Map(catalog.map((b) => [b.id, b]))
+        const byId = new Map(encyclopedia.map((b) => [b.id, b]))
         const collectedStateCodes = new Set<string>()
         let specialsCollected = 0
-        for (const bag of collection) {
-          if (!bag.catalogId) continue
-          const entry = byId.get(bag.catalogId)
+        for (const bag of pantry) {
+          if (!bag.encyclopediaId) continue
+          const entry = byId.get(bag.encyclopediaId)
           if (!entry) continue
           if (entry.type === 'state' && entry.stateCode) {
             collectedStateCodes.add(entry.stateCode)
@@ -42,7 +56,7 @@ export default function Landing() {
         }
 
         setStats({
-          totalBags: collection.length,
+          totalBags: pantry.length,
           statesCollected: collectedStateCodes.size,
           totalStates,
           specialsCollected,
@@ -70,38 +84,81 @@ export default function Landing() {
         <p className={styles.tagline}>
           A tour of Trader Joe's totes, collected one grocery run at a time.
         </p>
+
+        <div className={styles.parkerQuestion}>
+          <h2 className={styles.parkerQuestionTitle}>Are you Parker?</h2>
+          <div className={styles.yesNoRow}>
+            <Link
+              className={`${styles.cta} ${styles.ctaParker}`}
+              to="/admin"
+              aria-label="Yes, I'm Parker — go to the Parker page"
+            >
+              <span aria-hidden className={styles.parkerStar}>★</span>
+              <span className={styles.yesText}>Yes, I'm</span>
+              <span className={styles.parkerScript} aria-label="Parker">
+                {'Parker'.split('').map((ch, i) => (
+                  <span
+                    key={i}
+                    aria-hidden
+                    className="parker-wave"
+                    style={{ animationDelay: `${i * 0.05}s` }}
+                  >
+                    {ch}
+                  </span>
+                ))}
+              </span>
+              <span aria-hidden className={styles.parkerStar}>★</span>
+            </Link>
+            <button
+              type="button"
+              onClick={() => setRevealed(true)}
+              className={`${styles.cta} ${styles.ctaGhost}`}
+            >
+              Just Browsing
+            </button>
+          </div>
+        </div>
       </section>
 
-      <div className={styles.stats}>
-        <div className={styles.stat}>
-          <strong>{stats.totalBags}</strong>
-          <span>BAGS LOGGED</span>
-        </div>
-        <div className={styles.statDivider} />
-        <div className={styles.stat}>
-          <strong>
-            {stats.statesCollected}/{stats.totalStates || '—'}
-          </strong>
-          <span>STATES</span>
-        </div>
-        <div className={styles.statDivider} />
-        <div className={styles.stat}>
-          <strong>
-            {stats.specialsCollected}/{stats.totalSpecials || '—'}
-          </strong>
-          <span>SPECIAL EDITIONS</span>
-        </div>
-      </div>
+      {revealed && (
+        <>
+          <p className={styles.visitorTag}>
+            Welcome, fellow TP's bag enthusiast!
+          </p>
 
-      <div className={styles.ctaRow}>
-        <Link className={styles.cta} to="/collection">Enter the Collection</Link>
-        <Link className={`${styles.cta} ${styles.ctaGhost}`} to="/catalog">Browse the Catalog</Link>
-        <Link className={`${styles.cta} ${styles.ctaGhost}`} to="/admin">Parker Only</Link>
-      </div>
+          <PinnedFavorites pins={pins} encyclopediaById={encyclopediaById} />
+
+          <div className={styles.stats}>
+            <div className={styles.stat}>
+              <strong>{stats.totalBags}</strong>
+              <span>BAGS LOGGED</span>
+            </div>
+            <div className={styles.statDivider} />
+            <div className={styles.stat}>
+              <strong>
+                {stats.statesCollected}/{stats.totalStates || '—'}
+              </strong>
+              <span>STATES</span>
+            </div>
+            <div className={styles.statDivider} />
+            <div className={styles.stat}>
+              <strong>
+                {stats.specialsCollected}/{stats.totalSpecials || '—'}
+              </strong>
+              <span>SPECIAL EDITIONS</span>
+            </div>
+          </div>
+
+          <div className={styles.ctaRow}>
+            <Link className={`${styles.cta} ${styles.ctaGhost}`} to="/pantry">Peer into Parker's Pantry</Link>
+            <Link className={`${styles.cta} ${styles.ctaGhost}`} to="/encyclopedia">Explore the Encyclopedia</Link>
+            <Link className={`${styles.cta} ${styles.ctaGhost}`} to="/about">About the Bazaar</Link>
+          </div>
+        </>
+      )}
 
       <div className={styles.footer}>
-        <span>Type "Trader Joe's Font" by Fontopia (CC BY-NC) · Made with love for Parker · </span>
-        <Link to="/about" className={styles.footerLink}>About</Link>
+        <span>★ Happy Birthday Parker! · Est. 2026 ★</span>
       </div>
     </main>
   )
@@ -124,25 +181,12 @@ function CrumpleOverlay() {
         <filter id="paperCrumple" x="0" y="0" width="100%" height="100%">
           <feTurbulence
             type="fractalNoise"
-            baseFrequency="0.013"
+            baseFrequency="0.0125"
             numOctaves="3"
-            seed="2"
+            seed="11"
+            stitchTiles="stitch"
             result="noise"
-          >
-            <animate
-              attributeName="seed"
-              values="2;14;7;20;2"
-              keyTimes="0;0.25;0.5;0.75;1"
-              dur="45s"
-              repeatCount="indefinite"
-            />
-            <animate
-              attributeName="baseFrequency"
-              values="0.013;0.016;0.013"
-              dur="45s"
-              repeatCount="indefinite"
-            />
-          </feTurbulence>
+          />
           {/* Convert noise intensity into a dark, semi-transparent shadow
               so the multiply blend mode etches ridges into the kraft. */}
           <feColorMatrix

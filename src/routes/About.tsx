@@ -1,43 +1,27 @@
 import { Link } from 'react-router'
+import TopNav from '../TopNav'
+import Footer from '../Footer'
 
 export default function About() {
   return (
     <main className="relative min-h-screen bg-[var(--tj-cream)] text-[var(--tj-ink)] px-6 py-12 md:py-16 overflow-hidden">
       <div className="relative z-10 max-w-2xl mx-auto">
-        <nav className="mb-12 flex items-center justify-between gap-3 flex-wrap">
-          <Link
-            to="/"
-            className="font-sans tracking-[0.25em] text-[0.7rem] uppercase border-2 border-[var(--tj-ink)] px-4 py-2 hover:bg-[var(--tj-ink)] hover:text-[var(--tj-cream)] transition-colors"
-          >
-            ← The Bazaar
-          </Link>
-          <div className="flex items-center gap-4">
-            <Link
-              to="/catalog"
-              className="font-sans tracking-[0.25em] text-[0.7rem] uppercase opacity-70 hover:opacity-100 underline-offset-4 hover:underline"
-            >
-              Catalog
-            </Link>
-            <Link
-              to="/collection"
-              className="font-sans tracking-[0.25em] text-[0.7rem] uppercase opacity-70 hover:opacity-100 underline-offset-4 hover:underline"
-            >
-              The Collection →
-            </Link>
-          </div>
-        </nav>
+        <TopNav backTo="/" backLabel="The Bazaar" />
 
-        <header className="text-center mb-12">
-          <p className="font-sans tracking-[0.4em] text-xs uppercase border border-[var(--tj-ink)] inline-block px-4 py-1.5 mb-6">
+        <header className="text-center mb-10">
+          <p className="font-[var(--tj-body)] tracking-[0.4em] text-xs uppercase font-semibold border border-[var(--tj-ink)] inline-block px-4 py-1.5 mb-6">
             About
           </p>
-          <h1 className="font-[TraderJoes,Brush_Script_MT,cursive] text-[var(--tj-red)] text-6xl md:text-7xl leading-none">
+          <h1
+            className="text-[var(--tj-red)] text-6xl md:text-7xl leading-none"
+            style={{ fontFamily: 'var(--tj-script)' }}
+          >
             About the Bazaar
           </h1>
-          <p className="italic text-base mt-4 max-w-md mx-auto opacity-75">
+          <p className="font-[var(--tj-body)] italic text-base md:text-lg mt-4 max-w-xl mx-auto opacity-75">
             A small museum for a particular kind of grocery-store souvenir.
           </p>
-          <Flourish className="mx-auto mt-6 w-32 text-[var(--tj-ink)]" />
+          <div className="mx-auto mt-6 h-px w-32 bg-[var(--tj-ink)]/40" />
         </header>
 
         <article className="space-y-12 text-base leading-relaxed font-serif">
@@ -50,11 +34,11 @@ export default function About() {
               tote bags — the kind they release in seasonal designs and
               state-themed runs. One bag became three, three became a stack on the
               shelf, and somewhere around bag number eight it stopped being
-              "groceries" and started being a collection.
+              "groceries" and started being a pantry.
             </p>
             <p>
               The idea here was simple: build her a place to actually
-              <em> see </em> the collection. Photos, the memory of which store
+              <em> see </em> the pantry. Photos, the memory of which store
               each one came from, and a way to feel that quiet satisfaction of
               checking another state off the list.
             </p>
@@ -64,7 +48,14 @@ export default function About() {
 
           <Section label="About Parker">
             <p>
-              {/* TODO: add details about Parker here */}
+              {/* TODO: add details about Parker here.
+                  Also write a section about Parker & Kayley's favorite TJ's
+                  products. Examples to weave in:
+                    - Parker: red lentil pasta ("for the protien")
+                    - Parker: greek yogurt
+                    - Kayley: (add own favorites)
+                  Could live inside this "About Parker" section or get its own
+                  "A Few Favorites" section between this and Credits. */}
               Parker is the kind of person who treats a Trader Joe's run like a
               minor expedition. She remembers which store had the good seasonal
               cards. She has opinions on every flavor of frozen mochi. And she has
@@ -72,7 +63,7 @@ export default function About() {
             </p>
             <p>
               This site is her archive — built so that one day, when the
-              collection is complete or close to it, she can scroll through and
+              pantry is complete or close to it, she can scroll through and
               see all of it laid out together.
             </p>
           </Section>
@@ -139,16 +130,14 @@ export default function About() {
 
         <footer className="mt-16 text-center">
           <Link
-            to="/collection"
-            className="inline-block font-sans tracking-[0.25em] text-xs uppercase border-2 border-[var(--tj-ink)] bg-[var(--tj-ink)] text-[var(--tj-cream)] px-6 py-3 hover:bg-transparent hover:text-[var(--tj-ink)] transition-colors"
+            to="/pantry"
+            className="inline-block font-[var(--tj-body)] tracking-[0.25em] text-xs uppercase border-2 border-[var(--tj-ink)] bg-[var(--tj-ink)] text-[var(--tj-cream)] px-6 py-3 hover:bg-transparent hover:text-[var(--tj-ink)] transition-colors"
           >
-            See the Collection
+            See the Pantry
           </Link>
-          <p className="text-[0.65rem] font-sans tracking-[0.2em] uppercase opacity-50 mt-8">
-            Made with love for Parker
-          </p>
         </footer>
       </div>
+      <Footer />
     </main>
   )
 }
@@ -156,7 +145,7 @@ export default function About() {
 function Section({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <section>
-      <h2 className="font-sans tracking-[0.3em] text-[0.7rem] uppercase mb-4 flex items-center gap-3 before:content-[''] before:h-px before:flex-1 before:bg-[var(--tj-ink)]/30 after:content-[''] after:h-px after:flex-1 after:bg-[var(--tj-ink)]/30">
+      <h2 className="font-[var(--tj-body)] tracking-[0.3em] text-[0.7rem] uppercase mb-4 flex items-center gap-3 before:content-[''] before:h-px before:flex-1 before:bg-[var(--tj-ink)]/30 after:content-[''] after:h-px after:flex-1 after:bg-[var(--tj-ink)]/30">
         {label}
       </h2>
       <div className="space-y-4">{children}</div>
@@ -167,7 +156,7 @@ function Section({ label, children }: { label: string; children: React.ReactNode
 function CreditRow({ title, detail }: { title: string; detail: React.ReactNode }) {
   return (
     <li className="flex items-baseline gap-3">
-      <span className="font-sans tracking-[0.2em] text-[0.65rem] uppercase shrink-0 opacity-75">
+      <span className="font-[var(--tj-body)] tracking-[0.2em] text-[0.65rem] uppercase shrink-0 opacity-75">
         {title}
       </span>
       <span className="text-sm">{detail}</span>
@@ -182,14 +171,5 @@ function Divider() {
       <span className="text-[var(--tj-red)] text-lg">✦</span>
       <span className="h-px w-12 bg-[var(--tj-ink)]" />
     </div>
-  )
-}
-
-function Flourish({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 200 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-      <path d="M10 12 Q 50 4 100 12 T 190 12" />
-      <circle cx="100" cy="12" r="2.5" fill="currentColor" />
-    </svg>
   )
 }

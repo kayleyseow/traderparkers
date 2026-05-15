@@ -1,10 +1,10 @@
 import { BrowserRouter, Routes, Route } from 'react-router'
 import Landing from './routes/Landing'
-import Gallery from './routes/Gallery'
-import Catalog from './routes/Catalog'
+import Pantry from './routes/Pantry'
+import Encyclopedia from './routes/Encyclopedia'
 import Admin from './routes/Admin'
 import BagDetail from './routes/BagDetail'
-import CatalogDetail from './routes/CatalogDetail'
+import EncyclopediaDetail from './routes/EncyclopediaDetail'
 import About from './routes/About'
 
 export default function App() {
@@ -12,9 +12,9 @@ export default function App() {
     <BrowserRouter basename={import.meta.env.BASE_URL}>
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="/collection" element={<Gallery />} />
-        <Route path="/catalog" element={<Catalog />} />
-        <Route path="/catalog/:id" element={<CatalogDetail />} />
+        <Route path="/pantry" element={<Pantry />} />
+        <Route path="/encyclopedia" element={<Encyclopedia />} />
+        <Route path="/encyclopedia/:id" element={<EncyclopediaDetail />} />
         <Route path="/admin" element={<Admin />} />
         <Route path="/about" element={<About />} />
         <Route path="/bags/:slug" element={<BagDetail />} />

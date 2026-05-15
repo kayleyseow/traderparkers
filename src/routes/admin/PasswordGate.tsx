@@ -29,21 +29,21 @@ export default function PasswordGate({
   return (
     <main className="relative min-h-screen bg-[var(--tj-kraft)] text-[var(--tj-ink)] px-6 py-12 flex flex-col items-center justify-center overflow-hidden">
       <div className="relative z-10 w-full max-w-md text-center border-2 border-[var(--tj-ink)] bg-[var(--tj-cream)] px-8 py-10 space-y-5">
-        <p className="font-sans tracking-[0.4em] text-[0.65rem] uppercase border border-[var(--tj-ink)] inline-block px-3 py-1">
+        <p className="font-[var(--tj-body)] tracking-[0.4em] text-[0.65rem] uppercase border border-[var(--tj-ink)] inline-block px-3 py-1">
           Restricted
         </p>
 
-        <h1 className="font-[TraderJoes,Brush_Script_MT,cursive] text-[var(--tj-red)] text-6xl leading-none">
+        <h1 className="font-[TraderJoes,Brush_Script_MT,cursive] text-[var(--tj-red)] text-7xl leading-none">
           Parker Only
         </h1>
 
         <p className="italic text-sm opacity-80">
-          Keep out if you're not Parker.
+          Welcome back — just you in here.
         </p>
 
         <form onSubmit={handleSubmit} className="space-y-3 pt-3" noValidate>
           <label className="block text-left">
-            <span className="font-sans tracking-[0.2em] text-[0.65rem] uppercase block mb-1.5">
+            <span className="font-[var(--tj-body)] tracking-[0.2em] text-[0.65rem] uppercase block mb-1.5">
               Password
             </span>
             <input
@@ -71,15 +71,15 @@ export default function PasswordGate({
           <button
             type="submit"
             disabled={!password || checking}
-            className="w-full font-sans tracking-[0.25em] text-xs uppercase border-2 border-[var(--tj-ink)] bg-[var(--tj-ink)] text-[var(--tj-cream)] py-2.5 hover:bg-transparent hover:text-[var(--tj-ink)] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full font-[var(--tj-body)] tracking-[0.25em] text-xs uppercase border-2 border-[var(--tj-ink)] bg-[var(--tj-ink)] text-[var(--tj-cream)] py-2.5 hover:bg-transparent hover:text-[var(--tj-ink)] transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            {checking ? 'Checking…' : 'Enter'}
+            {checking ? 'Unlocking…' : 'Open the Door'}
           </button>
         </form>
 
         <Link
           to="/"
-          className="block text-[0.7rem] font-sans tracking-[0.2em] uppercase opacity-60 hover:opacity-100"
+          className="block text-[0.7rem] font-[var(--tj-body)] tracking-[0.2em] uppercase opacity-60 hover:opacity-100"
         >
           ← Back to the Bazaar
         </Link>

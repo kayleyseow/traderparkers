@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router'
-import type { CatalogBag, CollectionBag, Store } from '../types'
+import type { EncyclopediaBag, PantryBag, Store } from '../types'
 import {
   ANGLE_LABEL,
   ANGLE_ORDER,
@@ -10,14 +10,17 @@ import {
   inferAngleMap,
   photoUrl,
 } from '../bagPhotos'
+import TopNav from '../TopNav'
+import Footer from '../Footer'
+import MaterialChips from '../MaterialChips'
 
 const BASE = import.meta.env.BASE_URL
 
 /* ───────────────────────── PAGE ───────────────────────── */
 
 type LoadedData = {
-  catalog: CatalogBag[]
-  collection: CollectionBag[]
+  encyclopedia: EncyclopediaBag[]
+  pantry: PantryBag[]
   stores: Map<string, Store>
 }
 
@@ -27,44 +30,44 @@ export default function BagDetail() {
 
   useEffect(() => {
     Promise.all([
-      fetch(`${BASE}data/catalog.json`).then((r) => r.json() as Promise<CatalogBag[]>),
-      fetch(`${BASE}data/collection.json`).then((r) => r.json() as Promise<CollectionBag[]>),
+      fetch(`${BASE}data/encyclopedia.json`).then((r) => r.json() as Promise<EncyclopediaBag[]>),
+      fetch(`${BASE}data/pantry.json`).then((r) => r.json() as Promise<PantryBag[]>),
       fetch(`${BASE}data/stores.json`).then((r) => r.json() as Promise<Store[]>),
     ])
-      .then(([catalog, collection, storeList]) => {
+      .then(([encyclopedia, pantry, storeList]) => {
         setData({
-          catalog,
-          collection,
+          encyclopedia,
+          pantry,
           stores: new Map(storeList.map((s) => [s.storeNumber, s])),
         })
       })
-      .catch(() => setData({ catalog: [], collection: [], stores: new Map() }))
+      .catch(() => setData({ encyclopedia: [], pantry: [], stores: new Map() }))
   }, [])
 
   if (!data) return <LoadingState />
 
-  const bag = data.collection.find((b) => b.slug === slug)
+  const bag = data.pantry.find((b) => b.slug === slug)
   if (!bag) return <NotLogged slug={slug} />
 
-  const catalogEntry = bag.catalogId
-    ? data.catalog.find((c) => c.id === bag.catalogId)
+  const encyclopediaEntry = bag.encyclopediaId
+    ? data.encyclopedia.find((c) => c.id === bag.encyclopediaId)
     : undefined
   const store = data.stores.get(bag.storeNumber)
-  const design = catalogEntry ? DESIGN_NOTES[catalogEntry.id] ?? {} : {}
+  const design = encyclopediaEntry ? DESIGN_NOTES[encyclopediaEntry.id] ?? {} : {}
 
-  return <BagView bag={bag} catalogEntry={catalogEntry} store={store} design={design} />
+  return <BagView bag={bag} encyclopediaEntry={encyclopediaEntry} store={store} design={design} />
 }
 
 /* ──────────────────────── VIEW ──────────────────────── */
 
 function BagView({
   bag,
-  catalogEntry,
+  encyclopediaEntry,
   store,
   design,
 }: {
-  bag: CollectionBag
-  catalogEntry: CatalogBag | undefined
+  bag: PantryBag
+  encyclopediaEntry: EncyclopediaBag | undefined
   store: Store | undefined
   design: DesignNotes
 }) {
@@ -83,18 +86,18 @@ function BagView({
   const activeUrl = angleMap[angle] ? photoUrl(angleMap[angle]!) : undefined
   const activeCaption = design.angleCaptions?.[angle]
 
-  const displayName = catalogEntry?.region ?? catalogEntry?.name ?? bag.name ?? bag.slug
+  const displayName = encyclopediaEntry?.region ?? encyclopediaEntry?.name ?? bag.name ?? bag.slug
 
   return (
     <main className="relative min-h-screen bg-[var(--tj-cream)] text-[var(--tj-ink)] overflow-hidden">
       <CrumpleOverlay />
 
       <div className="relative z-10 max-w-4xl mx-auto px-6 py-12 md:py-16">
-        <TopNav />
+        <TopNav backTo="/pantry" backLabel="The Pantry" />
 
         <header className="text-center mt-2">
           <p className="font-[var(--tj-body)] tracking-[0.4em] text-xs uppercase font-semibold border border-[var(--tj-ink)] inline-block px-4 py-1.5 mb-6">
-            {catalogTypeLabel(catalogEntry)}
+            {encyclopediaTypeLabel(encyclopediaEntry)}
           </p>
           <h1
             className="text-[var(--tj-red)] text-6xl md:text-8xl leading-none"
@@ -111,12 +114,17 @@ function BagView({
             </p>
           )}
 
-          {catalogEntry && (
+          <MaterialChips
+            materials={encyclopediaEntry?.materials}
+            className="justify-center mt-6"
+          />
+
+          {encyclopediaEntry && (
             <Link
-              to={`/catalog/${catalogEntry.id}`}
+              to={`/encyclopedia/${encyclopediaEntry.id}`}
               className="inline-flex items-center gap-2 mt-6 font-[var(--tj-body)] tracking-[0.22em] text-[0.65rem] uppercase font-semibold underline-offset-4 hover:underline opacity-75 hover:opacity-100"
             >
-              View catalog entry
+              View encyclopedia entry
               <span aria-hidden>→</span>
             </Link>
           )}
@@ -231,14 +239,15 @@ function BagView({
           to   { opacity: 1; transform: translateY(0); }
         }
       `}</style>
+      <Footer />
     </main>
   )
 }
 
 /* ──────────────────────── HELPERS ──────────────────────── */
 
-function catalogTypeLabel(entry: CatalogBag | undefined): string {
-  if (!entry) return 'Uncataloged Bag'
+function encyclopediaTypeLabel(entry: EncyclopediaBag | undefined): string {
+  if (!entry) return 'Unencyclopediaed Bag'
   if (entry.type === 'state') return `${entry.state ?? 'State'} · State Bag`
   if (entry.type === 'special') return 'Special Edition'
   if (entry.type === 'seasonal') return 'Seasonal Bag'
@@ -266,33 +275,6 @@ function formatDate(iso: string): string {
 
 /* ──────────────────────── PIECES ──────────────────────── */
 
-function TopNav() {
-  return (
-    <nav className="mb-10 flex items-center justify-between flex-wrap gap-3">
-      <Link
-        to="/collection"
-        className="font-[var(--tj-body)] font-semibold tracking-[0.25em] text-[0.7rem] uppercase border-2 border-[var(--tj-ink)] px-4 py-2 hover:bg-[var(--tj-ink)] hover:text-[var(--tj-cream)] transition-colors"
-      >
-        ← The Collection
-      </Link>
-      <div className="flex items-center gap-3">
-        <Link
-          to="/catalog"
-          className="font-[var(--tj-body)] font-semibold tracking-[0.25em] text-[0.7rem] uppercase opacity-70 hover:opacity-100 underline-offset-4 hover:underline"
-        >
-          Catalog
-        </Link>
-        <Link
-          to="/about"
-          className="font-[var(--tj-body)] font-semibold tracking-[0.25em] text-[0.7rem] uppercase opacity-70 hover:opacity-100 underline-offset-4 hover:underline"
-        >
-          About
-        </Link>
-      </div>
-    </nav>
-  )
-}
-
 function LoadingState() {
   return (
     <main className="relative min-h-screen bg-[var(--tj-cream)] text-[var(--tj-ink)] flex items-center justify-center">
@@ -306,7 +288,7 @@ function NotLogged({ slug }: { slug?: string }) {
     <main className="relative min-h-screen bg-[var(--tj-cream)] text-[var(--tj-ink)] overflow-hidden">
       <CrumpleOverlay />
       <div className="relative z-10 max-w-2xl mx-auto px-6 py-16 text-center">
-        <TopNav />
+        <TopNav backTo="/pantry" backLabel="The Pantry" />
         <p className="font-[var(--tj-body)] tracking-[0.4em] text-xs uppercase font-semibold border border-[var(--tj-ink)] inline-block px-4 py-1.5 mb-6">
           Not Yet Logged
         </p>
@@ -317,13 +299,13 @@ function NotLogged({ slug }: { slug?: string }) {
           {slug ?? 'Unknown Bag'}
         </h1>
         <p className="italic mt-6 opacity-70">
-          Parker hasn’t added this bag to the collection yet. Browse the{' '}
-          <Link to="/collection" className="underline underline-offset-4">
-            collection
+          Parker hasn’t added this bag to the pantry yet. Browse the{' '}
+          <Link to="/pantry" className="underline underline-offset-4">
+            pantry
           </Link>{' '}
           to see what’s logged so far, or{' '}
-          <Link to="/catalog" className="underline underline-offset-4">
-            the catalog
+          <Link to="/encyclopedia" className="underline underline-offset-4">
+            the encyclopedia
           </Link>{' '}
           for every Trader Joe’s bag we know about.
         </p>
@@ -332,33 +314,25 @@ function NotLogged({ slug }: { slug?: string }) {
   )
 }
 
-/* Lighter crumple overlay, same as Gallery / Catalog. */
+/* Lighter crumple overlay, same as Pantry / Encyclopedia. */
 function CrumpleOverlay() {
   return (
     <svg
       aria-hidden
       xmlns="http://www.w3.org/2000/svg"
       preserveAspectRatio="none"
-      className="absolute inset-0 w-full h-full pointer-events-none mix-blend-multiply opacity-30"
+      className="absolute inset-0 w-full h-full pointer-events-none mix-blend-multiply opacity-50"
     >
       <defs>
         <filter id="paperCrumpleBagDetail" x="0" y="0" width="100%" height="100%">
-          <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="3" seed="9">
-            <animate
-              attributeName="seed"
-              values="9;21;13;26;9"
-              keyTimes="0;0.25;0.5;0.75;1"
-              dur="60s"
-              repeatCount="indefinite"
-            />
-          </feTurbulence>
+          <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="3" seed="9" />
           <feColorMatrix
             type="matrix"
             values="
               0 0 0 0 0.20
               0 0 0 0 0.14
               0 0 0 0 0.08
-              0 0 0 0.28 0"
+              0 0 0 0.40 0"
           />
         </filter>
       </defs>
