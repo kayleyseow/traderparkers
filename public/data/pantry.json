@@ -81,5 +81,16 @@
       "/pantry-photos/az-2026-05-15-f8b96a.jpeg",
       "/pantry-photos/az-2026-05-15-f4ec9c.jpeg"
     ]
+  },
+  {
+    "slug": "ky-2026-05-15",
+    "encyclopediaId": "ky",
+    "name": "Kentucky",
+    "storeNumber": "66",
+    "dateAcquired": "2026-05-15",
+    "memory": "testing from safari on iOS number two",
+    "photos": [
+      "/pantry-photos/ky-2026-05-15-13166f.jpeg"
+    ]
   }
 ]
