@@ -1,6 +1,6 @@
 /**
  * Shared helpers used by both /bags/:slug (Parker's photos) and
- * /catalog/:id (reference photos) — angle types, filename-to-angle
+ * /encyclopedia/:id (reference photos) — angle types, filename-to-angle
  * inference, URL building, and the per-bag design-notes lookup.
  */
 
@@ -46,8 +46,8 @@ export function photoUrl(path: string): string {
 
 /* ───────────────── PER-BAG DESIGN NOTES ─────────────────
    Subtitle, blurb, and per-angle captions describe the *bag design*
-   (catalog-level info, not collection-level). Keyed by CatalogBag.id.
-   Will likely migrate into catalog.json once we know the shape we want,
+   (encyclopedia-level info, not pantry-level). Keyed by EncyclopediaBag.id.
+   Will likely migrate into encyclopedia.json once we know the shape we want,
    but living here keeps the schema stable while iterating. */
 
 export type DesignNotes = {
@@ -312,11 +312,11 @@ export const DESIGN_NOTES: Record<string, DesignNotes> = {
   nh: {
     subtitle: 'Live Free or Die',
     blurb:
-      'A five-panel New Hampshire autumn. The front pairs a giant red apple with "New Hampshire" in script — peak orchard country. The back drifts into fall foliage: maple leaves in every shade of red and orange. The side panels carry the state motto "Live Free or Die" against purple lilacs (the state flower) on one side, and a quieter autumn arrangement on the other. The underside is a recipe card "from the kitchen of Trader Joe’s" on a bed of fallen leaves.',
+      'A five-panel New Hampshire autumn. The front pairs a giant red apple with "New Hampshire" in script — peak orchard country. The back stands the state motto "Live Free or Die" against purple lilacs, the state flower. The side panels drift into fall foliage — maple leaves in every shade of red and orange on one side, a quieter autumn arrangement on the other. The underside is a recipe card "from the kitchen of Trader Joe’s" on a bed of fallen leaves.',
     angleCaptions: {
       front: 'New Hampshire apple — bright red and orchard-perfect',
-      back: 'Fall foliage — maple leaves in every shade of New England autumn',
-      left: '"Live Free or Die" — the state motto with purple lilacs, the state flower',
+      back: '"Live Free or Die" — the state motto with purple lilacs, the state flower',
+      left: 'Fall foliage — maple leaves in every shade of New England autumn',
       right: 'Autumn arrangement — lilacs and falling leaves',
       bottom: 'Recipe from the kitchen of Trader Joe’s — autumn leaves underneath',
     },
@@ -372,12 +372,12 @@ export const DESIGN_NOTES: Record<string, DesignNotes> = {
   oh: {
     subtitle: 'the Buckeye State',
     blurb:
-      'A five-panel Ohio mixtape. The front sets a Trader Joe’s UFO above an orchard of apples — Johnny Appleseed country with a wink. The back hands the cardinal, Ohio’s state bird, a guitar: "Let’s Rock," the Cleveland Rock and Roll Hall salute. The side panels stack OHIO in vertical letters with another cardinal on one side, and a Wright Brothers airplane with athletes mid-motion on the other — the birthplace of aviation. The underside scripts "the Buckeye State" over buckeye nuts and leaves.',
+      'A five-panel Ohio mixtape. The front sets a Trader Joe’s UFO above an orchard of apples — Johnny Appleseed country with a wink. The back lifts a Wright Brothers airplane with athletes mid-motion — Ohio, the birthplace of aviation. The side panels stack OHIO in vertical letters with one cardinal on one side, and the rock-and-roll cardinal mid-strum on the other — "Let’s Rock," the Cleveland Rock and Roll Hall salute. The underside scripts "the Buckeye State" over buckeye nuts and leaves.',
     angleCaptions: {
       front: 'Trader Joe’s UFO over an apple orchard — Johnny Appleseed country with a twist',
-      back: 'Cardinal with a guitar — "Let’s Rock," the Cleveland Rock and Roll Hall salute',
+      back: 'Wright Brothers airplane — Ohio, the birthplace of aviation',
       left: 'OHIO vertical — cardinal, the state bird, in red',
-      right: 'Wright Brothers airplane — Ohio, the birthplace of aviation',
+      right: 'Cardinal with a guitar — "Let’s Rock," the Cleveland Rock and Roll Hall salute',
       bottom: '"the Buckeye State" — buckeye nuts and leaves in script',
     },
   },
