@@ -44,3 +44,7 @@ src/assets/icons/*_temp.svg
 
 # Illustrator source files — large binaries, not meant for git.
 trader_parkers_bag_logo.ai
+
+# Scraped photo staging — populated by `npm run scrape:poshmark`, consumed by
+# the picker. Discard once final photos land in `public/bags/<slug>/`.
+staging/
