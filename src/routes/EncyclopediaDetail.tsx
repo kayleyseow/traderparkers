@@ -1,6 +1,6 @@
 import { useEffect, useMemo, useState } from 'react'
 import { Link, useParams } from 'react-router'
-import type { EncyclopediaBag, PantryBag } from '../types'
+import type { EncyclopediaBag, EncyclopediaVariant, PantryBag } from '../types'
 import {
   ANGLE_LABEL,
   ANGLE_ORDER,
@@ -12,6 +12,8 @@ import {
 import TopNav from '../TopNav'
 import Footer from '../Footer'
 import MaterialChips from '../MaterialChips'
+import { US_LOCALES } from '../usLocales'
+import { SPECIAL_MATERIAL_GROUPS } from './encyclopedia/sections'
 
 const BASE = import.meta.env.BASE_URL
 
@@ -40,14 +42,46 @@ export default function EncyclopediaDetail() {
 
   const ownedBag = data.pantry.find((b) => b.encyclopediaId === entry.id)
 
-  // Prev/next within the state-type subset only (the "locales").
-  // Non-state entries get no prev/next nav.
-  const locales = data.encyclopedia.filter((c) => c.type === 'state')
-  const idx = locales.findIndex((c) => c.id === entry.id)
-  const prev = idx > 0 ? locales[idx - 1] : undefined
-  const next = idx >= 0 && idx < locales.length - 1 ? locales[idx + 1] : undefined
+  const siblings = sectionSiblings(data.encyclopedia, entry)
+  const idx = siblings.findIndex((c) => c.id === entry.id)
+  const prev = idx > 0 ? siblings[idx - 1] : undefined
+  const next = idx >= 0 && idx < siblings.length - 1 ? siblings[idx + 1] : undefined
 
   return <EncyclopediaView entry={entry} ownedBag={ownedBag} prev={prev} next={next} />
+}
+
+/**
+ * Returns the entry's section-mates in the same order the gallery view
+ * renders them — so prev/next on a detail page walks the section linearly.
+ * State entries follow US_LOCALES order; special entries follow the
+ * material grouping (poly → jute → canvas → other); seasonal/standard
+ * follow encyclopedia.json array order.
+ */
+function sectionSiblings(
+  all: EncyclopediaBag[],
+  entry: EncyclopediaBag,
+): EncyclopediaBag[] {
+  if (entry.type === 'state') {
+    const states = all.filter((c) => c.type === 'state')
+    const stateOrder = new Map(US_LOCALES.map((l, i) => [l.code, i]))
+    return states.sort((a, b) => {
+      const ai = stateOrder.get(a.stateCode ?? '') ?? Number.MAX_SAFE_INTEGER
+      const bi = stateOrder.get(b.stateCode ?? '') ?? Number.MAX_SAFE_INTEGER
+      if (ai !== bi) return ai - bi
+      return all.indexOf(a) - all.indexOf(b)
+    })
+  }
+  const sameType = all.filter((c) => c.type === entry.type)
+  if (entry.type !== 'special') return sameType
+  const matIndex = new Map(
+    SPECIAL_MATERIAL_GROUPS.map((g, i) => [g.material as string, i]),
+  )
+  const rankOf = (b: EncyclopediaBag) =>
+    matIndex.get(b.materials?.[0] ?? '') ?? Number.MAX_SAFE_INTEGER
+  return sameType.sort((a, b) => {
+    const diff = rankOf(a) - rankOf(b)
+    return diff !== 0 ? diff : all.indexOf(a) - all.indexOf(b)
+  })
 }
 
 /* ──────────────────────── VIEW ──────────────────────── */
@@ -65,30 +99,76 @@ function EncyclopediaView({
 }) {
   const design = DESIGN_NOTES[entry.id] ?? {}
 
-  // Encyclopedia reference photos first; fall back to the single referencePhoto.
+  const variants = entry.variants ?? []
+  const [activeVariantId, setActiveVariantId] = useState<string | undefined>(
+    variants[0]?.id,
+  )
+  const activeVariant: EncyclopediaVariant | undefined = useMemo(
+    () => variants.find((v) => v.id === activeVariantId),
+    [variants, activeVariantId],
+  )
+
+  const colorways = activeVariant?.colorways ?? []
+  const hasColorways = colorways.length > 0
+  const [activeColorwayId, setActiveColorwayId] = useState<string | undefined>(
+    colorways[0]?.id,
+  )
+  const activeColorway = useMemo(
+    () => colorways.find((c) => c.id === activeColorwayId) ?? colorways[0],
+    [colorways, activeColorwayId],
+  )
+
+  // When the user switches variants, reset to that variant's first colorway.
+  useEffect(() => {
+    setActiveColorwayId(colorways[0]?.id)
+  }, [activeVariantId, colorways])
+
   const photos = useMemo(() => {
+    if (hasColorways) return colorways.map((c) => c.photo)
+    if (activeVariant?.referencePhotos?.length) return activeVariant.referencePhotos
     if (entry.referencePhotos?.length) return entry.referencePhotos
     if (entry.referencePhoto) return [entry.referencePhoto]
     return []
-  }, [entry.referencePhotos, entry.referencePhoto])
+  }, [hasColorways, colorways, activeVariant, entry.referencePhotos, entry.referencePhoto])
 
   const angleMap = useMemo(() => inferAngleMap(photos), [photos])
-  const availableAngles = ANGLE_ORDER.filter((a) => angleMap[a])
-  const hasAngleData = availableAngles.length > 0
+  const availableAngles = useMemo(
+    () => ANGLE_ORDER.filter((a) => angleMap[a]),
+    [angleMap],
+  )
+  const hasAngleData = !hasColorways && availableAngles.length > 0
   const initialAngle: Angle = availableAngles[0] ?? 'front'
   const [angle, setAngle] = useState<Angle>(initialAngle)
+
+  useEffect(() => {
+    if (availableAngles.length > 0 && !availableAngles.includes(angle)) {
+      setAngle(availableAngles[0])
+    }
+  }, [availableAngles, angle])
 
   const cycleAngle = (dir: 1 | -1) => {
     if (availableAngles.length < 2) return
     const i = availableAngles.indexOf(angle)
-    const next = (i + dir + availableAngles.length) % availableAngles.length
-    setAngle(availableAngles[next])
+    const nextIdx = (i + dir + availableAngles.length) % availableAngles.length
+    setAngle(availableAngles[nextIdx])
   }
 
-  // For photos that don't follow the angle-naming convention (single
-  // listing-style photo), just show the first one.
-  const fallbackPhoto = !hasAngleData && photos.length > 0 ? photos[0] : undefined
-  const activeUrl = hasAngleData
+  const cycleColorway = (dir: 1 | -1) => {
+    if (colorways.length < 2) return
+    const i = colorways.findIndex((c) => c.id === activeColorway?.id)
+    const nextIdx = (i + dir + colorways.length) % colorways.length
+    setActiveColorwayId(colorways[nextIdx].id)
+  }
+
+  // When colorways are present, the active photo is the active colorway's photo.
+  // Otherwise fall back to angle-driven photo (or single-photo fallback).
+  const fallbackPhoto =
+    !hasAngleData && !hasColorways && photos.length > 0 ? photos[0] : undefined
+  const activeUrl = hasColorways
+    ? activeColorway
+      ? photoUrl(activeColorway.photo)
+      : undefined
+    : hasAngleData
     ? angleMap[angle]
       ? photoUrl(angleMap[angle]!)
       : undefined
@@ -97,7 +177,32 @@ function EncyclopediaView({
     : undefined
   const activeCaption = hasAngleData ? design.angleCaptions?.[angle] : undefined
 
+  const activePhotoSources =
+    activeVariant?.referencePhotoSources ?? entry.referencePhotoSources
+  const activeEntrySource = activeVariant?.source ?? entry.source
+
+  // Per-angle source (from the picker) takes precedence; fall back to the
+  // bag's single `source` field for older entries that pre-date per-angle.
+  const activeSourceUrl = hasColorways
+    ? activeColorway?.photoSource ?? activeEntrySource
+    : hasAngleData
+    ? activePhotoSources?.[angle] ?? activeEntrySource
+    : activeEntrySource
+
+  // Deduped list of every Poshmark listing the photos came from, surfaced in
+  // the metadata dl so visitors can click through to the originals.
+  const uniquePhotoSources = useMemo(() => {
+    const fromAngles = Object.values(activePhotoSources ?? {}).filter(
+      (u): u is string => Boolean(u),
+    )
+    const fromColorways = colorways
+      .map((c) => c.photoSource)
+      .filter((u): u is string => Boolean(u))
+    return Array.from(new Set([...fromAngles, ...fromColorways]))
+  }, [activePhotoSources, colorways])
+
   const displayName = entry.region ?? entry.name
+  const displayYear = activeVariant?.year ?? entry.year
 
   return (
     <main className="relative min-h-screen bg-[var(--tj-cream)] text-[var(--tj-ink)] overflow-hidden">
@@ -105,6 +210,13 @@ function EncyclopediaView({
 
       <div className="relative z-10 max-w-4xl mx-auto px-6 pt-6 pb-12 md:pt-8 md:pb-16">
         <TopNav />
+
+        <Link
+          to="/encyclopedia"
+          className="inline-flex items-center gap-2 mt-6 font-[var(--tj-body)] tracking-[0.22em] text-[0.65rem] uppercase font-semibold opacity-65 hover:opacity-100 hover:text-[var(--tj-red)] transition-colors"
+        >
+          <span aria-hidden>←</span> Back to the Encyclopedia
+        </Link>
 
         <header className="text-center mt-2">
           <p className="font-[var(--tj-body)] tracking-[0.4em] text-xs uppercase font-semibold border border-[var(--tj-ink)] inline-block px-4 py-1.5 mb-6">
@@ -130,6 +242,38 @@ function EncyclopediaView({
           <div className="mx-auto mt-6 h-px w-32 bg-[var(--tj-ink)]/40" />
         </header>
 
+        {variants.length > 1 && (
+          <section className="mt-10 flex flex-col items-center gap-2">
+            <p className="font-[var(--tj-body)] tracking-[0.25em] text-[0.6rem] uppercase font-semibold opacity-60">
+              Versions
+            </p>
+            <div className="flex justify-center gap-2 flex-wrap">
+              {variants.map((v) => {
+                const isActive = v.id === activeVariantId
+                return (
+                  <button
+                    key={v.id}
+                    type="button"
+                    onClick={() => setActiveVariantId(v.id)}
+                    className={`font-[var(--tj-body)] font-semibold tracking-[0.18em] text-[0.7rem] uppercase border-2 border-[var(--tj-ink)] px-3.5 py-1.5 transition-colors ${
+                      isActive
+                        ? 'bg-[var(--tj-ink)] text-[var(--tj-cream)]'
+                        : 'bg-transparent text-[var(--tj-ink)] hover:bg-[var(--tj-ink)]/10'
+                    }`}
+                  >
+                    {v.name}
+                  </button>
+                )
+              })}
+            </div>
+            {activeVariant?.description && (
+              <p className="italic text-sm opacity-70 mt-1 max-w-md text-center leading-relaxed">
+                {activeVariant.description}
+              </p>
+            )}
+          </section>
+        )}
+
         {/* Photo viewer (only renders when we have at least one reference photo) */}
         {activeUrl ? (
           <section className="mt-10">
@@ -139,27 +283,28 @@ function EncyclopediaView({
             >
               <PanelGrain />
               <img
-                key={hasAngleData ? angle : 'single'}
+                key={`${activeVariantId ?? 'none'}-${hasColorways ? activeColorway?.id ?? 'cw' : hasAngleData ? angle : 'single'}`}
                 src={activeUrl}
-                alt={`${displayName} bag${hasAngleData ? `, ${ANGLE_LABEL[angle].toLowerCase()} view` : ''}`}
+                alt={`${displayName} bag${hasColorways && activeColorway ? `, ${activeColorway.name} colorway` : hasAngleData ? `, ${ANGLE_LABEL[angle].toLowerCase()} view` : ''}`}
                 className="relative z-10 w-full h-full object-contain p-6 animate-[bagFade_0.35s_ease]"
                 draggable={false}
               />
 
-              {hasAngleData && availableAngles.length > 1 && (
+              {((hasAngleData && availableAngles.length > 1) ||
+                (hasColorways && colorways.length > 1)) && (
                 <>
                   <button
                     type="button"
-                    onClick={() => cycleAngle(-1)}
-                    aria-label="Previous view"
+                    onClick={() => (hasColorways ? cycleColorway(-1) : cycleAngle(-1))}
+                    aria-label={hasColorways ? 'Previous colorway' : 'Previous view'}
                     className="absolute z-20 top-1/2 left-2 -translate-y-1/2 w-9 h-12 flex items-center justify-center bg-[var(--tj-ink)]/75 text-[var(--tj-cream)] hover:bg-[var(--tj-ink)] transition-colors text-xl border-2 border-[var(--tj-ink)] leading-none"
                   >
                     ‹
                   </button>
                   <button
                     type="button"
-                    onClick={() => cycleAngle(1)}
-                    aria-label="Next view"
+                    onClick={() => (hasColorways ? cycleColorway(1) : cycleAngle(1))}
+                    aria-label={hasColorways ? 'Next colorway' : 'Next view'}
                     className="absolute z-20 top-1/2 right-2 -translate-y-1/2 w-9 h-12 flex items-center justify-center bg-[var(--tj-ink)]/75 text-[var(--tj-cream)] hover:bg-[var(--tj-ink)] transition-colors text-xl border-2 border-[var(--tj-ink)] leading-none"
                   >
                     ›
@@ -195,6 +340,42 @@ function EncyclopediaView({
                 })}
               </div>
             )}
+
+            {hasColorways && colorways.length > 1 && (
+              <div className="flex justify-center gap-2 mt-5 flex-wrap">
+                {colorways.map((c) => {
+                  const isActive = c.id === activeColorway?.id
+                  return (
+                    <button
+                      key={c.id}
+                      type="button"
+                      onClick={() => setActiveColorwayId(c.id)}
+                      className={`font-[var(--tj-body)] font-semibold tracking-[0.2em] text-[0.65rem] uppercase border-2 border-[var(--tj-ink)] px-3 py-1.5 transition-colors ${
+                        isActive
+                          ? 'bg-[var(--tj-ink)] text-[var(--tj-cream)]'
+                          : 'bg-transparent text-[var(--tj-ink)] hover:bg-[var(--tj-ink)]/10'
+                      }`}
+                    >
+                      {c.name}
+                    </button>
+                  )
+                })}
+              </div>
+            )}
+
+            {activeSourceUrl && (
+              <p className="text-center mt-4 text-[0.7rem] tracking-wide opacity-50">
+                Photo via{' '}
+                <a
+                  href={activeSourceUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="underline underline-offset-2 hover:opacity-100"
+                >
+                  {hostnameFromUrl(activeSourceUrl)} ↗
+                </a>
+              </p>
+            )}
           </section>
         ) : (
           <section className="mt-10 text-center">
@@ -204,12 +385,12 @@ function EncyclopediaView({
             >
               <p className="font-[var(--tj-body)] italic opacity-60 px-6 text-sm">
                 No reference photo on file yet.{' '}
-                {entry.source && (
+                {activeEntrySource && (
                   <>
                     <br />
                     See{' '}
                     <a
-                      href={entry.source}
+                      href={activeEntrySource}
                       target="_blank"
                       rel="noreferrer"
                       className="underline underline-offset-4"
@@ -245,28 +426,54 @@ function EncyclopediaView({
                   <dd>{entry.state}{entry.region ? ` · ${entry.region}` : ''}</dd>
                 </div>
               )}
-              {entry.year && (
+              {displayYear && (
                 <div className="flex gap-3">
                   <dt className="opacity-60 min-w-[5rem]">Released</dt>
-                  <dd>{entry.year}</dd>
+                  <dd>{displayYear}</dd>
+                </div>
+              )}
+              {activeVariant && (
+                <div className="flex gap-3">
+                  <dt className="opacity-60 min-w-[5rem]">Version</dt>
+                  <dd>{activeVariant.name}</dd>
                 </div>
               )}
               <div className="flex gap-3">
                 <dt className="opacity-60 min-w-[5rem]">Encyclopedia ID</dt>
                 <dd className="font-mono text-sm">{entry.id}</dd>
               </div>
-              {entry.source && (
+              {activeEntrySource && (
                 <div className="flex gap-3">
                   <dt className="opacity-60 min-w-[5rem]">Source</dt>
                   <dd>
                     <a
-                      href={entry.source}
+                      href={activeEntrySource}
                       target="_blank"
                       rel="noreferrer"
                       className="underline underline-offset-4 break-all"
                     >
                       reference listing
                     </a>
+                  </dd>
+                </div>
+              )}
+              {uniquePhotoSources.length > 0 && (
+                <div className="flex gap-3">
+                  <dt className="opacity-60 min-w-[5rem]">
+                    Photo source{uniquePhotoSources.length > 1 ? 's' : ''}
+                  </dt>
+                  <dd className="space-y-1">
+                    {uniquePhotoSources.map((url) => (
+                      <a
+                        key={url}
+                        href={url}
+                        target="_blank"
+                        rel="noreferrer"
+                        className="block underline underline-offset-4"
+                      >
+                        {listingLabelFromUrl(url)} ↗
+                      </a>
+                    ))}
                   </dd>
                 </div>
               )}
@@ -322,14 +529,6 @@ function EncyclopediaView({
           </nav>
         )}
 
-        <footer className="mt-10 pt-6 border-t border-[var(--tj-ink)]/30 flex items-center justify-between font-[var(--tj-body)] tracking-[0.22em] font-semibold text-[0.65rem] uppercase opacity-75 flex-wrap gap-2">
-          <Link to="/encyclopedia" className="underline underline-offset-4 hover:opacity-100">
-            ← Back to the encyclopedia
-          </Link>
-          {entry.type !== 'state' && (
-            <span>{encyclopediaTypeLabel(entry)}</span>
-          )}
-        </footer>
       </div>
 
       <style>{`
@@ -344,6 +543,23 @@ function EncyclopediaView({
 }
 
 /* ──────────────────────── PIECES ──────────────────────── */
+
+function hostnameFromUrl(url: string): string {
+  try {
+    return new URL(url).hostname.replace(/^www\./, '')
+  } catch {
+    return url
+  }
+}
+
+function listingLabelFromUrl(url: string): string {
+  // Poshmark URLs end in a 24-hex listing id; show as "poshmark.com / 6a0534…"
+  // so users can tell two listings apart at a glance.
+  const host = hostnameFromUrl(url)
+  const id = url.match(/-?([a-f0-9]{24})(?:\/?$)/i)?.[1]
+  if (id) return `${host} / ${id.slice(0, 8)}…`
+  return host
+}
 
 function encyclopediaTypeLabel(entry: EncyclopediaBag): string {
   if (entry.type === 'state') return `${entry.state ?? 'State'} · State Bag`

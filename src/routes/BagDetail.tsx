@@ -12,6 +12,7 @@ import {
 import TopNav from '../TopNav'
 import Footer from '../Footer'
 import MaterialChips from '../MaterialChips'
+import StoreChip from '../StoreChip'
 
 const BASE = import.meta.env.BASE_URL
 
@@ -93,145 +94,139 @@ function BagView({
     <main className="relative min-h-screen bg-[var(--tj-cream)] text-[var(--tj-ink)] overflow-hidden">
       <CrumpleOverlay />
 
-      <div className="relative z-10 max-w-4xl mx-auto px-6 pt-6 pb-12 md:pt-8 md:pb-16">
+      <div className="relative z-10 max-w-5xl mx-auto px-6 pt-6 pb-12 md:pt-8 md:pb-16">
         <TopNav />
 
-        <header className="text-center mt-2">
-          <p className="font-[var(--tj-body)] tracking-[0.4em] text-xs uppercase font-semibold border border-[var(--tj-ink)] inline-block px-4 py-1.5 mb-6">
-            {encyclopediaTypeLabel(encyclopediaEntry)}
-          </p>
-          <h1
-            className="text-[var(--tj-red)] text-6xl md:text-8xl leading-none"
-            style={{ fontFamily: 'var(--tj-script)' }}
-          >
-            {displayName}
-          </h1>
-          {design.subtitle && (
-            <p
-              className="text-[var(--tj-red)] text-3xl md:text-5xl leading-none opacity-90 mt-2"
-              style={{ fontFamily: 'var(--tj-script)' }}
+        {/* Back to pantry — kraft microcopy, quiet but obvious. Sits above the
+            two-column layout so the journal page feels like a stop along a
+            path, not a destination in itself. */}
+        <Link
+          to="/pantry"
+          className="inline-flex items-center gap-2 mt-6 font-[var(--tj-body)] tracking-[0.22em] text-[0.65rem] uppercase font-semibold opacity-65 hover:opacity-100 hover:text-[var(--tj-red)] transition-colors"
+        >
+          <span aria-hidden>←</span> Back to the Pantry
+        </Link>
+
+        {/* Journal layout: photo column on the left, Parker's-side story on the
+            right. Stacks on mobile. Deliberately diverges from the encyclopedia
+            page — no big poetic subtitle, no "about this bag" blurb. */}
+        <div className="grid md:grid-cols-2 gap-10 md:gap-14 mt-6 items-start">
+          {/* LEFT — photo viewer */}
+          <section>
+            <div
+              className="relative mx-auto bg-[var(--tj-cream-dark)] border-2 border-[var(--tj-ink)] overflow-hidden"
+              style={{ aspectRatio: '4 / 5', maxWidth: '440px' }}
             >
-              {design.subtitle}
-            </p>
-          )}
+              <PanelGrain />
+              {activeUrl ? (
+                <img
+                  key={idx}
+                  src={activeUrl}
+                  alt={`${displayName} bag, ${active.label.toLowerCase()}`}
+                  className="relative z-10 w-full h-full object-contain p-6 animate-[bagFade_0.35s_ease]"
+                  draggable={false}
+                />
+              ) : (
+                <div className="relative z-10 w-full h-full flex items-center justify-center text-[var(--tj-ink)]/30 text-4xl">
+                  ✦
+                </div>
+              )}
 
-          <MaterialChips
-            materials={encyclopediaEntry?.materials}
-            className="justify-center mt-6"
-          />
+              {slides.length > 1 && (
+                <>
+                  <button
+                    type="button"
+                    onClick={() => cycle(-1)}
+                    aria-label="Previous photo"
+                    className="absolute z-20 top-1/2 left-2 -translate-y-1/2 w-9 h-12 flex items-center justify-center bg-[var(--tj-ink)]/75 text-[var(--tj-cream)] hover:bg-[var(--tj-ink)] transition-colors text-xl border-2 border-[var(--tj-ink)] leading-none"
+                  >
+                    ‹
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => cycle(1)}
+                    aria-label="Next photo"
+                    className="absolute z-20 top-1/2 right-2 -translate-y-1/2 w-9 h-12 flex items-center justify-center bg-[var(--tj-ink)]/75 text-[var(--tj-cream)] hover:bg-[var(--tj-ink)] transition-colors text-xl border-2 border-[var(--tj-ink)] leading-none"
+                  >
+                    ›
+                  </button>
+                </>
+              )}
+            </div>
 
-          {encyclopediaEntry && (
-            <Link
-              to={`/encyclopedia/${encyclopediaEntry.id}`}
-              className="inline-flex items-center gap-2 mt-6 font-[var(--tj-body)] tracking-[0.22em] text-[0.65rem] uppercase font-semibold underline-offset-4 hover:underline opacity-75 hover:opacity-100"
-            >
-              View encyclopedia entry
-              <span aria-hidden>→</span>
-            </Link>
-          )}
-
-          <div className="mx-auto mt-6 h-px w-32 bg-[var(--tj-ink)]/40" />
-        </header>
-
-        {/* Photo viewer */}
-        <section className="mt-10">
-          <div
-            className="relative mx-auto bg-[var(--tj-cream-dark)] border-2 border-[var(--tj-ink)] overflow-hidden"
-            style={{ aspectRatio: '4 / 5', maxWidth: '440px' }}
-          >
-            <PanelGrain />
-            {activeUrl ? (
-              <img
-                key={idx}
-                src={activeUrl}
-                alt={`${displayName} bag, ${active.label.toLowerCase()}`}
-                className="relative z-10 w-full h-full object-contain p-6 animate-[bagFade_0.35s_ease]"
-                draggable={false}
-              />
-            ) : (
-              <div className="relative z-10 w-full h-full flex items-center justify-center text-[var(--tj-ink)]/30 text-4xl">
-                ✦
-              </div>
+            {activeCaption && (
+              <p className="text-center italic mt-4 mx-auto max-w-sm opacity-80 text-sm leading-relaxed">
+                {activeCaption}
+              </p>
             )}
 
             {slides.length > 1 && (
-              <>
-                <button
-                  type="button"
-                  onClick={() => cycle(-1)}
-                  aria-label="Previous photo"
-                  className="absolute z-20 top-1/2 left-2 -translate-y-1/2 w-9 h-12 flex items-center justify-center bg-[var(--tj-ink)]/75 text-[var(--tj-cream)] hover:bg-[var(--tj-ink)] transition-colors text-xl border-2 border-[var(--tj-ink)] leading-none"
-                >
-                  ‹
-                </button>
-                <button
-                  type="button"
-                  onClick={() => cycle(1)}
-                  aria-label="Next photo"
-                  className="absolute z-20 top-1/2 right-2 -translate-y-1/2 w-9 h-12 flex items-center justify-center bg-[var(--tj-ink)]/75 text-[var(--tj-cream)] hover:bg-[var(--tj-ink)] transition-colors text-xl border-2 border-[var(--tj-ink)] leading-none"
-                >
-                  ›
-                </button>
-              </>
+              <div className="flex justify-center gap-2 mt-5 flex-wrap">
+                {slides.map((s, i) => {
+                  const isActive = i === idx
+                  return (
+                    <button
+                      key={s.url}
+                      type="button"
+                      onClick={() => setIdx(i)}
+                      className={`font-[var(--tj-body)] font-semibold tracking-[0.2em] text-[0.65rem] uppercase border-2 border-[var(--tj-ink)] px-3 py-1.5 transition-colors ${
+                        isActive
+                          ? 'bg-[var(--tj-ink)] text-[var(--tj-cream)]'
+                          : 'bg-transparent text-[var(--tj-ink)] hover:bg-[var(--tj-ink)]/10'
+                      }`}
+                    >
+                      {s.label}
+                    </button>
+                  )
+                })}
+              </div>
             )}
-          </div>
+          </section>
 
-          {activeCaption && (
-            <p className="text-center italic mt-4 max-w-sm mx-auto opacity-80 text-sm leading-relaxed">
-              {activeCaption}
-            </p>
-          )}
-
-          {slides.length > 1 && (
-            <div className="flex justify-center gap-2 mt-5 flex-wrap">
-              {slides.map((s, i) => {
-                const isActive = i === idx
-                return (
-                  <button
-                    key={s.url}
-                    type="button"
-                    onClick={() => setIdx(i)}
-                    className={`font-[var(--tj-body)] font-semibold tracking-[0.2em] text-[0.65rem] uppercase border-2 border-[var(--tj-ink)] px-3 py-1.5 transition-colors ${
-                      isActive
-                        ? 'bg-[var(--tj-ink)] text-[var(--tj-cream)]'
-                        : 'bg-transparent text-[var(--tj-ink)] hover:bg-[var(--tj-ink)]/10'
-                    }`}
-                  >
-                    {s.label}
-                  </button>
-                )
-              })}
-            </div>
-          )}
-        </section>
-
-        {/* Story / metadata */}
-        <section className="grid md:grid-cols-2 gap-10 mt-16">
-          {design.blurb && (
-            <div>
-              <h2 className="font-[var(--tj-body)] tracking-[0.3em] text-[0.7rem] uppercase font-bold mb-3 opacity-80">
-                About this bag
-              </h2>
-              <p className="text-sm md:text-base leading-relaxed">{design.blurb}</p>
-            </div>
-          )}
-          {bag.memory && (
-            <div>
-              <h2 className="font-[var(--tj-body)] tracking-[0.3em] text-[0.7rem] uppercase font-bold mb-3 opacity-80">
-                Parker’s note
-              </h2>
-              <p className="italic text-sm md:text-base leading-relaxed">
-                “{bag.memory}”
+          {/* RIGHT — journal-side info */}
+          <section className="flex flex-col gap-7">
+            <header>
+              <p className="font-[var(--tj-body)] tracking-[0.4em] text-xs uppercase font-semibold border border-[var(--tj-ink)] inline-block px-3 py-1 mb-5">
+                {encyclopediaTypeLabel(encyclopediaEntry)}
               </p>
-            </div>
-          )}
-        </section>
 
-        {/* Acquisition strip */}
-        <footer className="mt-14 pt-6 border-t border-[var(--tj-ink)]/30 flex items-center justify-between font-[var(--tj-body)] tracking-[0.22em] font-semibold text-[0.65rem] uppercase opacity-75 flex-wrap gap-2">
-          <span>Acquired {formatDate(bag.dateAcquired)}</span>
-          <span>{storeLabel(store, bag.storeNumber)}</span>
-        </footer>
+              <h1
+                className="text-[var(--tj-red)] text-5xl md:text-6xl leading-none"
+                style={{ fontFamily: 'var(--tj-script)' }}
+              >
+                {displayName}
+              </h1>
+
+              <MaterialChips materials={encyclopediaEntry?.materials} className="mt-5" />
+
+              {encyclopediaEntry && (
+                <Link
+                  to={`/encyclopedia/${encyclopediaEntry.id}`}
+                  className="inline-flex items-center gap-2 mt-5 font-[var(--tj-body)] tracking-[0.22em] text-[0.65rem] uppercase font-semibold underline-offset-4 hover:underline opacity-75 hover:opacity-100"
+                >
+                  View encyclopedia entry
+                  <span aria-hidden>→</span>
+                </Link>
+              )}
+            </header>
+
+            {bag.memory && (
+              <div className="border-t border-[var(--tj-ink)]/30 pt-6">
+                <h2 className="font-[var(--tj-body)] tracking-[0.3em] text-[0.7rem] uppercase font-bold mb-3 opacity-80">
+                  Parker’s note
+                </h2>
+                <p className="italic text-base md:text-lg leading-relaxed">
+                  “{bag.memory}”
+                </p>
+              </div>
+            )}
+
+            <footer className="border-t border-[var(--tj-ink)]/30 pt-6 flex items-start justify-between font-[var(--tj-body)] tracking-[0.22em] font-semibold text-[0.65rem] uppercase opacity-75 flex-wrap gap-3">
+              <span>Acquired {formatDate(bag.dateAcquired)}</span>
+              <StoreChip storeNumber={bag.storeNumber} store={store} />
+            </footer>
+          </section>
+        </div>
       </div>
 
       <style>{`
@@ -262,7 +257,7 @@ function buildSlides(photos: string[], design: DesignNotes): Slide[] {
       caption: design.angleCaptions?.[a],
     }))
   }
-  return photos.map((p, i) => ({ url: photoUrl(p), label: `Photo ${i + 1}` }))
+  return photos.map((p, i) => ({ url: photoUrl(p), label: `${i + 1}` }))
 }
 
 function encyclopediaTypeLabel(entry: EncyclopediaBag | undefined): string {
@@ -271,13 +266,6 @@ function encyclopediaTypeLabel(entry: EncyclopediaBag | undefined): string {
   if (entry.type === 'special') return 'Special Edition'
   if (entry.type === 'seasonal') return 'Seasonal Bag'
   return 'Standard Bag'
-}
-
-function storeLabel(store: Store | undefined, storeNumber: string): string {
-  if (!store) return `Store #${storeNumber}`
-  const city = store.name ?? store.city ?? ''
-  const state = store.state ?? ''
-  return [city, state].filter(Boolean).join(', ')
 }
 
 function formatDate(iso: string): string {

@@ -1,9 +1,13 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router'
-import type { BagType, CategoryVisibility, EncyclopediaBag, PantryBag } from '../types'
-import { DEFAULT_VISIBILITY } from '../types'
+import type { BagType, EncyclopediaBag, PantryBag } from '../types'
 import { US_LOCALES } from '../usLocales'
-import { inferAngleMap, photoUrl } from '../bagPhotos'
+import {
+  ANGLE_ORDER,
+  defaultReferencePhotos,
+  inferAngleMap,
+  photoUrl,
+} from '../bagPhotos'
 import TopNav from '../TopNav'
 import Footer from '../Footer'
 import SuggestForm from './encyclopedia/SuggestForm'
@@ -11,6 +15,8 @@ import DictionaryView from './encyclopedia/DictionaryView'
 import SectionHeader from './encyclopedia/SectionHeader'
 import {
   NON_LOCATION_SECTIONS,
+  SPECIAL_MATERIAL_GROUPS,
+  SPECIAL_OTHER_GROUP,
   STATES_SECTION,
   SUGGEST_SECTION,
 } from './encyclopedia/sections'
@@ -23,7 +29,6 @@ const VIEW_STORAGE_KEY = 'encyclopedia-view'
 export default function Encyclopedia() {
   const [rawEncyclopedia, setRawEncyclopedia] = useState<EncyclopediaBag[] | null>(null)
   const [pantry, setPantry] = useState<PantryBag[]>([])
-  const [visibility, setVisibility] = useState<CategoryVisibility>(DEFAULT_VISIBILITY)
   const [view, setView] = useState<EncyclopediaView>(() => {
     if (typeof window === 'undefined') return 'gallery'
     const stored = localStorage.getItem(VIEW_STORAGE_KEY)
@@ -44,29 +49,11 @@ export default function Encyclopedia() {
         setPantry(col)
       })
       .catch(() => setRawEncyclopedia([]))
-    // Visibility is optional — missing file just means "show everything."
-    fetch(`${BASE}data/visibility.json`)
-      .then((r) => (r.ok ? (r.json() as Promise<CategoryVisibility>) : null))
-      .then((v) => {
-        if (v) setVisibility({ ...DEFAULT_VISIBILITY, ...v })
-      })
-      .catch(() => {
-        /* keep defaults */
-      })
   }, [])
 
-  // Apply category visibility before any downstream grouping/rendering — one
-  // toggle per BagType, mirroring the admin Settings form.
-  const encyclopedia = useMemo(() => {
-    if (rawEncyclopedia === null) return null
-    return rawEncyclopedia.filter((bag) => {
-      if (bag.type === 'state') return visibility.state
-      if (bag.type === 'special') return visibility.special
-      if (bag.type === 'seasonal') return visibility.seasonal
-      if (bag.type === 'standard') return visibility.standard
-      return true
-    })
-  }, [rawEncyclopedia, visibility])
+  // Encyclopedia always shows every bag — the visibility toggle in admin
+  // Settings only affects the Pantry stats row and the Log-a-Bag picker.
+  const encyclopedia = rawEncyclopedia
 
   const ownedByEncyclopediaId = useMemo(() => {
     const map = new Map<string, PantryBag>()
@@ -191,6 +178,18 @@ export default function Encyclopedia() {
                 {NON_LOCATION_SECTIONS.map((group) => {
                   const bags = byType.get(group.type)
                   if (!bags || bags.length === 0) return null
+                  if (group.type === 'special') {
+                    return (
+                      <SpecialSection
+                        key={group.type}
+                        id={group.id}
+                        label={group.label}
+                        blurb={group.blurb}
+                        bags={bags}
+                        ownedByEncyclopediaId={ownedByEncyclopediaId}
+                      />
+                    )
+                  }
                   return (
                     <TypeSection
                       key={group.type}
@@ -224,6 +223,84 @@ export default function Encyclopedia() {
 }
 
 const GALLERY_GRID = 'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4'
+
+function SpecialSection({
+  id,
+  label,
+  blurb,
+  bags,
+  ownedByEncyclopediaId,
+}: {
+  id: string
+  label: string
+  blurb: string
+  bags: EncyclopediaBag[]
+  ownedByEncyclopediaId: Map<string, PantryBag>
+}) {
+  const grouped = useMemo(() => {
+    const buckets = SPECIAL_MATERIAL_GROUPS.map((g) => ({
+      group: g,
+      bags: bags.filter((b) => b.materials?.[0] === g.material),
+    })).filter((b) => b.bags.length > 0)
+    const matchedIds = new Set(buckets.flatMap((b) => b.bags.map((x) => x.id)))
+    const leftover = bags.filter((b) => !matchedIds.has(b.id))
+    return { buckets, leftover }
+  }, [bags])
+
+  return (
+    <section>
+      <SectionHeader id={id} label={label} count={bags.length} blurb={blurb} />
+      {grouped.buckets.map(({ group, bags: groupBags }) => (
+        <div key={group.material}>
+          <MaterialSubheading id={group.id} label={group.label} count={groupBags.length} />
+          <ul className={GALLERY_GRID}>
+            {groupBags.map((bag) => (
+              <li key={bag.id}>
+                <GalleryCard bag={bag} ownedBag={ownedByEncyclopediaId.get(bag.id)} />
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+      {grouped.leftover.length > 0 && (
+        <div>
+          <MaterialSubheading
+            id={SPECIAL_OTHER_GROUP.id}
+            label={SPECIAL_OTHER_GROUP.label}
+            count={grouped.leftover.length}
+          />
+          <ul className={GALLERY_GRID}>
+            {grouped.leftover.map((bag) => (
+              <li key={bag.id}>
+                <GalleryCard bag={bag} ownedBag={ownedByEncyclopediaId.get(bag.id)} />
+              </li>
+            ))}
+          </ul>
+        </div>
+      )}
+    </section>
+  )
+}
+
+function MaterialSubheading({
+  id,
+  label,
+  count,
+}: {
+  id: string
+  label: string
+  count: number
+}) {
+  return (
+    <h3
+      id={id}
+      className="font-[var(--tj-body)] font-bold tracking-[0.3em] text-sm uppercase mt-10 mb-4 pb-2 border-b border-[var(--tj-ink)]/30 scroll-mt-24"
+    >
+      {label}
+      <span className="ml-2 font-normal opacity-50">· {count}</span>
+    </h3>
+  )
+}
 
 function TypeSection({
   id,
@@ -298,44 +375,115 @@ function GalleryCard({
   bag: EncyclopediaBag
   ownedBag: PantryBag | undefined
 }) {
-  const photos = bag.referencePhotos ?? (bag.referencePhoto ? [bag.referencePhoto] : [])
+  const photos = defaultReferencePhotos(bag)
   const angles = inferAngleMap(photos)
   const front = angles.front ?? photos[0]
   const back = angles.back
+  const variants = bag.variants ?? []
+  const variantCount = variants.length
+
+  const photoCycle = useMemo<string[]>(() => {
+    if (variantCount < 2) return []
+    const hasColorways = variants.some((v) => (v.colorways?.length ?? 0) > 0)
+    if (hasColorways) {
+      // For colorway-driven bags (mini canvas tote), cycle through every
+      // colorway photo across every variant in variant-major order so the
+      // hover preview teases the full lineup.
+      return variants.flatMap((v) => (v.colorways ?? []).map((c) => c.photo))
+    }
+    const cycle: string[] = []
+    for (const a of ANGLE_ORDER) {
+      for (const v of variants) {
+        const m = inferAngleMap(v.referencePhotos ?? [])
+        if (m[a]) cycle.push(m[a]!)
+      }
+    }
+    return cycle
+  }, [variants, variantCount])
+  const isCycling = photoCycle.length > 1
+  const [cycleIndex, setCycleIndex] = useState(0)
+  const intervalRef = useRef<number | null>(null)
+
+  useEffect(
+    () => () => {
+      if (intervalRef.current !== null) window.clearInterval(intervalRef.current)
+    },
+    [],
+  )
+
+  const startCycle = () => {
+    if (!isCycling || intervalRef.current !== null) return
+    intervalRef.current = window.setInterval(() => {
+      setCycleIndex((i) => (i + 1) % photoCycle.length)
+    }, 800)
+  }
+
+  const stopCycle = () => {
+    if (intervalRef.current !== null) {
+      window.clearInterval(intervalRef.current)
+      intervalRef.current = null
+    }
+    setCycleIndex(0)
+  }
 
   return (
     <Link
       id={`bag-${bag.id}`}
       to={`/encyclopedia/${bag.id}`}
+      onPointerEnter={startCycle}
+      onPointerLeave={stopCycle}
       className="group relative border-2 border-[var(--tj-ink)] bg-[var(--tj-cream)] h-full flex flex-col scroll-mt-24 hover:-translate-y-0.5 hover:shadow-[0_4px_0_rgba(42,31,20,0.2)] transition-transform"
     >
       <div className="relative aspect-[4/5] overflow-hidden bg-[var(--tj-kraft)]/20 border-b-2 border-[var(--tj-ink)]">
+        {variantCount > 1 && (
+          <span
+            aria-label={`${variantCount} versions`}
+            className="absolute top-2 right-2 z-10 font-[var(--tj-body)] tracking-[0.2em] text-[0.55rem] uppercase font-semibold px-1.5 py-0.5 bg-[var(--tj-kraft)] border border-[var(--tj-ink)]/40 text-[var(--tj-ink)]"
+          >
+            {variantCount} versions
+          </span>
+        )}
         {front ? (
-          <>
-            <img
-              src={photoUrl(front)}
-              alt={bag.region ?? bag.name}
-              loading="lazy"
-              className={`absolute inset-0 w-full h-full object-contain p-3 transition-opacity duration-300 ${back ? 'group-hover:opacity-0' : ''}`}
-            />
-            {back && (
+          isCycling ? (
+            photoCycle.map((p, i) => (
               <img
-                src={photoUrl(back)}
-                alt=""
-                aria-hidden
+                key={p}
+                src={photoUrl(p)}
+                alt={i === 0 ? bag.region ?? bag.name : ''}
+                aria-hidden={i === 0 ? undefined : true}
                 loading="lazy"
-                className="absolute inset-0 w-full h-full object-contain p-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                className={`absolute inset-0 w-full h-full object-contain p-3 transition-opacity duration-300 ${
+                  i === cycleIndex ? 'opacity-100' : 'opacity-0'
+                }`}
               />
-            )}
-            {back && (
-              <span
-                aria-hidden
-                className="absolute bottom-2 right-2 font-[var(--tj-body)] tracking-[0.2em] text-[0.55rem] uppercase font-semibold px-1.5 py-0.5 bg-[var(--tj-ink)] text-[var(--tj-cream)] opacity-0 group-hover:opacity-90 transition-opacity duration-300"
-              >
-                Back
-              </span>
-            )}
-          </>
+            ))
+          ) : (
+            <>
+              <img
+                src={photoUrl(front)}
+                alt={bag.region ?? bag.name}
+                loading="lazy"
+                className={`absolute inset-0 w-full h-full object-contain p-3 transition-opacity duration-300 ${back ? 'group-hover:opacity-0' : ''}`}
+              />
+              {back && (
+                <img
+                  src={photoUrl(back)}
+                  alt=""
+                  aria-hidden
+                  loading="lazy"
+                  className="absolute inset-0 w-full h-full object-contain p-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+                />
+              )}
+              {back && (
+                <span
+                  aria-hidden
+                  className="absolute bottom-2 right-2 font-[var(--tj-body)] tracking-[0.2em] text-[0.55rem] uppercase font-semibold px-1.5 py-0.5 bg-[var(--tj-ink)] text-[var(--tj-cream)] opacity-0 group-hover:opacity-90 transition-opacity duration-300"
+                >
+                  Back
+                </span>
+              )}
+            </>
+          )
         ) : (
           <div className="w-full h-full flex items-center justify-center text-center px-3">
             <span

@@ -7,6 +7,8 @@ import { MATERIAL_LABEL } from '../../materials'
 import SectionHeader from './SectionHeader'
 import {
   NON_LOCATION_SECTIONS,
+  SPECIAL_MATERIAL_GROUPS,
+  SPECIAL_OTHER_GROUP,
   STATES_SECTION,
   SUGGEST_SECTION,
 } from './sections'
@@ -73,6 +75,17 @@ export default function DictionaryView({
     return map
   }, [bags])
 
+  const specialGroups = useMemo(() => {
+    const specials = bagsByType.get('special') ?? []
+    const buckets = SPECIAL_MATERIAL_GROUPS.map((g) => ({
+      group: g,
+      bags: specials.filter((b) => b.materials?.[0] === g.material),
+    })).filter((b) => b.bags.length > 0)
+    const matchedIds = new Set(buckets.flatMap((b) => b.bags.map((x) => x.id)))
+    const leftover = specials.filter((b) => !matchedIds.has(b.id))
+    return { buckets, leftover }
+  }, [bagsByType])
+
   const stateBagsCount = useMemo(
     () => bags.filter((b) => b.type === 'state').length,
     [bags],
@@ -92,8 +105,19 @@ export default function DictionaryView({
       }
     }
     for (const { type, id, label, scrubberLabel } of NON_LOCATION_SECTIONS) {
-      if (bagsByType.get(type)?.length) {
-        items.push({ id, label: scrubberLabel ?? label, kind: 'section' })
+      if (!bagsByType.get(type)?.length) continue
+      items.push({ id, label: scrubberLabel ?? label, kind: 'section' })
+      if (type === 'special') {
+        for (const { group } of specialGroups.buckets) {
+          items.push({ id: group.id, label: group.scrubberLabel, kind: 'letter' })
+        }
+        if (specialGroups.leftover.length > 0) {
+          items.push({
+            id: SPECIAL_OTHER_GROUP.id,
+            label: SPECIAL_OTHER_GROUP.scrubberLabel,
+            kind: 'letter',
+          })
+        }
       }
     }
     items.push({
@@ -102,7 +126,7 @@ export default function DictionaryView({
       kind: 'section',
     })
     return items
-  }, [localesByLetter, bagsByType])
+  }, [localesByLetter, bagsByType, specialGroups])
 
   return (
     <div className="relative">
@@ -139,6 +163,40 @@ export default function DictionaryView({
         {NON_LOCATION_SECTIONS.map(({ type, id, label, blurb }) => {
           const list = bagsByType.get(type)
           if (!list || list.length === 0) return null
+          if (type === 'special') {
+            return (
+              <section key={type}>
+                <SectionHeader id={id} label={label} count={list.length} blurb={blurb} />
+                {specialGroups.buckets.map(({ group, bags: groupBags }) => (
+                  <div key={group.material}>
+                    <MaterialSubheading id={group.id} label={group.label} />
+                    {groupBags.map((bag) => (
+                      <DictionaryEntry
+                        key={bag.id}
+                        bag={bag}
+                        ownedBag={ownedByEncyclopediaId.get(bag.id)}
+                      />
+                    ))}
+                  </div>
+                ))}
+                {specialGroups.leftover.length > 0 && (
+                  <div>
+                    <MaterialSubheading
+                      id={SPECIAL_OTHER_GROUP.id}
+                      label={SPECIAL_OTHER_GROUP.label}
+                    />
+                    {specialGroups.leftover.map((bag) => (
+                      <DictionaryEntry
+                        key={bag.id}
+                        bag={bag}
+                        ownedBag={ownedByEncyclopediaId.get(bag.id)}
+                      />
+                    ))}
+                  </div>
+                )}
+              </section>
+            )
+          }
           return (
             <section key={type}>
               <SectionHeader id={id} label={label} count={list.length} blurb={blurb} />
@@ -166,6 +224,17 @@ function LetterHeading({ letter }: { letter: string }) {
       className="font-[var(--tj-body)] font-bold tracking-[0.5em] text-2xl mt-8 mb-2 pb-1 border-b-2 border-[var(--tj-ink)]/30 scroll-mt-24"
     >
       {letter}
+    </h3>
+  )
+}
+
+function MaterialSubheading({ id, label }: { id: string; label: string }) {
+  return (
+    <h3
+      id={id}
+      className="font-[var(--tj-body)] font-bold tracking-[0.35em] text-base mt-8 mb-2 pb-1 border-b border-[var(--tj-ink)]/30 uppercase scroll-mt-24"
+    >
+      {label}
     </h3>
   )
 }

@@ -6,13 +6,16 @@
     "state": "Alabama",
     "stateCode": "AL",
     "referencePhotos": [
-      "bags/alabama/front.png",
-      "bags/alabama/back.png",
-      "bags/alabama/left.png",
-      "bags/alabama/right.png",
-      "bags/alabama/bottom.png"
+      "bags/locations/alabama/front.png",
+      "bags/locations/alabama/back.png",
+      "bags/locations/alabama/left.png",
+      "bags/locations/alabama/right.png",
+      "bags/locations/alabama/bottom.png"
     ],
-    "source": "https://poshmark.com/listing/Trader-Joes-reusable-grocery-bag-Tote-Alabama-Turquoise-Green-New-68ffab56c4e7b4966e28dbfc"
+    "source": "https://poshmark.com/listing/Trader-Joes-reusable-grocery-bag-Tote-Alabama-Turquoise-Green-New-68ffab56c4e7b4966e28dbfc",
+    "materials": [
+      "polypropylene"
+    ]
   },
   {
     "id": "az",
@@ -21,13 +24,16 @@
     "state": "Arizona",
     "stateCode": "AZ",
     "referencePhotos": [
-      "bags/arizona/front.png",
-      "bags/arizona/back.png",
-      "bags/arizona/left.png",
-      "bags/arizona/right.png",
-      "bags/arizona/bottom.png"
+      "bags/locations/arizona/front.png",
+      "bags/locations/arizona/back.png",
+      "bags/locations/arizona/left.png",
+      "bags/locations/arizona/right.png",
+      "bags/locations/arizona/bottom.png"
     ],
-    "source": "https://www.instagram.com/reel/DWIBFA1jox4/"
+    "source": "https://www.instagram.com/reel/DWIBFA1jox4/",
+    "materials": [
+      "polypropylene"
+    ]
   },
   {
     "id": "ca-norcal",
@@ -37,13 +43,16 @@
     "stateCode": "CA",
     "region": "Northern California",
     "referencePhotos": [
-      "bags/northern-california/front.png",
-      "bags/northern-california/back.png",
-      "bags/northern-california/left.png",
-      "bags/northern-california/right.png",
-      "bags/northern-california/bottom.png"
+      "bags/locations/northern-california/front.png",
+      "bags/locations/northern-california/back.png",
+      "bags/locations/northern-california/left.png",
+      "bags/locations/northern-california/right.png",
+      "bags/locations/northern-california/bottom.png"
     ],
-    "source": "https://bajehome.com/products/trader-joes-california-both-southern-and-northern-reusable-shopping-grocery-bags-totes-san-fran-la"
+    "source": "https://bajehome.com/products/trader-joes-california-both-southern-and-northern-reusable-shopping-grocery-bags-totes-san-fran-la",
+    "materials": [
+      "polypropylene"
+    ]
   },
   {
     "id": "ca-socal",
@@ -53,13 +62,16 @@
     "stateCode": "CA",
     "region": "Southern California",
     "referencePhotos": [
-      "bags/southern-california/front.png",
-      "bags/southern-california/back.png",
-      "bags/southern-california/left.png",
-      "bags/southern-california/right.png",
-      "bags/southern-california/bottom.png"
+      "bags/locations/southern-california/front.png",
+      "bags/locations/southern-california/back.png",
+      "bags/locations/southern-california/left.png",
+      "bags/locations/southern-california/right.png",
+      "bags/locations/southern-california/bottom.png"
     ],
-    "source": "https://meandjorge.com/florida-trader-joes-bag/"
+    "source": "https://meandjorge.com/florida-trader-joes-bag/",
+    "materials": [
+      "polypropylene"
+    ]
   },
   {
     "id": "co",
@@ -68,13 +80,16 @@
     "state": "Colorado",
     "stateCode": "CO",
     "referencePhotos": [
-      "bags/colorado/front.png",
-      "bags/colorado/back.png",
-      "bags/colorado/left.png",
-      "bags/colorado/right.png",
-      "bags/colorado/bottom.png"
+      "bags/locations/colorado/front.png",
+      "bags/locations/colorado/back.png",
+      "bags/locations/colorado/left.png",
+      "bags/locations/colorado/right.png",
+      "bags/locations/colorado/bottom.png"
     ],
-    "source": "https://poshmark.com/listing/Trader-Joes-Reusable-Bag-COLORADO-68bc6b22e9c77df5bb188ac7"
+    "source": "https://poshmark.com/listing/Trader-Joes-Reusable-Bag-COLORADO-68bc6b22e9c77df5bb188ac7",
+    "materials": [
+      "polypropylene"
+    ]
   },
   {
     "id": "ct",
@@ -83,13 +98,16 @@
     "state": "Connecticut",
     "stateCode": "CT",
     "referencePhotos": [
-      "bags/connecticut/front.png",
-      "bags/connecticut/back.png",
-      "bags/connecticut/left.png",
-      "bags/connecticut/right.png",
-      "bags/connecticut/bottom.png"
+      "bags/locations/connecticut/front.png",
+      "bags/locations/connecticut/back.png",
+      "bags/locations/connecticut/left.png",
+      "bags/locations/connecticut/right.png",
+      "bags/locations/connecticut/bottom.png"
     ],
-    "source": "https://www.greetingsfromthepast.com/product/trader-joes-reusable-grocery-tote-bag-from-connecticut/"
+    "source": "https://www.greetingsfromthepast.com/product/trader-joes-reusable-grocery-tote-bag-from-connecticut/",
+    "materials": [
+      "polypropylene"
+    ]
   },
   {
     "id": "dc",
@@ -98,13 +116,16 @@
     "state": "District of Columbia",
     "stateCode": "DC",
     "referencePhotos": [
-      "bags/washington-dc/front.png",
-      "bags/washington-dc/back.png",
-      "bags/washington-dc/left.png",
-      "bags/washington-dc/right.png",
-      "bags/washington-dc/bottom.png"
+      "bags/locations/washington-dc/front.png",
+      "bags/locations/washington-dc/back.png",
+      "bags/locations/washington-dc/left.png",
+      "bags/locations/washington-dc/right.png",
+      "bags/locations/washington-dc/bottom.png"
     ],
-    "source": "https://oasbcn.com/1330628/Washington-DC-Edition-Reusable-Shopping-Tote-Bag-One-Blue"
+    "source": "https://oasbcn.com/1330628/Washington-DC-Edition-Reusable-Shopping-Tote-Bag-One-Blue",
+    "materials": [
+      "polypropylene"
+    ]
   },
   {
     "id": "de",
@@ -113,13 +134,16 @@
     "state": "Delaware",
     "stateCode": "DE",
     "referencePhotos": [
-      "bags/delaware/front.png",
-      "bags/delaware/back.png",
-      "bags/delaware/left.png",
-      "bags/delaware/right.png",
-      "bags/delaware/bottom.png"
+      "bags/locations/delaware/front.png",
+      "bags/locations/delaware/back.png",
+      "bags/locations/delaware/left.png",
+      "bags/locations/delaware/right.png",
+      "bags/locations/delaware/bottom.png"
     ],
-    "source": "https://www.reddit.com/r/Delaware/comments/1csren9/new_delaware_bags_at_tjs/"
+    "source": "https://www.reddit.com/r/Delaware/comments/1csren9/new_delaware_bags_at_tjs/",
+    "materials": [
+      "polypropylene"
+    ]
   },
   {
     "id": "fl",
@@ -128,13 +152,16 @@
     "state": "Florida",
     "stateCode": "FL",
     "referencePhotos": [
-      "bags/florida/front.png",
-      "bags/florida/back.png",
-      "bags/florida/left.png",
-      "bags/florida/right.png",
-      "bags/florida/bottom.png"
+      "bags/locations/florida/front.png",
+      "bags/locations/florida/back.png",
+      "bags/locations/florida/left.png",
+      "bags/locations/florida/right.png",
+      "bags/locations/florida/bottom.png"
     ],
-    "source": "https://www.greetingsfromthepast.com/product/trader-joes-reusable-bag-florida/"
+    "source": "https://www.greetingsfromthepast.com/product/trader-joes-reusable-bag-florida/",
+    "materials": [
+      "polypropylene"
+    ]
   },
   {
     "id": "ga",
@@ -143,13 +170,16 @@
     "state": "Georgia",
     "stateCode": "GA",
     "referencePhotos": [
-      "bags/georgia/front.png",
-      "bags/georgia/back.png",
-      "bags/georgia/left.png",
-      "bags/georgia/right.png",
-      "bags/georgia/bottom.png"
+      "bags/locations/georgia/front.png",
+      "bags/locations/georgia/back.png",
+      "bags/locations/georgia/left.png",
+      "bags/locations/georgia/right.png",
+      "bags/locations/georgia/bottom.png"
     ],
-    "source": "https://sweethoneyintherock.org/039-s-Reusable-Grocery-Tote-Bag-Georgia-Peach-Design-Large-1286713/"
+    "source": "https://sweethoneyintherock.org/039-s-Reusable-Grocery-Tote-Bag-Georgia-Peach-Design-Large-1286713/",
+    "materials": [
+      "polypropylene"
+    ]
   },
   {
     "id": "id",
@@ -158,13 +188,16 @@
     "state": "Idaho",
     "stateCode": "ID",
     "referencePhotos": [
-      "bags/idaho/front.png",
-      "bags/idaho/back.png",
-      "bags/idaho/left.png",
-      "bags/idaho/right.png",
-      "bags/idaho/bottom.png"
+      "bags/locations/idaho/front.png",
+      "bags/locations/idaho/back.png",
+      "bags/locations/idaho/left.png",
+      "bags/locations/idaho/right.png",
+      "bags/locations/idaho/bottom.png"
     ],
-    "source": "https://www.mercari.com/us/item/m16009107826/"
+    "source": "https://www.mercari.com/us/item/m16009107826/",
+    "materials": [
+      "polypropylene"
+    ]
   },
   {
     "id": "il-chicago",
@@ -174,13 +207,16 @@
     "stateCode": "IL",
     "region": "Chicago",
     "referencePhotos": [
-      "bags/chicago/front.png",
-      "bags/chicago/back.png",
-      "bags/chicago/left.png",
-      "bags/chicago/right.png",
-      "bags/chicago/bottom.png"
+      "bags/locations/chicago/front.png",
+      "bags/locations/chicago/back.png",
+      "bags/locations/chicago/left.png",
+      "bags/locations/chicago/right.png",
+      "bags/locations/chicago/bottom.png"
     ],
-    "source": "Confirmed via community listings, May 2026"
+    "source": "Confirmed via community listings, May 2026",
+    "materials": [
+      "polypropylene"
+    ]
   },
   {
     "id": "in",
@@ -189,13 +225,16 @@
     "state": "Indiana",
     "stateCode": "IN",
     "referencePhotos": [
-      "bags/indiana/front.png",
-      "bags/indiana/back.png",
-      "bags/indiana/left.png",
-      "bags/indiana/right.png",
-      "bags/indiana/bottom.png"
+      "bags/locations/indiana/front.png",
+      "bags/locations/indiana/back.png",
+      "bags/locations/indiana/left.png",
+      "bags/locations/indiana/right.png",
+      "bags/locations/indiana/bottom.png"
     ],
-    "source": "https://www.reddit.com/r/Vonnegut/comments/kaoiah/found_on_the_bottom_of_the_indiana_themed/"
+    "source": "https://www.reddit.com/r/Vonnegut/comments/kaoiah/found_on_the_bottom_of_the_indiana_themed/",
+    "materials": [
+      "polypropylene"
+    ]
   },
   {
     "id": "ky",
@@ -204,13 +243,16 @@
     "state": "Kentucky",
     "stateCode": "KY",
     "referencePhotos": [
-      "bags/kentucky/front.png",
-      "bags/kentucky/back.png",
-      "bags/kentucky/left.png",
-      "bags/kentucky/right.png",
-      "bags/kentucky/bottom.png"
+      "bags/locations/kentucky/front.png",
+      "bags/locations/kentucky/back.png",
+      "bags/locations/kentucky/left.png",
+      "bags/locations/kentucky/right.png",
+      "bags/locations/kentucky/bottom.png"
     ],
-    "source": "https://www.mercari.com/us/item/m50639299650/"
+    "source": "https://www.mercari.com/us/item/m50639299650/",
+    "materials": [
+      "polypropylene"
+    ]
   },
   {
     "id": "la",
@@ -219,13 +261,16 @@
     "state": "Louisiana",
     "stateCode": "LA",
     "referencePhotos": [
-      "bags/louisiana/front.png",
-      "bags/louisiana/back.png",
-      "bags/louisiana/left.png",
-      "bags/louisiana/right.png",
-      "bags/louisiana/bottom.png"
+      "bags/locations/louisiana/front.png",
+      "bags/locations/louisiana/back.png",
+      "bags/locations/louisiana/left.png",
+      "bags/locations/louisiana/right.png",
+      "bags/locations/louisiana/bottom.png"
     ],
-    "source": "https://www.sears.com/trader-joe-s-bags-finally-here-2-louisiana-trader/p-A081313791"
+    "source": "https://www.sears.com/trader-joe-s-bags-finally-here-2-louisiana-trader/p-A081313791",
+    "materials": [
+      "polypropylene"
+    ]
   },
   {
     "id": "ma-boston",
@@ -235,13 +280,16 @@
     "stateCode": "MA",
     "region": "Boston",
     "referencePhotos": [
-      "bags/boston/front.png",
-      "bags/boston/back.png",
-      "bags/boston/left.png",
-      "bags/boston/right.png",
-      "bags/boston/bottom.png"
+      "bags/locations/boston/front.png",
+      "bags/locations/boston/back.png",
+      "bags/locations/boston/left.png",
+      "bags/locations/boston/right.png",
+      "bags/locations/boston/bottom.png"
     ],
-    "source": "https://www.greetingsfromthepast.com/product/trader-joes-reusable-grocery-tote-bag-from-boston-massachusetts/"
+    "source": "https://www.greetingsfromthepast.com/product/trader-joes-reusable-grocery-tote-bag-from-boston-massachusetts/",
+    "materials": [
+      "polypropylene"
+    ]
   },
   {
     "id": "md",
@@ -250,13 +298,16 @@
     "state": "Maryland",
     "stateCode": "MD",
     "referencePhotos": [
-      "bags/maryland/front.png",
-      "bags/maryland/back.png",
-      "bags/maryland/left.png",
-      "bags/maryland/right.png",
-      "bags/maryland/bottom.png"
+      "bags/locations/maryland/front.png",
+      "bags/locations/maryland/back.png",
+      "bags/locations/maryland/left.png",
+      "bags/locations/maryland/right.png",
+      "bags/locations/maryland/bottom.png"
     ],
-    "source": "https://www.mercari.com/us/item/m34048365256/"
+    "source": "https://www.mercari.com/us/item/m34048365256/",
+    "materials": [
+      "polypropylene"
+    ]
   },
   {
     "id": "mi",
@@ -265,13 +316,16 @@
     "state": "Michigan",
     "stateCode": "MI",
     "referencePhotos": [
-      "bags/michigan/front.png",
-      "bags/michigan/back.png",
-      "bags/michigan/left.png",
-      "bags/michigan/right.png",
-      "bags/michigan/bottom.png"
+      "bags/locations/michigan/front.png",
+      "bags/locations/michigan/back.png",
+      "bags/locations/michigan/left.png",
+      "bags/locations/michigan/right.png",
+      "bags/locations/michigan/bottom.png"
     ],
-    "source": "https://www.mercari.com/us/item/m50643698603/"
+    "source": "https://www.mercari.com/us/item/m50643698603/",
+    "materials": [
+      "polypropylene"
+    ]
   },
   {
     "id": "mn",
@@ -280,13 +334,16 @@
     "state": "Minnesota",
     "stateCode": "MN",
     "referencePhotos": [
-      "bags/minnesota/front.png",
-      "bags/minnesota/back.png",
-      "bags/minnesota/left.png",
-      "bags/minnesota/right.png",
-      "bags/minnesota/bottom.png"
+      "bags/locations/minnesota/front.png",
+      "bags/locations/minnesota/back.png",
+      "bags/locations/minnesota/left.png",
+      "bags/locations/minnesota/right.png",
+      "bags/locations/minnesota/bottom.png"
     ],
-    "source": "https://poshmark.com/listing/Trader-Joes-Minnesota-State-Reusable-Grocery-Bag-68364371bd4ce389ce68c154"
+    "source": "https://poshmark.com/listing/Trader-Joes-Minnesota-State-Reusable-Grocery-Bag-68364371bd4ce389ce68c154",
+    "materials": [
+      "polypropylene"
+    ]
   },
   {
     "id": "mo",
@@ -295,13 +352,16 @@
     "state": "Missouri",
     "stateCode": "MO",
     "referencePhotos": [
-      "bags/missouri/front.png",
-      "bags/missouri/back.png",
-      "bags/missouri/left.png",
-      "bags/missouri/right.png",
-      "bags/missouri/bottom.png"
+      "bags/locations/missouri/front.png",
+      "bags/locations/missouri/back.png",
+      "bags/locations/missouri/left.png",
+      "bags/locations/missouri/right.png",
+      "bags/locations/missouri/bottom.png"
     ],
-    "source": "https://www.mercari.com/us/item/m54017221998/"
+    "source": "https://www.mercari.com/us/item/m54017221998/",
+    "materials": [
+      "polypropylene"
+    ]
   },
   {
     "id": "nc",
@@ -310,13 +370,16 @@
     "state": "North Carolina",
     "stateCode": "NC",
     "referencePhotos": [
-      "bags/north-carolina/front.png",
-      "bags/north-carolina/back.png",
-      "bags/north-carolina/left.png",
-      "bags/north-carolina/right.png",
-      "bags/north-carolina/bottom.png"
+      "bags/locations/north-carolina/front.png",
+      "bags/locations/north-carolina/back.png",
+      "bags/locations/north-carolina/left.png",
+      "bags/locations/north-carolina/right.png",
+      "bags/locations/north-carolina/bottom.png"
     ],
-    "source": "https://www.greetingsfromthepast.com/product/trader-joes-reusable-grocery-tote-bag-from-north-carolina/"
+    "source": "https://www.greetingsfromthepast.com/product/trader-joes-reusable-grocery-tote-bag-from-north-carolina/",
+    "materials": [
+      "polypropylene"
+    ]
   },
   {
     "id": "ne",
@@ -325,13 +388,16 @@
     "state": "Nebraska",
     "stateCode": "NE",
     "referencePhotos": [
-      "bags/nebraska/front.png",
-      "bags/nebraska/back.png",
-      "bags/nebraska/left.png",
-      "bags/nebraska/right.png",
-      "bags/nebraska/bottom.png"
+      "bags/locations/nebraska/front.png",
+      "bags/locations/nebraska/back.png",
+      "bags/locations/nebraska/left.png",
+      "bags/locations/nebraska/right.png",
+      "bags/locations/nebraska/bottom.png"
     ],
-    "source": "https://www.mercari.com/us/item/m17768255661/"
+    "source": "https://www.mercari.com/us/item/m17768255661/",
+    "materials": [
+      "polypropylene"
+    ]
   },
   {
     "id": "nh",
@@ -340,13 +406,16 @@
     "state": "New Hampshire",
     "stateCode": "NH",
     "referencePhotos": [
-      "bags/new-hampshire/front.png",
-      "bags/new-hampshire/back.png",
-      "bags/new-hampshire/left.png",
-      "bags/new-hampshire/right.png",
-      "bags/new-hampshire/bottom.png"
+      "bags/locations/new-hampshire/front.png",
+      "bags/locations/new-hampshire/back.png",
+      "bags/locations/new-hampshire/left.png",
+      "bags/locations/new-hampshire/right.png",
+      "bags/locations/new-hampshire/bottom.png"
     ],
-    "source": "https://academy.groundhogapps.com/products/trader-joes-new-hampshire-reusable-shopping-bag-carry-tote/51030308/"
+    "source": "https://academy.groundhogapps.com/products/trader-joes-new-hampshire-reusable-shopping-bag-carry-tote/51030308/",
+    "materials": [
+      "polypropylene"
+    ]
   },
   {
     "id": "nj",
@@ -355,13 +424,16 @@
     "state": "New Jersey",
     "stateCode": "NJ",
     "referencePhotos": [
-      "bags/new-jersey/front.png",
-      "bags/new-jersey/back.png",
-      "bags/new-jersey/left.png",
-      "bags/new-jersey/right.png",
-      "bags/new-jersey/bottom.png"
+      "bags/locations/new-jersey/front.png",
+      "bags/locations/new-jersey/back.png",
+      "bags/locations/new-jersey/left.png",
+      "bags/locations/new-jersey/right.png",
+      "bags/locations/new-jersey/bottom.png"
     ],
-    "source": "https://angiesamericansweetsandtreats.com/products/trader-joe-s-eco-fun-reusable-grocery-bag-new-jersey"
+    "source": "https://angiesamericansweetsandtreats.com/products/trader-joe-s-eco-fun-reusable-grocery-bag-new-jersey",
+    "materials": [
+      "polypropylene"
+    ]
   },
   {
     "id": "nm",
@@ -370,13 +442,16 @@
     "state": "New Mexico",
     "stateCode": "NM",
     "referencePhotos": [
-      "bags/new-mexico/front.png",
-      "bags/new-mexico/back.png",
-      "bags/new-mexico/left.png",
-      "bags/new-mexico/right.png",
-      "bags/new-mexico/bottom.png"
+      "bags/locations/new-mexico/front.png",
+      "bags/locations/new-mexico/back.png",
+      "bags/locations/new-mexico/left.png",
+      "bags/locations/new-mexico/right.png",
+      "bags/locations/new-mexico/bottom.png"
     ],
-    "source": "https://www.facebook.com/groups/Santafefoodies/posts/3349406342008072/"
+    "source": "https://www.facebook.com/groups/Santafefoodies/posts/3349406342008072/",
+    "materials": [
+      "polypropylene"
+    ]
   },
   {
     "id": "nv",
@@ -385,13 +460,16 @@
     "state": "Nevada",
     "stateCode": "NV",
     "referencePhotos": [
-      "bags/nevada/front.png",
-      "bags/nevada/back.png",
-      "bags/nevada/left.png",
-      "bags/nevada/right.png",
-      "bags/nevada/bottom.png"
+      "bags/locations/nevada/front.png",
+      "bags/locations/nevada/back.png",
+      "bags/locations/nevada/left.png",
+      "bags/locations/nevada/right.png",
+      "bags/locations/nevada/bottom.png"
     ],
-    "source": "https://poshmark.com/listing/Trader-Joes-Reusable-Grocery-Tote-Bag-NV-Casino-Chip-65613ff052eee17c6c1e80a8"
+    "source": "https://poshmark.com/listing/Trader-Joes-Reusable-Grocery-Tote-Bag-NV-Casino-Chip-65613ff052eee17c6c1e80a8",
+    "materials": [
+      "polypropylene"
+    ]
   },
   {
     "id": "ny",
@@ -400,28 +478,34 @@
     "state": "New York",
     "stateCode": "NY",
     "referencePhotos": [
-      "bags/new-york/front.png",
-      "bags/new-york/back.png",
-      "bags/new-york/left.png",
-      "bags/new-york/right.png",
-      "bags/new-york/bottom.png"
+      "bags/locations/new-york/front.png",
+      "bags/locations/new-york/back.png",
+      "bags/locations/new-york/left.png",
+      "bags/locations/new-york/right.png",
+      "bags/locations/new-york/bottom.png"
     ],
-    "source": "https://angiesamericansweetsandtreats.com/products/trader-joe-s-eco-fun-reusable-grocery-bag-new-york"
+    "source": "https://angiesamericansweetsandtreats.com/products/trader-joe-s-eco-fun-reusable-grocery-bag-new-york",
+    "materials": [
+      "polypropylene"
+    ]
   },
-{
+  {
     "id": "oh",
     "name": "Ohio",
     "type": "state",
     "state": "Ohio",
     "stateCode": "OH",
     "referencePhotos": [
-      "bags/ohio/front.png",
-      "bags/ohio/back.png",
-      "bags/ohio/left.png",
-      "bags/ohio/right.png",
-      "bags/ohio/bottom.png"
+      "bags/locations/ohio/front.png",
+      "bags/locations/ohio/back.png",
+      "bags/locations/ohio/left.png",
+      "bags/locations/ohio/right.png",
+      "bags/locations/ohio/bottom.png"
     ],
-    "source": "https://www.mercari.com/us/item/m83574903959/"
+    "source": "https://www.mercari.com/us/item/m83574903959/",
+    "materials": [
+      "polypropylene"
+    ]
   },
   {
     "id": "ok",
@@ -430,13 +514,16 @@
     "state": "Oklahoma",
     "stateCode": "OK",
     "referencePhotos": [
-      "bags/oklahoma/front.png",
-      "bags/oklahoma/back.png",
-      "bags/oklahoma/left.png",
-      "bags/oklahoma/right.png",
-      "bags/oklahoma/bottom.png"
+      "bags/locations/oklahoma/front.png",
+      "bags/locations/oklahoma/back.png",
+      "bags/locations/oklahoma/left.png",
+      "bags/locations/oklahoma/right.png",
+      "bags/locations/oklahoma/bottom.png"
     ],
-    "source": "https://www.mercari.com/us/item/m83574903959/"
+    "source": "https://www.mercari.com/us/item/m83574903959/",
+    "materials": [
+      "polypropylene"
+    ]
   },
   {
     "id": "or-portland",
@@ -446,13 +533,16 @@
     "stateCode": "OR",
     "region": "Portland (PDX)",
     "referencePhotos": [
-      "bags/portland/front.png",
-      "bags/portland/back.png",
-      "bags/portland/left.png",
-      "bags/portland/right.png",
-      "bags/portland/bottom.png"
+      "bags/locations/portland/front.png",
+      "bags/locations/portland/back.png",
+      "bags/locations/portland/left.png",
+      "bags/locations/portland/right.png",
+      "bags/locations/portland/bottom.png"
     ],
-    "source": "https://poshmark.com/listing/Trader-Joes-Reusable-Bag-Portland-Oregon-PDX-691485169f19e24677c7240f"
+    "source": "https://poshmark.com/listing/Trader-Joes-Reusable-Bag-Portland-Oregon-PDX-691485169f19e24677c7240f",
+    "materials": [
+      "polypropylene"
+    ]
   },
   {
     "id": "pa-philadelphia",
@@ -462,13 +552,16 @@
     "stateCode": "PA",
     "region": "Philadelphia",
     "referencePhotos": [
-      "bags/philadelphia/front.png",
-      "bags/philadelphia/back.png",
-      "bags/philadelphia/left.png",
-      "bags/philadelphia/right.png",
-      "bags/philadelphia/bottom.png"
+      "bags/locations/philadelphia/front.png",
+      "bags/locations/philadelphia/back.png",
+      "bags/locations/philadelphia/left.png",
+      "bags/locations/philadelphia/right.png",
+      "bags/locations/philadelphia/bottom.png"
     ],
-    "source": "https://www.mercari.com/us/item/m39051202187/"
+    "source": "https://www.mercari.com/us/item/m39051202187/",
+    "materials": [
+      "polypropylene"
+    ]
   },
   {
     "id": "ri",
@@ -477,13 +570,16 @@
     "state": "Rhode Island",
     "stateCode": "RI",
     "referencePhotos": [
-      "bags/rhode-island/front.png",
-      "bags/rhode-island/back.png",
-      "bags/rhode-island/left.png",
-      "bags/rhode-island/right.png",
-      "bags/rhode-island/bottom.png"
+      "bags/locations/rhode-island/front.png",
+      "bags/locations/rhode-island/back.png",
+      "bags/locations/rhode-island/left.png",
+      "bags/locations/rhode-island/right.png",
+      "bags/locations/rhode-island/bottom.png"
     ],
-    "source": "https://www.greetingsfromthepast.com/product/trader-joes-reusable-grocery-tote-bag-from-rhode-island/"
+    "source": "https://www.greetingsfromthepast.com/product/trader-joes-reusable-grocery-tote-bag-from-rhode-island/",
+    "materials": [
+      "polypropylene"
+    ]
   },
   {
     "id": "sc",
@@ -492,13 +588,40 @@
     "state": "South Carolina",
     "stateCode": "SC",
     "referencePhotos": [
-      "bags/south-carolina/front.png",
-      "bags/south-carolina/back.png",
-      "bags/south-carolina/left.png",
-      "bags/south-carolina/right.png",
-      "bags/south-carolina/bottom.png"
+      "bags/locations/south-carolina/front.png",
+      "bags/locations/south-carolina/back.png",
+      "bags/locations/south-carolina/left.png",
+      "bags/locations/south-carolina/right.png",
+      "bags/locations/south-carolina/bottom.png"
     ],
-    "source": "https://www.greetingsfromthepast.com/product/trader-joes-reusable-grocery-tote-bag-from-south-carolina-new-design/"
+    "source": "https://www.greetingsfromthepast.com/product/trader-joes-reusable-grocery-tote-bag-from-south-carolina-new-design/",
+    "materials": [
+      "polypropylene"
+    ]
+  },
+  {
+    "id": "tn",
+    "name": "Tennessee",
+    "type": "state",
+    "state": "Tennessee",
+    "stateCode": "TN",
+    "referencePhotos": [
+      "bags/locations/tn/front.png",
+      "bags/locations/tn/back.png",
+      "bags/locations/tn/left.png",
+      "bags/locations/tn/right.png",
+      "bags/locations/tn/bottom.png"
+    ],
+    "referencePhotoSources": {
+      "front": "https://poshmark.com/listing/67f014f324d2e7a2e345edee",
+      "back": "https://poshmark.com/listing/67f014f324d2e7a2e345edee",
+      "left": "https://poshmark.com/listing/67f014f324d2e7a2e345edee",
+      "right": "https://poshmark.com/listing/67f014f324d2e7a2e345edee",
+      "bottom": "https://poshmark.com/listing/67f014f324d2e7a2e345edee"
+    },
+    "materials": [
+      "polypropylene"
+    ]
   },
   {
     "id": "tn-nashville",
@@ -508,13 +631,16 @@
     "stateCode": "TN",
     "region": "Nashville",
     "referencePhotos": [
-      "bags/nashville/front.png",
-      "bags/nashville/back.png",
-      "bags/nashville/left.png",
-      "bags/nashville/right.png",
-      "bags/nashville/bottom.png"
+      "bags/locations/nashville/front.png",
+      "bags/locations/nashville/back.png",
+      "bags/locations/nashville/left.png",
+      "bags/locations/nashville/right.png",
+      "bags/locations/nashville/bottom.png"
     ],
-    "source": "https://www.kmart.com/tjoe-1-trader-joe-s-nashville-tenn-theme-reusable/p-A081321145"
+    "source": "https://www.kmart.com/tjoe-1-trader-joe-s-nashville-tenn-theme-reusable/p-A081321145",
+    "materials": [
+      "polypropylene"
+    ]
   },
   {
     "id": "tx",
@@ -523,13 +649,16 @@
     "state": "Texas",
     "stateCode": "TX",
     "referencePhotos": [
-      "bags/texas/front.png",
-      "bags/texas/back.png",
-      "bags/texas/left.png",
-      "bags/texas/right.png",
-      "bags/texas/bottom.png"
+      "bags/locations/texas/front.png",
+      "bags/locations/texas/back.png",
+      "bags/locations/texas/left.png",
+      "bags/locations/texas/right.png",
+      "bags/locations/texas/bottom.png"
     ],
-    "source": "https://www.greetingsfromthepast.com/product/trader-joes-reusable-grocery-tote-bag-from-texas/"
+    "source": "https://www.greetingsfromthepast.com/product/trader-joes-reusable-grocery-tote-bag-from-texas/",
+    "materials": [
+      "polypropylene"
+    ]
   },
   {
     "id": "ut",
@@ -538,13 +667,16 @@
     "state": "Utah",
     "stateCode": "UT",
     "referencePhotos": [
-      "bags/utah/front.png",
-      "bags/utah/back.png",
-      "bags/utah/left.png",
-      "bags/utah/right.png",
-      "bags/utah/bottom.png"
+      "bags/locations/utah/front.png",
+      "bags/locations/utah/back.png",
+      "bags/locations/utah/left.png",
+      "bags/locations/utah/right.png",
+      "bags/locations/utah/bottom.png"
     ],
-    "source": "https://www.mercari.com/us/item/m24081227052/"
+    "source": "https://www.mercari.com/us/item/m24081227052/",
+    "materials": [
+      "polypropylene"
+    ]
   },
   {
     "id": "va",
@@ -553,13 +685,16 @@
     "state": "Virginia",
     "stateCode": "VA",
     "referencePhotos": [
-      "bags/virginia/front.png",
-      "bags/virginia/back.png",
-      "bags/virginia/left.png",
-      "bags/virginia/right.png",
-      "bags/virginia/bottom.png"
+      "bags/locations/virginia/front.png",
+      "bags/locations/virginia/back.png",
+      "bags/locations/virginia/left.png",
+      "bags/locations/virginia/right.png",
+      "bags/locations/virginia/bottom.png"
     ],
-    "source": "https://www.greetingsfromthepast.com/product/trader-joes-reusable-grocery-tote-bag-from-virginia/"
+    "source": "https://www.greetingsfromthepast.com/product/trader-joes-reusable-grocery-tote-bag-from-virginia/",
+    "materials": [
+      "polypropylene"
+    ]
   },
   {
     "id": "wa",
@@ -568,14 +703,17 @@
     "state": "Washington",
     "stateCode": "WA",
     "referencePhotos": [
-      "bags/washington/front.png",
-      "bags/washington/back.png",
-      "bags/washington/left.png",
-      "bags/washington/right.png",
-      "bags/washington/bottom.png"
+      "bags/locations/washington/front.png",
+      "bags/locations/washington/back.png",
+      "bags/locations/washington/left.png",
+      "bags/locations/washington/right.png",
+      "bags/locations/washington/bottom.png"
     ],
     "description": "\"The Evergreen State\" tagline.",
-    "source": "https://www.mercari.com/us/item/m56237322925/"
+    "source": "https://www.mercari.com/us/item/m56237322925/",
+    "materials": [
+      "polypropylene"
+    ]
   },
   {
     "id": "wi",
@@ -584,77 +722,389 @@
     "state": "Wisconsin",
     "stateCode": "WI",
     "referencePhotos": [
-      "bags/wisconsin/front.png",
-      "bags/wisconsin/back.png",
-      "bags/wisconsin/left.png",
-      "bags/wisconsin/right.png",
-      "bags/wisconsin/bottom.png"
+      "bags/locations/wisconsin/front.png",
+      "bags/locations/wisconsin/back.png",
+      "bags/locations/wisconsin/left.png",
+      "bags/locations/wisconsin/right.png",
+      "bags/locations/wisconsin/bottom.png"
     ],
-    "source": "https://www.greetingsfromthepast.com/product/trader-joes-reusable-grocery-tote-bag-from-wisconsin/"
+    "source": "https://www.greetingsfromthepast.com/product/trader-joes-reusable-grocery-tote-bag-from-wisconsin/",
+    "materials": [
+      "polypropylene"
+    ]
   },
-
+  {
+    "id": "classic-reusable-tote",
+    "name": "Canvas Tote",
+    "type": "standard",
+    "description": "Trader Joe's full-size canvas grocery tote: heavy cream canvas body with contrast handles and the classic TJ circle stamp on the front pocket. Navy is the longtime staple; green and lilac are new 2026 limited drops.",
+    "source": "https://www.traderjoes.com/home/products/pdp/lavender-canvas-tote-bag-083866",
+    "materials": [
+      "canvas"
+    ],
+    "variants": [
+      {
+        "id": "classic",
+        "name": "Classic",
+        "colorways": [
+          {
+            "id": "navy",
+            "name": "Navy",
+            "photo": "bags/standard-bags/classic-reusable-tote/navyblue.png"
+          },
+          {
+            "id": "green",
+            "name": "Green",
+            "photo": "bags/standard-bags/classic-reusable-tote/green.png"
+          },
+          {
+            "id": "lilac",
+            "name": "Lilac",
+            "photo": "bags/standard-bags/classic-reusable-tote/lilac.png"
+          }
+        ]
+      }
+    ]
+  },
   {
     "id": "insulated-reusable-bag",
     "name": "Insulated Reusable Bag",
     "type": "standard",
     "description": "The classic silver-lined cooler bag — keeps frozens cold from the parking lot home.",
-    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
+    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/",
+    "referencePhotos": [
+      "bags/standard-bags/insulated-reusable-bag/front.png",
+      "bags/standard-bags/insulated-reusable-bag/back.png"
+    ],
+    "referencePhotoSources": {
+      "front": "https://poshmark.com/listing/6a06886b8e40fd8b74d9f288",
+      "back": "https://poshmark.com/listing/69fb45e3dbd8f0e4331e0a55"
+    }
   },
   {
     "id": "large-insulated-bag",
     "name": "Large Reusable Insulated Bag",
     "type": "standard",
     "description": "Bigger sibling of the standard insulated bag — fits a Thanksgiving-sized haul.",
-    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
+    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/",
+    "referencePhotos": [
+      "bags/standard-bags/large-insulated-bag/front.png",
+      "bags/standard-bags/large-insulated-bag/back.png",
+      "bags/standard-bags/large-insulated-bag/bottom.png"
+    ],
+    "referencePhotoSources": {
+      "front": "https://poshmark.com/listing/6a01f9593481f395f47d85ff",
+      "back": "https://poshmark.com/listing/6a01f9593481f395f47d85ff",
+      "bottom": "https://poshmark.com/listing/6a01f9593481f395f47d85ff"
+    }
   },
   {
     "id": "mini-insulated-tote",
     "name": "Mini Insulated Tote",
     "type": "standard",
-    "description": "Lunch-sized cooler tote.",
-    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
+    "description": "Lunch-sized insulated cooler tote, run through frequent seasonal colorway capsules. The Summer 2026 release (May 20, 2026) features a hand-drawn Trader Joe's storefront silhouette across the front with palm trees and vintage VW vans on the side panels.",
+    "source": "https://www.traderjoes.com/home/products/pdp/mini-insulated-totes-peach-blue-081833",
+    "materials": [
+      "polypropylene"
+    ],
+    "variants": [
+      {
+        "id": "skyblue",
+        "name": "Sky Blue",
+        "year": 2026,
+        "description": "Summer 2026 release. Sky blue body with the storefront-silhouette print and lime-green zipper trim.",
+        "referencePhotos": [
+          "bags/standard-bags/mini-insulated-tote/skyblue_front.png",
+          "bags/standard-bags/mini-insulated-tote/skyblue_back.png",
+          "bags/standard-bags/mini-insulated-tote/skyblue_left.png",
+          "bags/standard-bags/mini-insulated-tote/skyblue_right.png",
+          "bags/standard-bags/mini-insulated-tote/skyblue_bottom.png"
+        ]
+      },
+      {
+        "id": "green",
+        "name": "Green",
+        "year": 2026,
+        "description": "Summer 2026 release. Green body with the storefront-silhouette print.",
+        "referencePhotos": [
+          "bags/standard-bags/mini-insulated-tote/green_front.png",
+          "bags/standard-bags/mini-insulated-tote/green_right.png"
+        ]
+      },
+      {
+        "id": "purple",
+        "name": "Purple",
+        "year": 2026,
+        "description": "Summer 2026 release. Purple body with the storefront-silhouette print.",
+        "referencePhotos": [
+          "bags/standard-bags/mini-insulated-tote/purple_front.png",
+          "bags/standard-bags/mini-insulated-tote/purple_right.png"
+        ]
+      },
+      {
+        "id": "pink",
+        "name": "Pink",
+        "description": "An earlier paired-colorway capsule (often released alongside lavender). Bright pink body with the storefront-silhouette print.",
+        "referencePhotos": [
+          "bags/standard-bags/mini-insulated-tote/pink_front.png",
+          "bags/standard-bags/mini-insulated-tote/pink_back.png"
+        ]
+      },
+      {
+        "id": "coral",
+        "name": "Coral",
+        "description": "Dusty rose / coral colorway. Likely paired with another color in a seasonal capsule.",
+        "referencePhotos": [
+          "bags/standard-bags/mini-insulated-tote/coral_left.png",
+          "bags/standard-bags/mini-insulated-tote/coral_right.png"
+        ]
+      },
+      {
+        "id": "red",
+        "name": "Red",
+        "description": "Holiday 'Red and Emerald' capsule pairing. Bright red body; the back panel is a plain solid red rather than the storefront print.",
+        "referencePhotos": [
+          "bags/standard-bags/mini-insulated-tote/red_back.png",
+          "bags/standard-bags/mini-insulated-tote/red_right.png",
+          "bags/standard-bags/mini-insulated-tote/red_bottom.png"
+        ]
+      }
+    ]
   },
   {
     "id": "mini-canvas-tote",
     "name": "Mini Canvas Tote",
     "type": "standard",
-    "description": "The cult-favorite tiny canvas tote. Released in rotating colorways and prints.",
-    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
+    "description": "The $2.99 canvas mini that broke TikTok in March 2024, sold out in minutes, and started reselling online for hundreds. Re-released in seasonal colorway capsules: classic primaries, Halloween, and pastel spring.",
+    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/",
+    "year": 2024,
+    "variants": [
+      {
+        "id": "classic",
+        "name": "Classic",
+        "year": 2024,
+        "description": "The original March 2024 drop, in four bright primary colors at $2.99 apiece. The release that triggered the TikTok frenzy.",
+        "colorways": [
+          {
+            "id": "red",
+            "name": "Red",
+            "photo": "bags/standard-bags/mini-canvas-tote/classic/red_front.png"
+          },
+          {
+            "id": "yellow",
+            "name": "Yellow",
+            "photo": "bags/standard-bags/mini-canvas-tote/classic/yellow_front.png"
+          },
+          {
+            "id": "green",
+            "name": "Green",
+            "photo": "bags/standard-bags/mini-canvas-tote/classic/green_front.png"
+          },
+          {
+            "id": "blue",
+            "name": "Blue",
+            "photo": "bags/standard-bags/mini-canvas-tote/classic/blue_front.png"
+          }
+        ]
+      },
+      {
+        "id": "halloween",
+        "name": "Halloween",
+        "year": 2024,
+        "description": "Fall 2024 capsule. Orange, black, and purple solids plus a multi-color holiday print.",
+        "colorways": [
+          {
+            "id": "orange",
+            "name": "Orange",
+            "photo": "bags/standard-bags/mini-canvas-tote/halloween/orange_front.png"
+          },
+          {
+            "id": "black",
+            "name": "Black",
+            "photo": "bags/standard-bags/mini-canvas-tote/halloween/black_front.png"
+          },
+          {
+            "id": "purple",
+            "name": "Purple",
+            "photo": "bags/standard-bags/mini-canvas-tote/halloween/purple_front.png"
+          },
+          {
+            "id": "multi",
+            "name": "Multi-Color",
+            "photo": "bags/standard-bags/mini-canvas-tote/halloween/multi_front.png"
+          }
+        ]
+      },
+      {
+        "id": "pastel",
+        "name": "Pastel",
+        "year": 2026,
+        "description": "March 2026 spring capsule. Pink, lavender, mint green, and baby blue, again $2.99 apiece.",
+        "colorways": [
+          {
+            "id": "pink",
+            "name": "Pink",
+            "photo": "bags/standard-bags/mini-canvas-tote/pastel/pink_front.png"
+          },
+          {
+            "id": "lavender",
+            "name": "Lavender",
+            "photo": "bags/standard-bags/mini-canvas-tote/pastel/lilac_front.png"
+          },
+          {
+            "id": "mint-green",
+            "name": "Mint Green",
+            "photo": "bags/standard-bags/mini-canvas-tote/pastel/turquoise_front.png"
+          },
+          {
+            "id": "baby-blue",
+            "name": "Baby Blue",
+            "photo": "bags/standard-bags/mini-canvas-tote/pastel/skyblue_front.png"
+          }
+        ]
+      }
+    ]
   },
   {
-    "id": "micro-canvas-tote",
-    "name": "Micro Canvas Tote",
+    "id": "canvas-micro-tote",
+    "name": "Canvas Micro Tote",
     "type": "standard",
     "description": "Smaller than the Mini — barely larger than a wallet.",
-    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
+    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/",
+    "referencePhotos": [
+      "bags/standard-bags/canvas-micro-tote/front.png",
+      "bags/standard-bags/canvas-micro-tote/back.png"
+    ],
+    "referencePhotoSources": {
+      "front": "https://poshmark.com/listing/6990cd5205deb3f8e319cc4d",
+      "back": "https://poshmark.com/listing/6990cd5205deb3f8e319cc4d"
+    }
   },
   {
     "id": "micro-tote-with-grocery",
     "name": "Micro Tote with Grocery Bag",
     "type": "standard",
     "description": "A micro pouch that unfolds into a full grocery bag.",
-    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
+    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/",
+    "referencePhotos": [
+      "bags/standard-bags/micro-tote-with-grocery/front.png",
+      "bags/standard-bags/micro-tote-with-grocery/back.png",
+      "bags/standard-bags/micro-tote-with-grocery/left.png",
+      "bags/standard-bags/micro-tote-with-grocery/right.png"
+    ],
+    "referencePhotoSources": {
+      "front": "https://poshmark.com/listing/67ba64165af6e6ffcbe85253",
+      "back": "https://poshmark.com/listing/67ba64165af6e6ffcbe85253",
+      "left": "https://poshmark.com/listing/68c6e668006e4369dfa3000d",
+      "right": "https://poshmark.com/listing/6930b7ae006e43ca62a34033"
+    }
   },
   {
     "id": "stand-up-collapsible",
     "name": "Stand-Up Collapsible Grocery Bag",
     "type": "standard",
     "description": "Holds its own shape so groceries don't tip over; folds flat for storage.",
-    "source": "https://www.traderjoes.com/home/products/pdp/stand-up-collapsable-grocery-tote-078276"
+    "source": "https://www.traderjoes.com/home/products/pdp/stand-up-collapsable-grocery-tote-078276",
+    "referencePhotos": [
+      "bags/standard-bags/stand-up-collapsible/front.png",
+      "bags/standard-bags/stand-up-collapsible/back.png",
+      "bags/standard-bags/stand-up-collapsible/left.png",
+      "bags/standard-bags/stand-up-collapsible/right.png",
+      "bags/standard-bags/stand-up-collapsible/bottom.png"
+    ],
+    "referencePhotoSources": {
+      "front": "https://poshmark.com/listing/67d22c3ef9927ce1b9e58d55",
+      "back": "https://poshmark.com/listing/67d22c3ef9927ce1b9e58d55",
+      "left": "https://poshmark.com/listing/67d22c3ef9927ce1b9e58d55",
+      "right": "https://poshmark.com/listing/69e5a31c04b36d7a2603ac41",
+      "bottom": "https://poshmark.com/listing/69e5a31c04b36d7a2603ac41"
+    }
+  },
+  {
+    "id": "bottle-holder-bag",
+    "name": "Bottle Holder Reusable Bag",
+    "type": "standard",
+    "description": "Reusable bottle carrier sized like the standard tote but built around bottle dividers — released in a couple of versions.",
+    "source": "https://www.spiez.com/karte?d=099745237605",
+    "variants": [
+      {
+        "id": "bottle-holder",
+        "name": "Bottle Holder",
+        "description": "White polypropylene 6-gallon bag with the red TJ's logo and built-in inner bottle dividers — sized like the standard tote but optimized for bottles/wine.",
+        "referencePhotos": [
+          "bags/standard-bags/bottle-holder-bag/front.png",
+          "bags/standard-bags/bottle-holder-bag/back.png",
+          "bags/standard-bags/bottle-holder-bag/left.png",
+          "bags/standard-bags/bottle-holder-bag/right.png",
+          "bags/standard-bags/bottle-holder-bag/bottom.png"
+        ],
+        "referencePhotoSources": {
+          "front": "https://poshmark.com/listing/69d81672006e43d1085358b0",
+          "back": "https://poshmark.com/listing/69d81672006e43d1085358b0",
+          "left": "https://poshmark.com/listing/69d81672006e43d1085358b0",
+          "right": "https://poshmark.com/listing/69d81672006e43d1085358b0",
+          "bottom": "https://poshmark.com/listing/69d81672006e43d1085358b0"
+        }
+      },
+      {
+        "id": "wine-reusable",
+        "name": "Wine Reusable",
+        "description": "Reusable carrier specifically built for wine bottles.",
+        "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/",
+        "referencePhotos": [
+          "bags/standard-bags/wine-reusable-bag/front.png",
+          "bags/standard-bags/wine-reusable-bag/back.png",
+          "bags/standard-bags/wine-reusable-bag/left.png",
+          "bags/standard-bags/wine-reusable-bag/right.png",
+          "bags/standard-bags/wine-reusable-bag/bottom.png"
+        ],
+        "referencePhotoSources": {
+          "front": "https://poshmark.com/listing/69b3189c2c9e44d91c880969",
+          "back": "https://poshmark.com/listing/69b3189c2c9e44d91c880969",
+          "left": "https://poshmark.com/listing/69b3189c2c9e44d91c880969",
+          "right": "https://poshmark.com/listing/69b3189c2c9e44d91c880969",
+          "bottom": "https://poshmark.com/listing/69b3189c2c9e44d91c880969"
+        }
+      }
+    ]
   },
   {
     "id": "washable-paper-tote",
-    "name": "Washable Paper Tote",
+    "name": "Washable Paper Tote Bag",
     "type": "standard",
     "description": "Brown-paper-bag look with the durability of a reusable tote.",
-    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
+    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/",
+    "referencePhotos": [
+      "bags/standard-bags/washable-paper-tote/front.png",
+      "bags/standard-bags/washable-paper-tote/back.png",
+      "bags/standard-bags/washable-paper-tote/bottom.png"
+    ],
+    "referencePhotoSources": {
+      "front": "https://poshmark.com/listing/69fa8957e9c77d48cb878eb5",
+      "back": "https://poshmark.com/listing/69fa8957e9c77d48cb878eb5",
+      "bottom": "https://poshmark.com/listing/69fa8957e9c77d48cb878eb5"
+    }
   },
   {
     "id": "washable-paper-grocery",
     "name": "Washable Paper Grocery Bag",
     "type": "standard",
     "description": "Larger version of the washable paper tote.",
-    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
+    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/",
+    "referencePhotos": [
+      "bags/standard-bags/washable-paper-grocery/front.png",
+      "bags/standard-bags/washable-paper-grocery/back.png",
+      "bags/standard-bags/washable-paper-grocery/left.png",
+      "bags/standard-bags/washable-paper-grocery/right.png",
+      "bags/standard-bags/washable-paper-grocery/bottom.png"
+    ],
+    "referencePhotoSources": {
+      "front": "https://poshmark.com/listing/69f26b0ae9c77de025759801",
+      "back": "https://poshmark.com/listing/69f26b0ae9c77de025759801",
+      "left": "https://poshmark.com/listing/69f26b0ae9c77de025759801",
+      "right": "https://poshmark.com/listing/69f26b0ae9c77de025759801",
+      "bottom": "https://poshmark.com/listing/69f26b0ae9c77de025759801"
+    }
   },
   {
     "id": "washable-paper-lunch",
@@ -664,145 +1114,563 @@
     "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
   },
   {
-    "id": "bottle-holder-bag",
-    "name": "Bottle Holder Reusable Bag",
-    "type": "standard",
-    "description": "White polypropylene 6-gallon bag with the red TJ's logo and built-in inner bottle dividers — sized like the standard tote but optimized for bottles/wine.",
-    "source": "https://www.spiez.com/karte?d=099745237605"
-  },
-  {
-    "id": "classic-reusable-tote",
-    "name": "Classic Reusable Grocery Tote",
-    "type": "standard",
-    "description": "The everyday 6-gallon polypropylene shopper (16\" x 11.5\" x 7\") with retro collage art of TJ's logos, food, and store imagery — the daily-driver many regulars use.",
-    "source": "https://khalsaschoolwear.co.uk/products/trader-joes-reusable-grocery-tote-bag/13254624/"
-  },
-  {
     "id": "reusable-flower-bag",
-    "name": "Reusable Flower Bag",
+    "name": "Vintage Hibiscus Insulated Bag",
     "type": "standard",
-    "description": "Tall narrow bag for flower bouquets without crushing them.",
-    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
+    "description": "A retired Trader Joe's insulated cooler tote in deep red and cream, banded with Hawaiian hibiscus flowers in tropical-shirt style. Originally about 18 inches across with a nylon-lined cool-keep interior. Long out of production and now a sought-after collector's piece on eBay, Mercari, and Poshmark.",
+    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/",
+    "referencePhotos": [
+      "bags/standard-bags/reusable-flower-bag/front.png",
+      "bags/standard-bags/reusable-flower-bag/back.png"
+    ],
+    "referencePhotoSources": {
+      "front": "https://poshmark.com/listing/69ffdba106c231148a00fbba",
+      "back": "https://poshmark.com/listing/69ffdba106c231148a00fbba"
+    },
+    "materials": [
+      "polypropylene"
+    ]
   },
   {
     "id": "reusable-breakfast-tote",
     "name": "Reusable Breakfast Tote",
-    "type": "standard",
-    "description": "Compact tote sized for a few breakfast items.",
-    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
+    "type": "special",
+    "description": "A bright yellow canvas tote that doodles breakfast on both faces, with a waffle dictionary entry on the front and a toast one on the back.",
+    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/",
+    "referencePhotos": [
+      "bags/canvas-bags/reusable-breakfast-tote/front.png",
+      "bags/canvas-bags/reusable-breakfast-tote/back.png"
+    ],
+    "referencePhotoSources": {
+      "front": "https://poshmark.com/listing/6a0422acbdcb04871fb894a6",
+      "back": "https://poshmark.com/listing/6a0422acbdcb04871fb894a6"
+    },
+    "materials": [
+      "canvas"
+    ]
   },
-
   {
     "id": "coffee-jute-bag",
     "name": "Coffee Jute Bag",
     "type": "special",
-    "description": "Burlap-style jute bag with coffee-themed graphics.",
-    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
+    "description": "A jute tote styled like a vintage coffee sack, a wink at Pasadena, 1967, where the first Trader Joe's opened its doors.",
+    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/",
+    "referencePhotos": [
+      "bags/jute-bags/coffee-jute-bag/front.png",
+      "bags/jute-bags/coffee-jute-bag/back.png",
+      "bags/jute-bags/coffee-jute-bag/left.png",
+      "bags/jute-bags/coffee-jute-bag/right.png",
+      "bags/jute-bags/coffee-jute-bag/bottom.png"
+    ],
+    "referencePhotoSources": {
+      "front": "https://poshmark.com/listing/69f61983d7555d15086a5d3c",
+      "back": "https://poshmark.com/listing/69f61983d7555d15086a5d3c",
+      "left": "https://poshmark.com/listing/69f61983d7555d15086a5d3c",
+      "right": "https://poshmark.com/listing/69f61983d7555d15086a5d3c",
+      "bottom": "https://poshmark.com/listing/69f79cf52c9e445dc30d10be"
+    },
+    "materials": [
+      "jute"
+    ]
   },
   {
     "id": "citrus-jute-bag",
     "name": "Citrus Jute Bag",
     "type": "special",
-    "description": "Jute bag with citrus illustrations — released alongside summer produce pushes.",
-    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
+    "description": "A two-sided burlap tote with the lemon side and the lime side, retro splashes and groovy bubble lettering throughout.",
+    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/",
+    "referencePhotos": [
+      "bags/jute-bags/citrus-jute-bag/front.png",
+      "bags/jute-bags/citrus-jute-bag/back.png",
+      "bags/jute-bags/citrus-jute-bag/left.png",
+      "bags/jute-bags/citrus-jute-bag/right.png",
+      "bags/jute-bags/citrus-jute-bag/bottom.png"
+    ],
+    "referencePhotoSources": {
+      "front": "https://poshmark.com/listing/6a05e2b9310f1c337d9b5997",
+      "back": "https://poshmark.com/listing/6a05e2b9310f1c337d9b5997",
+      "left": "https://poshmark.com/listing/69e7176503829176adb6206d",
+      "right": "https://poshmark.com/listing/69e7176503829176adb6206d",
+      "bottom": "https://poshmark.com/listing/69e7176503829176adb6206d"
+    },
+    "materials": [
+      "jute"
+    ]
+  },
+  {
+    "id": "jute-bag",
+    "name": "Jute Bag",
+    "type": "special",
+    "description": "The unadorned jute carrier of the lineup, with chunky braided rope handles, cream cotton banding, and no themed print. Sometimes sold online as the Mini Jute Tote.",
+    "source": "https://poshmark.com/listing/Rare-Trader-Joes-Mini-Jute-Tote-Bag-67b3f59587aeb625c8cad9e6",
+    "materials": [
+      "jute"
+    ],
+    "referencePhotos": [
+      "bags/jute-bags/jute-bag/front.png",
+      "bags/jute-bags/jute-bag/back.png",
+      "bags/jute-bags/jute-bag/left.png",
+      "bags/jute-bags/jute-bag/right.png",
+      "bags/jute-bags/jute-bag/bottom.png"
+    ],
+    "referencePhotoSources": {
+      "front": "https://poshmark.com/listing/6a0416045919e0ba9ad3b77d",
+      "back": "https://poshmark.com/listing/6a0416045919e0ba9ad3b77d",
+      "left": "https://poshmark.com/listing/69ebfe73d7555d09a61ea856",
+      "right": "https://poshmark.com/listing/69ebfe73d7555d09a61ea856",
+      "bottom": "https://poshmark.com/listing/6a0416045919e0ba9ad3b77d"
+    }
+  },
+  {
+    "id": "vegetable-jute-bag",
+    "name": "Vegetable Jute Bag",
+    "type": "special",
+    "description": "A discontinued spring release printed edge to edge with eggplants, beets, pea pods, carrots, and onions, plus a clever brand mark hidden inside a purple eggplant silhouette.",
+    "source": "https://poshmark.com/listing/Trader-Joes-Multicolor-Vegetable-Print-Jute-Tote-Bag-Spring-EUC-69ac9fcc2326c80f5eb2b205",
+    "materials": [
+      "jute"
+    ],
+    "referencePhotos": [
+      "bags/jute-bags/vegetable-jute-bag/front.png",
+      "bags/jute-bags/vegetable-jute-bag/back.png",
+      "bags/jute-bags/vegetable-jute-bag/left.png",
+      "bags/jute-bags/vegetable-jute-bag/right.png",
+      "bags/jute-bags/vegetable-jute-bag/bottom.png"
+    ],
+    "referencePhotoSources": {
+      "front": "https://poshmark.com/listing/69ac9fcc2326c80f5eb2b205",
+      "back": "https://poshmark.com/listing/69c3f5ea27539d0afc0abef2",
+      "left": "https://poshmark.com/listing/69c3f5ea27539d0afc0abef2",
+      "right": "https://poshmark.com/listing/69c3f5ea27539d0afc0abef2",
+      "bottom": "https://poshmark.com/listing/695be8debd4ce3d63fe1cb7c"
+    }
+  },
+  {
+    "id": "stock-keeping-unit-bag",
+    "name": "<this is a bag>",
+    "type": "special",
+    "description": "A pocket-sized jute tote whose front doubles as a museum label: 'This is a bag.', the jute plant's botanical name (Corchorus, Tiliaceae), the bag's own SKU 95375, and a winking line lifted from a Robert Browning poem.",
+    "source": "https://poshmark.com/listing/Rare-Trader-Joes-Mini-Jute-Tote-Bag-Stock-Keeping-Unit-95375-Burlap-Rope-69cfdedb7ddf5687fef43300",
+    "materials": [
+      "jute"
+    ],
+    "referencePhotos": [
+      "bags/jute-bags/stock-keeping-unit-bag/front.png",
+      "bags/jute-bags/stock-keeping-unit-bag/back.png",
+      "bags/jute-bags/stock-keeping-unit-bag/left.png",
+      "bags/jute-bags/stock-keeping-unit-bag/right.png",
+      "bags/jute-bags/stock-keeping-unit-bag/bottom.png"
+    ],
+    "referencePhotoSources": {
+      "front": "https://poshmark.com/listing/69cfdedb7ddf5687fef43300",
+      "back": "https://poshmark.com/listing/69cfdedb7ddf5687fef43300",
+      "left": "https://poshmark.com/listing/69cfdedb7ddf5687fef43300",
+      "right": "https://poshmark.com/listing/69cfdedb7ddf5687fef43300",
+      "bottom": "https://poshmark.com/listing/69cfdedb7ddf5687fef43300"
+    }
   },
   {
     "id": "pickle-cotton-bag",
     "name": "Pickle Cotton Bag",
     "type": "special",
-    "description": "Cult-favorite pickle-themed cotton tote.",
-    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
+    "description": "A canvas tote dressed up as a vintage circus poster, with Trader Joe's pickle department as the headline act and a giant green dill in the starring role.",
+    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/",
+    "referencePhotos": [
+      "bags/canvas-bags/pickle-cotton-bag/front.png",
+      "bags/canvas-bags/pickle-cotton-bag/back.png"
+    ],
+    "referencePhotoSources": {
+      "front": "https://poshmark.com/listing/6a06063e25b2f2c6d219ac8d",
+      "back": "https://poshmark.com/listing/6a06063e25b2f2c6d219ac8d"
+    },
+    "materials": [
+      "canvas"
+    ]
   },
   {
     "id": "sardine-bag",
     "name": "Sardine Bag",
     "type": "special",
-    "description": "Sardine-themed reusable bag — tied to TJ's seafood line.",
-    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
+    "description": "A turquoise canvas tote dressed up as a vintage sardine tin on the front and a 'Sardine Toast' recipe poster on the back, riding the tinned-fish renaissance that swept food media in the early 2020s.",
+    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/",
+    "referencePhotos": [
+      "bags/canvas-bags/sardine-bag/front.png",
+      "bags/canvas-bags/sardine-bag/back.png"
+    ],
+    "materials": [
+      "canvas"
+    ]
   },
   {
-    "id": "brazil-nut-insulated",
-    "name": "Brazil Nut Insulated Bag",
+    "id": "recycled-ocean-plastic-bag",
+    "name": "Recycled Ocean Plastic",
     "type": "special",
-    "description": "Insulated bag with Brazil nut illustrations.",
-    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
+    "description": "Sustainability-themed reusable shopper made from recycled ocean plastic — part of TJ's eco line.",
+    "source": "https://poshmark.com/search?query=trader+joes+recycled+ocean+plastic+bag&type=listings",
+    "referencePhotos": [
+      "bags/special-bags/recycled-ocean-plastic-bag/front.png",
+      "bags/special-bags/recycled-ocean-plastic-bag/back.png",
+      "bags/special-bags/recycled-ocean-plastic-bag/left.png",
+      "bags/special-bags/recycled-ocean-plastic-bag/right.png",
+      "bags/special-bags/recycled-ocean-plastic-bag/bottom.png"
+    ],
+    "referencePhotoSources": {
+      "front": "https://poshmark.com/listing/6806ea1321b801835a2efa68",
+      "back": "https://poshmark.com/listing/6806ea1321b801835a2efa68",
+      "left": "https://poshmark.com/listing/6806ea1321b801835a2efa68",
+      "right": "https://poshmark.com/listing/6806ea1321b801835a2efa68",
+      "bottom": "https://poshmark.com/listing/6806ea1321b801835a2efa68"
+    },
+    "materials": [
+      "polypropylene"
+    ]
   },
   {
     "id": "cheese-adventure-canvas",
-    "name": "Cheese Adventure Canvas Bag",
+    "name": "Cheese Adventures",
     "type": "special",
-    "description": "Canvas tote celebrating TJ's cheese department.",
-    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
+    "description": "A two-sided canvas tote: the front is titled 'Cheese Experience' and lists the slightly fancy dishes (quesadilla, patatas au gratin, cheese grits, mozzarella sticks); the back is 'Cheese Adventures' with the comfort cousins (grilled cheese, mac and cheese, cheeseburger, nachos).",
+    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/",
+    "referencePhotos": [
+      "bags/canvas-bags/cheese-adventure-canvas/front.png",
+      "bags/canvas-bags/cheese-adventure-canvas/back.png"
+    ],
+    "referencePhotoSources": {
+      "front": "https://poshmark.com/listing/69d0f63e694d7270d82dcd4d",
+      "back": "https://poshmark.com/listing/69d0f63e694d7270d82dcd4d"
+    },
+    "materials": [
+      "canvas"
+    ]
   },
   {
     "id": "comfort-food-bag",
-    "name": "Comfort Food Reusable Bag",
+    "name": "Comfort Food",
     "type": "special",
     "description": "Purple-themed 6-gallon shopper with comfort-food pairings on all five panels: mac & cheese, PB&J, bacon & eggs, fries & ketchup, milk & cookies. ~99¢ in stores.",
-    "source": "https://www.traderjoes.com/home/products/pdp/comfort-food-bag-081037"
+    "source": "https://www.traderjoes.com/home/products/pdp/comfort-food-bag-081037",
+    "referencePhotos": [
+      "bags/special-bags/comfort-food-bag/front.png",
+      "bags/special-bags/comfort-food-bag/back.png",
+      "bags/special-bags/comfort-food-bag/left.png",
+      "bags/special-bags/comfort-food-bag/right.png",
+      "bags/special-bags/comfort-food-bag/bottom.png"
+    ],
+    "materials": [
+      "polypropylene"
+    ]
+  },
+  {
+    "id": "fearless-flyer-tote",
+    "name": "Fearless Flyer",
+    "type": "special",
+    "description": "2025 special-edition 6-gallon polypropylene shopper themed around Trader Joe's in-store \"Fearless Flyer\" newsletter — collage of clippings, headlines, and product illustrations in the publication's signature retro newspaper style.",
+    "source": "https://poshmark.com/listing/Trader-Joes-Fearless-Flyer-Reusable-Tote-Bag-Collage-Design-2025-69f541f2cc0a7397d89a3ba6",
+    "referencePhotos": [
+      "bags/special-bags/fearless-flyer-tote/front.png",
+      "bags/special-bags/fearless-flyer-tote/back.png",
+      "bags/special-bags/fearless-flyer-tote/left.png",
+      "bags/special-bags/fearless-flyer-tote/right.png"
+    ],
+    "referencePhotoSources": {
+      "front": "https://poshmark.com/listing/69ea780c34d1564ab2b1f7ee",
+      "back": "https://poshmark.com/listing/69f541f2cc0a7397d89a3ba6",
+      "left": "https://poshmark.com/listing/69f541f2cc0a7397d89a3ba6",
+      "right": "https://poshmark.com/listing/69f541f2cc0a7397d89a3ba6"
+    },
+    "materials": [
+      "polypropylene"
+    ]
+  },
+  {
+    "id": "chicken-citrus-tote",
+    "name": "Mandarin Orange Chicken",
+    "type": "special",
+    "description": "A bright purple-and-yellow polypropylene shopper celebrating Trader Joe's most cult-followed frozen product: Mandarin Orange Chicken. Rooster, citrus, chopsticks, and Chinese characters across all five panels.",
+    "source": "https://poshmark.com/listing/Trader-Joes-Chicken-Citrus-Reusable-Tote-Bag-Grocery-Food-Theme-2024-69f5420d3251879b8d0bfa6b",
+    "referencePhotos": [
+      "bags/special-bags/chicken-citrus-tote/front.png",
+      "bags/special-bags/chicken-citrus-tote/back.png",
+      "bags/special-bags/chicken-citrus-tote/left.png",
+      "bags/special-bags/chicken-citrus-tote/right.png",
+      "bags/special-bags/chicken-citrus-tote/bottom.png"
+    ],
+    "referencePhotoSources": {
+      "front": "https://poshmark.com/listing/6916b54d3509d16975e3829f",
+      "back": "https://poshmark.com/listing/6916b54d3509d16975e3829f",
+      "left": "https://poshmark.com/listing/6916b54d3509d16975e3829f",
+      "right": "https://poshmark.com/listing/6916b54d3509d16975e3829f",
+      "bottom": "https://poshmark.com/listing/6916b54d3509d16975e3829f"
+    },
+    "materials": [
+      "polypropylene"
+    ]
+  },
+  {
+    "id": "crew-member-portrait-tote",
+    "name": "Meet the Crew",
+    "type": "special",
+    "description": "A canvas-style polypropylene tote done up as a Victorian family album: four 'crew member' portraits (Jolene, Joni, and two gentlemen) in engraved black-ink linework, vintage botanicals between them, and a stanza from Jonathan Swift's 'Mutton' tucked onto the underside.",
+    "source": "https://poshmark.com/listing/Trader-Joes-Reusable-Shopping-Tote-Bag-Collage-Art-Grocery-Market-Joni-Jolene-C-69f654df943ddb367ed60992",
+    "referencePhotos": [
+      "bags/special-bags/crew-member-portrait-tote/front.png",
+      "bags/special-bags/crew-member-portrait-tote/back.png",
+      "bags/special-bags/crew-member-portrait-tote/left.png",
+      "bags/special-bags/crew-member-portrait-tote/right.png",
+      "bags/special-bags/crew-member-portrait-tote/bottom.png"
+    ],
+    "referencePhotoSources": {
+      "front": "https://poshmark.com/listing/6a052eeaff032085eac65f5e",
+      "back": "https://poshmark.com/listing/6a052eeaff032085eac65f5e",
+      "left": "https://poshmark.com/listing/6a052eeaff032085eac65f5e",
+      "right": "https://poshmark.com/listing/6a052eeaff032085eac65f5e",
+      "bottom": "https://poshmark.com/listing/6a052eeaff032085eac65f5e"
+    },
+    "materials": [
+      "polypropylene"
+    ]
+  },
+  {
+    "id": "heritage-tote",
+    "name": "Vintage Heritage Tote",
+    "type": "special",
+    "description": "A vintage all-over-print canvas tote stamped edge to edge with the Trader Joe's wreath seal. Predates the polypropylene era and turns up secondhand in a handful of colorways; the cream and red are the two seen most often.",
+    "source": "https://poshmark.com/listing/NWT-Trader-Joes-Cotton-PICKLES-IN-JAR-Canvas-Tote-Grocery-Tote-Bags-Lot-d-6a0534ae74cb47053f95b557",
+    "materials": [
+      "canvas"
+    ],
+    "variants": [
+      {
+        "id": "classic",
+        "name": "Classic",
+        "description": "Taupe canvas with the wreath seal stamped in cream, the most common heritage colorway.",
+        "referencePhotos": [
+          "bags/canvas-bags/heritage-tote/front.png",
+          "bags/canvas-bags/heritage-tote/back.png"
+        ],
+        "referencePhotoSources": {
+          "front": "https://poshmark.com/listing/NWT-Trader-Joes-Cotton-PICKLES-IN-JAR-Canvas-Tote-Grocery-Tote-Bags-Lot-d-6a0534ae74cb47053f95b557",
+          "back": "https://poshmark.com/listing/NWT-Trader-Joes-Cotton-PICKLES-IN-JAR-Canvas-Tote-Grocery-Tote-Bags-Lot-d-6a0534ae74cb47053f95b557"
+        }
+      },
+      {
+        "id": "vintage-red",
+        "name": "Vintage Red",
+        "description": "Rare red colorway, often surfaced secondhand as a vintage USA-made collectible. The cream lining inside carries the same seal print.",
+        "source": "https://poshmark.com/listing/Trader-Joes-Rare-Vintage-Red-Canvas-Tote-Bag-Made-in-USA-Collectible-69a4697b50e2dfae427b27c5",
+        "referencePhotos": [
+          "bags/canvas-bags/heritage-tote-red/front.png",
+          "bags/canvas-bags/heritage-tote-red/bottom.png"
+        ],
+        "referencePhotoSources": {
+          "front": "https://poshmark.com/listing/Trader-Joes-Rare-Vintage-Red-Canvas-Tote-Bag-Made-in-USA-Collectible-69a4697b50e2dfae427b27c5",
+          "bottom": "https://poshmark.com/listing/Trader-Joes-Rare-Vintage-Red-Canvas-Tote-Bag-Made-in-USA-Collectible-69a4697b50e2dfae427b27c5"
+        }
+      }
+    ]
+  },
+  {
+    "id": "vintage-lady-tote",
+    "name": "Vintage Fruit-Hat Lady",
+    "type": "special",
+    "description": "A butter-yellow canvas tote with magenta ribbon handles, both faces starring Edwardian figures at a fruit market. The cover lady wears an elaborate hat piled high with cherries, pears, plums, and grapes.",
+    "source": "https://poshmark.com/listing/Trader-Joes-Rare-Vintage-Lady-with-Fruit-Green-Tote-Bag-with-Purple-Handles-69065aa0d7555d33d90f39a4",
+    "referencePhotos": [
+      "bags/canvas-bags/vintage-lady-tote/front.png",
+      "bags/canvas-bags/vintage-lady-tote/back.png"
+    ],
+    "referencePhotoSources": {
+      "front": "https://poshmark.com/listing/68fe91642061e4a886966e41",
+      "back": "https://poshmark.com/listing/68fe91642061e4a886966e41"
+    },
+    "materials": [
+      "canvas"
+    ]
+  },
+  {
+    "id": "vintage-produce-tote",
+    "name": "Vintage Painted Produce Tote",
+    "type": "special",
+    "description": "A Made-in-USA cotton tote in cream with kelly-green ribbon handles, fronted by a riot of hand-painted fruits and vegetables in thick marker strokes. Reads like a farmstand chalkboard menu drawn by an enthusiastic art student.",
+    "source": "https://poshmark.com/listing/Trader-Joes-Shopping-Bag-Fruit-Vegetable-100-cotton-MADE-in-USA-Vintage-69f6ad45eba4c4e395a54f65",
+    "referencePhotos": [
+      "bags/canvas-bags/vintage-produce-tote/front.png",
+      "bags/canvas-bags/vintage-produce-tote/back.png",
+      "bags/canvas-bags/vintage-produce-tote/bottom.png"
+    ],
+    "referencePhotoSources": {
+      "front": "https://poshmark.com/listing/6986459d1986c292332d65b4",
+      "back": "https://poshmark.com/listing/6986459d1986c292332d65b4",
+      "bottom": "https://poshmark.com/listing/6a00807e7fc8267e6ccb0348"
+    },
+    "materials": [
+      "canvas"
+    ]
+  },
+  {
+    "id": "corn-can-tote",
+    "name": "Whole Kernel Corn",
+    "type": "special",
+    "description": "Yellow polypropylene shopper printed to look like a Trader Joe's 'Whole Kernel Corn' can — front mimics the canned-goods label (\"Naturally Sweet & Crisp · No Sugar Added · No Preservatives\"), with a back panel rendered like a nutrition label and a corn-stalk illustration.",
+    "source": "https://poshmark.com/listing/Trader-Joes-Reusable-Grocery-Tote-Bag-Corn-65614215046d74f3bf1348e9",
+    "referencePhotos": [
+      "bags/special-bags/corn-can-tote/front.png",
+      "bags/special-bags/corn-can-tote/back.png",
+      "bags/special-bags/corn-can-tote/bottom.png"
+    ],
+    "referencePhotoSources": {
+      "front": "https://poshmark.com/listing/673a1502f88471613f352726",
+      "back": "https://poshmark.com/listing/673a1502f88471613f352726",
+      "bottom": "https://poshmark.com/listing/6a07d57488849ace669224a5"
+    },
+    "materials": [
+      "polypropylene"
+    ]
+  },
+  {
+    "id": "surfboard-tote",
+    "name": "Surfboard",
+    "type": "special",
+    "description": "Beach-scene polypropylene shopper — purple sky, palm trees, sand, and a row of surfboards reading 'TRADER JOE', 'TJ', and 'JOE'S' planted in the dune, with a beach ball at the water's edge.",
+    "source": "https://poshmark.com/listing/Trader-Joes-Reusable-Grocery-Tote-Bag-Surfboard-65614767ff048483cc5de7c0",
+    "referencePhotos": [
+      "bags/special-bags/surfboard-tote/front.png",
+      "bags/special-bags/surfboard-tote/back.png"
+    ],
+    "referencePhotoSources": {
+      "front": "https://poshmark.com/listing/65614767ff048483cc5de7c0",
+      "back": "https://poshmark.com/listing/65614767ff048483cc5de7c0"
+    },
+    "materials": [
+      "polypropylene"
+    ]
+  },
+  {
+    "id": "50th-anniversary-tote",
+    "name": "50th Anniversary",
+    "type": "special",
+    "description": "A 2017 limited-edition shopper marking Trader Joe's 50th birthday (1967-2017). The original Pasadena storefront on the front, cartoon crew members Joey and Josie trading 'I can't believe Joe is 50' / 'He doesn't look a day over 49' on the back, vintage gentlemen with their own crew badges on the sides (one holding a Fearless Flyer over an August 1967 storefront tag), and a carnival-style 'Made in 1967' banner around a maritime anchor on the bottom.",
+    "source": "https://www.ebay.com/itm/174921608238",
+    "year": 2017,
+    "referencePhotos": [
+      "bags/special-bags/50th-anniversary-tote/front.png",
+      "bags/special-bags/50th-anniversary-tote/back.png",
+      "bags/special-bags/50th-anniversary-tote/left.png",
+      "bags/special-bags/50th-anniversary-tote/right.png",
+      "bags/special-bags/50th-anniversary-tote/bottom.png"
+    ],
+    "referencePhotoSources": {
+      "front": "https://www.ebay.com/itm/174921608238",
+      "back": "https://www.ebay.com/itm/174921608238",
+      "left": "https://www.ebay.com/itm/174921608238",
+      "right": "https://www.ebay.com/itm/174921608238",
+      "bottom": "https://www.ebay.com/itm/174921608238"
+    },
+    "materials": [
+      "polypropylene"
+    ]
+  },
+  {
+    "id": "flower-shop-tote",
+    "name": "Flower Shop",
+    "type": "special",
+    "description": "Rare collectible Trader Joe's tote with a purple and red floral motif — themed around the TJ's 'Flower Shop' department.",
+    "source": "https://poshmark.com/listing/Trader-Joes-Collectible-Flower-Shop-Purple-and-Red-Floral-Tote-Bag-RARE-691b43319936d6e5296a9fe9",
+    "referencePhotos": [
+      "bags/special-bags/flower-shop-tote/front.png",
+      "bags/special-bags/flower-shop-tote/back.png",
+      "bags/special-bags/flower-shop-tote/bottom.png"
+    ],
+    "referencePhotoSources": {
+      "front": "https://poshmark.com/listing/691fca09a9a448c02008ade4",
+      "back": "https://poshmark.com/listing/691fca09a9a448c02008ade4",
+      "bottom": "https://poshmark.com/listing/691b43319936d6e5296a9fe9"
+    },
+    "materials": [
+      "polypropylene"
+    ]
   },
   {
     "id": "george-washington-peanuts",
-    "name": "George Washington Peanuts Bag",
+    "name": "George Washington Peanuts",
     "type": "special",
     "description": "Non-location collectible 6-gallon polypropylene shopper built around George Washington and peanuts; sometimes labeled \"The Peanut Bag.\"",
-    "source": "https://poshmark.com/listing/Trader-Joes-George-Washington-Peanuts-Collectible-Design-Tote-Bag-691bf3b1b94491ac1f65cbcd"
+    "source": "https://poshmark.com/listing/Trader-Joes-George-Washington-Peanuts-Collectible-Design-Tote-Bag-691bf3b1b94491ac1f65cbcd",
+    "referencePhotos": [
+      "bags/special-bags/george-washington-peanuts/front.png",
+      "bags/special-bags/george-washington-peanuts/back.png",
+      "bags/special-bags/george-washington-peanuts/left.png",
+      "bags/special-bags/george-washington-peanuts/right.png",
+      "bags/special-bags/george-washington-peanuts/bottom.png"
+    ],
+    "materials": [
+      "polypropylene"
+    ]
+  },
+  {
+    "id": "vintage-destination-bag",
+    "name": "Vintage Destination",
+    "type": "special",
+    "description": "Travel-themed 6-gallon polypropylene shopper from TJ's vintage non-location series — world map background, tropical motifs (pineapple, mermaid scales), and a tiki-style Trader Joe figure layered over the cartography.",
+    "source": "https://poshmark.com/listing/69fa6f1464164a4e806342cc",
+    "referencePhotos": [
+      "bags/special-bags/vintage-destination-bag/front.png",
+      "bags/special-bags/vintage-destination-bag/back.png",
+      "bags/special-bags/vintage-destination-bag/left.png",
+      "bags/special-bags/vintage-destination-bag/right.png",
+      "bags/special-bags/vintage-destination-bag/bottom.png"
+    ],
+    "referencePhotoSources": {
+      "front": "https://poshmark.com/listing/69fa6f1464164a4e806342cc",
+      "back": "https://poshmark.com/listing/69fa6f1464164a4e806342cc",
+      "left": "https://poshmark.com/listing/69fa6f1464164a4e806342cc",
+      "right": "https://poshmark.com/listing/69fa6f1464164a4e806342cc",
+      "bottom": "https://poshmark.com/listing/69fa6f1464164a4e806342cc"
+    },
+    "materials": [
+      "polypropylene"
+    ]
+  },
+  {
+    "id": "victorian-kitchen-tote",
+    "name": "Vintage Victorian Pantry",
+    "type": "special",
+    "description": "A vintage canvas tote printed edge to edge like a page from a Victorian-era kitchen-supply catalog: brass kettles, three-legged stoves, mortars, copper pans, and small Trader Joe's labels tucked between, all rendered in sepia engraving lines.",
+    "source": "https://poshmark.com/listing/Victorian-Kitchen-Trader-Joes-Reusable-Canvas-Shopping-Bag-Grocery-Eco-Chef-Vtg-6a0016be5c465e721f035937",
+    "referencePhotos": [
+      "bags/canvas-bags/victorian-kitchen-tote/front.png",
+      "bags/canvas-bags/victorian-kitchen-tote/back.png"
+    ],
+    "referencePhotoSources": {
+      "front": "https://poshmark.com/listing/6a0016be5c465e721f035937",
+      "back": "https://poshmark.com/listing/6a0016be5c465e721f035937"
+    },
+    "materials": [
+      "canvas"
+    ]
   },
   {
     "id": "vintage-print-bag",
-    "name": "Vintage Print Bag (Horse & Owl)",
+    "name": "Vintage Print (Horse & Owl)",
     "type": "special",
     "description": "Generic 100% polypropylene 6-gallon TJ shopper with whimsical vintage artwork (horse, owl, etc.) — same format as the state bags but not tied to a location.",
-    "source": "https://www.ople.com/m/shop/item.php?it_id=1512214579"
-  },
-  {
-    "id": "wine-reusable-bag",
-    "name": "Wine Reusable Bag",
-    "type": "special",
-    "description": "Reusable carrier specifically built for wine bottles.",
-    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
-  },
-  {
-    "id": "wine-gift-bag",
-    "name": "Wine Gift Bag",
-    "type": "special",
-    "description": "Single-bottle gift presentation bag.",
-    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
-  },
-  {
-    "id": "mystery-bag-set",
-    "name": "Mystery Bag Set",
-    "type": "special",
-    "description": "Annual mystery 3-pack of state bags from random regions — released around November.",
-    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
-  },
-
-  {
-    "id": "halloween-mini-canvas",
-    "name": "Halloween Mini Canvas Tote",
-    "type": "seasonal",
-    "description": "October release of the Mini Canvas in Halloween prints.",
-    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
-  },
-  {
-    "id": "holiday-gift-bag",
-    "name": "Holiday Gift Bag",
-    "type": "seasonal",
-    "description": "December gift-wrap-replacement totes — design changes yearly.",
-    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
-  },
-  {
-    "id": "pastel-mini-canvas",
-    "name": "Pastel Mini Canvas Totes",
-    "type": "seasonal",
-    "description": "Spring release of the Mini Canvas in pastel colorways.",
-    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
-  },
-  {
-    "id": "gift-bag-all-seasons",
-    "name": "Gift Bag for All Seasons",
-    "type": "standard",
-    "description": "Trio of 79¢ gift-style shoppers in three prints: Pasta, Groceries, and Desserts & Ice Cream. Tag spec: 98.755% polypropylene + 1.25% polyester, designed for at least 125 uses.",
-    "source": "https://www.reddit.com/r/traderjoes/comments/1834ceh/trader_joes_gift_bags_3_designs_pasta_desserts/"
+    "source": "https://www.ople.com/m/shop/item.php?it_id=1512214579",
+    "referencePhotos": [
+      "bags/special-bags/vintage-print-bag/front.png",
+      "bags/special-bags/vintage-print-bag/back.png",
+      "bags/special-bags/vintage-print-bag/left.png",
+      "bags/special-bags/vintage-print-bag/right.png",
+      "bags/special-bags/vintage-print-bag/bottom.png"
+    ],
+    "referencePhotoSources": {
+      "front": "https://poshmark.com/listing/69fa7046ac1f76c0fc072b26",
+      "back": "https://poshmark.com/listing/69fa7046ac1f76c0fc072b26",
+      "left": "https://poshmark.com/listing/69fa7046ac1f76c0fc072b26",
+      "right": "https://poshmark.com/listing/69fa7046ac1f76c0fc072b26",
+      "bottom": "https://poshmark.com/listing/69fa7046ac1f76c0fc072b26"
+    },
+    "materials": [
+      "polypropylene"
+    ]
   }
 ]

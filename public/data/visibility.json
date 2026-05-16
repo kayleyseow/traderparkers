@@ -1,5 +1,6 @@
 {
+  "state": true,
   "special": true,
-  "seasonal": false,
-  "standard": false
+  "seasonal": true,
+  "standard": true
 }

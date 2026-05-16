@@ -26,14 +26,15 @@ export function inferAngleMap(photos: string[]): Partial<Record<Angle, string>> 
       .pop()
       ?.replace(/\.[^./]+$/, '')
       .toLowerCase()
-    if (
-      base === 'front' ||
-      base === 'back' ||
-      base === 'left' ||
-      base === 'right' ||
-      base === 'bottom'
-    ) {
-      result[base] = p
+    if (!base) continue
+    // Match exact angle name (front.png) or a color-prefixed form
+    // (skyblue_front.png, navy_back.png) so we can keep multiple colorways
+    // of the same bag side by side in one folder.
+    const matched = (ANGLE_ORDER as readonly string[]).find(
+      (a) => base === a || base.endsWith('_' + a),
+    ) as Angle | undefined
+    if (matched) {
+      result[matched] = p
     }
   }
   return result
@@ -462,13 +463,25 @@ export const DESIGN_NOTES: Record<string, DesignNotes> = {
   'tn-nashville': {
     subtitle: 'Music City',
     blurb:
-      'A five-panel Nashville set. The front pulls TRADER JOE’S NASHVILLE under "Music City" with a fiddle, a banjo, and three stars. The back loiters at the Nashville Parthenon, where marble statues chat each other up — yes, the city has a full-scale replica. The side panels stack Music Row / Circle / Square / Here / There with a Greek muse on one side, and a Nashville-hot-chicken rooster duo on the other. The underside dials in a vintage Grand Ole Opry-style radio.',
+      'A five-panel Nashville set. The front pulls TRADER JOE’S NASHVILLE under "Music City" with a fiddle, a banjo, and three stars. The back ruffles its feathers with a Nashville-hot-chicken rooster duo. The side panels stack Music Row / Circle / Square / Here / There with a Greek muse on one side, and the Nashville Parthenon on the other — where marble statues chat each other up in a full-scale replica. The underside dials in a vintage Grand Ole Opry-style radio.',
     angleCaptions: {
       front: 'Trader Joe’s Nashville — Music City, with fiddle, banjo, and three stars',
-      back: 'The Nashville Parthenon — marble statues chatting in a full-scale replica',
+      back: 'Two roosters — Nashville hot chicken',
       left: 'Music Row, Music Circle, Music Square, Music Here, Music There — and Trader Joe’s',
-      right: 'Two roosters — Nashville hot chicken',
+      right: 'The Nashville Parthenon — marble statues chatting in a full-scale replica',
       bottom: 'Vintage Grand Ole Opry radio — Music City on the airwaves',
+    },
+  },
+  tn: {
+    subtitle: 'the Volunteer State',
+    blurb:
+      'A five-panel Tennessee tour from one end of the state to the other. The front pairs TRADER JOE’S TENNESSEE with a giant acoustic guitar under a "Volunteer State" banner, a State Route 840 shield, and a red trolley rolling across the foothills. The back drops into Memphis: a neon "Beale Street TRADER JOE’S" marquee glows above a heart-stamped guitar and a stiletto on the dance floor, with TENNESSEE in red script underneath. The side panels light up a vintage music-genre marquee — Country · Bluegrass · Rock and Roll · Rhythm and Gospel — on one side, and pour "Smooth as Tennessee Whiskey" from a barrel into a glass on the rocks on the other. The underside is a patchwork quilt: tri-star state flag, 1796 statehood, fiddle, mockingbird, and Route 840 all stitched in.',
+    angleCaptions: {
+      front: 'Trader Joe’s Tennessee — acoustic guitar, "Volunteer State," and a red trolley on State Route 840',
+      back: 'Memphis Beale Street — neon marquee, heart-stamped guitar, and TENNESSEE in red script',
+      left: 'The music marquee — Country · Bluegrass · Rock and Roll · Rhythm and Gospel',
+      right: '"Smooth as Tennessee Whiskey" — barrel, spigot, and a glass on the rocks',
+      bottom: 'Tennessee patchwork quilt — tri-star flag, 1796 statehood, fiddle, and Route 840',
     },
   },
   tx: {
@@ -541,6 +554,207 @@ export const DESIGN_NOTES: Record<string, DesignNotes> = {
       left: 'Refried pinto beans, jalapeño sauce, a Sonoran burrito',
       right: 'Hot-air balloon over red rocks — Sedona country',
       bottom: 'The Arizona state flag — 13 copper rays and a star for the Copper State',
+    },
+  },
+  'coffee-jute-bag': {
+    subtitle: 'Pasadena, 1967',
+    blurb:
+      'A jute tote dressed up as a vintage coffee sack, and a quiet love letter to Trader Joe’s own origin story. The front and back are blocked out in brick-red and cream burlap panels, stenciled with "Coffee Beans, Product of Pasadena, Premium Roast, 1967." That’s the year Joe Coulombe opened the first Trader Joe’s on Arroyo Parkway in Pasadena, California, and ground coffee was one of the early specialty categories (alongside cheap European wine) that built the brand’s reputation. The side panels paint a coffee plant in fruit: glossy green leaves and ripening red cherries, hand-drawn on the natural jute.',
+    angleCaptions: {
+      front: 'Premium Roast, vintage coffee-sack styling stenciled on brick red',
+      back: 'Trader Joe’s 1967, the year the first store opened in Pasadena',
+      left: 'Coffee in fruit: glossy green leaves and ripening red cherries',
+      right: 'The other side of the branch, the same plant mirrored',
+      bottom: 'Looking in: the painted panels lining the interior',
+    },
+  },
+  'jute-bag': {
+    subtitle: 'Just the Jute',
+    blurb:
+      'A back-to-basics jute tote, also sold online as the "Mini Jute Tote." The front carries the unadorned essentials: a small black "Trader Joe’s" circle stamp on natural burlap, with the tiny line "Stock Keeping Unit 39375" floating above it. Everything else is left as woven jute, framed in cream cotton banding at the top and bottom and finished with chunky braided rope handles. The back is bare; so is the inside, except for one more Trader Joe’s stamp tucked on the floor of the bag. The whole thing feels less like a themed souvenir and more like a back-of-house staple, the everyday companion for farmers markets, beach days, and picnic runs.',
+    angleCaptions: {
+      front: 'The Trader Joe’s circle stamp on natural burlap, with "Stock Keeping Unit 39375" in tiny type above',
+      back: 'Bare burlap with cream banding, hangtag still attached',
+      left: 'Side profile: plenty of depth for a small market run',
+      right: 'The other side, also unembellished',
+      bottom: 'A hidden Trader Joe’s stamp on the inside floor of the bag',
+    },
+  },
+  'vegetable-jute-bag': {
+    subtitle: 'Garden Variety',
+    blurb:
+      'A spring release that turns the front and back into one continuous vegetable patch. Purple eggplants and beets, green pea pods, orange carrots and pumpkins, and pale onions sit shoulder to shoulder across natural jute, with no real foreground or background. The fun detail is the brand mark itself: in the lower-right corner of each face, a small purple eggplant silhouette doubles as a "Trader Joe’s" badge, the name written across the vegetable. The side panels show off the unbleached jute weave at full height, and the underside is left bare. The bag has since been discontinued, so it tends to surface secondhand around spring planting season.',
+    angleCaptions: {
+      front: 'An edge-to-edge medley of eggplants, beets, pea pods, carrots, and onions',
+      back: 'The same vegetable patch, repeated on the reverse',
+      left: 'A peek of the print as the jute side panel wraps around',
+      right: 'The other side, mostly plain jute',
+      bottom: 'Natural jute weave at the base, no print on the underside',
+    },
+  },
+  'stock-keeping-unit-bag': {
+    subtitle: 'All the Breath and the Bloom',
+    blurb:
+      'A pocket-sized jute tote that turns itself into a museum label. The front carries a tight block of stamped text: "This is a bag.", "Trader Joe’s", "Stock Keeping Unit 95375", and the bag’s botanical credentials, Corchorus and Tiliaceae, the genus and family of the jute plant itself. The block closes with a winking line lifted from Robert Browning’s 1889 poem "Summum Bonum." The original reads, "All the breath and the bloom of the year in the bag of one bee," and Trader Joe’s quietly swaps "bee" for "bag," turning a love poem into a bag joke. Everything else stays bare: woven natural jute, cream cotton banding top and bottom, chunky white braided rope handles. The literary footnote is easy to miss unless you stop and read the front, which is exactly the point.',
+    angleCaptions: {
+      front: 'The full text block: "This is a bag.", Trader Joe’s, SKU 95375, the jute plant’s botanical credentials, and a winking line of Browning',
+      back: 'Bare natural jute with cream banding and braided rope handles',
+      left: 'Side profile, plain natural jute and cotton banding',
+      right: 'The other side, just as quiet',
+      bottom: 'Cream cotton banding wrapping under the bag',
+    },
+  },
+  'reusable-breakfast-tote': {
+    subtitle: 'A Considerate Pancake With Pockets',
+    blurb:
+      'A breakfast-themed canvas tote built like a two-page entry from a Trader Joe’s-flavored dictionary. The front sets the table around a fat Belgian waffle, with a doodled coffee mug, bacon strips, a jar of JAM, a butter dish, a citrus slice, and a milk carton crowding in from the edges. Tucked into the upper corner is the definition itself: "waffle, noun [waf-fəl], a considerate pancake with pockets." The back flips to a toaster mid-pop, ringed by a fried egg, a banana, sliced bread, and a wedge of cheese, with its own entry: "toast, noun [tōst], a humble cousin to a tortilla." Bright yellow canvas body, candy-red handles. The dry-funny copy is pure Trader Joe’s Fearless Flyer, the print newsletter where every product gets its own small, deadpan-funny blurb.',
+    angleCaptions: {
+      front: 'Waffle side: "a considerate pancake with pockets," ringed by coffee, jam, bacon, and butter',
+      back: 'Toast side: "a humble cousin to a tortilla," ringed by an egg, a banana, and bread',
+    },
+  },
+  'pickle-cotton-bag': {
+    subtitle: 'Now Showing: Pickles',
+    blurb:
+      'A canvas tote dressed up as a vintage circus poster, with Trader Joe’s pickle department in the starring role. The front is laid out like a marquee for a feature presentation: "Trader Joe’s Presents PICKLES, in a shipping crate near you." A massive green dill stands at center, ringed by carnival-style call-outs about cheeseburgers and bread toppings, with the ticket price stamped at 99¢. Flip it and the back becomes the sequel poster, "Trader Joe’s Stories Presents PICKLE IN A JAR," in 70s funky lettering, with a giant pickle jar illustration and the warning "Guaranteed Sell Out, Come Early." Yellow canvas, candy-red handles, and a lot of love for what is arguably the most cult-followed item in the store.',
+    angleCaptions: {
+      front: '"Trader Joe’s Presents PICKLES," a vintage movie marquee for the deli-aisle main event',
+      back: '"Pickle in a Jar," billed as the sequel: guaranteed sell out, come early',
+    },
+  },
+  'sardine-bag': {
+    subtitle: 'Sardines on Toast',
+    blurb:
+      'A canvas tote built around Trader Joe’s sardine tin, with the canned-fish renaissance on full display. The front presents a hand-drawn label for "Trader Joe’s Sardines in Olive Oil," with a vintage tinned-fish illustration in the middle and little call-outs pointing to the sardine’s virtues, sodium-busting and heart-healthy among them. The back flips the program: a "Sardine Toast" recipe poster with dozens of silvery sardines radiating from a central Trader Joe’s badge like a fishmonger’s sunburst, and a sketched recipe block in the lower corner. Bright turquoise canvas, candy-red handles. The bag rides the tinned-fish trend that swept food media in the early 2020s, with Trader Joe’s olive-oil sardines (around $1.99 a tin) often cited as the affordable gateway to the category.',
+    angleCaptions: {
+      front: '"Sardines in Olive Oil," a vintage tin label with little call-outs for the fish’s nutritional virtues',
+      back: '"Sardine Toast," a recipe poster with dozens of fish radiating in a sunburst around the Trader Joe’s badge',
+    },
+  },
+  'cheese-adventure-canvas': {
+    subtitle: 'From Cheeseboard to Cheeseburger',
+    blurb:
+      'A canvas tote built like a two-course cheese menu, with a different program on each side. The front, titled "Trader Joe’s Cheese Experience," runs through the slightly fancy end of the spectrum: quesadilla, patatas au gratin, cheese grits, mozzarella sticks. Hand-drawn ingredient call-outs ring the title, with a wedge of brie, a cheese grater mid-action, a fondue pot, a cheese ball, and a slice carrying a tiny "yes!" speech bubble. The back, titled "Cheese Adventures," carries the comfort-food cousins: grilled cheese, macaroni and cheese, cheeseburger, nachos, with a cheese block, a slicing tool labeled "Easy to slice. Better to eat," and a few more friendly speech bubbles. Red canvas, yellow handles, the cheese department’s whole reach captured on one bag.',
+    angleCaptions: {
+      front: '"Cheese Experience": quesadilla, patatas au gratin, cheese grits, and mozzarella sticks, with hand-drawn call-outs all around',
+      back: '"Cheese Adventures": grilled cheese, mac and cheese, cheeseburger, and nachos, with a slicer labeled "Easy to slice. Better to eat"',
+    },
+  },
+  'heritage-tote': {
+    subtitle: 'The Old Seal',
+    blurb:
+      'A pre-polypropylene Trader Joe’s tote, stamped edge to edge with the company’s old wreath seal in a quiet all-over print. The bag is constructed in heavy cotton canvas with simple self-fabric handles, the seal repeating across both faces and wrapping around the side panels like a Victorian wallpaper. Two colorways turn up most often secondhand: a cream-on-taupe Classic version and a rarer red one. Inside the red bag, the lining is a clean cream printed with the same seal motif, so the design quietly continues even when the tote is empty. These come from Trader Joe’s pre-2000s collectibles era, predating the now-ubiquitous polypropylene reusable bags, and they tend to surface on Poshmark and eBay as vintage finds rather than current inventory.',
+    angleCaptions: {
+      front: 'The all-over wreath-seal stamp, repeating across the front in cream on taupe',
+      back: 'The print wrapping around the side and back without a single seam in the pattern',
+      bottom: 'Inside the red variant: a cream lining printed with the same seal motif',
+    },
+  },
+  'vintage-lady-tote': {
+    subtitle: 'All the Fruit on Her Hat',
+    blurb:
+      'A pre-polypropylene Trader Joe’s canvas tote in butter yellow, set off by magenta ribbon handles. Both faces star Edwardian-era figures from what reads like a turn-of-the-century fruit market. The front centers a young woman in an elaborate hat that is itself a fruit basket: cherries, pears, plums, and grapes piled high, with a fan tucked in her hand and a Trader Joe’s signboard tilted in beside her. The back continues the scene with a second figure cradling a paper-wrapped bouquet of fruit, the same shop banner anchored in the composition. The illustration style is straight out of a Belle Époque lithograph, and the bag itself is an early TJ collectible from the canvas era, well before the now-universal polypropylene shoppers.',
+    angleCaptions: {
+      front: 'An Edwardian woman in a fruit-piled hat, with a Trader Joe’s signboard tilted in beside her',
+      back: 'A second figure cradling a paper-wrapped bouquet of fruit, the same shop banner in view',
+    },
+  },
+  'vintage-produce-tote': {
+    subtitle: 'A Marker-Drawn Market',
+    blurb:
+      'A Made-in-USA cotton tote in natural cream, with kelly-green ribbon handles and a matching green base band, fronted by a riot of hand-drawn fruits and vegetables in thick marker strokes. Tomatoes, oranges, pears, eggplant, lemons, and cherries crowd the front around a red "Trader Joe’s" painted in script. The back continues the cast list with broccoli, watermelons, artichokes, bananas, mushrooms, carrots, and garlic, set against the same painted-banner Trader Joe’s; the print wraps continuously around the gusset onto the base. The whole thing reads like a farmstand chalkboard menu drawn by an enthusiastic art student, and like the rest of TJ’s early canvas pieces, it predates the polypropylene era and tends to surface secondhand.',
+    angleCaptions: {
+      front: 'Tomatoes, oranges, pears, eggplant, and cherries crowd the front around a painted Trader Joe’s script',
+      back: 'Broccoli, watermelons, artichokes, and bananas continue the cast list on the reverse',
+      bottom: 'The painted produce wraps around onto the green base band',
+    },
+  },
+  'victorian-kitchen-tote': {
+    subtitle: 'An Engraved Pantry',
+    blurb:
+      'A vintage Trader Joe’s tote built like a page from a Victorian-era kitchen-supply catalog. The yellow canvas is printed edge to edge with engraving-style illustrations of late-1800s cookware: brass kettles, three-legged stoves, mortars and pestles, copper pans, eggbeaters, mason jars, packages of cocoa, and a half-dozen tiny "Trader Joe’s" labels tucked between them like archival stamps. The back continues the catalog with more of the same. The palette runs through sepia, gold, and faded red, the kind of ink colors you would find in an antique typesetter’s drawer. Another pre-polypropylene TJ collectible, often sold secondhand by listings that call it "Vintage Kitchen" or "Victorian Kitchen."',
+    angleCaptions: {
+      front: 'An engraved kitchen catalog in yellow: kettles, stoves, cocoa boxes, and tiny Trader Joe’s stamps tucked between',
+      back: 'The catalog continues on the reverse, the same Victorian-era pantry tools repeating',
+    },
+  },
+  'reusable-flower-bag': {
+    subtitle: 'Hawaiian Hibiscus, Retired',
+    blurb:
+      'A retired Trader Joe’s insulated tote in deep red and cream, banded across its lower half with white Hawaiian hibiscus flowers in tropical-shirt style. The front center carries the classic Trader Joe’s circle stamp, this version with an "ICE" tag at the bottom and a wine-bottle silhouette inside, marking it as one of TJ’s nylon-lined insulated cooler bags rather than a regular canvas shopper. Roughly 18 inches across, with short red carrying handles built for an easy in-and-out cooler trip rather than a full-day haul.\n\nThe bag has been out of production for years and tends to surface only secondhand on eBay, Mercari, and Poshmark, often listed under names like "Rare Retired TRADER JOE’S Hawaiian Hibiscus." It belongs to Trader Joe’s older Hawaiian-themed merchandise generation, a quiet nod to founder Joe Coulombe’s original South Seas trader concept, the same maritime thread that shows up in the anchor stamp on the 50th anniversary bag.',
+    angleCaptions: {
+      front: 'Red-and-cream nylon with white Hawaiian hibiscus, the Trader Joe\'s circle stamped with an "ICE" tag for the insulated lining',
+      back: 'Same hibiscus print continues around to the reverse, short red handles for cooler-trip carrying',
+    },
+  },
+  'mini-insulated-tote': {
+    subtitle: 'A Cooler in Miniature',
+    blurb:
+      'A lunch-sized insulated cooler tote, just bigger than a sandwich and a drink. Trader Joe’s runs this silhouette through frequent seasonal colorway capsules. Past releases include paired colorways like peach and blue, lavender and pink, red and emerald for the holidays, and teal and magenta. The Summer 2026 capsule, released May 20, 2026, shifted into solid colorways patterned with a hand-drawn Trader Joe’s storefront silhouette across the front and palm trees plus vintage VW vans rolling down the side panels. The release came in green, blue, purple, and orange at $3.99 each. Nylon body with a foil-lined interior and short cotton-strap handles, sized for a cooler trip but small enough to fit on a backpack hook.',
+    angleCaptions: {
+      front: 'The Trader Joe’s storefront silhouette across the front, palm trees framing the sign',
+      back: 'The neighborhood from the other side, more palms and a Trader Joe’s Market awning',
+      left: 'Side panel: palm trees and a vintage VW van rolling past',
+      right: 'Other side: more palms, another VW van silhouette',
+      bottom: 'Looking down: sky-blue cooler base with lime-green zipper trim',
+    },
+  },
+  'classic-reusable-tote': {
+    subtitle: 'The OG',
+    blurb:
+      'Trader Joe’s full-size canvas grocery tote, the bag every other TJ canvas piece is a riff on. Heavy cream canvas body with contrast-colored handles and base banding, a deep front pocket, and the red Trader Joe’s circle stamp printed dead-center. Roomy enough for a real grocery run, not a tote-as-accessory the way the mini became.\n\nNavy has been the longtime ongoing colorway, the version most TJ regulars picture when they hear "Trader Joe’s tote." In 2026, Trader Joe’s ran two limited drops in the same silhouette: a green release and a lilac one (cream canvas with lilac handles and a pink TJ logo) that promptly sold out and triggered a smaller version of the mini-tote frenzy. The 2026 releases retailed around $3.99, in-store only, with stores limiting per-customer purchases.',
+  },
+  'mini-canvas-tote': {
+    subtitle: 'The Mini That Broke TikTok',
+    blurb:
+      'The tiny canvas tote that broke TikTok in March 2024. Trader Joe’s released the mini in four bright primary colors (red, yellow, green, blue) at $2.99 apiece, and within days a single viral video pulled in millions of views and turned every nearby TJ into a midweek mob scene. Bags sold out in minutes. Stores started limiting purchases per customer, and almost immediately the secondary market got out of hand: $2.99 totes were going for $50, then $100, then $200 on eBay and Depop, with one listing famously topping $900. Trader Joe’s publicly said the company does not condone reselling, but the genie was out of the bag.\n\nSince the original drop, TJ has run the mini through seasonal capsule colorways, a Fall 2024 Halloween set (orange, black, purple, and a multi-color holiday print) and a March 2026 spring pastel set (pink, lavender, mint green, baby blue), each of which has triggered the same buying frenzy on a smaller scale.\n\nThe bag itself is unfussy. Thick natural-canvas body with a colored print of the Trader Joe’s wordmark, a small "TJ\'s" badge, double cotton straps, sized at roughly 13 inches wide by 11 inches tall by 6 inches deep. The kind of object that absolutely should not be the most coveted thing in the store, which is exactly why it became the most coveted thing in the store.',
+  },
+  '50th-anniversary-tote': {
+    subtitle: 'He Doesn’t Look a Day Over 49',
+    blurb:
+      'A 2017 limited-edition shopper marking Trader Joe’s 50th birthday, and one of the most narrative bags the company has ever made. Every panel tells a small piece of TJ’s origin story.\n\nThe front recreates the original Trader Joe’s storefront in Pasadena, where Joe Coulombe opened the very first store in August 1967. A teal sky radiates white sun-rays out from a centerpiece can of "Trader Joe’s Specialty Foods Corn," floating mid-air like a setting sun. A red shopping cart sits unattended in front of the marquee, palm-tree silhouettes leaning in from the right.\n\nThe back becomes a kind of party scene. "Trader Joe’s 1967-2017 (And Beyond)" runs in bold marquee type along the side, set over a lime-green field with tropical leaves. Two cartoon-cutout crew members ("Joey" in a polka-dot blazer and "Josie" in a flared pantsuit, both wearing red Trader Joe’s name badges) stand together exchanging the bag’s punchline: "I can’t believe Joe is 50." / "He doesn’t look a day over 49."\n\nEach side panel hosts another Victorian-engraved crew member with their own red name badge. On the left, a mustachioed gentleman in a red suit holds up a Fearless Flyer (TJ’s longtime in-store newspaper) and offers "Thanks for listening!", framed above a tiny black-and-white illustration captioned "1st Trader Joe’s, Pasadena, CA, August 1967." On the right, a green-suited gentleman tips his hand toward a small ringing bell on a red curtain backdrop, a quip floating overhead.\n\nThe underside is a carnival-style banner reading "Trader Joe’s Made in 1967" around a small anchor, a quiet nod to founder Joe Coulombe’s original South Seas trader theme. The bag sold for a short window in 2017 and now turns up secondhand as a genuinely sought-after collectible.',
+    angleCaptions: {
+      front: 'The original Pasadena storefront under a teal sky, with a can of Trader Joe’s Specialty Foods Corn floating overhead as the sun',
+      back: '"Trader Joe’s 1967-2017 (And Beyond)": crew members Joey and Josie exchange the bag’s punchline, "I can’t believe Joe is 50." / "He doesn’t look a day over 49."',
+      left: 'A mustachioed crew member in a red suit holds a Fearless Flyer, captioned "Thanks for listening!", above a tiny tag reading "1st Trader Joe’s, Pasadena, CA, August 1967"',
+      right: 'A green-suited crew member tipping his hand to a small ringing bell on a red curtained backdrop, a quip overhead',
+      bottom: '"Trader Joe’s Made in 1967," stamped carnival-style around a maritime anchor',
+    },
+  },
+  'chicken-citrus-tote': {
+    subtitle: 'From the Frozen Aisle',
+    blurb:
+      'A bright purple-and-yellow polypropylene shopper built around Trader Joe’s single most cult-followed frozen product: Mandarin Orange Chicken. The front blares a giant orange-and-yellow rooster on a deep purple field, with "Trader Joe’s" stamped into its body like a vintage Chinese seal and the characters 橙色鸡 (orange chicken) underneath. The back continues the rooster theme with two chickens standing nose-to-orange, the citrus of their dreams hovering above them in a Trader Joe’s thought bubble. The side panels carry crossed chopsticks and orange slices on yellow, and the underside is one giant cross-section of orange on a field of repeating Chinese type. Mandarin Orange Chicken first hit Trader Joe’s freezers in 2004 after an anonymous chef pitched the recipe to the company’s tasting panel, and it has dominated the Customer Choice Awards every year since 2017, the year it dethroned Cookie Butter as Favorite Overall.',
+    angleCaptions: {
+      front: 'A giant orange-and-yellow rooster on deep purple, with 橙色鸡 (orange chicken) stamped underneath',
+      back: 'Two chickens nose to orange, the citrus of their dreams hovering in a Trader Joe’s thought bubble',
+      left: 'Crossed chopsticks and an orange slice on yellow, the side-panel place setting',
+      right: 'The matching panel, same chopsticks-and-citrus motif',
+      bottom: 'A cross-section of orange on a field of repeating Chinese type',
+    },
+  },
+  'crew-member-portrait-tote': {
+    subtitle: 'Portraits from the Pantry',
+    blurb:
+      'A canvas-textured reusable shopper that doubles as a Trader Joe’s family album, rendered in the high-Victorian engraving style of an 1880s pharmacy catalog. The front and back each feature a different "crew member" portrait: Jolene, a young woman with a flower in her hair and a black-ribbon choker, and Joni, hair pinned up over a green Sunday blouse. Both wear red Trader Joe’s name badges. The side panels turn over to two more crew members in the same engraved style, a bearded gentleman and a chef in his work cap. Behind every portrait sits a different botanical or pantry illustration (cabbage roses, grape clusters, herbs), and tucked between them are scraps of handwritten letters that look like they were pulled from an old shopkeeper’s correspondence. The underside finishes the layout with an antique salt-and-pepper-shaker etching and a stanza from Jonathan Swift’s poem "Mutton" ("On the table spread the cloth, let the knives be sharp and clean..."), the kind of literary footnote Trader Joe’s loves to bury in its merch. "Crew member" is what Trader Joe’s officially calls all its employees, a maritime holdover from founder Joe Coulombe’s original South Seas trader theme.',
+    angleCaptions: {
+      front: 'Jolene: a young woman with a flower in her hair and a black-ribbon choker, name badge pinned to her dress',
+      back: 'Joni: hair pinned up over a green Sunday blouse, another red Trader Joe’s name badge in place',
+      left: 'A bearded crew member in profile, framed by grape clusters and a handwritten letter',
+      right: 'A chef in his work cap, another engraved portrait surrounded by herbs and notes',
+      bottom: 'A salt-and-pepper-shaker etching with a stanza from Jonathan Swift’s "Mutton"',
+    },
+  },
+  'citrus-jute-bag': {
+    subtitle: 'Rind to Rind',
+    blurb:
+      'A burlap citrus carrier in two colorways at once. The front centers a fat golden lemon on natural jute, ringed by retro splashes and a tiny lemon-wheel slice, with "Trader Joe’s" looping across the rind in green banner script. Flip it and the back becomes the lime version of the same composition: green pulp, green splashes, a lime wheel tucked into the corner. The side panels carry the slogans in groovy bubble type, "So Fresh & So Zesty" on the lemon side and "So Bright & So Tart" on the lime side. The 1970s grocery-sack styling is no accident; Trader Joe’s grew up alongside California’s citrus belt, and a generously stocked produce wall remains one of the chain’s loudest aesthetic signatures.',
+    angleCaptions: {
+      front: 'Lemon side: a fat golden citrus on jute, with Trader Joe’s in green banner script',
+      back: 'Lime side: the same composition rendered in green',
+      left: 'So Fresh & So Zesty, groovy bubble type on the lemon panel',
+      right: 'So Bright & So Tart, the matching slogan on the lime panel',
+      bottom: 'Plain jute weave at the base, no print on the underside',
     },
   },
 }
