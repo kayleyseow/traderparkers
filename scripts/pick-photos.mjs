@@ -36,14 +36,19 @@ const MATERIAL_FOLDERS = {
 }
 const TYPE_FOLDERS = {
   state: 'locations',
+  special: 'special-bags',
+  standard: 'standard-bags',
 }
 
 function bagSubpath(entry, slug) {
+  // Material-specific groupings win over type so a jute/canvas special lands
+  // in jute-bags/canvas-bags, not special-bags.
+  const m = entry?.materials?.find((x) => MATERIAL_FOLDERS[x])
+  if (m) return `${MATERIAL_FOLDERS[m]}/${slug}`
   if (entry?.type && TYPE_FOLDERS[entry.type]) {
     return `${TYPE_FOLDERS[entry.type]}/${slug}`
   }
-  const m = entry?.materials?.find((x) => MATERIAL_FOLDERS[x])
-  return m ? `${MATERIAL_FOLDERS[m]}/${slug}` : slug
+  return slug
 }
 const CROP_PADDING = 0.04
 const CROP_ASPECT_RATIO = 4 / 5
