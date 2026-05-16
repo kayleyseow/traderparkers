@@ -11,6 +11,8 @@ import type {
 import { DEFAULT_VISIBILITY } from '../types'
 import TopNav from '../TopNav'
 import Footer from '../Footer'
+import StoreChip from '../StoreChip'
+import { defaultReferencePhotos } from '../bagPhotos'
 
 const BASE = import.meta.env.BASE_URL
 
@@ -187,7 +189,7 @@ export default function Pantry() {
               <NoMatchesState onClear={clearFilters} />
             ) : (
               <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-14 md:gap-y-16">
-                {filteredBags.map((bag) => (
+                {filteredBags.map((bag, index) => (
                   <li key={bag.slug}>
                     <BagCard
                       bag={bag}
@@ -195,6 +197,7 @@ export default function Pantry() {
                       encyclopediaEntry={
                         bag.encyclopediaId ? encyclopediaById.get(bag.encyclopediaId) : undefined
                       }
+                      index={index}
                     />
                   </li>
                 ))}
@@ -244,7 +247,6 @@ function CrumpleOverlay() {
 const CATEGORY_STAT_ORDER: { key: BagType; label: string }[] = [
   { key: 'state', label: 'States' },
   { key: 'special', label: 'Special Editions' },
-  { key: 'seasonal', label: 'Seasonal' },
   { key: 'standard', label: 'Standard Bags' },
 ]
 
@@ -541,38 +543,27 @@ function EmptyState() {
   )
 }
 
-// Subtle rotation values for the polaroid tilt. Excludes 0 so every entry
-// gets a tiny angle — straight polaroids read as a UI grid, not a scrapbook.
-const POLAROID_TILTS = [-2.5, -1.8, -1.1, -0.6, 0.6, 1.1, 1.8, 2.5]
-
-function tiltForSlug(slug: string): number {
-  let h = 0
-  for (let i = 0; i < slug.length; i++) {
-    h = ((h << 5) - h + slug.charCodeAt(i)) | 0
-  }
-  return POLAROID_TILTS[Math.abs(h) % POLAROID_TILTS.length]
-}
-
 function BagCard({
   bag,
   store,
   encyclopediaEntry,
+  index,
 }: {
   bag: PantryBag
   store: Store | undefined
   encyclopediaEntry: EncyclopediaBag | undefined
+  index: number
 }) {
   // Hero photo only — Parker's first upload, or the encyclopedia's front
   // photo as fallback. Full gallery lives on the bag detail page.
   const heroSrc =
-    bag.photos[0] ?? encyclopediaEntry?.referencePhotos?.[0] ?? encyclopediaEntry?.referencePhoto
+    bag.photos[0] ?? (encyclopediaEntry ? defaultReferencePhotos(encyclopediaEntry)[0] : undefined)
   const heroUrl = resolvePhotoUrl(heroSrc)
   const usingFallbackPhotos = bag.photos.length === 0 && Boolean(heroSrc)
-  const totalPhotoCount = bag.photos.length
 
-  // Stable per-bag — won't reshuffle when filters/sort change.
-  const tilt = useMemo(() => tiltForSlug(bag.slug), [bag.slug])
-  const storeShort = store?.city ?? store?.name ?? `TJ's #${bag.storeNumber}`
+  // Alternate tilt by render order — guarantees no two consecutive
+  // polaroids share an angle. ±0.5° reads as "barely askew," not chaotic.
+  const tilt = index % 2 === 0 ? 0.5 : -0.5
 
   return (
     <article className="relative py-4">
@@ -620,33 +611,64 @@ function BagCard({
               {bag.name ?? 'Untitled Bag'}
             </Link>
           </h3>
-          <p className="mt-2 font-[var(--tj-body)] tracking-[0.22em] text-[0.6rem] uppercase opacity-70">
-            {formatShortDate(bag.dateAcquired)} · {storeShort}
-            {totalPhotoCount > 1 && ` · ${totalPhotoCount} photos`}
+          <p className="mt-2 font-[var(--tj-body)] tracking-[0.22em] text-[0.6rem] uppercase opacity-70 flex items-center justify-center gap-[0.5em] flex-wrap">
+            <span>{formatShortDate(bag.dateAcquired)}</span>
+            <span aria-hidden>·</span>
+            <StoreChip storeNumber={bag.storeNumber} store={store} />
           </p>
         </div>
       </div>
 
-      {/* Memory floats below the polaroid like a handwritten caption — not
-          inside the white frame, so it reads as Parker's note ABOUT the
-          photo rather than printed text on it. */}
-      {bag.memory && (
-        <blockquote className="mt-7 px-2 max-w-[400px] mx-auto text-center italic text-base md:text-lg leading-relaxed text-[var(--tj-ink)]/85">
-          “{bag.memory}”
-          <footer className="mt-3 font-[var(--tj-body)] tracking-[0.25em] text-[0.6rem] uppercase font-semibold opacity-60 not-italic">
-            — Parker
-          </footer>
-        </blockquote>
-      )}
-
-      {encyclopediaEntry && (
-        <div className="mt-4 text-center">
-          <Link
-            to={`/encyclopedia/${encyclopediaEntry.id}`}
-            className="inline-block font-[var(--tj-body)] tracking-[0.2em] text-[0.65rem] uppercase font-semibold opacity-65 hover:opacity-100 hover:text-[var(--tj-red)] underline-offset-2 hover:underline transition-colors"
+      {/* Parker's voice in sticky-note form: warm lined paper, washi tape on
+          top, slight rotation so it reads "stuck on the page" rather than
+          aligned to the grid. Memory and the encyclopedia link share the
+          same note — Parker's perspective is one unit. */}
+      {(bag.memory || encyclopediaEntry) && (
+        <div className="mt-7 mx-auto max-w-[380px] px-2">
+          <div
+            className="relative bg-[#FBEFC4] border border-[var(--tj-ink)]/20 px-6 pt-6 pb-4 shadow-[0_2px_0_rgba(42,31,20,0.08),0_12px_22px_-8px_rgba(42,31,20,0.28)]"
+            style={{
+              backgroundImage:
+                'repeating-linear-gradient(to bottom, transparent 0, transparent calc(1.75rem - 1px), rgba(168, 117, 60, 0.30) calc(1.75rem - 1px), rgba(168, 117, 60, 0.30) 1.75rem)',
+              backgroundPositionY: '0.96rem',
+              transform: 'rotate(-0.7deg)',
+            }}
           >
-            ↳ More info
-          </Link>
+            {/* Washi tape strip — narrower than the polaroid's, slightly
+                rotated, sits like a real piece of tape across the top edge. */}
+            <span
+              aria-hidden
+              className="absolute -top-2 left-1/2 -translate-x-1/2 -rotate-3 w-16 h-4 bg-[var(--tj-kraft)]/75 border border-[var(--tj-ink)]/15 shadow-[0_1px_0_rgba(42,31,20,0.08)]"
+            />
+
+            {bag.memory && (
+              <blockquote
+                className="italic text-base md:text-lg text-[var(--tj-ink)]/85"
+                style={{ lineHeight: '1.75rem' }}
+              >
+                “{bag.memory}”
+                <footer
+                  className="font-[var(--tj-body)] tracking-[0.25em] text-[0.6rem] uppercase font-semibold opacity-60 not-italic"
+                  style={{ lineHeight: '1.75rem' }}
+                >
+                  — Parker
+                </footer>
+              </blockquote>
+            )}
+
+            {encyclopediaEntry && (
+              <div
+                className={`${bag.memory ? 'mt-3 pt-2 border-t border-dashed border-[var(--tj-ink)]/25' : ''} text-center`}
+              >
+                <Link
+                  to={`/encyclopedia/${encyclopediaEntry.id}`}
+                  className="inline-block font-[var(--tj-body)] tracking-[0.2em] text-[0.65rem] uppercase font-semibold opacity-65 hover:opacity-100 hover:text-[var(--tj-red)] underline-offset-2 hover:underline transition-colors"
+                >
+                  ↳ More info
+                </Link>
+              </div>
+            )}
+          </div>
         </div>
       )}
 
