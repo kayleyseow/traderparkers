@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import type { CategoryVisibility, EncyclopediaBag, PinnedBag } from '../../types'
 import { DEFAULT_VISIBILITY } from '../../types'
-import { inferAngleMap, photoUrl } from '../../bagPhotos'
+import { defaultReferencePhotos, inferAngleMap, photoUrl } from '../../bagPhotos'
 
 const BASE = import.meta.env.BASE_URL
 const WORKER_URL = import.meta.env.VITE_WORKER_URL
@@ -219,7 +219,7 @@ function PinRow({
   onRemove: () => void
   onNoteChange: (note: string) => void
 }) {
-  const photos = bag?.referencePhotos ?? (bag?.referencePhoto ? [bag.referencePhoto] : [])
+  const photos = bag ? defaultReferencePhotos(bag) : []
   const front = photos.length > 0 ? inferAngleMap(photos).front ?? photos[0] : undefined
   const displayName = bag?.region ?? bag?.name ?? pin.encyclopediaId
 

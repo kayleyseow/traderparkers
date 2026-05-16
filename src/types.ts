@@ -66,11 +66,66 @@ export type EncyclopediaBag = {
   source?: string
 
   /**
+   * Per-angle source URLs (e.g. the specific Poshmark listing each angle was
+   * pulled from). Populated by the picker when bags are finalized; falls back
+   * to `source` when an angle isn't listed here. Optional — older entries
+   * keyed by a single `source` URL only have that field.
+   */
+  referencePhotoSources?: Partial<
+    Record<'front' | 'back' | 'left' | 'right' | 'bottom', string>
+  >
+
+  /**
    * Materials the bag is made from. Most TJ totes are one material;
    * insulated coolers often have a polypropylene shell + insulated liner,
    * so this is an array. Order doesn't carry meaning.
    */
   materials?: Material[]
+
+  /**
+   * Colorways / seasonal prints of the same underlying bag design. When set,
+   * the detail page renders a variant picker and reads photos from the
+   * active variant; the entry-level referencePhotos/referencePhotoSources/
+   * source are treated as fallbacks for variants that don't have their own.
+   */
+  variants?: EncyclopediaVariant[]
+}
+
+export type EncyclopediaVariant = {
+  /** Stable slug within this entry, e.g. "classic", "halloween-2024", "pastel". */
+  id: string
+  /** Display label shown on the picker, e.g. "Halloween 2024". */
+  name: string
+  /** Release year for this specific variant, when known. */
+  year?: number
+  /** Short blurb just for this variant. */
+  description?: string
+  /** Same shape as the entry-level field. */
+  referencePhotos?: string[]
+  /** Same shape as the entry-level field. */
+  referencePhotoSources?: Partial<
+    Record<'front' | 'back' | 'left' | 'right' | 'bottom', string>
+  >
+  /** Reference URL specific to this variant. */
+  source?: string
+  /**
+   * Colorways within a single variant (e.g. the four colors in the Spring
+   * 2026 Mini Canvas Tote pastel capsule). When present, the detail page
+   * renders a colorway carousel under the photo viewer and the active
+   * colorway's photo replaces the angle-driven photo grid.
+   */
+  colorways?: VariantColorway[]
+}
+
+export type VariantColorway = {
+  /** Stable slug within the variant, e.g. "pink". */
+  id: string
+  /** Display label, e.g. "Pink", "Mint Green". */
+  name: string
+  /** Path to this colorway's photo. */
+  photo: string
+  /** Optional reference listing URL for this specific photo. */
+  photoSource?: string
 }
 
 /* ──────────────────────────  PARKER'S COLLECTION  ─────────────────── */

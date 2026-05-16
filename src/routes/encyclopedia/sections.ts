@@ -1,4 +1,4 @@
-import type { BagType } from '../../types'
+import type { BagType, Material } from '../../types'
 
 export type SectionDef = {
   type: BagType
@@ -6,6 +6,40 @@ export type SectionDef = {
   label: string
   scrubberLabel?: string
   blurb: string
+}
+
+export type MaterialGroupDef = {
+  material: Material
+  id: string
+  label: string
+  scrubberLabel: string
+}
+
+export const SPECIAL_MATERIAL_GROUPS: MaterialGroupDef[] = [
+  {
+    material: 'polypropylene',
+    id: 'enc-special-polypropylene',
+    label: 'Polypropylene',
+    scrubberLabel: 'Poly',
+  },
+  {
+    material: 'jute',
+    id: 'enc-special-jute',
+    label: 'Jute',
+    scrubberLabel: 'Jute',
+  },
+  {
+    material: 'canvas',
+    id: 'enc-special-canvas',
+    label: 'Canvas',
+    scrubberLabel: 'Canvas',
+  },
+]
+
+export const SPECIAL_OTHER_GROUP = {
+  id: 'enc-special-other',
+  label: 'Other',
+  scrubberLabel: 'Other',
 }
 
 export const STATES_SECTION = {

@@ -44,6 +44,24 @@ export function photoUrl(path: string): string {
   return `${BASE}${path.replace(/^\//, '')}`
 }
 
+/**
+ * The default photo set for an encyclopedia entry. Entries with variants store
+ * photos inside each variant; this falls through to the first variant when the
+ * entry has no top-level photos of its own.
+ */
+export function defaultReferencePhotos(bag: {
+  referencePhotos?: string[]
+  referencePhoto?: string
+  variants?: { referencePhotos?: string[]; colorways?: { photo: string }[] }[]
+}): string[] {
+  if (bag.referencePhotos?.length) return bag.referencePhotos
+  const v0 = bag.variants?.[0]
+  if (v0?.colorways?.length) return v0.colorways.map((c) => c.photo)
+  if (v0?.referencePhotos?.length) return v0.referencePhotos
+  if (bag.referencePhoto) return [bag.referencePhoto]
+  return []
+}
+
 /* ───────────────── PER-BAG DESIGN NOTES ─────────────────
    Subtitle, blurb, and per-angle captions describe the *bag design*
    (encyclopedia-level info, not pantry-level). Keyed by EncyclopediaBag.id.

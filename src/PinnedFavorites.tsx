@@ -1,6 +1,6 @@
 import { Link } from 'react-router'
 import type { EncyclopediaBag, PinnedBag } from './types'
-import { inferAngleMap, photoUrl } from './bagPhotos'
+import { defaultReferencePhotos, inferAngleMap, photoUrl } from './bagPhotos'
 
 /**
  * Small row of Parker-pinned bags rendered on the landing page's visitor
@@ -40,7 +40,7 @@ export default function PinnedFavorites({
 }
 
 function PinCard({ bag, note }: { bag: EncyclopediaBag; note?: string }) {
-  const photos = bag.referencePhotos ?? (bag.referencePhoto ? [bag.referencePhoto] : [])
+  const photos = defaultReferencePhotos(bag)
   const front = inferAngleMap(photos).front ?? photos[0]
   const displayName = bag.region ?? bag.name
 
