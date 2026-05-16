@@ -229,11 +229,26 @@ export default function BagForm({ password }: Props) {
       )}
 
       {status.kind === 'error' && (
-        <div className="border-2 border-[var(--tj-red)] bg-[var(--tj-red)]/10 px-4 py-3 text-sm">
-          <strong className="font-[var(--tj-body)] tracking-[0.15em] text-xs uppercase block mb-1">
-            Save failed
-          </strong>
-          <span className="italic opacity-90">{status.message}</span>
+        <div className="border-2 border-[var(--tj-red)] bg-[var(--tj-red)]/10 p-4 space-y-4 text-sm">
+          <div>
+            <strong className="font-[var(--tj-body)] tracking-[0.15em] text-xs uppercase block mb-1">
+              Save failed
+            </strong>
+            <span className="italic opacity-90">{status.message}</span>
+          </div>
+          {selectedEncyclopediaBag && store && (
+            <RecoveryDownloads
+              bag={{
+                slug: pendingSlug,
+                name: bagDisplayName(selectedEncyclopediaBag),
+                encyclopediaId: selectedEncyclopediaBag.id,
+                storeNumber: store.storeNumber,
+                dateAcquired: date,
+                memory: memory.trim(),
+              }}
+              photos={photos}
+            />
+          )}
         </div>
       )}
 
@@ -372,6 +387,84 @@ function PhotoThumb({ file }: { file: File }) {
     <div className="aspect-square border-2 border-[var(--tj-ink)] bg-white overflow-hidden">
       {url && <img src={url} alt={file.name} className="w-full h-full object-cover" />}
     </div>
+  )
+}
+
+/* Recovery escape hatch — shown only inside the error panel. Lets the user
+   save the bag metadata + each photo locally so Kayley can commit them by
+   hand if the Worker round-trip never succeeds. */
+function RecoveryDownloads({
+  bag,
+  photos,
+}: {
+  bag: {
+    slug: string
+    name: string
+    encyclopediaId: string
+    storeNumber: string
+    dateAcquired: string
+    memory: string
+  }
+  photos: File[]
+}) {
+  const jsonText = useMemo(
+    () => JSON.stringify({ ...bag, photos: [] }, null, 2),
+    [bag],
+  )
+  const [jsonUrl, setJsonUrl] = useState<string | null>(null)
+  useEffect(() => {
+    const url = URL.createObjectURL(new Blob([jsonText], { type: 'application/json' }))
+    setJsonUrl(url)
+    return () => URL.revokeObjectURL(url)
+  }, [jsonText])
+
+  return (
+    <div className="space-y-3 border-t border-[var(--tj-red)]/30 pt-4">
+      <p className="text-xs italic opacity-80 leading-relaxed">
+        Don't worry — save everything below and Kayley can commit it by hand.
+        On iPhone: tap the JSON to download it, then long-press each photo and
+        choose <em>Save to Photos</em>.
+      </p>
+      <div className="flex flex-wrap items-start gap-3">
+        {jsonUrl && (
+          <a
+            href={jsonUrl}
+            download={`${bag.slug || 'bag'}.json`}
+            className="inline-flex items-center gap-1 font-[var(--tj-body)] tracking-[0.15em] text-[0.7rem] uppercase border-2 border-[var(--tj-ink)] bg-[var(--tj-cream)] px-3 py-2 hover:bg-[var(--tj-ink)] hover:text-[var(--tj-cream)] transition-colors no-underline"
+          >
+            <span aria-hidden>↓</span> Bag JSON
+          </a>
+        )}
+        {photos.map((file, i) => (
+          <PhotoDownloadLink key={`${file.name}-${i}`} file={file} index={i + 1} />
+        ))}
+      </div>
+      {photos.length === 0 && (
+        <p className="text-xs italic opacity-60">No photos to save — just the JSON.</p>
+      )}
+    </div>
+  )
+}
+
+function PhotoDownloadLink({ file, index }: { file: File; index: number }) {
+  const [url, setUrl] = useState<string | null>(null)
+  useEffect(() => {
+    const objectUrl = URL.createObjectURL(file)
+    setUrl(objectUrl)
+    return () => URL.revokeObjectURL(objectUrl)
+  }, [file])
+  return (
+    <a
+      href={url ?? '#'}
+      download={file.name}
+      title={`Download photo ${index} (${file.name})`}
+      className="block relative w-20 h-20 border-2 border-[var(--tj-ink)] bg-white overflow-hidden hover:opacity-80 transition-opacity no-underline"
+    >
+      {url && <img src={url} alt="" className="w-full h-full object-cover" />}
+      <span className="absolute bottom-0 left-0 right-0 bg-[var(--tj-ink)]/90 text-[var(--tj-cream)] text-[0.6rem] tracking-[0.15em] uppercase font-semibold text-center py-0.5">
+        ↓ {index}
+      </span>
+    </a>
   )
 }
 

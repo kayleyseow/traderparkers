@@ -39,7 +39,13 @@ app.use('*', async (c, next) => {
 app.get('/', (c) =>
   c.json({
     name: 'parker-bags',
-    endpoints: ['POST /pantry', 'POST /suggestions'],
+    endpoints: [
+      'POST /pantry',
+      'POST /pantry/edit',
+      'POST /pantry/delete',
+      'POST /settings',
+      'POST /suggestions',
+    ],
   }),
 )
 
@@ -141,13 +147,238 @@ app.post('/pantry', async (c) => {
   files.push({ path: c.env.PANTRY_PATH, contentBase64: utf8ToBase64(newContent) })
 
   try {
-    const result = await ghCommitMany(c.env, files, `Add bag: ${bag.name}`)
+    const result = await ghCommitMany(
+      c.env,
+      { writes: files },
+      `Add bag: ${bag.name}`,
+    )
     return c.json({
       ok: true,
       slug: bag.slug,
       photoPaths,
       commitUrl: result.commitUrl,
     })
+  } catch (err) {
+    return c.json({ error: `Failed to commit: ${(err as Error).message}` }, 502)
+  }
+})
+
+/* ──────────────────────────  /pantry/edit  ──────────────────────────
+   Updates an existing pantry entry. The client sends:
+     - originalSlug: which entry to edit (lookup key)
+     - bag: the full new bag data (slug, name, encyclopediaId, storeNumber,
+       dateAcquired, memory). The slug may differ from originalSlug.
+     - photoPlan: ordered array describing the final photos. Each item is
+       either { kind: 'existing', path } (keep an existing photo URL) or
+       { kind: 'new', name, base64 } (upload a new photo).
+   The worker computes which old photos got dropped, uploads new ones,
+   rewrites the entry in pantry.json (at its original index, so list order
+   stays stable), and commits everything atomically. Photo files that are
+   no longer referenced AND live under PHOTOS_PATH_PREFIX get deleted from
+   the repo. Curated reference photos (anything outside the prefix) are
+   left alone — they may be shared by encyclopedia entries. */
+
+type PhotoPlanItem =
+  | { kind: 'existing'; path: string }
+  | { kind: 'new'; name: string; base64: string }
+
+app.post('/pantry/edit', async (c) => {
+  let body: {
+    password?: string
+    originalSlug?: string
+    bag?: IncomingBag
+    photoPlan?: PhotoPlanItem[]
+  }
+  try {
+    body = await c.req.json()
+  } catch {
+    return c.json({ error: 'Invalid JSON' }, 400)
+  }
+
+  const { password, originalSlug, bag, photoPlan = [] } = body
+  if (!password || !originalSlug || !bag) {
+    return c.json({ error: 'Missing password, originalSlug, or bag' }, 400)
+  }
+
+  const incomingHash = await sha256Hex(password)
+  if (!constantTimeEqual(incomingHash, c.env.ADMIN_HASH)) {
+    return c.json({ error: 'Wrong password' }, 401)
+  }
+
+  const fieldError = validateBag(bag)
+  if (fieldError) return c.json({ error: fieldError }, 400)
+  if (photoPlan.length > 8) {
+    return c.json({ error: 'Too many photos (max 8)' }, 400)
+  }
+
+  let existing: { content: string; sha: string }
+  try {
+    existing = await ghReadFile(c.env, c.env.PANTRY_PATH)
+  } catch (err) {
+    return c.json({ error: `Failed to read pantry: ${(err as Error).message}` }, 502)
+  }
+
+  type PantryEntry = {
+    slug: string
+    encyclopediaId?: string
+    name?: string
+    storeNumber: string
+    dateAcquired: string
+    memory: string
+    photos: string[]
+    parkerPhoto?: string
+  }
+  let pantry: PantryEntry[]
+  try {
+    const parsed = JSON.parse(existing.content)
+    if (!Array.isArray(parsed)) throw new Error('not an array')
+    pantry = parsed
+  } catch {
+    return c.json({ error: 'pantry.json is not valid JSON array' }, 502)
+  }
+
+  const idx = pantry.findIndex((b) => b.slug === originalSlug)
+  if (idx === -1) {
+    return c.json({ error: `No entry with slug "${originalSlug}"`, code: 'not_found' }, 404)
+  }
+
+  // If the slug changed, make sure the new one doesn't collide with another entry.
+  if (bag.slug !== originalSlug && pantry.some((b, i) => i !== idx && b.slug === bag.slug)) {
+    return c.json(
+      {
+        error: `A bag with slug "${bag.slug}" already exists. Pick a different date or encyclopedia entry.`,
+        code: 'duplicate_slug',
+      },
+      409,
+    )
+  }
+
+  const original = pantry[idx]
+  const photoPrefixUrl = '/' + c.env.PHOTOS_PATH_PREFIX.replace(/^public\//, '') + '/'
+
+  // Stage new photo uploads — give them filenames prefixed with the new slug.
+  const writes: { path: string; contentBase64: string }[] = []
+  const finalPhotos: string[] = []
+  for (const item of photoPlan) {
+    if (item.kind === 'existing') {
+      finalPhotos.push(item.path)
+    } else {
+      const ext = sanitizeExtension(item.name)
+      const path = `${c.env.PHOTOS_PATH_PREFIX}/${bag.slug}-${randomId(6)}${ext}`
+      writes.push({ path, contentBase64: item.base64 })
+      finalPhotos.push('/' + path.replace(/^public\//, ''))
+    }
+  }
+
+  // Compute photos to delete: anything in the original that isn't kept AND
+  // lives under PHOTOS_PATH_PREFIX (don't touch encyclopedia reference
+  // photos under `bags/...` — those are shared assets).
+  const keptSet = new Set(
+    photoPlan.filter((i): i is { kind: 'existing'; path: string } => i.kind === 'existing').map((i) => i.path),
+  )
+  const deletes: string[] = []
+  for (const oldPath of original.photos ?? []) {
+    if (keptSet.has(oldPath)) continue
+    if (!oldPath.startsWith(photoPrefixUrl)) continue
+    // Convert public URL ("/pantry-photos/foo.jpg") to repo path ("public/pantry-photos/foo.jpg").
+    deletes.push('public' + oldPath)
+  }
+
+  const updated: PantryEntry = {
+    slug: bag.slug,
+    encyclopediaId: bag.encyclopediaId,
+    name: bag.name,
+    storeNumber: bag.storeNumber,
+    dateAcquired: bag.dateAcquired,
+    memory: bag.memory,
+    photos: finalPhotos,
+    ...(original.parkerPhoto ? { parkerPhoto: original.parkerPhoto } : {}),
+  }
+  pantry[idx] = updated
+
+  const newContent = JSON.stringify(pantry, null, 2) + '\n'
+  writes.push({ path: c.env.PANTRY_PATH, contentBase64: utf8ToBase64(newContent) })
+
+  try {
+    const result = await ghCommitMany(
+      c.env,
+      { writes, deletes },
+      `Edit bag: ${bag.name}`,
+    )
+    return c.json({
+      ok: true,
+      slug: bag.slug,
+      photos: finalPhotos,
+      commitUrl: result.commitUrl,
+    })
+  } catch (err) {
+    return c.json({ error: `Failed to commit: ${(err as Error).message}` }, 502)
+  }
+})
+
+/* ──────────────────────────  /pantry/delete  ──────────────────────────
+   Removes an entry from pantry.json and deletes its photo files (only
+   those under PHOTOS_PATH_PREFIX — curated reference photos stay). */
+
+app.post('/pantry/delete', async (c) => {
+  let body: { password?: string; slug?: string }
+  try {
+    body = await c.req.json()
+  } catch {
+    return c.json({ error: 'Invalid JSON' }, 400)
+  }
+
+  const { password, slug } = body
+  if (!password || !slug) {
+    return c.json({ error: 'Missing password or slug' }, 400)
+  }
+
+  const incomingHash = await sha256Hex(password)
+  if (!constantTimeEqual(incomingHash, c.env.ADMIN_HASH)) {
+    return c.json({ error: 'Wrong password' }, 401)
+  }
+
+  let existing: { content: string; sha: string }
+  try {
+    existing = await ghReadFile(c.env, c.env.PANTRY_PATH)
+  } catch (err) {
+    return c.json({ error: `Failed to read pantry: ${(err as Error).message}` }, 502)
+  }
+
+  type PantryEntry = { slug: string; name?: string; photos?: string[] }
+  let pantry: PantryEntry[]
+  try {
+    const parsed = JSON.parse(existing.content)
+    if (!Array.isArray(parsed)) throw new Error('not an array')
+    pantry = parsed
+  } catch {
+    return c.json({ error: 'pantry.json is not valid JSON array' }, 502)
+  }
+
+  const idx = pantry.findIndex((b) => b.slug === slug)
+  if (idx === -1) {
+    return c.json({ error: `No entry with slug "${slug}"`, code: 'not_found' }, 404)
+  }
+
+  const removed = pantry[idx]
+  const photoPrefixUrl = '/' + c.env.PHOTOS_PATH_PREFIX.replace(/^public\//, '') + '/'
+  const deletes: string[] = []
+  for (const oldPath of removed.photos ?? []) {
+    if (!oldPath.startsWith(photoPrefixUrl)) continue
+    deletes.push('public' + oldPath)
+  }
+
+  pantry.splice(idx, 1)
+  const newContent = JSON.stringify(pantry, null, 2) + '\n'
+  const writes = [{ path: c.env.PANTRY_PATH, contentBase64: utf8ToBase64(newContent) }]
+
+  try {
+    const result = await ghCommitMany(
+      c.env,
+      { writes, deletes },
+      `Delete bag: ${removed.name ?? slug}`,
+    )
+    return c.json({ ok: true, slug, commitUrl: result.commitUrl })
   } catch (err) {
     return c.json({ error: `Failed to commit: ${(err as Error).message}` }, 502)
   }
@@ -352,28 +583,41 @@ async function ghWriteFile(
 }
 
 /**
- * Commit any number of files (create-or-update) in a single commit via the
- * Git Data API. Why this instead of the simpler contents API: contents-API
- * writes are one-file-per-commit, so a bag submission with N photos used to
- * land as N+1 commits — each kicking off a Pages deploy that the next one
- * cancelled. This bundles everything into one commit, one deploy, atomic.
+ * Commit any number of files in a single commit via the Git Data API. Why
+ * this instead of the simpler contents API: contents-API writes are one-
+ * file-per-commit, so a bag submission with N photos used to land as N+1
+ * commits — each kicking off a Pages deploy that the next one cancelled.
+ * This bundles everything into one commit, one deploy, atomic.
  *
- * Sequence: create a blob per file (parallel) → look up the branch head's
+ * Supports writes (create-or-update) and deletes. Deletes are expressed in
+ * the new tree as entries with sha: null, which removes the path from the
+ * resulting tree (history is preserved).
+ *
+ * Sequence: create a blob per write (parallel) → look up the branch head's
  * commit + tree → build a new tree layered on top → create a new commit
  * pointing at it → fast-forward the branch ref.
  */
 async function ghCommitMany(
   env: Env,
-  files: { path: string; contentBase64: string }[],
+  changes: {
+    writes?: { path: string; contentBase64: string }[]
+    deletes?: string[]
+  },
   message: string,
 ): Promise<{ commitUrl: string; commitSha: string }> {
+  const writes = changes.writes ?? []
+  const deletes = changes.deletes ?? []
+  if (writes.length === 0 && deletes.length === 0) {
+    throw new Error('ghCommitMany called with no changes')
+  }
+
   const jsonHeaders = { ...ghHeaders(env), 'Content-Type': 'application/json' }
   const repoBase = `${GH_API}/repos/${env.GITHUB_REPO}`
   const branchRef = `heads/${encodeURIComponent(env.GITHUB_BRANCH)}`
 
-  // 1. Create one blob per file (parallelizable — no cross-blob ordering).
+  // 1. Create one blob per write (parallelizable — no cross-blob ordering).
   const blobs = await Promise.all(
-    files.map(async (f) => {
+    writes.map(async (f) => {
       const res = await fetch(`${repoBase}/git/blobs`, {
         method: 'POST',
         headers: jsonHeaders,
@@ -406,17 +650,31 @@ async function ghCommitMany(
   const baseTreeSha = ((await commitRes.json()) as { tree: { sha: string } }).tree.sha
 
   // 4. New tree layered on top of base tree.
+  const treeEntries: {
+    path: string
+    mode: '100644'
+    type: 'blob'
+    sha: string | null
+  }[] = [
+    ...blobs.map((b) => ({
+      path: b.path,
+      mode: '100644' as const,
+      type: 'blob' as const,
+      sha: b.sha,
+    })),
+    ...deletes.map((path) => ({
+      path,
+      mode: '100644' as const,
+      type: 'blob' as const,
+      sha: null,
+    })),
+  ]
   const treeRes = await fetch(`${repoBase}/git/trees`, {
     method: 'POST',
     headers: jsonHeaders,
     body: JSON.stringify({
       base_tree: baseTreeSha,
-      tree: blobs.map((b) => ({
-        path: b.path,
-        mode: '100644',
-        type: 'blob',
-        sha: b.sha,
-      })),
+      tree: treeEntries,
     }),
   })
   if (!treeRes.ok) {

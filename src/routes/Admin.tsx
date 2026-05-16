@@ -3,13 +3,15 @@ import { Link } from 'react-router'
 import PasswordGate from './admin/PasswordGate'
 import BagForm from './admin/BagForm'
 import EntryForm from './admin/EntryForm'
+import EditPanel from './admin/EditPanel'
 import SettingsForm from './admin/SettingsForm'
 import Footer from '../Footer'
 
-type AdminMode = 'log' | 'entry' | 'settings'
+type AdminMode = 'log' | 'entry' | 'edit' | 'settings'
 
 const MODE_TITLE: Record<AdminMode, string> = {
   log: 'Log a New Bag',
+  edit: 'Edit Bags',
   entry: 'Add an Encyclopedia Entry',
   settings: 'Settings',
 }
@@ -86,6 +88,7 @@ export default function Admin() {
         <div className="border-2 border-[var(--tj-ink)] bg-[var(--tj-cream)] p-6 md:p-8">
           {mode === 'log' && <BagForm password={password} />}
           {mode === 'entry' && <EntryForm password={password} />}
+          {mode === 'edit' && <EditPanel password={password} />}
           {mode === 'settings' && <SettingsForm password={password} />}
         </div>
       </div>
@@ -110,7 +113,7 @@ function ModeToggle({
       <div
         role="tablist"
         aria-label="Admin task"
-        className="inline-flex items-stretch border-2 border-[var(--tj-ink)] divide-x-2 divide-[var(--tj-ink)]"
+        className="inline-flex flex-wrap justify-center items-stretch border-2 border-[var(--tj-ink)] divide-x-2 divide-[var(--tj-ink)] max-w-full"
       >
         <button
           role="tab"
@@ -119,6 +122,14 @@ function ModeToggle({
           className={`${baseBtn} ${mode === 'log' ? active : inactive}`}
         >
           Log a Bag
+        </button>
+        <button
+          role="tab"
+          aria-selected={mode === 'edit'}
+          onClick={() => onChange('edit')}
+          className={`${baseBtn} ${mode === 'edit' ? active : inactive}`}
+        >
+          Edit Bags
         </button>
         <button
           role="tab"
