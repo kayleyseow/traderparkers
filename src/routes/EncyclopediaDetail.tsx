@@ -28,8 +28,8 @@ export default function EncyclopediaDetail() {
 
   useEffect(() => {
     Promise.all([
-      fetch(`${BASE}data/encyclopedia.json`).then((r) => r.json() as Promise<EncyclopediaBag[]>),
-      fetch(`${BASE}data/pantry.json`).then((r) => r.json() as Promise<PantryBag[]>),
+      fetch(`${BASE}data/encyclopedia.json`, { cache: 'no-cache' }).then((r) => r.json() as Promise<EncyclopediaBag[]>),
+      fetch(`${BASE}data/pantry.json`, { cache: 'no-cache' }).then((r) => r.json() as Promise<PantryBag[]>),
     ])
       .then(([encyclopedia, pantry]) => setData({ encyclopedia, pantry }))
       .catch(() => setData({ encyclopedia: [], pantry: [] }))
@@ -54,8 +54,8 @@ export default function EncyclopediaDetail() {
  * Returns the entry's section-mates in the same order the gallery view
  * renders them — so prev/next on a detail page walks the section linearly.
  * State entries follow US_LOCALES order; special entries follow the
- * material grouping (poly → jute → canvas → other); seasonal/standard
- * follow encyclopedia.json array order.
+ * material grouping (poly → jute → canvas → other); standard follows
+ * encyclopedia.json array order.
  */
 function sectionSiblings(
   all: EncyclopediaBag[],
@@ -245,7 +245,7 @@ function EncyclopediaView({
         {variants.length > 1 && (
           <section className="mt-10 flex flex-col items-center gap-2">
             <p className="font-[var(--tj-body)] tracking-[0.25em] text-[0.6rem] uppercase font-semibold opacity-60">
-              Versions
+              Editions
             </p>
             <div className="flex justify-center gap-2 flex-wrap">
               {variants.map((v) => {
@@ -462,7 +462,7 @@ function EncyclopediaView({
               )}
               {activeVariant && (
                 <div className="flex gap-3">
-                  <dt className="opacity-60 min-w-[5rem]">Version</dt>
+                  <dt className="opacity-60 min-w-[5rem]">Edition</dt>
                   <dd>{activeVariant.name}</dd>
                 </div>
               )}
@@ -594,7 +594,6 @@ function listingLabelFromUrl(url: string): string {
 function encyclopediaTypeLabel(entry: EncyclopediaBag): string {
   if (entry.type === 'state') return `${entry.state ?? 'State'} · State Bag`
   if (entry.type === 'special') return 'Special Edition'
-  if (entry.type === 'seasonal') return 'Seasonal Bag'
   return 'Standard Bag'
 }
 

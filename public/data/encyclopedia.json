@@ -542,7 +542,8 @@
     "referencePhotos": [
       "bags/locations/nevada-poker-chips/front.png",
       "bags/locations/nevada-poker-chips/back.png",
-      "bags/locations/nevada-poker-chips/right.png"
+      "bags/locations/nevada-poker-chips/left.png",
+      "bags/locations/nevada-poker-chips/bottom.png"
     ],
     "source": "https://poshmark.com/listing/Trader-Joes-Reusable-Grocery-Tote-Bag-NV-Casino-Chip-65613ff052eee17c6c1e80a8",
     "materials": [
@@ -856,16 +857,61 @@
     "id": "insulated-reusable",
     "name": "Insulated Reusable Bag",
     "type": "standard",
-    "description": "The classic silver-lined cooler bag — keeps frozens cold from the parking lot home.",
-    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/",
-    "referencePhotos": [
-      "bags/standard-bags/insulated-reusable/front.png",
-      "bags/standard-bags/insulated-reusable/back.png"
+    "description": "The classic silver-lined cooler bag, eight gallons deep, with the TJ's Pasadena storefront silhouette printed across the front. Released in rolling seasonal colorways since the mid-2010s; listed on traderjoes.com under both 'Insulated Reusable Bag' and 'Large Reusable Insulated Bag.'",
+    "source": "https://www.traderjoes.com/home/products/pdp/lavender-reusable-insulated-bag-076244",
+    "materials": [
+      "polypropylene"
     ],
-    "referencePhotoSources": {
-      "front": "https://poshmark.com/listing/6a06886b8e40fd8b74d9f288",
-      "back": "https://poshmark.com/listing/69fb45e3dbd8f0e4331e0a55"
-    }
+    "variants": [
+      {
+        "id": "classic",
+        "name": "Classic",
+        "colorways": [
+          {
+            "id": "lavender",
+            "name": "Lavender",
+            "photo": "bags/standard-bags/insulated-reusable/lavender.png",
+            "photoSource": "https://www.traderjoes.com/home/products/pdp/lavender-reusable-insulated-bag-076244"
+          },
+          {
+            "id": "emerald",
+            "name": "Emerald",
+            "photo": "bags/standard-bags/insulated-reusable/emerald.png",
+            "photoSource": "https://www.traderjoes.com/home/products/pdp/emerald-insulated-reusable-bag-076249"
+          },
+          {
+            "id": "teal",
+            "name": "Teal",
+            "photo": "bags/standard-bags/insulated-reusable/teal.png",
+            "photoSource": "https://www.traderjoes.com/home/products/pdp/large-reusable-insulated-bag-teal-076247"
+          },
+          {
+            "id": "yellow",
+            "name": "Yellow",
+            "photo": "bags/standard-bags/insulated-reusable/yellow.png",
+            "photoSource": "https://www.traderjoes.com/home/products/pdp/large-insulated-bag-yellow-076248"
+          },
+          {
+            "id": "pink-yellow",
+            "name": "Pink/Yellow",
+            "photo": "bags/standard-bags/insulated-reusable/pink-yellow.png",
+            "photoSource": "https://www.traderjoes.com/home/products/pdp/large-reusable-insulated-bag-pinkyellow-075916"
+          },
+          {
+            "id": "dusty-blue",
+            "name": "Dusty Blue",
+            "photo": "bags/standard-bags/insulated-reusable/dusty-blue.png",
+            "photoSource": "https://www.traderjoes.com/home/products/pdp/dusty-blue-large-insulated-bag-079538"
+          },
+          {
+            "id": "olive-green",
+            "name": "Olive Green",
+            "photo": "bags/standard-bags/insulated-reusable/olive-green.png",
+            "photoSource": "https://www.traderjoes.com/home/products/pdp/olive-green-large-reusable-insulated-bag-079542"
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "large-insulated",
@@ -950,6 +996,7 @@
         "name": "Red",
         "description": "Holiday 'Red and Emerald' capsule pairing. Bright red body; the back panel is a plain solid red rather than the storefront print.",
         "referencePhotos": [
+          "bags/standard-bags/mini-insulated/red_front.png",
           "bags/standard-bags/mini-insulated/red_back.png",
           "bags/standard-bags/mini-insulated/red_right.png",
           "bags/standard-bags/mini-insulated/red_bottom.png"
@@ -1055,35 +1102,68 @@
     "id": "canvas-micro",
     "name": "Canvas Micro Tote",
     "type": "standard",
-    "description": "Smaller than the Mini — barely larger than a wallet.",
+    "description": "A miniature of the Classic Canvas Tote, barely larger than a wallet, with the TJ's circle stamp in red. Sold as a keychain-sized accessory in three colorways: navy, green, and red trim on a cream canvas body.",
     "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/",
-    "referencePhotos": [
-      "bags/standard-bags/canvas-micro/front.png",
-      "bags/standard-bags/canvas-micro/back.png"
+    "materials": [
+      "canvas"
     ],
-    "referencePhotoSources": {
-      "front": "https://poshmark.com/listing/6990cd5205deb3f8e319cc4d",
-      "back": "https://poshmark.com/listing/6990cd5205deb3f8e319cc4d"
-    }
+    "variants": [
+      {
+        "id": "classic",
+        "name": "Classic",
+        "colorways": [
+          {
+            "id": "navy",
+            "name": "Navy",
+            "photo": "bags/standard-bags/canvas-micro/navy_micro.png"
+          },
+          {
+            "id": "green",
+            "name": "Green",
+            "photo": "bags/standard-bags/canvas-micro/green_micro.png"
+          },
+          {
+            "id": "red",
+            "name": "Red",
+            "photo": "bags/standard-bags/canvas-micro/red_micro.png"
+          }
+        ]
+      }
+    ]
   },
   {
     "id": "micro-tote-with-grocery",
     "name": "Micro Tote with Grocery Bag",
     "type": "standard",
-    "description": "A micro pouch that unfolds into a full grocery bag.",
+    "description": "A pocket-sized mesh tote that unfolds into a full red grocery bag. Sold in two reversible colorways: black exterior with red interior, or red exterior with black interior.",
     "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/",
-    "referencePhotos": [
-      "bags/standard-bags/micro-tote-with-grocery/front.png",
-      "bags/standard-bags/micro-tote-with-grocery/back.png",
-      "bags/standard-bags/micro-tote-with-grocery/left.png",
-      "bags/standard-bags/micro-tote-with-grocery/right.png"
-    ],
-    "referencePhotoSources": {
-      "front": "https://poshmark.com/listing/67ba64165af6e6ffcbe85253",
-      "back": "https://poshmark.com/listing/67ba64165af6e6ffcbe85253",
-      "left": "https://poshmark.com/listing/68c6e668006e4369dfa3000d",
-      "right": "https://poshmark.com/listing/6930b7ae006e43ca62a34033"
-    }
+    "variants": [
+      {
+        "id": "compact",
+        "name": "Compact",
+        "description": "The folded mesh tote, small enough to clip to a keychain.",
+        "colorways": [
+          {
+            "id": "black-red",
+            "name": "Black/Red",
+            "photo": "bags/standard-bags/micro-tote-with-grocery/black-red.png"
+          },
+          {
+            "id": "red-black",
+            "name": "Red/Black",
+            "photo": "bags/standard-bags/micro-tote-with-grocery/red-black.png"
+          }
+        ]
+      },
+      {
+        "id": "expanded",
+        "name": "Expanded",
+        "description": "The pouch unzipped and pulled open into a full TRADER JOE'S grocery bag.",
+        "referencePhotos": [
+          "bags/standard-bags/micro-tote-with-grocery/black-red-grocery-bag.png"
+        ]
+      }
+    ]
   },
   {
     "id": "stand-up-collapsible",
@@ -1197,7 +1277,15 @@
     "name": "Washable Paper Lunch Bag",
     "type": "standard",
     "description": "Lunchbox-sized version of the washable paper line.",
-    "source": "https://traderjoesgohan.com/trader-joes-reusable-eco-bag-list/"
+    "source": "https://www.ebay.com/itm/267648857998",
+    "referencePhotos": [
+      "bags/standard-bags/washable-paper-lunch/front.png",
+      "bags/standard-bags/washable-paper-lunch/back.png"
+    ],
+    "referencePhotoSources": {
+      "front": "https://www.ebay.com/itm/267648857998",
+      "back": "https://www.ebay.com/itm/267648857998"
+    }
   },
   {
     "id": "reusable-flower",

@@ -1,8 +1,11 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
 import type { Store } from '../../types'
+import { US_LOCALES } from '../../usLocales'
 
 const BASE = import.meta.env.BASE_URL
 const MAX_VISIBLE = 50
+
+const STATE_NAME_BY_CODE = new Map(US_LOCALES.map((l) => [l.code, l.name]))
 
 type Props = {
   value: Store | null
@@ -16,7 +19,7 @@ export default function StoreSelect({ value, onChange }: Props) {
   const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    fetch(`${BASE}data/stores.json`)
+    fetch(`${BASE}data/stores.json`, { cache: 'no-cache' })
       .then((r) => r.json() as Promise<Store[]>)
       .then(setStores)
       .catch(() => setStores([]))
@@ -25,7 +28,10 @@ export default function StoreSelect({ value, onChange }: Props) {
   useEffect(() => {
     if (!open) return
     function close(e: Event) {
-      if (!containerRef.current?.contains(e.target as Node)) setOpen(false)
+      if (!containerRef.current?.contains(e.target as Node)) {
+        setOpen(false)
+        setQuery('')
+      }
     }
     // touchstart covers mobile taps outside the dropdown where the synthesized
     // mousedown can be unreliable (especially while the soft keyboard is up).
@@ -43,7 +49,8 @@ export default function StoreSelect({ value, onChange }: Props) {
     if (!q) return stores.slice(0, MAX_VISIBLE)
     return stores
       .filter((s) => {
-        const haystack = `${s.name} ${s.city ?? ''} ${s.state} ${s.storeNumber} ${s.streetAddress ?? ''}`.toLowerCase()
+        const stateName = STATE_NAME_BY_CODE.get(s.state) ?? ''
+        const haystack = `${s.name} ${s.city ?? ''} ${s.state} ${stateName} ${s.storeNumber} ${s.streetAddress ?? ''}`.toLowerCase()
         return haystack.includes(q)
       })
       .slice(0, MAX_VISIBLE)
@@ -60,7 +67,10 @@ export default function StoreSelect({ value, onChange }: Props) {
       {value ? (
         <button
           type="button"
-          onClick={() => onChange(null)}
+          onClick={() => {
+            onChange(null)
+            setOpen(true)
+          }}
           className="w-full flex items-center justify-between gap-3 border-2 border-[var(--tj-ink)] bg-white px-3 py-2.5 text-left font-serif hover:bg-[var(--tj-cream)] transition-colors"
         >
           <span>
@@ -78,63 +88,92 @@ export default function StoreSelect({ value, onChange }: Props) {
         </button>
       ) : (
         <>
-          <input
-            type="text"
-            value={query}
-            placeholder={stores === null ? 'Loading stores…' : 'Search by city, state, or store number'}
-            disabled={stores === null}
-            onChange={(e) => {
-              setQuery(e.target.value)
-              setOpen(true)
+          <button
+            type="button"
+            onClick={() => {
+              if (open) {
+                setOpen(false)
+                setQuery('')
+              } else {
+                setOpen(true)
+              }
             }}
-            onFocus={() => setOpen(true)}
-            className="w-full border-2 border-[var(--tj-ink)] bg-[var(--tj-cream)] px-3 py-2.5 font-serif text-base outline-none focus:bg-white transition-colors disabled:opacity-60"
-          />
+            disabled={stores === null}
+            className="w-full flex items-center justify-between gap-3 border-2 border-[var(--tj-ink)] bg-[var(--tj-cream)] px-3 py-2.5 text-left font-serif hover:bg-white transition-colors disabled:opacity-60"
+          >
+            <span className="italic opacity-65">
+              {stores === null ? 'Loading stores…' : 'Search for a store (optional)'}
+            </span>
+            <svg
+              aria-hidden
+              viewBox="0 0 10 6"
+              className={`w-2.5 h-1.5 opacity-60 shrink-0 transition-transform ${open ? 'rotate-180' : ''}`}
+            >
+              <path
+                d="M1 1l4 4 4-4"
+                stroke="currentColor"
+                strokeWidth="1.5"
+                fill="none"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
           {open && stores && (
-            <ul className="absolute z-20 left-0 right-0 top-full mt-1 max-h-72 overflow-y-auto border-2 border-[var(--tj-ink)] bg-[var(--tj-cream)] shadow-[0_4px_0_rgba(42,31,20,0.15)]">
-              {filtered.length === 0 ? (
-                <li className="px-3 py-2.5 italic text-sm opacity-70">
-                  No stores match "{query}"
-                </li>
-              ) : (
-                filtered.map((s) => (
-                  <li key={s.storeNumber}>
-                    <button
-                      type="button"
-                      // On iOS Safari, tapping a non-input element blurs the
-                      // focused input *before* the synthesized mousedown fires,
-                      // so preventDefault on mousedown is too late — the
-                      // keyboard dismisses, the layout reflows, and the
-                      // synthesized click lands on the wrong element. Handling
-                      // selection on touchend (non-passive in React) and
-                      // preventing default there fires the selection *before*
-                      // the reflow and suppresses the stray click.
-                      onMouseDown={(e) => e.preventDefault()}
-                      onTouchEnd={(e) => {
-                        e.preventDefault()
-                        selectStore(s)
-                      }}
-                      onClick={() => selectStore(s)}
-                      style={{ touchAction: 'manipulation' }}
-                      className="w-full text-left px-3 py-2 hover:bg-[var(--tj-kraft)] focus:bg-[var(--tj-kraft)] focus:outline-none border-b border-[var(--tj-ink)]/15 last:border-b-0"
-                    >
-                      <div className="font-serif font-semibold leading-tight">
-                        {s.name}, {s.state}
-                      </div>
-                      <div className="text-xs opacity-65">
-                        #{s.storeNumber}
-                        {s.streetAddress ? ` · ${s.streetAddress}` : ''}
-                      </div>
-                    </button>
+            <div className="absolute z-20 left-0 right-0 top-full mt-1 border-2 border-[var(--tj-ink)] bg-[var(--tj-cream)] shadow-[0_4px_0_rgba(42,31,20,0.15)]">
+              <input
+                type="text"
+                value={query}
+                placeholder="Search by city, state, or store number"
+                autoFocus
+                onChange={(e) => setQuery(e.target.value)}
+                className="w-full border-b-2 border-[var(--tj-ink)] bg-white px-3 py-2.5 font-serif text-base outline-none"
+              />
+              <ul className="max-h-72 overflow-y-auto">
+                {filtered.length === 0 ? (
+                  <li className="px-3 py-2.5 italic text-sm opacity-70">
+                    No stores match "{query}"
                   </li>
-                ))
-              )}
-              {!query && stores.length > MAX_VISIBLE && (
-                <li className="px-3 py-2 text-xs italic opacity-60 border-t border-[var(--tj-ink)]/15">
-                  Showing {MAX_VISIBLE} of {stores.length}. Type to narrow.
-                </li>
-              )}
-            </ul>
+                ) : (
+                  filtered.map((s) => (
+                    <li key={s.storeNumber}>
+                      <button
+                        type="button"
+                        // On iOS Safari, tapping a non-input element blurs the
+                        // focused input *before* the synthesized mousedown fires,
+                        // so preventDefault on mousedown is too late — the
+                        // keyboard dismisses, the layout reflows, and the
+                        // synthesized click lands on the wrong element. Handling
+                        // selection on touchend (non-passive in React) and
+                        // preventing default there fires the selection *before*
+                        // the reflow and suppresses the stray click.
+                        onMouseDown={(e) => e.preventDefault()}
+                        onTouchEnd={(e) => {
+                          e.preventDefault()
+                          selectStore(s)
+                        }}
+                        onClick={() => selectStore(s)}
+                        style={{ touchAction: 'manipulation' }}
+                        className="w-full text-left px-3 py-2 hover:bg-[var(--tj-kraft)] focus:bg-[var(--tj-kraft)] focus:outline-none border-b border-[var(--tj-ink)]/15 last:border-b-0"
+                      >
+                        <div className="font-serif font-semibold leading-tight">
+                          {s.name}, {s.state}
+                        </div>
+                        <div className="text-xs opacity-65">
+                          #{s.storeNumber}
+                          {s.streetAddress ? ` · ${s.streetAddress}` : ''}
+                        </div>
+                      </button>
+                    </li>
+                  ))
+                )}
+                {!query && stores.length > MAX_VISIBLE && (
+                  <li className="px-3 py-2 text-xs italic opacity-60 border-t border-[var(--tj-ink)]/15">
+                    Showing {MAX_VISIBLE} of {stores.length}. Type to narrow.
+                  </li>
+                )}
+              </ul>
+            </div>
           )}
         </>
       )}

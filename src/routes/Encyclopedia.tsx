@@ -4,6 +4,7 @@ import type { BagType, EncyclopediaBag, PantryBag } from '../types'
 import { US_LOCALES } from '../usLocales'
 import {
   ANGLE_ORDER,
+  DESIGN_NOTES,
   defaultReferencePhotos,
   inferAngleMap,
   photoUrl,
@@ -13,6 +14,7 @@ import Footer from '../Footer'
 import SuggestForm from './encyclopedia/SuggestForm'
 import DictionaryView from './encyclopedia/DictionaryView'
 import SectionHeader from './encyclopedia/SectionHeader'
+import AlphabetScrubber, { type ScrubberItem } from './encyclopedia/AlphabetScrubber'
 import {
   NON_LOCATION_SECTIONS,
   SPECIAL_MATERIAL_GROUPS,
@@ -25,6 +27,8 @@ const BASE = import.meta.env.BASE_URL
 
 type EncyclopediaView = 'gallery' | 'dictionary'
 const VIEW_STORAGE_KEY = 'encyclopedia-view'
+
+const CORN_PATTERN = /\bcorn\b/i
 
 export default function Encyclopedia() {
   const [rawEncyclopedia, setRawEncyclopedia] = useState<EncyclopediaBag[] | null>(null)
@@ -41,8 +45,8 @@ export default function Encyclopedia() {
 
   useEffect(() => {
     Promise.all([
-      fetch(`${BASE}data/encyclopedia.json`).then((r) => r.json() as Promise<EncyclopediaBag[]>),
-      fetch(`${BASE}data/pantry.json`).then((r) => r.json() as Promise<PantryBag[]>),
+      fetch(`${BASE}data/encyclopedia.json`, { cache: 'no-cache' }).then((r) => r.json() as Promise<EncyclopediaBag[]>),
+      fetch(`${BASE}data/pantry.json`, { cache: 'no-cache' }).then((r) => r.json() as Promise<PantryBag[]>),
     ])
       .then(([cat, col]) => {
         setRawEncyclopedia(cat)
@@ -87,11 +91,70 @@ export default function Encyclopedia() {
     return map
   }, [encyclopedia])
 
-  const localesWithBags = useMemo(
-    () => US_LOCALES.filter((l) => byState.has(l.code)).length,
+  const statesWithBags = useMemo(
+    () => US_LOCALES.filter((l) => l.code !== 'DC' && byState.has(l.code)).length,
     [byState],
   )
+  const hasDistrict = byState.has('DC')
   const totalKnownBags = encyclopedia?.length ?? 0
+
+  const cornBagCount = useMemo(() => {
+    if (!encyclopedia) return 0
+    let n = 0
+    for (const bag of encyclopedia) {
+      const notes = DESIGN_NOTES[bag.id]
+      const captions = notes?.angleCaptions
+        ? Object.values(notes.angleCaptions).join(' ')
+        : ''
+      const haystack = `${bag.name} ${bag.description ?? ''} ${notes?.subtitle ?? ''} ${notes?.blurb ?? ''} ${captions}`
+      if (CORN_PATTERN.test(haystack)) n++
+    }
+    return n
+  }, [encyclopedia])
+
+  const galleryScrubberItems = useMemo<ScrubberItem[]>(() => {
+    if (!encyclopedia) return []
+    const items: ScrubberItem[] = []
+    if (byState.size > 0) {
+      items.push({
+        id: STATES_SECTION.id,
+        label: STATES_SECTION.scrubberLabel ?? STATES_SECTION.label,
+        kind: 'section',
+      })
+    }
+    for (const sec of NON_LOCATION_SECTIONS) {
+      const list = byType.get(sec.type)
+      if (!list || list.length === 0) continue
+      items.push({
+        id: sec.id,
+        label: sec.scrubberLabel ?? sec.label,
+        kind: 'section',
+      })
+      if (sec.type === 'special') {
+        const matchedIds = new Set<string>()
+        for (const g of SPECIAL_MATERIAL_GROUPS) {
+          const gb = list.filter((b) => b.materials?.[0] === g.material)
+          if (gb.length === 0) continue
+          items.push({ id: g.id, label: g.scrubberLabel, kind: 'letter' })
+          for (const b of gb) matchedIds.add(b.id)
+        }
+        const leftover = list.filter((b) => !matchedIds.has(b.id))
+        if (leftover.length > 0) {
+          items.push({
+            id: SPECIAL_OTHER_GROUP.id,
+            label: SPECIAL_OTHER_GROUP.scrubberLabel,
+            kind: 'letter',
+          })
+        }
+      }
+    }
+    items.push({
+      id: SUGGEST_SECTION.id,
+      label: SUGGEST_SECTION.scrubberLabel ?? SUGGEST_SECTION.label,
+      kind: 'section',
+    })
+    return items
+  }, [encyclopedia, byState, byType])
 
   return (
     <main
@@ -111,12 +174,18 @@ export default function Encyclopedia() {
             className="text-[var(--tj-red)] text-6xl md:text-7xl leading-none"
             style={{ fontFamily: 'var(--tj-script)' }}
           >
-            Every Bag We Know About
+            Every. Single. Bag.
           </h1>
           <p className="font-[var(--tj-body)] italic text-base md:text-lg mt-4 max-w-xl mx-auto opacity-75">
             Trader Joe's regional totes — the ones in the wild, waiting to be found.
-            This list is hand-curated and almost certainly incomplete; spot a missing
-            one? Tell Parker.
+            This list is hand-curated, so almost certainly incomplete and probably
+            wrong about a few. Spot something off?{' '}
+            <a
+              href="#enc-suggest"
+              className="underline underline-offset-2 hover:text-[var(--tj-red)] transition-colors"
+            >
+              Tell the Captain.
+            </a>
           </p>
           <div className="mx-auto mt-6 h-px w-32 bg-[var(--tj-ink)]/40" />
         </header>
@@ -125,7 +194,7 @@ export default function Encyclopedia() {
           <p className="text-center italic opacity-50 py-20">Sorting the encyclopedia…</p>
         ) : (
           <>
-            <div className="flex items-center justify-center flex-wrap gap-x-8 gap-y-3 mb-6 font-[var(--tj-body)] tracking-[0.25em] text-[0.7rem] uppercase font-semibold">
+            <div className="flex items-center justify-center flex-wrap gap-x-4 md:gap-x-6 gap-y-3 mb-6 font-[var(--tj-body)] tracking-[0.25em] text-[0.7rem] uppercase font-semibold">
               <span>
                 <strong className="text-2xl tracking-normal text-[var(--tj-red)] align-middle mr-2"
                   style={{ fontFamily: 'var(--tj-script)' }}>
@@ -133,14 +202,26 @@ export default function Encyclopedia() {
                 </strong>
                 bags known
               </span>
-              <span aria-hidden className="opacity-30">·</span>
+              <StatStar />
               <span>
                 <strong className="text-2xl tracking-normal text-[var(--tj-red)] align-middle mr-2"
                   style={{ fontFamily: 'var(--tj-script)' }}>
-                  {localesWithBags}
+                  {statesWithBags}
                 </strong>
-                of 51 locales represented
+                states{hasDistrict ? ' + 1 district' : ''} represented
               </span>
+              {cornBagCount > 0 && (
+                <>
+                  <StatStar />
+                  <span>
+                    <strong className="text-2xl tracking-normal text-[var(--tj-red)] align-middle mr-2"
+                      style={{ fontFamily: 'var(--tj-script)' }}>
+                      {cornBagCount}
+                    </strong>
+                    bags feature corn
+                  </span>
+                </>
+              )}
             </div>
 
             <ViewToggle view={view} onChange={setView} />
@@ -151,7 +232,8 @@ export default function Encyclopedia() {
                 ownedByEncyclopediaId={ownedByEncyclopediaId}
               />
             ) : (
-              <>
+              <div className="relative md:pr-20">
+                <AlphabetScrubber items={galleryScrubberItems} />
                 {(() => {
                   const stateBags = US_LOCALES.filter((locale) => byState.has(locale.code))
                     .flatMap((locale) => byState.get(locale.code)!)
@@ -201,7 +283,7 @@ export default function Encyclopedia() {
                     />
                   )
                 })}
-              </>
+              </div>
             )}
 
             <div
@@ -334,6 +416,15 @@ function TypeSection({
   )
 }
 
+function StatStar() {
+  // Hidden on phones so the stats stack cleanly; mirrors the Footer separator.
+  return (
+    <span aria-hidden className="hidden md:inline opacity-30 text-base">
+      ★
+    </span>
+  )
+}
+
 function ViewToggle({
   view,
   onChange,
@@ -386,6 +477,8 @@ function GalleryCard({
   const back = angles.back
   const variants = bag.variants ?? []
   const variantCount = variants.length
+  const editionCount =
+    variantCount === 1 ? variants[0].colorways?.length ?? 0 : variantCount
 
   const isSpecialPoly =
     bag.type === 'special' && (bag.materials?.includes('polypropylene') ?? false)
@@ -394,14 +487,12 @@ function GalleryCard({
     effectiveZoom !== 1 ? { transform: `scale(${effectiveZoom})` } : undefined
 
   const photoCycle = useMemo<string[]>(() => {
-    if (variantCount < 2) return []
+    if (variantCount === 0) return []
     const hasColorways = variants.some((v) => (v.colorways?.length ?? 0) > 0)
     if (hasColorways) {
-      // For colorway-driven bags (mini canvas tote), cycle through every
-      // colorway photo across every variant in variant-major order so the
-      // hover preview teases the full lineup.
       return variants.flatMap((v) => (v.colorways ?? []).map((c) => c.photo))
     }
+    if (variantCount < 2) return []
     const cycle: string[] = []
     for (const a of ANGLE_ORDER) {
       for (const v of variants) {
@@ -446,12 +537,12 @@ function GalleryCard({
       className="group relative border-2 border-[var(--tj-ink)] bg-[var(--tj-cream)] h-full flex flex-col scroll-mt-24 hover:-translate-y-0.5 hover:shadow-[0_4px_0_rgba(42,31,20,0.2)] transition-transform"
     >
       <div className="relative aspect-[4/5] overflow-hidden bg-[var(--tj-kraft)]/20 border-b-2 border-[var(--tj-ink)]">
-        {variantCount > 1 && (
+        {editionCount > 1 && (
           <span
-            aria-label={`${variantCount} versions`}
+            aria-label={`${editionCount} editions`}
             className="absolute top-2 right-2 z-10 font-[var(--tj-body)] tracking-[0.2em] text-[0.55rem] uppercase font-semibold px-1.5 py-0.5 bg-[var(--tj-kraft)] border border-[var(--tj-ink)]/40 text-[var(--tj-ink)]"
           >
-            {variantCount} versions
+            {editionCount} editions
           </span>
         )}
         {front ? (

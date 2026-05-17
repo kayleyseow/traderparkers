@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import type { CategoryVisibility, EncyclopediaBag, PantryBag, Store } from '../../types'
 import { DEFAULT_VISIBILITY } from '../../types'
 import StoreSelect from './StoreSelect'
@@ -26,14 +26,14 @@ export default function BagForm({ password }: Props) {
   const [status, setStatus] = useState<Status>({ kind: 'idle' })
 
   useEffect(() => {
-    fetch(`${BASE}data/encyclopedia.json`)
+    fetch(`${BASE}data/encyclopedia.json`, { cache: 'no-cache' })
       .then((r) => r.json() as Promise<EncyclopediaBag[]>)
       .then(setRawEncyclopedia)
       .catch(() => setRawEncyclopedia([]))
     // Slugs are deterministic (`${encyclopediaId}-${date}`), so we can warn
     // the user before submit if a duplicate is brewing. The Worker enforces
     // this server-side too — this is just for instant feedback.
-    fetch(`${BASE}data/pantry.json`)
+    fetch(`${BASE}data/pantry.json`, { cache: 'no-cache' })
       .then((r) => r.json() as Promise<PantryBag[]>)
       .then((pantry) => setExistingSlugs(new Set(pantry.map((b) => b.slug))))
       .catch(() => {
@@ -41,7 +41,7 @@ export default function BagForm({ password }: Props) {
       })
     // Hide categories that admin has toggled off from the picker. State bags
     // always show. Mirrors the filter on the public encyclopedia.
-    fetch(`${BASE}data/visibility.json`)
+    fetch(`${BASE}data/visibility.json`, { cache: 'no-cache' })
       .then((r) => (r.ok ? (r.json() as Promise<CategoryVisibility>) : null))
       .then((v) => {
         if (v) setVisibility({ ...DEFAULT_VISIBILITY, ...v })
@@ -56,7 +56,6 @@ export default function BagForm({ password }: Props) {
     return rawEncyclopedia.filter((bag) => {
       if (bag.type === 'state') return visibility.state
       if (bag.type === 'special') return visibility.special
-      if (bag.type === 'seasonal') return visibility.seasonal
       if (bag.type === 'standard') return visibility.standard
       return true
     })
@@ -191,7 +190,7 @@ export default function BagForm({ password }: Props) {
         label="Photos"
         hint={
           WORKER_URL
-            ? 'Pick up to 8 photos of the bag from your camera roll.'
+            ? 'Pick up to 5 photos of the bag from your camera roll.'
             : 'Photo upload is disabled until the Cloudflare Worker is deployed. Pick photos to preview them; you’ll need to add them to the repo manually until then.'
         }
       >
@@ -299,27 +298,140 @@ function EncyclopediaPicker({
   value: string
   onChange: (id: string) => void
 }) {
-  const grouped = useMemo(() => groupEncyclopedia(encyclopedia ?? []), [encyclopedia])
-  const placeholder = encyclopedia === null ? 'Loading encyclopedia…' : 'Pick a bag from the encyclopedia'
+  const [open, setOpen] = useState(false)
+  const [query, setQuery] = useState('')
+  const containerRef = useRef<HTMLDivElement>(null)
+
+  const selectedBag = useMemo(
+    () => encyclopedia?.find((b) => b.id === value) ?? null,
+    [encyclopedia, value],
+  )
+
+  useEffect(() => {
+    if (!open) return
+    function close(e: Event) {
+      if (!containerRef.current?.contains(e.target as Node)) {
+        setOpen(false)
+        setQuery('')
+      }
+    }
+    document.addEventListener('mousedown', close)
+    document.addEventListener('touchstart', close)
+    return () => {
+      document.removeEventListener('mousedown', close)
+      document.removeEventListener('touchstart', close)
+    }
+  }, [open])
+
+  const filteredGroups = useMemo(() => {
+    const all = encyclopedia ?? []
+    const q = query.trim().toLowerCase()
+    if (!q) return groupEncyclopedia(all)
+    const matches = all.filter((b) => {
+      const haystack = `${bagDisplayName(b)} ${b.id} ${b.state ?? ''} ${b.stateCode ?? ''} ${b.region ?? ''}`.toLowerCase()
+      return haystack.includes(q)
+    })
+    return groupEncyclopedia(matches)
+  }, [encyclopedia, query])
+
+  function selectBag(id: string) {
+    onChange(id)
+    setQuery('')
+    setOpen(false)
+  }
+
+  const triggerLabel = encyclopedia === null
+    ? 'Loading encyclopedia…'
+    : selectedBag
+      ? bagDisplayName(selectedBag)
+      : 'Pick a bag from the encyclopedia'
+  const triggerIsPlaceholder = !selectedBag
+
   return (
-    <select
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      disabled={encyclopedia === null}
-      required
-      className="w-full border-2 border-[var(--tj-ink)] bg-[var(--tj-cream)] px-3 py-2.5 font-serif text-base outline-none focus:bg-white transition-colors disabled:opacity-60"
-    >
-      <option value="">{placeholder}</option>
-      {grouped.map((group) => (
-        <optgroup key={group.label} label={group.label}>
-          {group.bags.map((bag) => (
-            <option key={bag.id} value={bag.id}>
-              {bagDisplayName(bag)}
-            </option>
-          ))}
-        </optgroup>
-      ))}
-    </select>
+    <div ref={containerRef} className="relative">
+      <button
+        type="button"
+        onClick={() => {
+          if (open) {
+            setOpen(false)
+            setQuery('')
+          } else {
+            setOpen(true)
+          }
+        }}
+        disabled={encyclopedia === null}
+        className="w-full flex items-center justify-between gap-3 border-2 border-[var(--tj-ink)] bg-[var(--tj-cream)] px-3 py-2.5 text-left font-serif text-base hover:bg-white transition-colors disabled:opacity-60"
+      >
+        <span className={triggerIsPlaceholder ? 'italic opacity-65' : ''}>
+          {triggerLabel}
+        </span>
+        <svg
+          aria-hidden
+          viewBox="0 0 10 6"
+          className={`w-2.5 h-1.5 opacity-60 shrink-0 transition-transform ${open ? 'rotate-180' : ''}`}
+        >
+          <path
+            d="M1 1l4 4 4-4"
+            stroke="currentColor"
+            strokeWidth="1.5"
+            fill="none"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          />
+        </svg>
+      </button>
+
+      {open && encyclopedia && (
+        <div className="absolute z-20 left-0 right-0 top-full mt-1 border-2 border-[var(--tj-ink)] bg-[var(--tj-cream)] shadow-[0_4px_0_rgba(42,31,20,0.15)]">
+          <input
+            type="text"
+            value={query}
+            placeholder="Search by name, state, or ID"
+            autoFocus
+            onChange={(e) => setQuery(e.target.value)}
+            className="w-full border-b-2 border-[var(--tj-ink)] bg-white px-3 py-2.5 font-serif text-base outline-none"
+          />
+          <ul className="max-h-72 overflow-y-auto">
+            {filteredGroups.length === 0 ? (
+              <li className="px-3 py-2.5 italic text-sm opacity-70">
+                No bags match "{query}"
+              </li>
+            ) : (
+              filteredGroups.map((group) => (
+                <li key={group.label}>
+                  <div className="px-3 py-1 font-[var(--tj-body)] tracking-[0.2em] text-[0.6rem] uppercase font-semibold opacity-70 bg-[var(--tj-kraft)]/40 border-b border-[var(--tj-ink)]/15">
+                    {group.label}
+                  </div>
+                  <ul>
+                    {group.bags.map((bag) => (
+                      <li key={bag.id}>
+                        <button
+                          type="button"
+                          onMouseDown={(e) => e.preventDefault()}
+                          onTouchEnd={(e) => {
+                            e.preventDefault()
+                            selectBag(bag.id)
+                          }}
+                          onClick={() => selectBag(bag.id)}
+                          style={{ touchAction: 'manipulation' }}
+                          className={`w-full text-left px-3 py-2 hover:bg-[var(--tj-kraft)] focus:bg-[var(--tj-kraft)] focus:outline-none border-b border-[var(--tj-ink)]/15 last:border-b-0 ${
+                            bag.id === value ? 'bg-[var(--tj-kraft)]/40' : ''
+                          }`}
+                        >
+                          <div className="font-serif leading-tight">
+                            {bagDisplayName(bag)}
+                          </div>
+                        </button>
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              ))
+            )}
+          </ul>
+        </div>
+      )}
+    </div>
   )
 }
 
@@ -369,8 +481,8 @@ function PhotoPicker({
           ))}
         </ul>
       )}
-      {photos.length >= 8 && (
-        <p className="text-xs italic opacity-60">Maximum 8 photos.</p>
+      {photos.length >= 5 && (
+        <p className="text-xs italic opacity-60">Maximum 5 photos.</p>
       )}
     </div>
   )
@@ -567,7 +679,6 @@ function groupEncyclopedia(encyclopedia: EncyclopediaBag[]): { label: string; ba
   const order: { type: EncyclopediaBag['type']; label: string }[] = [
     { type: 'state', label: 'Locale Bags' },
     { type: 'special', label: 'Special Editions' },
-    { type: 'seasonal', label: 'Seasonal' },
     { type: 'standard', label: 'Standard Bags' },
   ]
   return order

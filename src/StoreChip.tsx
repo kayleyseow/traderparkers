@@ -8,7 +8,7 @@ let storesPromise: Promise<Map<string, Store>> | null = null
 
 function loadStores(): Promise<Map<string, Store>> {
   if (!storesPromise) {
-    storesPromise = fetch(`${BASE}data/stores.json`)
+    storesPromise = fetch(`${BASE}data/stores.json`, { cache: 'no-cache' })
       .then((r) => r.json() as Promise<Store[]>)
       .then((list) => new Map(list.map((s) => [s.storeNumber, s])))
       .catch(() => new Map<string, Store>())

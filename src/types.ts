@@ -20,7 +20,7 @@ export type Store = {
 
 /* ─────────────────────────────  ENCYCLOPEDIA  ──────────────────────────── */
 
-export type BagType = 'state' | 'special' | 'seasonal' | 'standard'
+export type BagType = 'state' | 'special' | 'standard'
 
 export type Material =
   | 'canvas'
@@ -206,13 +206,11 @@ export type ProgressStats = {
 export type CategoryVisibility = {
   state: boolean
   special: boolean
-  seasonal: boolean
   standard: boolean
 }
 
 export const DEFAULT_VISIBILITY: CategoryVisibility = {
   state: true,
   special: true,
-  seasonal: true,
   standard: true,
 }

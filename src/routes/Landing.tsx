@@ -13,7 +13,7 @@ export default function Landing() {
   const [encyclopediaById, setEncyclopediaById] = useState<Map<string, EncyclopediaBag>>(new Map())
 
   useEffect(() => {
-    fetch(`${BASE}data/pins.json`)
+    fetch(`${BASE}data/pins.json`, { cache: 'no-cache' })
       .then((r) => r.json() as Promise<PinnedBag[]>)
       .then(setPins)
       .catch(() => {
@@ -22,7 +22,7 @@ export default function Landing() {
   }, [])
 
   useEffect(() => {
-    fetch(`${BASE}data/encyclopedia.json`)
+    fetch(`${BASE}data/encyclopedia.json`, { cache: 'no-cache' })
       .then((r) => r.json() as Promise<EncyclopediaBag[]>)
       .then((encyclopedia) => {
         setEncyclopediaById(new Map(encyclopedia.map((b) => [b.id, b])))

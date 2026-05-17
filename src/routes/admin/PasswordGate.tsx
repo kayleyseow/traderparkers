@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router'
-import { checkPassword } from './hashPassword'
+
+const WORKER_URL = import.meta.env.VITE_WORKER_URL
 
 export default function PasswordGate({
   onUnlock,
@@ -20,7 +21,7 @@ export default function PasswordGate({
     if (!password || checking) return
     setChecking(true)
     setError(false)
-    const ok = await checkPassword(password)
+    const ok = await checkPasswordViaWorker(password)
     if (ok) {
       onUnlock(password)
     } else {
@@ -103,9 +104,15 @@ export default function PasswordGate({
 
         <Link
           to="/"
-          className="block text-[0.7rem] font-[var(--tj-body)] tracking-[0.2em] uppercase opacity-60 hover:opacity-100"
+          className="flex items-center justify-center gap-1.5 text-[0.7rem] font-[var(--tj-body)] tracking-[0.2em] uppercase opacity-60 hover:opacity-100"
         >
-          ← Back to the Bazaar
+          <span>← Back to the</span>
+          <span
+            className="text-[var(--tj-red)] text-lg tracking-normal normal-case leading-none"
+            style={{ fontFamily: 'var(--tj-script)' }}
+          >
+            Bazaar
+          </span>
         </Link>
       </div>
 
@@ -120,6 +127,22 @@ export default function PasswordGate({
       `}</style>
     </main>
   )
+}
+
+async function checkPasswordViaWorker(password: string): Promise<boolean> {
+  if (!WORKER_URL) return false
+  try {
+    const res = await fetch(`${WORKER_URL}/auth/check`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ password }),
+    })
+    if (!res.ok) return false
+    const data = (await res.json()) as { ok?: boolean }
+    return data.ok === true
+  } catch {
+    return false
+  }
 }
 
 function EyeIcon() {

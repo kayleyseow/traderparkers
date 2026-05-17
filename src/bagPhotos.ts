@@ -741,10 +741,90 @@ export const DESIGN_NOTES: Record<string, DesignNotes> = {
     blurb:
       'The tiny canvas tote that broke TikTok in March 2024. Trader Joe’s released the mini in four bright primary colors (red, yellow, green, blue) at $2.99 apiece, and within days a single viral video pulled in millions of views and turned every nearby TJ into a midweek mob scene. Bags sold out in minutes. Stores started limiting purchases per customer, and almost immediately the secondary market got out of hand: $2.99 totes were going for $50, then $100, then $200 on eBay and Depop, with one listing famously topping $900. Trader Joe’s publicly said the company does not condone reselling, but the genie was out of the bag.\n\nSince the original drop, TJ has run the mini through seasonal capsule colorways, a Fall 2024 Halloween set (orange, black, purple, and a multi-color holiday print) and a March 2026 spring pastel set (pink, lavender, mint green, baby blue), each of which has triggered the same buying frenzy on a smaller scale.\n\nThe bag itself is unfussy. Thick natural-canvas body with a colored print of the Trader Joe’s wordmark, a small "TJ\'s" badge, double cotton straps, sized at roughly 13 inches wide by 11 inches tall by 6 inches deep. The kind of object that absolutely should not be the most coveted thing in the store, which is exactly why it became the most coveted thing in the store.',
   },
+  'insulated-reusable': {
+    subtitle: 'The Storefront Cooler',
+    blurb:
+      'Trader Joe’s 8-gallon silver-lined cooler, sized for a serious frozen-aisle haul. Polypropylene body with a foil-lined interior, a full zipper across the top, and reinforced cotton-strap handles cut long enough to sling over a shoulder. The front carries the Pasadena storefront silhouette in dark navy: the Trader Joe’s Market signpost, the marquee, palm trees, and a tiny "1st Trader Joe’s Pasadena CA August 1967" caption tucked into the lower left. The base color shifts with every release. Recent colorways include lavender, emerald, teal, yellow, pink with yellow trim, dusty blue, and olive green, retailing around $7.99. Trader Joe’s lists it on their site under both "Insulated Reusable Bag" and "Large Reusable Insulated Bag" interchangeably (same SKU, same bag).',
+  },
+  'large-insulated': {
+    subtitle: 'The Big Cooler',
+    blurb:
+      'The bigger sibling in the insulated lineup, sized for a Thanksgiving-scale frozen haul. Black polypropylene body with bright red cotton-strap handles, red base banding, and a small red Trader Joe’s logo centered on the front. No graphic print, just clean color-block, which makes it the workhorse of the insulated family rather than the seasonal-print version. Foil-lined interior, full zipper across the top, reinforced handles long enough to shoulder. Deeper than the standard Insulated Reusable Bag, with a wider footprint that holds tall items upright (a turkey, a few half-gallon cartons of ice cream, an honest week of frozen pizzas).',
+    angleCaptions: {
+      front: 'Black body, red handles and red base banding, small red Trader Joe’s logo center-front',
+      back: 'Same color blocking continues around, no graphic on the reverse',
+      bottom: 'Looking down: red base panel and the foil-lined interior',
+    },
+  },
+  'canvas-micro': {
+    subtitle: 'Keychain Canvas',
+    blurb:
+      'A miniature of the Classic Canvas Tote, scaled down to barely larger than a wallet. Heavy cream canvas body with contrast-colored handles, base banding, and the red Trader Joe’s circle stamp printed dead-center. Sold in three colorways with navy, green, or red trim. A zippered top closure (different from the open-top of the full-size canvas tote) and a small clip-loop ring on the side let it hook to a backpack, keychain, or larger tote. Sub-$5, sized to function more as a coin purse or AirPods case than a grocery bag. Trader Joe’s positions it as a souvenir-scale accessory rather than a working tote, the in-store keychain answer to the mini canvas frenzy of 2024.',
+  },
+  'micro-tote-with-grocery': {
+    subtitle: 'Pouch with a Trick',
+    blurb:
+      'A pocket-sized mesh keychain pouch that unfolds into a full Trader Joe’s grocery bag. Compact, it reads as a small zippered pouch with mesh sides showing the contrasting interior fabric. Unzip the bottom, tug on the strap, and the inside unfurls into a bright red TRADER JOE’S nylon grocery bag at roughly the size of a regular shopper, with enough capacity for a real haul. Folds back into the pouch in a couple of practiced moves. Sold in two reversible colorways: black exterior with red interior, or red exterior with black interior. The kind of object that lives on a keychain for months waiting for the moment you forgot a bag.',
+  },
+  'stand-up-collapsible': {
+    subtitle: 'Greetings from Trader Joe’s',
+    blurb:
+      'A tall navy collapsible grocery bag built around six interior compartments that hold the bag upright on its own when filled. The front print reads "Greetings from Trader Joe’s" in carnival script over a moonlit sky: stylized pink and lilac clouds, silhouetted palm trees, and a smiling sun-moon face floating overhead like a vintage Curiosa print. Orange-red base banding and matching cotton-strap handles. The bag stands upright when packed and folds flat when empty, designed for produce, deli runs, glass jars, and anything top-heavy that the standard tote would slump around. Sized between the Classic Canvas Tote and the Large Insulated.',
+    angleCaptions: {
+      front: 'Carnival-script "Greetings from Trader Joe’s" under a moonlit sky with palm trees and a sun-moon face',
+      back: 'The illustrated print continues around the reverse, palm trees and clouds on the back panel',
+      left: 'Side panel: more painted clouds and a tropical horizon line',
+      right: 'Other side panel, mirroring the left',
+      bottom: 'Looking down: six interior compartments that keep the bag standing upright when full',
+    },
+  },
+  'bottle-holder': {
+    subtitle: 'Built for Bottles',
+    blurb:
+      'A pair of polypropylene grocery bags built around the same problem: getting bottles home upright. The original Bottle Holder is lime green with blue cotton handles and blue base banding, the front printed with three bottle illustrations (champagne, syrup, a square spirits bottle) and the red Trader Joe’s circle stamp at the top center. Internal dividers hold six bottles vertical on the trip home. The later Wine Reusable variant is olive green with a Victorian-style baroque print on the front (a yellow armchair, an upended wine glass, and decorative typeset captions), a quirkier, more illustrative take on the same idea. Both are sized like the standard reusable tote, both retail around $1, both turn the wine-aisle run into a less precarious walk to the car.',
+    angleCaptions: {
+      front: 'Lime green polypropylene with three bottle illustrations and the red Trader Joe’s circle stamp',
+      back: 'Same print continues around the reverse, blue cotton handles, blue base banding',
+      left: 'Side panel: matching lime-green field, no print',
+      right: 'Other side panel, mirroring the left',
+      bottom: 'Looking in: built-in vertical dividers that hold six bottles upright',
+    },
+  },
+  'washable-paper-tote': {
+    subtitle: 'Soft Paper, Hard Wearing',
+    blurb:
+      'A tall kraft-colored tote built from washable cellulose paper, the same material as the rest of the washable-paper trio. The body looks like brown craft paper out of the package and softens to a leather-like patina as it creases and washes, getting better-looking with use rather than worse. Charcoal-gray cotton-strap handles run the full length of the bag, doubling as reinforcement seams. No front graphic, no logo, just material. Rinseable and machine-washable on cold. Sized between a grocery tote and a shoulder bag, deep enough for a serious load but light enough to fold flat into a drawer when not in use.',
+    angleCaptions: {
+      front: 'Tan washable-paper body, charcoal cotton handles, no graphic',
+      back: 'Same material continues around, handles wrap the full length for reinforcement',
+      bottom: 'Looking down: paper-textured base, kraft-tan throughout',
+    },
+  },
+  'washable-paper-grocery': {
+    subtitle: 'The Paper Sack, Re-engineered',
+    blurb:
+      'The shape of a classic paper grocery sack rendered in washable cellulose paper, with the red Trader Joe’s circle stamp on the front flanked by a vintage fork and spoon engraving and "www.traderjoes.com" running underneath the logo. Tan kraft body, matching paper handles, no contrast banding. Holds its rectangular shape when full and folds flat when empty. Rinseable and machine-washable, gets softer and more leather-like with every wash. The middle size in TJ’s washable-paper trio, sitting between the tall Tote and the small Lunch Bag. Built as a one-time-purchase alternative to the disposable bag, paying upfront once instead of fifteen cents per checkout.',
+    angleCaptions: {
+      front: 'Red Trader Joe’s circle stamp with vintage fork-and-spoon engraving and the trader joes URL',
+      back: 'Same kraft paper body on the reverse, no print',
+      left: 'Side panel: the bag holds its rectangular grocery-sack form when full',
+      right: 'Other side panel, mirroring the left',
+      bottom: 'Looking down: kraft paper base, holds rectangular shape',
+    },
+  },
+  'washable-paper-lunch': {
+    subtitle: 'Brown Bag, Forever',
+    blurb:
+      'A lunch-sized roll-top bag in washable cellulose paper, built to replace the disposable brown bag once and for all. Tan kraft body with a leather closure tab and a small leather pull-loop button at the front, plus a folding roll-top you crease down and slot through the tab. No graphic, no logo, just material. Rinseable and machine-washable on cold, the paper softens to a leather-like patina with use. Sized for a sandwich, a drink, and a snack, the smallest in TJ’s washable-paper trio. The kind of object that disappears into a daily-carry routine within a week and lasts years.',
+    angleCaptions: {
+      front: 'Roll-top folded down, leather closure tab and pull-loop button across the center',
+      back: 'Same kraft body unfolded, showing the long carry strap and the slot-through closure detail',
+    },
+  },
   '50th-anniversary': {
     subtitle: 'He Doesn’t Look a Day Over 49',
     blurb:
-      'A 2017 limited-edition shopper marking Trader Joe’s 50th birthday, and one of the most narrative bags the company has ever made. Every panel tells a small piece of TJ’s origin story.\n\nThe front recreates the original Trader Joe’s storefront in Pasadena, where Joe Coulombe opened the very first store in August 1967. A teal sky radiates white sun-rays out from a centerpiece can of "Trader Joe’s Specialty Foods Corn," floating mid-air like a setting sun. A red shopping cart sits unattended in front of the marquee, palm-tree silhouettes leaning in from the right.\n\nThe back becomes a kind of party scene. "Trader Joe’s 1967-2017 (And Beyond)" runs in bold marquee type along the side, set over a lime-green field with tropical leaves. Two cartoon-cutout crew members ("Joey" in a polka-dot blazer and "Josie" in a flared pantsuit, both wearing red Trader Joe’s name badges) stand together exchanging the bag’s punchline: "I can’t believe Joe is 50." / "He doesn’t look a day over 49."\n\nEach side panel hosts another Victorian-engraved crew member with their own red name badge. On the left, a mustachioed gentleman in a red suit holds up a Fearless Flyer (TJ’s longtime in-store newspaper) and offers "Thanks for listening!", framed above a tiny black-and-white illustration captioned "1st Trader Joe’s, Pasadena, CA, August 1967." On the right, a green-suited gentleman tips his hand toward a small ringing bell on a red curtain backdrop, a quip floating overhead.\n\nThe underside is a carnival-style banner reading "Trader Joe’s Made in 1967" around a small anchor, a quiet nod to founder Joe Coulombe’s original South Seas trader theme. The bag sold for a short window in 2017 and now turns up secondhand as a genuinely sought-after collectible.',
+      'A 2017 limited-edition shopper marking Trader Joe’s 50th birthday, and one of the most narrative bags the company has ever made. Every panel tells a small piece of TJ’s origin story.\n\nThe front recreates the original Pasadena storefront where Joe Coulombe opened the very first store in August 1967. A teal sky radiates white sun-rays out from a centerpiece can of "Trader Joe’s Specialty Foods Corn," floating like a setting sun, with a red shopping cart parked in front of the marquee.\n\nThe back becomes a party scene. "Trader Joe’s 1967-2017 (And Beyond)" runs in marquee type over a lime-green field with tropical leaves. Two cartoon-cutout crew members (Joey in a polka-dot blazer and Josie in a flared pantsuit, both in red Trader Joe’s name badges) trade the bag’s punchline: "I can’t believe Joe is 50." / "He doesn’t look a day over 49."\n\nEach side panel hosts another Victorian-engraved crew member with a red name badge. On the left, a mustachioed gentleman in a red suit holds up a Fearless Flyer (TJ’s longtime in-store newspaper) captioned "Thanks for listening!", over a tiny illustration tagged "1st Trader Joe’s, Pasadena, CA, August 1967." On the right, a green-suited gentleman tips his hand toward a small ringing bell on a red curtain backdrop. The underside finishes with a carnival-style "Trader Joe’s Made in 1967" banner around a small anchor, a nod to founder Joe Coulombe’s original South Seas trader theme. The bag sold for a short window in 2017 and now turns up secondhand as a sought-after collectible.',
     angleCaptions: {
       front: 'The original Pasadena storefront under a teal sky, with a can of Trader Joe’s Specialty Foods Corn floating overhead as the sun',
       back: '"Trader Joe’s 1967-2017 (And Beyond)": crew members Joey and Josie exchange the bag’s punchline, "I can’t believe Joe is 50." / "He doesn’t look a day over 49."',
@@ -756,7 +836,7 @@ export const DESIGN_NOTES: Record<string, DesignNotes> = {
   'chicken-citrus': {
     subtitle: 'From the Frozen Aisle',
     blurb:
-      'A bright purple-and-yellow polypropylene shopper built around Trader Joe’s single most cult-followed frozen product: Mandarin Orange Chicken. The front blares a giant orange-and-yellow rooster on a deep purple field, with "Trader Joe’s" stamped into its body like a vintage Chinese seal and the characters 橙色鸡 (orange chicken) underneath. The back continues the rooster theme with two chickens standing nose-to-orange, the citrus of their dreams hovering above them in a Trader Joe’s thought bubble. The side panels carry crossed chopsticks and orange slices on yellow, and the underside is one giant cross-section of orange on a field of repeating Chinese type. Mandarin Orange Chicken first hit Trader Joe’s freezers in 2004 after an anonymous chef pitched the recipe to the company’s tasting panel, and it has dominated the Customer Choice Awards every year since 2017, the year it dethroned Cookie Butter as Favorite Overall.',
+      'A purple-and-yellow shopper built around Trader Joe’s single most cult-followed frozen product, Mandarin Orange Chicken. The front blares a giant orange-and-yellow rooster on deep purple, with "Trader Joe’s" stamped into its body like a vintage Chinese seal and the characters 橙色鸡 (orange chicken) underneath. The back continues with two chickens nose-to-orange, the citrus of their dreams hovering in a Trader Joe’s thought bubble. Side panels carry crossed chopsticks and orange slices on yellow. Mandarin Orange Chicken first hit Trader Joe’s freezers in 2004 after an anonymous chef pitched the recipe to the tasting panel, and it has dominated the Customer Choice Awards every year since 2017, the year it dethroned Cookie Butter as Favorite Overall.',
     angleCaptions: {
       front: 'A giant orange-and-yellow rooster on deep purple, with 橙色鸡 (orange chicken) stamped underneath',
       back: 'Two chickens nose to orange, the citrus of their dreams hovering in a Trader Joe’s thought bubble',
@@ -768,7 +848,7 @@ export const DESIGN_NOTES: Record<string, DesignNotes> = {
   'perky-and-uni-corny': {
     subtitle: 'Pursued with Forks & Hope',
     blurb:
-      'A polypropylene 6-gallon shopper starring two named TJ mascots and a scattering of literary food jokes. The front is "perky.", a yellow owl in a pink top hat perched on a pink Trader Joe\'s kettle. The back is "uni-corny.", a yellow chef-hatted unicorn rearing up with a CORNY can hoisted overhead, while a tiny top-hatted Perky watches from the corner. The side panels go full Victorian aphorism: a teal silver-spoon trophy with the Emerson line "let us count our spoons.", and a giant blue fork beside a frock-coated gentleman captioned "pursued with forks & hope." (from Lewis Carroll\'s Hunting of the Snark). The underside lays a potato and a tomato side by side under the deadpan line "fries with catsup."',
+      'A 6-gallon shopper starring two named TJ mascots and a scattering of literary food jokes. The front is "perky.", a yellow top-hatted owl perched on a pink Trader Joe\'s kettle. The back is "uni-corny.", a chef-hatted unicorn rearing with a CORNY can hoisted overhead. The side panels go full Victorian aphorism: "let us count our spoons." (Emerson) and "pursued with forks & hope." (Lewis Carroll, Hunting of the Snark). The underside lays a potato and a tomato side by side under the deadpan line "fries with catsup."',
     angleCaptions: {
       front: '"perky." — a yellow top-hatted owl perched on a pink Trader Joe\'s kettle',
       back: '"uni-corny." — a chef-hatted unicorn rearing with a CORNY can, Perky watching from the corner',
@@ -780,7 +860,7 @@ export const DESIGN_NOTES: Record<string, DesignNotes> = {
   'moon': {
     subtitle: 'Happy New Year, 2016',
     blurb:
-      'Trader Joe\'s 2016 New Year special, with two moons (one for each side). The front carries a silver-white moon with an awake, quietly smiling face, "TRADER JOE\'S" curving up its left edge over a cream Old World streetscape of Parisian rooftops, a pineapple-shaped tree, and a river running across the foreground. Flip it and the moon is asleep, a big yellow face with closed eyes floating over the same cityscape redrawn in pale teal, with a hand on the right raising a champagne flute to ring in the new year. The side panels wrap in a lilac wash past Victorian apartment facades: one carries a green-sleeved arm passing a "HAPPY NEW YEAR" envelope through a window, the other a scribbled "HAPPY" overhead. The underside finishes with a distressed "2016 / TRADER JOE\'S" stamp in faded cream, like the date on a champagne cork.',
+      'Trader Joe’s 2016 New Year special, with two moons (one for each side). The front carries a silver-white moon awake and quietly smiling, "TRADER JOE’S" curving up its edge over a cream Old World streetscape of Parisian rooftops and a river running across the foreground. Flip it and the moon is asleep, a big yellow face over the same cityscape redrawn in pale teal, a hand raising a champagne flute to ring in the new year. The side panels wrap in lilac wash past Victorian apartment facades, one with a green-sleeved arm passing a "HAPPY NEW YEAR" envelope through a window. The underside finishes with a distressed "2016 / Trader Joe’s" stamp, like the date on a champagne cork.',
     angleCaptions: {
       front: 'A silver-white moon, awake and quietly smiling, floats over a cream Old World streetscape with a trumpet-player on the corner and a river reflecting the buildings back',
       back: 'Flip side: a big yellow moon sleeps over the same cityscape redrawn in pale teal, a champagne flute raised in toast on the right',
@@ -792,7 +872,7 @@ export const DESIGN_NOTES: Record<string, DesignNotes> = {
   'home-cooking-with-joe': {
     subtitle: 'Portraits from the Pantry',
     blurb:
-      'A canvas-textured reusable shopper that doubles as a Trader Joe’s family album, rendered in the high-Victorian engraving style of an 1880s pharmacy catalog. The front and back each feature a different "crew member" portrait, both wearing red Trader Joe’s name badges: Jolene with a flower in her hair and a black-ribbon choker, and Joni with her hair pinned up over a green Sunday blouse. The side panels turn over to two more crew in the same style, a bearded gentleman and a chef in his work cap, all four framed by botanical illustrations and scraps of handwritten letters. The underside finishes with an antique salt-and-pepper-shaker etching and a stanza from Jonathan Swift’s poem "Mutton," the kind of literary footnote Trader Joe’s loves to bury in its merch. "Crew member" is what Trader Joe’s officially calls its employees, a maritime holdover from founder Joe Coulombe’s original South Seas trader theme.',
+      'A canvas-textured shopper that doubles as a Trader Joe’s family album, rendered in the high-Victorian engraving style of an 1880s pharmacy catalog. The front and back each carry a different "crew member" portrait in red Trader Joe’s name badges, Jolene with a flower in her hair and Joni with her hair pinned up over a green Sunday blouse. The side panels turn over to two more crew, a bearded gentleman and a chef in his work cap, framed by botanical illustrations and handwritten letters. The underside finishes with a salt-and-pepper-shaker etching and a stanza from Jonathan Swift’s "Mutton."',
     angleCaptions: {
       front: 'Jolene: a young woman with a flower in her hair and a black-ribbon choker, name badge pinned to her dress',
       back: 'Joni: hair pinned up over a green Sunday blouse, another red Trader Joe’s name badge in place',
@@ -816,7 +896,7 @@ export const DESIGN_NOTES: Record<string, DesignNotes> = {
   'corn-can': {
     subtitle: 'Naturally Sweet & Crisp',
     blurb:
-      'A yellow polypropylene shopper printed to look like an oversized can of Trader Joe’s Whole Kernel Corn, top to bottom. The front mimics the canned-goods label with the product name in white block type, the small print "Naturally Sweet & Crisp, No Sugar Added, No Preservatives," and a NET WT block at the base. The back becomes the rear of the same can: a barcode panel on one side, a nutrition-style ingredients block beside it, and a hand-drawn green corn stalk running up the right edge. Even the side panels stay in character, each carrying a vintage manual can opener silhouetted against the can-lid concentric rings. The underside finishes the joke with a small printed label reading "Ingredients: corn, water, salt." and the distributor line "Dist. & Sold Exclusively By: Trader Joe’s, Monrovia, CA 91016," the address of Trader Joe’s actual corporate headquarters.',
+      'A yellow shopper printed top to bottom as an oversized can of Trader Joe’s Whole Kernel Corn. The front mimics the canned-goods label with "Naturally Sweet & Crisp, No Sugar Added, No Preservatives" in small print. The back becomes the rear of the can, a barcode panel beside a nutrition block, a green corn stalk running up the edge. Side panels stay in character with vintage manual can openers silhouetted against the lid rings. The underside finishes the joke with "Ingredients: corn, water, salt." and a distributor line addressed to Trader Joe’s actual corporate headquarters in Monrovia, CA.',
     angleCaptions: {
       front: 'Trader Joe’s Whole Kernel Corn: the front of the can, "Naturally Sweet & Crisp, No Sugar Added, No Preservatives"',
       back: 'The back of the can: barcode and ingredients block, a green corn stalk running up the side',
@@ -828,7 +908,7 @@ export const DESIGN_NOTES: Record<string, DesignNotes> = {
   'flower-shop': {
     subtitle: 'Fresh Cut, Five Sides',
     blurb:
-      'A five-panel floral arrangement themed around the Trader Joe\'s in-store Flower Shop. The front is the FLOWER SHOP wordmark in red on a black panel, surrounded by a graphic-illustration garden on deep purple ground: peony, larkspur, hydrangea, red tulips, and a galvanized tin bucket signed off with a ladybug. The back swaps to painterly teal and centers a fat pink peony in a metal tub, with bees, lilacs, baby\'s breath, gerbera daisies, and cream roses crowding the frame. The side panels go navy, one with chrysanthemums and snapdragons, the other with yellow daffodils and red tulips. The underside finishes with a vintage TRADER JOE\'S SUNFLOWERS seed-packet label running across the bottom.',
+      'A five-panel floral arrangement themed around the in-store Flower Shop. The front banners the FLOWER SHOP wordmark in red over a deep purple garden of peony, larkspur, hydrangea, tulips, and a galvanized tin bucket (ladybug included). The back swaps to painterly teal around a fat pink peony in a metal tub, with bees, lilacs, and cream roses. Side panels go navy with chrysanthemums and daffodils, and the underside finishes with a vintage Trader Joe\'s Sunflowers seed-packet label.',
     angleCaptions: {
       front: 'FLOWER SHOP wordmark on purple, surrounded by peony, larkspur, hydrangea, tulips, and a galvanized bucket (ladybug included)',
       back: 'Painterly pink peony in a galvanized tub on teal, with bees, lilacs, baby\'s breath, gerbera, and cream roses',
@@ -840,7 +920,7 @@ export const DESIGN_NOTES: Record<string, DesignNotes> = {
   'new-recruit': {
     subtitle: 'Welcome to the Crew',
     blurb:
-      'A polypropylene welcome bag pressed into new Trader Joe’s hires on day one, not stocked on shelves. The front rallies a crowd of crew silhouettes around a single highlighted Hawaiian shirt printed with "Trader Joe’s Crew Member," marking the moment someone joins the lineup. The back stretches a yellow United States map across the panel while a small crew member squints through a telescope, captioned "I see more stores on the horizon!" The bag belongs to the same family as the Crew Member Portrait tote, a quiet internal-merch tradition built around the chain’s maritime-themed staff vocabulary.',
+      'A welcome bag pressed into new Trader Joe’s hires on day one, not stocked on shelves. The front rallies a crowd of crew silhouettes around a single highlighted Hawaiian shirt printed with "Trader Joe’s Crew Member," marking the moment someone joins the lineup. The back stretches a yellow United States map across the panel while a small crew member squints through a telescope, captioned "I see more stores on the horizon!" Part of the same family as the Crew Member Portrait tote, a quiet internal-merch tradition built around the chain’s maritime-themed staff vocabulary.',
     angleCaptions: {
       front: 'Trader Joe’s Newest Recruit: a crowd of crew silhouettes around the day-one Hawaiian shirt',
       back: '"I see more stores on the horizon!" telescope across a yellow US map',
@@ -849,7 +929,7 @@ export const DESIGN_NOTES: Record<string, DesignNotes> = {
   'surfboard': {
     subtitle: 'Boards in the Sand',
     blurb:
-      'A polypropylene shopping bag turned into a one-bag beach vacation. Both faces stage the same scene: a deep purple-pink sunset sky, palm-tree silhouettes leaning in, and three surfboards planted in golden sand, each painted with a chunk of the brand name so the row spells "Trader Joe’s" across the boards. A circular wood-grain medallion stamped "Trader Joe’s" in red ink anchors the upper sky like a vintage Hawaiian-souvenir patch. The front leaves a red beach ball at the water’s edge; the back rolls a pair of coconuts across the sand instead. The side panels continue the scene as a wraparound diorama, one a quiet stretch of palms with a hammock strung between two trees, the other a stack of boards with snippets of "BEACH" and "JUS" peeking through. The underside finishes the joke by rendering the bag itself as the bottom of a surfboard: tan wood-grain ripples stamped "WWW.TRADERJOES.COM" in red across the curve.',
+      'A shopping bag turned into a one-bag beach vacation. Both faces stage the same sunset scene: a deep purple-pink sky, palm-tree silhouettes leaning in, and three surfboards planted in golden sand, each painted with a chunk of the brand name so the row spells "Trader Joe’s" across the boards. A wood-grain medallion stamped "Trader Joe’s" in red ink anchors the sky like a vintage Hawaiian-souvenir patch. Side panels continue the scene with palms, a hammock, and more boards. The underside renders the bag itself as the bottom of a surfboard, tan wood-grain ripples stamped "WWW.TRADERJOES.COM" across the curve.',
     angleCaptions: {
       front: 'Three surfboards planted in the sand spelling Trader Joe\'s, a red beach ball at the water\'s edge, the medallion seal anchoring the sunset sky',
       back: 'The same beach turned around: more surfboards, a pair of coconuts rolling across the sand',
@@ -861,7 +941,7 @@ export const DESIGN_NOTES: Record<string, DesignNotes> = {
   'nocturne': {
     subtitle: 'Open Late',
     blurb:
-      'A polypropylene shopper that turns Trader Joe’s into a city after dark. The dark navy field reads at first as a downtown skyline, gold-lit buildings rising against the night sky with a yellow moon overhead and an elevated train running across the lower edge. On closer look, each tower is actually a row of supermarket shelves, with product names ("CORN" in red label type, and others) lit up like apartment windows, the late-night shopper just another commuter heading home via the night train. The side panels pull the camera up overhead, looking down at an empty parking lot: tidy rows of shopping carts in cream wireframe against the same midnight navy. The underside flickers with the late-night signage itself, "TJ’s Shop" in big gold letters under a row of streetlamps.',
+      'A shopper that turns Trader Joe’s into a city after dark. The dark navy field reads at first as a downtown skyline, gold-lit buildings against the night sky with a yellow moon overhead and an elevated train across the lower edge. On closer look, each tower is a row of supermarket shelves, product names like "CORN" lit up like apartment windows. The side panels pull overhead, looking down at an empty parking lot of carts in cream wireframe. The underside flickers with "TJ’s Shop" in big gold letters under a row of streetlamps.',
     angleCaptions: {
       front: 'A gold-lit grocery-shelf skyline, the night train running along the lower edge with the moon hanging overhead',
       back: 'The other side of the city: a wider moon, the train mid-arrival, a CORN shelf-tower catching the light',
@@ -873,7 +953,7 @@ export const DESIGN_NOTES: Record<string, DesignNotes> = {
   'recycled-ocean-plastic': {
     subtitle: 'Made From the Sea',
     blurb:
-      'A polypropylene shopper printed edge to edge as a panoramic ocean scene, and quietly self-aware: the underside spells out, in block letters, that the bag itself is made from plastic collected from marine and coastal environments. The front sits at the waterline, a school of dark fish around a single orange clownfish above, and below the surface an old brass-helmeted deep-sea diver standing on the ocean floor with three seahorses curling past on the right. The back drifts deeper: pale moon jellyfish on the left, an old diesel submarine through the center carrying a small "Recycled Ocean Plastic Bag" stamp like a buoy, an octopus unfurling across the right. The side panels turn into tall kelp forests, each with a small white paper sailboat at the surface, the bag\'s only sign of land.',
+      'A polypropylene shopper printed edge to edge as a panoramic ocean scene, and quietly self-aware: the underside spells out, in cream block letters, that the bag itself is made from plastic collected from marine and coastal environments. The front sits at the waterline, a school of dark fish around a single orange clownfish above and a brass-helmeted deep-sea diver below. The back drifts deeper into pale jellyfish, an old diesel submarine, and an unfurling octopus. The side panels turn into kelp forests with a small paper sailboat at the surface, the bag\'s only sign of land.',
     angleCaptions: {
       front: 'At the waterline: a school of dark fish around a single orange clownfish above, a brass-helmeted deep-sea diver and three seahorses below',
       back: 'Deeper down: pale jellyfish trailing on the left, an old diesel submarine cutting through the center, an octopus unfurling on the right',
@@ -885,7 +965,7 @@ export const DESIGN_NOTES: Record<string, DesignNotes> = {
   'comfort-food': {
     subtitle: 'A Pairing Per Panel',
     blurb:
-      'A polypropylene 6-gallon shopper that treats every face of the bag as its own diner-menu placard, each one bannering a different comfort-food pairing in chunky cursive. The front is "Mac & Cheese" on mustard yellow, ringed by an elbow noodle, a wedge of cheese, a grater, and a cheese wheel. The back flips into deep purple for "PB & Jam," a Trader Joe\'s peanut butter jar at center surrounded by grapes, a strawberry, a peanut, and a fruit-pastry icon. The side panels run on golden yellow: "Ketchup & Fries" with a Trader Joe\'s ketchup bottle, two tomatoes, and a fry box on one side, "Bacon & Eggs" with sunny-side-ups, bacon strips, and a hardboiled egg on the other. The underside finishes on chocolate brown with "Milk & Cookies," a milk carton beside a chocolate chip cookie. Deep purple trim and handles tie all five backgrounds together. A regular in-store polypropylene shopper at roughly 99¢, less a special edition than a quietly fun standby in the rack by the registers.',
+      'A 6-gallon shopper that treats every panel as a diner-menu placard, each bannering a comfort-food pairing in chunky cursive. "Mac & Cheese" on mustard yellow up front, "PB & Jam" on deep purple on the back. "Ketchup & Fries" and "Bacon & Eggs" run the side panels on golden yellow, and the underside finishes on chocolate brown with "Milk & Cookies." Deep purple trim and handles tie all five backgrounds together. A 99¢ standby in the rack by the registers, less a special edition than a quietly fun regular.',
     angleCaptions: {
       front: '"Mac & Cheese" on mustard yellow: an elbow noodle, a wedge of cheese, a grater, and a cheese wheel',
       back: '"PB & Jam" on deep purple: a Trader Joe\'s peanut butter jar surrounded by grapes, a strawberry, a peanut, and a fruit-pastry icon',
@@ -897,7 +977,7 @@ export const DESIGN_NOTES: Record<string, DesignNotes> = {
   'george-washington-peanuts': {
     subtitle: 'The Peanut Bag',
     blurb:
-      'A 6-gallon polypropylene shopper that turns each panel into a different page from Trader Joe\'s peanut catalog, with a tip of the hat to George Washington Carver. The front banners "GET \'YER PEANUTS HERE!" in cream over an orange peanut polka-dot, a split peanut showing two halves. The back is a purple speech bubble: "George Washington Carver is the man!" The side panels carry vintage labels for two TJ peanut products: "Truly Old Fashioned Peanut Butter" on lilac and "Dark Chocolate Peanut Butter Cups" on navy. The underside finishes brown with "Pre-Posterously Good Peanut Butter Cup Cookies."',
+      'A 6-gallon shopper that turns each panel into a page from Trader Joe\'s peanut catalog, with a tip of the hat to George Washington Carver. The front banners "GET \'YER PEANUTS HERE!" in cream over an orange peanut polka-dot. The back is a purple speech bubble: "George Washington Carver is the man!" The side panels carry vintage labels for two TJ peanut products, "Truly Old Fashioned Peanut Butter" on lilac and "Dark Chocolate Peanut Butter Cups" on navy. The underside finishes brown with "Pre-Posterously Good Peanut Butter Cup Cookies."',
     angleCaptions: {
       front: '"GET \'YER PEANUTS HERE!" in cream over an orange peanut polka-dot, a split peanut up top showing two halves',
       back: 'A purple speech bubble floats above the peanut: "George Washington Carver is the man!"',
@@ -909,7 +989,7 @@ export const DESIGN_NOTES: Record<string, DesignNotes> = {
   'fearless-flyer': {
     subtitle: 'The Bag Is the Newsletter',
     blurb:
-      'A 2025 6-gallon polypropylene shopper that turns itself into a page from the Fearless Flyer, Trader Joe\'s in-store newsletter. The front is a torn-paper collage on cream newsprint: cut-out "TRADER JOE\'S FEARLESS FLYER" letters over a bearded Victorian portrait, a pear, berries, and a watermelon slice. The back continues with a red "Fearless Flyer" banner, a covered platter lifted mid-flourish, a pickle ribbon, and a Victorian lady reading. Side panels run teal with faint repeating newsprint. The underside is a fake Fearless Flyer article titled "Reusable Grocery Bag" describing the bag itself.',
+      'A 2025 6-gallon shopper that turns itself into a page from the Fearless Flyer, Trader Joe’s in-store newsletter. The front is a torn-paper collage on cream newsprint: cut-out "TRADER JOE’S FEARLESS FLYER" letters over a bearded Victorian portrait, a pear, berries, and a watermelon slice. The back continues with a red "Fearless Flyer" banner, a covered platter lifted mid-flourish, a pickle ribbon, and a Victorian lady reading. Side panels run teal with faint repeating newsprint. The underside is a fake Fearless Flyer article titled "Reusable Grocery Bag" describing the bag itself.',
     angleCaptions: {
       front: 'Torn-paper collage on cream newsprint: cut-out "TRADER JOE\'S FEARLESS FLYER" letters over a bearded Victorian portrait, a pear, berries, and a watermelon slice',
       back: 'A red "Fearless Flyer" banner over a chef\'s covered serving platter, a pickle ribbon, and a Victorian lady reading',
@@ -921,7 +1001,7 @@ export const DESIGN_NOTES: Record<string, DesignNotes> = {
   'ship': {
     subtitle: 'Watercolor Voyage',
     blurb:
-      'A maritime 6-gallon polypropylene shopper, cataloged secondhand as "Ship (or Water)." The front layers vintage engravings over watercolor wash: a tall sailing ship on the left, a hot-air balloon and a crescent moon wearing a crown overhead, a sun, a swallow in flight, and a Trader Joe\'s banner at the foot. The back goes cartographic with a North/South America map, a red crab on the wave, a ship-in-a-bottle, a tall pineapple, and two globe medallions at the bottom. Side panels run turquoise watercolor, one with a small black bird on the wave. Mermaid-scale waves run across the lower edge of every panel.',
+      'A maritime 6-gallon shopper, cataloged secondhand as "Ship (or Water)." The front layers vintage engravings over watercolor wash: a tall sailing ship on the left, a hot-air balloon and a crowned crescent moon overhead, a sun, a swallow in flight, and a Trader Joe’s banner at the foot. The back goes cartographic with a North/South America map, a red crab on the wave, a ship-in-a-bottle, and a tall pineapple. Side panels run turquoise watercolor, one with a small black bird on the wave. Mermaid-scale waves run across the lower edge of every panel.',
     angleCaptions: {
       front: 'A tall sailing ship at left, a hot-air balloon and a crowned crescent moon overhead, a sun with rays, a swallow in flight, and a Trader Joe\'s banner at the foot',
       back: 'A North/South America map in pale green, a red crab perched on the wave, a ship-in-a-bottle on the left, a tall pineapple on the right, two globe medallions at the bottom',

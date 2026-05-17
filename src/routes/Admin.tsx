@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Link } from 'react-router'
+import { Link, useLocation } from 'react-router'
 import PasswordGate from './admin/PasswordGate'
 import BagForm from './admin/BagForm'
 import EntryForm from './admin/EntryForm'
@@ -21,6 +21,12 @@ export default function Admin() {
   // Re-prompt on every fresh page load. The Worker requires it on each save.
   const [password, setPassword] = useState<string | null>(null)
   const [mode, setMode] = useState<AdminMode>('log')
+  const location = useLocation()
+  const from = (location.state as { from?: unknown } | null)?.from
+  const backTo =
+    typeof from === 'string' && from.startsWith('/') && from !== '/admin'
+      ? from
+      : '/'
 
   if (!password) {
     return <PasswordGate onUnlock={setPassword} />
@@ -29,27 +35,30 @@ export default function Admin() {
   return (
     <main className="min-h-screen bg-[var(--tj-kraft)] text-[var(--tj-ink)] px-6 pt-10">
       <div className="max-w-6xl mx-auto">
-        <nav className="flex items-center justify-between mb-10 flex-wrap gap-3">
+        <nav className="mb-10 flex flex-col items-center gap-4 md:flex-row md:justify-between md:gap-3">
           <Link
-            to="/"
-            aria-label="Trader Parker's Bag Bazaar — home"
+            to={backTo}
+            aria-label={backTo === '/' ? "Trader Parker's Bag Bazaar — home" : `Back to ${backTo}`}
             className="group flex flex-col items-center transition-transform hover:-translate-y-0.5"
             style={{ fontFamily: 'var(--tj-script)' }}
           >
-            <span className="text-[var(--tj-red)] text-3xl leading-none group-hover:text-[var(--tj-ink)] transition-colors">
+            <span className="text-[var(--tj-red)] text-2xl md:text-3xl leading-none group-hover:text-[var(--tj-ink)] transition-colors">
               Trader Parker's
             </span>
-            <span className="text-[var(--tj-red)] text-lg leading-none -mt-1 group-hover:text-[var(--tj-ink)] transition-colors">
+            <span className="text-[var(--tj-red)] text-base md:text-lg leading-none -mt-1 group-hover:text-[var(--tj-ink)] transition-colors">
               Bag Bazaar
             </span>
           </Link>
-          <button
-            type="button"
-            onClick={() => setPassword(null)}
-            className="font-[var(--tj-body)] font-semibold tracking-[0.25em] text-[0.7rem] uppercase opacity-70 hover:opacity-100 underline-offset-4 hover:underline"
-          >
-            Lock Up
-          </button>
+          <div className="flex items-center justify-center gap-3 flex-wrap">
+            <button
+              type="button"
+              onClick={() => setPassword(null)}
+              className="inline-flex items-center gap-1.5 font-[var(--tj-body)] font-semibold tracking-[0.25em] text-[0.7rem] uppercase border-2 border-[var(--tj-ink)] bg-[var(--tj-cream)] text-[var(--tj-ink)] px-3 py-1.5 hover:bg-[var(--tj-ink)] hover:text-[var(--tj-cream)] transition-colors"
+            >
+              <span aria-hidden>🔒</span>
+              Lock Up
+            </button>
+          </div>
         </nav>
       </div>
 
@@ -77,13 +86,14 @@ export default function Admin() {
             </p>
           </section>
 
-          <h1 className="font-[TraderJoes,Brush_Script_MT,cursive] text-[var(--tj-red)] text-6xl leading-none">
-            {MODE_TITLE[mode]}
-          </h1>
           <div className="mx-auto mt-5 h-px w-32 bg-[var(--tj-ink)]/40" />
         </header>
 
         <ModeToggle mode={mode} onChange={setMode} />
+
+        <h2 className="text-center font-[TraderJoes,Brush_Script_MT,cursive] text-[var(--tj-red)] text-3xl md:text-4xl leading-none my-6">
+          {MODE_TITLE[mode]}
+        </h2>
 
         <div className="border-2 border-[var(--tj-ink)] bg-[var(--tj-cream)] p-6 md:p-8">
           {mode === 'log' && <BagForm password={password} />}
@@ -113,7 +123,7 @@ function ModeToggle({
       <div
         role="tablist"
         aria-label="Admin task"
-        className="inline-flex flex-wrap justify-center items-stretch border-2 border-[var(--tj-ink)] divide-x-2 divide-[var(--tj-ink)] max-w-full"
+        className="flex flex-col w-full sm:inline-flex sm:flex-row sm:flex-wrap sm:w-auto justify-center items-stretch border-2 border-[var(--tj-ink)] divide-y-2 sm:divide-y-0 sm:divide-x-2 divide-[var(--tj-ink)] max-w-full"
       >
         <button
           role="tab"
@@ -137,7 +147,7 @@ function ModeToggle({
           onClick={() => onChange('entry')}
           className={`${baseBtn} ${mode === 'entry' ? active : inactive}`}
         >
-          Add Encyclopedia Entry
+          Add an Entry
         </button>
         <button
           role="tab"

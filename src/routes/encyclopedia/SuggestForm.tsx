@@ -45,8 +45,8 @@ export default function SuggestForm() {
     return (
       <div className="border-2 border-dashed border-[var(--tj-ink)]/40 bg-[var(--tj-kraft)]/10 p-6 text-center max-w-2xl mx-auto">
         <p className="font-[var(--tj-body)] italic text-sm opacity-75">
-          The Suggest-a-Bag form will appear here once the Cloudflare Worker is
-          configured. In the meantime, spotted a missing bag? Reach out to the maintainer directly.
+          This form will appear here once the Cloudflare Worker is configured.
+          In the meantime, spotted a missing bag or wrong info? Reach out to the maintainer directly.
         </p>
       </div>
     )
@@ -147,11 +147,6 @@ export default function SuggestForm() {
       onSubmit={handleSubmit}
       className="max-w-2xl mx-auto border-2 border-[var(--tj-ink)] bg-[var(--tj-cream)] p-6 md:p-8 space-y-5"
     >
-      <p className="font-[var(--tj-body)] italic text-sm opacity-75 -mb-1">
-        Spotted a TJ bag that's not in the encyclopedia? Tell us about it. Suggestions
-        get filed as a GitHub issue the maintainer will review.
-      </p>
-
       <Field label="Bag Name" required>
         <input
           type="text"
@@ -174,7 +169,6 @@ export default function SuggestForm() {
             <option value="">Pick a type</option>
             <option value="state">Locale (state, region, or city)</option>
             <option value="special">Special edition (themed)</option>
-            <option value="seasonal">Seasonal</option>
             <option value="standard">Standard everyday bag</option>
           </select>
         </Field>

@@ -17,5 +17,15 @@ ALLOWED_ORIGINS = "https://kayleyseow.github.io,http://localhost:5173,http://loc
 
 # Secrets (NOT in this file — set via `wrangler secret put` after deploy):
 #   GITHUB_TOKEN     — fine-grained PAT, Contents: R/W + Issues: R/W on this repo
-#   ADMIN_HASH       — SHA-256 hex of the admin password (same value as PASSWORD_HASH in src/routes/admin/hashPassword.ts)
+#   ADMIN_HASH       — SHA-256 hex of the admin password; rotate via `wrangler secret put ADMIN_HASH` (Worker is now the sole source of truth)
 #   TURNSTILE_SECRET — Cloudflare Turnstile secret key (use 1x0000000000000000000000000000000AA for local dev — always-passes test key)
+
+# Rate-limiting binding. 10 requests per minute per client IP, applied to the
+# write endpoints (/pantry, /pantry/edit, /pantry/delete, /settings,
+# /suggestions). Defense against brute-force password guessing. Free tier; no
+# KV required. namespace_id is an account-scoped identifier — keep stable.
+[[unsafe.bindings]]
+name = "AUTH_LIMITER"
+type = "ratelimit"
+namespace_id = "1001"
+simple = { limit = 10, period = 60 }

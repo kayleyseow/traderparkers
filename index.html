@@ -4,6 +4,15 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Content Security Policy. Blocks inline scripts and restricts loads to
+         known origins. If you add a new third-party script, font, or API,
+         allow-list its origin in the matching directive below. -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' https://challenges.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://parker-bags.kseow.workers.dev; frame-src https://challenges.cloudflare.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"
+    />
+
     <title>Trader Parker's Bag Bazaar</title>
 
     <!-- Source Serif 4 — free Adobe-published cousin of FreightText Pro

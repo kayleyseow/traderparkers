@@ -1,9 +1,13 @@
 /**
  * Parker's Bag Bazaar — Cloudflare Worker
  *
- * Two endpoints:
- *   POST /pantry   — password-gated; commits a new bag + photos to the GitHub repo
- *   POST /suggestions  — public (Turnstile-protected); opens a GitHub issue with the suggestion
+ * Endpoints:
+ *   POST /auth/check     — verifies the admin password against ADMIN_HASH; returns { ok }
+ *   POST /pantry         — password-gated; commits a new bag + photos to the repo
+ *   POST /pantry/edit    — password-gated; updates an existing pantry entry
+ *   POST /pantry/delete  — password-gated; removes a pantry entry + its photos
+ *   POST /settings       — password-gated; persists per-key JSON settings
+ *   POST /suggestions    — public (Turnstile-protected); opens a GitHub issue
  *
  * Setup: see workers/README.md
  */
@@ -22,6 +26,8 @@ type Env = {
   GITHUB_TOKEN: string
   ADMIN_HASH: string
   TURNSTILE_SECRET: string
+  // Rate limiter (wrangler.toml [[unsafe.bindings]])
+  AUTH_LIMITER: { limit: (opts: { key: string }) => Promise<{ success: boolean }> }
 }
 
 const app = new Hono<{ Bindings: Env }>()
@@ -36,10 +42,35 @@ app.use('*', async (c, next) => {
   })(c, next)
 })
 
+// Rate-limit write endpoints by client IP. Defense against brute-force on the
+// admin password — 10/min/IP makes a wordlist attack infeasible even before
+// ADMIN_HASH is rotated to something strong. Suggestions also rate-limited as
+// belts-and-suspenders next to Turnstile. Preflight OPTIONS skipped because
+// the browser caches them and they're not an attack surface.
+const RATE_LIMITED_PATHS = new Set([
+  '/auth/check',
+  '/pantry',
+  '/pantry/edit',
+  '/pantry/delete',
+  '/settings',
+  '/suggestions',
+])
+app.use('*', async (c, next) => {
+  if (c.req.method === 'OPTIONS') return next()
+  if (!RATE_LIMITED_PATHS.has(c.req.path)) return next()
+  const ip = c.req.header('CF-Connecting-IP') ?? 'unknown'
+  const { success } = await c.env.AUTH_LIMITER.limit({ key: ip })
+  if (!success) {
+    return c.json({ error: 'Too many requests. Try again in a minute.' }, 429)
+  }
+  return next()
+})
+
 app.get('/', (c) =>
   c.json({
     name: 'parker-bags',
     endpoints: [
+      'POST /auth/check',
       'POST /pantry',
       'POST /pantry/edit',
       'POST /pantry/delete',
@@ -48,6 +79,31 @@ app.get('/', (c) =>
     ],
   }),
 )
+
+/* ──────────────────────────  /auth/check  ──────────────────────────
+   Front-end login gate. Verifies the password against ADMIN_HASH without
+   exposing the hash to anyone reading the JS bundle. Brute force is throttled
+   by the same RATE_LIMITED_PATHS middleware as the write endpoints. The
+   password is still required on every write endpoint — this just powers the
+   admin UI's "unlock" affordance. */
+
+app.post('/auth/check', async (c) => {
+  let body: { password?: string }
+  try {
+    body = await c.req.json()
+  } catch {
+    return c.json({ ok: false, error: 'Invalid JSON' }, 400)
+  }
+
+  const { password } = body
+  if (!password) {
+    return c.json({ ok: false, error: 'Missing password' }, 400)
+  }
+
+  const incomingHash = await sha256Hex(password)
+  const ok = constantTimeEqual(incomingHash, c.env.ADMIN_HASH)
+  return c.json({ ok })
+})
 
 /* ──────────────────────────  /pantry  ────────────────────────── */
 
@@ -87,8 +143,8 @@ app.post('/pantry', async (c) => {
   // 2. Validate bag shape.
   const fieldError = validateBag(bag)
   if (fieldError) return c.json({ error: fieldError }, 400)
-  if (photos.length > 8) {
-    return c.json({ error: 'Too many photos (max 8)' }, 400)
+  if (photos.length > 5) {
+    return c.json({ error: 'Too many photos (max 5)' }, 400)
   }
 
   // 3. Read pantry.json so we can reject duplicate slugs and append the new
@@ -207,8 +263,8 @@ app.post('/pantry/edit', async (c) => {
 
   const fieldError = validateBag(bag)
   if (fieldError) return c.json({ error: fieldError }, 400)
-  if (photoPlan.length > 8) {
-    return c.json({ error: 'Too many photos (max 8)' }, 400)
+  if (photoPlan.length > 5) {
+    return c.json({ error: 'Too many photos (max 5)' }, 400)
   }
 
   let existing: { content: string; sha: string }
@@ -464,7 +520,7 @@ app.post('/settings', async (c) => {
 
 type IncomingSuggestion = {
   name: string
-  type?: 'state' | 'special' | 'seasonal' | 'standard'
+  type?: 'state' | 'special' | 'standard'
   state?: string
   stateCode?: string
   region?: string

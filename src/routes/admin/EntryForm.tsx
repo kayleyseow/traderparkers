@@ -174,7 +174,6 @@ export default function EntryForm({ password: _password }: { password: string })
             <option value="">Pick a section</option>
             <option value="state">Locale (state, region, or city)</option>
             <option value="special">Special edition</option>
-            <option value="seasonal">Seasonal</option>
             <option value="standard">Standard everyday bag</option>
           </select>
         </Field>

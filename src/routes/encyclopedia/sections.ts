@@ -55,19 +55,15 @@ export const NON_LOCATION_SECTIONS: SectionDef[] = [
     type: 'special',
     id: 'enc-special',
     label: 'Special Editions',
+    scrubberLabel: 'Special',
     blurb:
       'Themed bags that aren’t tied to a state — pickle, sardine, cheese, wine.',
-  },
-  {
-    type: 'seasonal',
-    id: 'enc-seasonal',
-    label: 'Seasonal',
-    blurb: 'Released around a holiday or season; designs change year to year.',
   },
   {
     type: 'standard',
     id: 'enc-standard',
     label: 'Standard Bags',
+    scrubberLabel: 'Standard',
     blurb:
       'The everyday lineup — insulated, mini canvas, washable paper, and more.',
   },
@@ -75,8 +71,8 @@ export const NON_LOCATION_SECTIONS: SectionDef[] = [
 
 export const SUGGEST_SECTION = {
   id: 'enc-suggest',
-  label: 'Spot a Missing Bag?',
-  scrubberLabel: 'Missing Bag',
+  label: 'Add or Edit a Bag',
+  scrubberLabel: 'Add or Edit',
   blurb:
-    "The encyclopedia is hand-curated and almost certainly missing some. If you've seen a TJ bag in the wild that isn't here, send it our way.",
+    "Send a missing bag, or anything off about one that's already here. Submissions land as a GitHub issue the maintainer will review.",
 }

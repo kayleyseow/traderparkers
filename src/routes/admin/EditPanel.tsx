@@ -32,10 +32,10 @@ export default function EditPanel({ password }: Props) {
   useEffect(() => {
     let cancelled = false
     Promise.all([
-      fetch(`${BASE}data/pantry.json`).then((r) => r.json() as Promise<PantryBag[]>),
-      fetch(`${BASE}data/encyclopedia.json`).then((r) => r.json() as Promise<EncyclopediaBag[]>),
-      fetch(`${BASE}data/stores.json`).then((r) => r.json() as Promise<Store[]>),
-      fetch(`${BASE}data/visibility.json`)
+      fetch(`${BASE}data/pantry.json`, { cache: 'no-cache' }).then((r) => r.json() as Promise<PantryBag[]>),
+      fetch(`${BASE}data/encyclopedia.json`, { cache: 'no-cache' }).then((r) => r.json() as Promise<EncyclopediaBag[]>),
+      fetch(`${BASE}data/stores.json`, { cache: 'no-cache' }).then((r) => r.json() as Promise<Store[]>),
+      fetch(`${BASE}data/visibility.json`, { cache: 'no-cache' })
         .then((r) => (r.ok ? (r.json() as Promise<CategoryVisibility>) : null))
         .catch(() => null),
     ])
@@ -227,7 +227,6 @@ function EditForm({
       data.encyclopedia.filter((bag) => {
         if (bag.type === 'state') return data.visibility.state
         if (bag.type === 'special') return data.visibility.special
-        if (bag.type === 'seasonal') return data.visibility.seasonal
         if (bag.type === 'standard') return data.visibility.standard
         return true
       }),
@@ -480,7 +479,7 @@ function EditForm({
         </div>
       )}
 
-      <div className="pt-2 flex flex-wrap items-center justify-between gap-3">
+      <div className="pt-2 flex items-center justify-between gap-3">
         <button
           type="button"
           onClick={() => setStatus({ kind: 'confirming-delete' })}
@@ -604,7 +603,7 @@ function PhotoEditor({
         </ul>
       )}
 
-      {photos.length < 8 ? (
+      {photos.length < 5 ? (
         <input
           type="file"
           accept="image/*"
@@ -616,7 +615,7 @@ function PhotoEditor({
           className="w-full text-sm font-serif file:mr-3 file:border-2 file:border-[var(--tj-ink)] file:bg-[var(--tj-cream)] file:px-3 file:py-2 file:font-[var(--tj-body)] file:tracking-[0.15em] file:text-[0.7rem] file:uppercase file:cursor-pointer hover:file:bg-[var(--tj-ink)] hover:file:text-[var(--tj-cream)]"
         />
       ) : (
-        <p className="text-xs italic opacity-60">Maximum 8 photos.</p>
+        <p className="text-xs italic opacity-60">Maximum 5 photos.</p>
       )}
     </div>
   )
@@ -713,23 +712,39 @@ function EncyclopediaPicker({
 }) {
   const grouped = useMemo(() => groupEncyclopedia(encyclopedia), [encyclopedia])
   return (
-    <select
-      value={value}
-      onChange={(e) => onChange(e.target.value)}
-      required
-      className="w-full border-2 border-[var(--tj-ink)] bg-[var(--tj-cream)] px-3 py-2.5 font-serif text-base outline-none focus:bg-white transition-colors"
-    >
-      <option value="">Pick a bag from the encyclopedia</option>
-      {grouped.map((group) => (
-        <optgroup key={group.label} label={group.label}>
-          {group.bags.map((bag) => (
-            <option key={bag.id} value={bag.id}>
-              {bagDisplayName(bag)}
-            </option>
-          ))}
-        </optgroup>
-      ))}
-    </select>
+    <div className="relative">
+      <select
+        value={value}
+        onChange={(e) => onChange(e.target.value)}
+        required
+        className="w-full appearance-none border-2 border-[var(--tj-ink)] bg-[var(--tj-cream)] pl-3 pr-9 py-2.5 font-serif text-base outline-none focus:bg-white transition-colors"
+      >
+        <option value="">Pick a bag from the encyclopedia</option>
+        {grouped.map((group) => (
+          <optgroup key={group.label} label={group.label}>
+            {group.bags.map((bag) => (
+              <option key={bag.id} value={bag.id}>
+                {bagDisplayName(bag)}
+              </option>
+            ))}
+          </optgroup>
+        ))}
+      </select>
+      <svg
+        aria-hidden
+        viewBox="0 0 10 6"
+        className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 w-2.5 h-1.5 opacity-60"
+      >
+        <path
+          d="M1 1l4 4 4-4"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          fill="none"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+        />
+      </svg>
+    </div>
   )
 }
 
@@ -750,7 +765,6 @@ function groupEncyclopedia(
   const order: { type: EncyclopediaBag['type']; label: string }[] = [
     { type: 'state', label: 'Locale Bags' },
     { type: 'special', label: 'Special Editions' },
-    { type: 'seasonal', label: 'Seasonal' },
     { type: 'standard', label: 'Standard Bags' },
   ]
   return order

@@ -30,9 +30,9 @@ export default function BagDetail() {
 
   useEffect(() => {
     Promise.all([
-      fetch(`${BASE}data/encyclopedia.json`).then((r) => r.json() as Promise<EncyclopediaBag[]>),
-      fetch(`${BASE}data/pantry.json`).then((r) => r.json() as Promise<PantryBag[]>),
-      fetch(`${BASE}data/stores.json`).then((r) => r.json() as Promise<Store[]>),
+      fetch(`${BASE}data/encyclopedia.json`, { cache: 'no-cache' }).then((r) => r.json() as Promise<EncyclopediaBag[]>),
+      fetch(`${BASE}data/pantry.json`, { cache: 'no-cache' }).then((r) => r.json() as Promise<PantryBag[]>),
+      fetch(`${BASE}data/stores.json`, { cache: 'no-cache' }).then((r) => r.json() as Promise<Store[]>),
     ])
       .then(([encyclopedia, pantry, storeList]) => {
         setData({
@@ -264,7 +264,6 @@ function encyclopediaTypeLabel(entry: EncyclopediaBag | undefined): string {
   if (!entry) return 'Unencyclopediaed Bag'
   if (entry.type === 'state') return `${entry.state ?? 'State'} ★ State Bag`
   if (entry.type === 'special') return 'Special Edition'
-  if (entry.type === 'seasonal') return 'Seasonal Bag'
   return 'Standard Bag'
 }
 

@@ -31,9 +31,9 @@ export default function Pantry() {
 
   useEffect(() => {
     Promise.all([
-      fetch(`${BASE}data/pantry.json`).then((r) => r.json() as Promise<PantryBag[]>),
-      fetch(`${BASE}data/stores.json`).then((r) => r.json() as Promise<Store[]>),
-      fetch(`${BASE}data/encyclopedia.json`).then((r) => r.json() as Promise<EncyclopediaBag[]>),
+      fetch(`${BASE}data/pantry.json`, { cache: 'no-cache' }).then((r) => r.json() as Promise<PantryBag[]>),
+      fetch(`${BASE}data/stores.json`, { cache: 'no-cache' }).then((r) => r.json() as Promise<Store[]>),
+      fetch(`${BASE}data/encyclopedia.json`, { cache: 'no-cache' }).then((r) => r.json() as Promise<EncyclopediaBag[]>),
     ])
       .then(([pantry, storeList, encyclopedia]) => {
         setBags(pantry)
@@ -47,7 +47,6 @@ export default function Pantry() {
         const totalStateCodes = new Set<string>()
         const totals: Record<Exclude<BagType, 'state'>, number> = {
           special: 0,
-          seasonal: 0,
           standard: 0,
         }
         for (const bag of encyclopedia) {
@@ -61,7 +60,6 @@ export default function Pantry() {
         const collectedStateCodes = new Set<string>()
         const collected: Record<Exclude<BagType, 'state'>, number> = {
           special: 0,
-          seasonal: 0,
           standard: 0,
         }
         for (const bag of pantry) {
@@ -80,7 +78,6 @@ export default function Pantry() {
           byType: {
             state: { collected: collectedStateCodes.size, total: totalStateCodes.size },
             special: { collected: collected.special, total: totals.special },
-            seasonal: { collected: collected.seasonal, total: totals.seasonal },
             standard: { collected: collected.standard, total: totals.standard },
           },
         })
@@ -88,7 +85,7 @@ export default function Pantry() {
       .catch(() => setBags([]))
 
     // Missing visibility.json just means "show everything" — defaults cover it.
-    fetch(`${BASE}data/visibility.json`)
+    fetch(`${BASE}data/visibility.json`, { cache: 'no-cache' })
       .then((r) => (r.ok ? (r.json() as Promise<CategoryVisibility>) : null))
       .then((v) => {
         if (v) setVisibility({ ...DEFAULT_VISIBILITY, ...v })
@@ -383,11 +380,10 @@ function ProgressBar({
   )
 }
 
-const TYPE_ORDER: BagType[] = ['state', 'special', 'seasonal', 'standard']
+const TYPE_ORDER: BagType[] = ['state', 'special', 'standard']
 const TYPE_PILL_LABEL: Record<BagType, string> = {
   state: 'States',
   special: 'Specials',
-  seasonal: 'Seasonal',
   standard: 'Standard',
 }
 

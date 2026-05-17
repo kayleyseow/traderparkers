@@ -1,10 +1,11 @@
-import { useEffect, useMemo, useRef, useState } from 'react'
+import { useMemo } from 'react'
 import { Link } from 'react-router'
 import type { BagType, PantryBag, EncyclopediaBag } from '../../types'
 import { US_LOCALES } from '../../usLocales'
 import { DESIGN_NOTES } from '../../bagPhotos'
 import { MATERIAL_LABEL } from '../../materials'
 import SectionHeader from './SectionHeader'
+import AlphabetScrubber, { type ScrubberItem } from './AlphabetScrubber'
 import {
   NON_LOCATION_SECTIONS,
   SPECIAL_MATERIAL_GROUPS,
@@ -12,22 +13,6 @@ import {
   STATES_SECTION,
   SUGGEST_SECTION,
 } from './sections'
-
-/* ────────────────────────────────────────────────────────────────────
-   Dictionary view — bags rendered as flowing encyclopedia entries
-   (name in bold + italic subtitle + blurb), grouped into sections:
-   STATES (with A–Z subdividers), SPECIAL, SEASONAL, STANDARD.
-
-   A sticky right-edge "scrubber" tracks scroll position and lets the
-   reader jump between sections / letters, iOS-Contacts-style.
-   ──────────────────────────────────────────────────────────────────── */
-
-type ScrubberItem = {
-  id: string
-  label: string
-  /** 'section' is a major heading; 'letter' is an alpha subdivider inside States */
-  kind: 'section' | 'letter'
-}
 
 export default function DictionaryView({
   bags,
@@ -291,78 +276,3 @@ function DictionaryEntry({
   )
 }
 
-/* ──────────────────── ALPHABET SCRUBBER ──────────────────── */
-
-function AlphabetScrubber({ items }: { items: ScrubberItem[] }) {
-  const [activeId, setActiveId] = useState<string | null>(items[0]?.id ?? null)
-  /* Holds the latest snapshot of which observed elements are in view so we
-     can pick the topmost one consistently across observer firings. */
-  const visibleRef = useRef(new Set<string>())
-
-  useEffect(() => {
-    visibleRef.current.clear()
-    const observer = new IntersectionObserver(
-      (entries) => {
-        for (const entry of entries) {
-          if (entry.isIntersecting) visibleRef.current.add(entry.target.id)
-          else visibleRef.current.delete(entry.target.id)
-        }
-        // Pick the first item (in document order) currently visible.
-        const next = items.find((it) => visibleRef.current.has(it.id))
-        if (next) setActiveId(next.id)
-      },
-      // Active band sits in the top ~25% of the viewport so a heading
-      // counts as "current" while it's near the top of the page.
-      { rootMargin: '0px 0px -75% 0px', threshold: 0 },
-    )
-    for (const item of items) {
-      const el = document.getElementById(item.id)
-      if (el) observer.observe(el)
-    }
-    return () => observer.disconnect()
-  }, [items])
-
-  const jump = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
-    setActiveId(id)
-  }
-
-  if (items.length === 0) return null
-
-  return (
-    <nav
-      aria-label="Encyclopedia section index"
-      className="hidden md:flex fixed right-3 top-1/2 -translate-y-1/2 z-20 flex-col gap-[2px] py-2 px-1.5 bg-[var(--tj-cream)]/90 backdrop-blur-sm border-2 border-[var(--tj-ink)] max-h-[85vh] overflow-y-auto"
-    >
-      {items.map((item) => {
-        const isActive = item.id === activeId
-        const isSection = item.kind === 'section'
-        return (
-          <button
-            key={item.id}
-            type="button"
-            onClick={() => jump(item.id)}
-            aria-current={isActive ? 'true' : undefined}
-            className={[
-              'font-[var(--tj-body)] font-semibold uppercase transition-colors',
-              isSection
-                ? 'tracking-[0.22em] text-[0.55rem] px-1.5 py-1 mt-1 first:mt-0 border-y border-[var(--tj-ink)]/30 leading-tight'
-                : 'tracking-[0.08em] text-[0.7rem] px-2 py-0.5 leading-none',
-              isActive
-                ? 'bg-[var(--tj-ink)] text-[var(--tj-cream)]'
-                : 'text-[var(--tj-ink)] hover:bg-[var(--tj-ink)]/10',
-            ].join(' ')}
-          >
-            {isSection ? (
-              item.label.split(' ').map((word, i) => (
-                <span key={i} className="block">{word}</span>
-              ))
-            ) : (
-              item.label
-            )}
-          </button>
-        )
-      })}
-    </nav>
-  )
-}

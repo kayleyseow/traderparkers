@@ -42,6 +42,7 @@ export default function TopNav() {
         ))}
         <Link
           to="/admin"
+          state={{ from: pathname }}
           aria-label="Parker only — log a new bag"
           className="parker-only-btn group inline-flex items-center gap-1.5 px-3 py-1.5"
         >
