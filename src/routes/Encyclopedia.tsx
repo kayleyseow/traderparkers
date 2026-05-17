@@ -204,6 +204,11 @@ export default function Encyclopedia() {
               </>
             )}
 
+            <div
+              aria-hidden
+              className="border-t-2 border-b-2 border-[var(--tj-ink)] h-1.5 my-16"
+            />
+
             <section>
               <div className="max-w-2xl mx-auto">
                 <SectionHeader
@@ -382,6 +387,12 @@ function GalleryCard({
   const variants = bag.variants ?? []
   const variantCount = variants.length
 
+  const isSpecialPoly =
+    bag.type === 'special' && (bag.materials?.includes('polypropylene') ?? false)
+  const effectiveZoom = bag.cardZoom ?? (isSpecialPoly ? 1.1 : 1)
+  const zoomStyle =
+    effectiveZoom !== 1 ? { transform: `scale(${effectiveZoom})` } : undefined
+
   const photoCycle = useMemo<string[]>(() => {
     if (variantCount < 2) return []
     const hasColorways = variants.some((v) => (v.colorways?.length ?? 0) > 0)
@@ -452,6 +463,7 @@ function GalleryCard({
                 alt={i === 0 ? bag.region ?? bag.name : ''}
                 aria-hidden={i === 0 ? undefined : true}
                 loading="lazy"
+                style={zoomStyle}
                 className={`absolute inset-0 w-full h-full object-contain p-3 transition-opacity duration-300 ${
                   i === cycleIndex ? 'opacity-100' : 'opacity-0'
                 }`}
@@ -463,6 +475,7 @@ function GalleryCard({
                 src={photoUrl(front)}
                 alt={bag.region ?? bag.name}
                 loading="lazy"
+                style={zoomStyle}
                 className={`absolute inset-0 w-full h-full object-contain p-3 transition-opacity duration-300 ${back ? 'group-hover:opacity-0' : ''}`}
               />
               {back && (
@@ -471,6 +484,7 @@ function GalleryCard({
                   alt=""
                   aria-hidden
                   loading="lazy"
+                  style={zoomStyle}
                   className="absolute inset-0 w-full h-full object-contain p-3 opacity-0 transition-opacity duration-300 group-hover:opacity-100"
                 />
               )}

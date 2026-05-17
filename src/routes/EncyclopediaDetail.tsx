@@ -405,6 +405,34 @@ function EncyclopediaView({
           </section>
         )}
 
+        {entry.note && (
+          <aside
+            className="mt-12 border-2 border-[var(--tj-ink)] bg-[var(--tj-cream-dark)] px-5 py-4 max-w-2xl mx-auto"
+            role="note"
+          >
+            <p className="font-[var(--tj-body)] tracking-[0.3em] text-[0.65rem] uppercase font-bold mb-2 opacity-80">
+              Note
+            </p>
+            <p className="text-sm leading-relaxed">{entry.note}</p>
+            {entry.noteSources && entry.noteSources.length > 0 && (
+              <ul className="mt-2 text-sm leading-relaxed space-y-1">
+                {entry.noteSources.map((url) => (
+                  <li key={url}>
+                    <a
+                      href={url}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="underline underline-offset-4"
+                    >
+                      {listingLabelFromUrl(url)} ↗
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            )}
+          </aside>
+        )}
+
         {/* Design blurb + metadata */}
         <section className="grid md:grid-cols-2 gap-10 mt-16">
           {design.blurb && (
@@ -553,11 +581,13 @@ function hostnameFromUrl(url: string): string {
 }
 
 function listingLabelFromUrl(url: string): string {
-  // Poshmark URLs end in a 24-hex listing id; show as "poshmark.com / 6a0534…"
-  // so users can tell two listings apart at a glance.
+  // Make two listings from the same host distinguishable at a glance —
+  // Poshmark gets the 24-hex id, Reddit gets the thread slug.
   const host = hostnameFromUrl(url)
-  const id = url.match(/-?([a-f0-9]{24})(?:\/?$)/i)?.[1]
-  if (id) return `${host} / ${id.slice(0, 8)}…`
+  const poshId = url.match(/-?([a-f0-9]{24})(?:\/?$)/i)?.[1]
+  if (poshId) return `${host} / ${poshId.slice(0, 8)}…`
+  const redditId = url.match(/\/comments\/([a-z0-9]+)\//i)?.[1]
+  if (redditId) return `${host} / ${redditId}`
   return host
 }
 

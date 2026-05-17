@@ -52,6 +52,19 @@ export type EncyclopediaBag = {
   /** A short blurb describing the design. */
   description?: string
 
+  /**
+   * Editorial callout shown above the metadata on the detail page —
+   * for rare/discontinued bags, controversy notes, or other trivia
+   * worth flagging separately from the regular design blurb.
+   */
+  note?: string
+
+  /**
+   * Optional URLs backing up the `note` (e.g. Reddit threads, articles).
+   * Rendered as a list of "More context ↗" links under the note callout.
+   */
+  noteSources?: string[]
+
   /** Path to a reference photo of the bag (under public/). */
   referencePhoto?: string
 
@@ -81,6 +94,14 @@ export type EncyclopediaBag = {
    * so this is an array. Order doesn't carry meaning.
    */
   materials?: Material[]
+
+  /**
+   * Optional CSS scale multiplier applied to the front/back photo in the
+   * encyclopedia gallery card (only). Useful when a bag's design reads small
+   * inside the 4:5 card frame. 1 = no zoom; 1.2 = 20% larger; edges get
+   * clipped by the card's overflow-hidden. Does not affect detail-page.
+   */
+  cardZoom?: number
 
   /**
    * Colorways / seasonal prints of the same underlying bag design. When set,
