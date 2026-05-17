@@ -92,5 +92,18 @@
     "photos": [
       "/pantry-photos/ky-2026-05-15-13166f.jpeg"
     ]
+  },
+  {
+    "slug": "flower-shop-2026-05-17",
+    "encyclopediaId": "flower-shop",
+    "name": "Flower Shop",
+    "storeNumber": "236",
+    "dateAcquired": "2026-05-17",
+    "memory": "testing to see if uploading a new pantry post will work & trigger github actions.",
+    "photos": [
+      "/pantry-photos/flower-shop-2026-05-17-6f1a06.png",
+      "/pantry-photos/flower-shop-2026-05-17-de564b.jpg",
+      "/pantry-photos/flower-shop-2026-05-17-7c5a85.png"
+    ]
   }
 ]
