@@ -1,20 +1,5 @@
 [
   {
-    "slug": "alabama",
-    "encyclopediaId": "al",
-    "name": "Alabama",
-    "storeNumber": "785",
-    "dateAcquired": "2026-05-13",
-    "memory": "Picked this up at the Huntsville TJ on a road trip stop. The instant I saw the Muscle Shoals back panel I had to. Read every side of it in the parking lot before driving off — Saturn V on one side, banana pudding recipe on the other, fried pickle reference underneath. A whole road trip across one bag.",
-    "photos": [
-      "bags/alabama/front.png",
-      "bags/alabama/back.png",
-      "bags/alabama/left.png",
-      "bags/alabama/right.png",
-      "bags/alabama/bottom.png"
-    ]
-  },
-  {
     "slug": "ca-norcal-2026-05-15",
     "encyclopediaId": "ca-norcal",
     "name": "Northern California (California)",
