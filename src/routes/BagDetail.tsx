@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useParams } from 'react-router'
 import type { EncyclopediaBag, PantryBag, Store } from '../types'
 import {
@@ -78,14 +78,30 @@ function BagView({
   // otherwise plain ordered "Photo 1, Photo 2, …".
   const slides = useMemo(() => buildSlides(bag.photos, design), [bag.photos, design])
   const [idx, setIdx] = useState(0)
+  const scrollerRef = useRef<HTMLDivElement>(null)
+
+  const scrollToIdx = (i: number) => {
+    const el = scrollerRef.current
+    if (!el) return
+    el.scrollTo({ left: el.clientWidth * i, behavior: 'smooth' })
+  }
 
   const cycle = (dir: 1 | -1) => {
     if (slides.length < 2) return
-    setIdx((i) => (i + dir + slides.length) % slides.length)
+    const next = Math.max(0, Math.min(slides.length - 1, idx + dir))
+    scrollToIdx(next)
+  }
+
+  // Sync the active idx with the scroll position so captions and the label-
+  // button row track what the user swiped to.
+  const handleScroll = () => {
+    const el = scrollerRef.current
+    if (!el || el.clientWidth === 0) return
+    const next = Math.round(el.scrollLeft / el.clientWidth)
+    if (next !== idx && next >= 0 && next < slides.length) setIdx(next)
   }
 
   const active = slides[idx]
-  const activeUrl = active?.url
   const activeCaption = active?.caption
 
   const displayName = encyclopediaEntry?.region ?? encyclopediaEntry?.name ?? bag.name ?? bag.slug
@@ -118,14 +134,27 @@ function BagView({
               style={{ aspectRatio: '4 / 5', maxWidth: '440px' }}
             >
               <PanelGrain />
-              {activeUrl ? (
-                <img
-                  key={idx}
-                  src={activeUrl}
-                  alt={`${displayName} bag, ${active.label.toLowerCase()}`}
-                  className="relative z-10 w-full h-full object-contain p-6 animate-[bagFade_0.35s_ease]"
-                  draggable={false}
-                />
+              {slides.length > 0 ? (
+                <div
+                  ref={scrollerRef}
+                  onScroll={handleScroll}
+                  className="hide-scrollbar relative z-10 w-full h-full flex overflow-x-auto overflow-y-hidden snap-x snap-mandatory"
+                  style={{ touchAction: 'pan-x pan-y' }}
+                >
+                  {slides.map((s) => (
+                    <div
+                      key={s.url}
+                      className="snap-start shrink-0 w-full h-full flex items-center justify-center p-6"
+                    >
+                      <img
+                        src={s.url}
+                        alt={`${displayName} bag, ${s.label.toLowerCase()}`}
+                        className="max-w-full max-h-full object-contain"
+                        draggable={false}
+                      />
+                    </div>
+                  ))}
+                </div>
               ) : (
                 <div className="relative z-10 w-full h-full flex items-center justify-center text-[var(--tj-ink)]/30 text-4xl">
                   ✦
@@ -168,7 +197,7 @@ function BagView({
                     <button
                       key={s.url}
                       type="button"
-                      onClick={() => setIdx(i)}
+                      onClick={() => scrollToIdx(i)}
                       className={`font-[var(--tj-body)] font-semibold tracking-[0.2em] text-[0.65rem] uppercase border-2 border-[var(--tj-ink)] px-3 py-1.5 transition-colors ${
                         isActive
                           ? 'bg-[var(--tj-ink)] text-[var(--tj-cream)]'
@@ -229,12 +258,6 @@ function BagView({
         </div>
       </div>
 
-      <style>{`
-        @keyframes bagFade {
-          from { opacity: 0; transform: translateY(6px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-      `}</style>
       <Footer />
     </main>
   )

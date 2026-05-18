@@ -91,6 +91,23 @@ export default function About() {
                 }
               />
               <CreditRow
+                title="Vintage Illustrations"
+                detail={
+                  <>
+                    public-domain engravings from{' '}
+                    <a
+                      href="https://thegraphicsfairy.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="underline underline-offset-2 hover:text-[var(--tj-red)]"
+                    >
+                      The Graphics Fairy
+                    </a>{' '}
+                    (a Fearless-Flyer-shaped gold mine)
+                  </>
+                }
+              />
+              <CreditRow
                 title="Store Locations"
                 detail={
                   <>

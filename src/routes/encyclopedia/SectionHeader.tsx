@@ -4,7 +4,9 @@ type Props = {
   count?: number
   countSingular?: string
   countPlural?: string
-  blurb?: string
+  blurb?: React.ReactNode
+  /** First section in its column — collapses the big mt-14 gap meant for between-section dividers. */
+  first?: boolean
 }
 
 export default function SectionHeader({
@@ -14,10 +16,11 @@ export default function SectionHeader({
   countSingular = 'design',
   countPlural = 'designs',
   blurb,
+  first = false,
 }: Props) {
   return (
     <>
-      <header className="flex items-baseline gap-4 mt-14 mb-2">
+      <header className={`flex items-baseline gap-4 ${first ? 'mt-4' : 'mt-14'} mb-2`}>
         <h2
           id={id}
           className="text-[var(--tj-red)] text-4xl md:text-5xl scroll-mt-24"

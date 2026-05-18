@@ -127,6 +127,18 @@
     padding-left: 1.5rem;
     padding-right: 1.5rem;
   }
+
+  .ctaRow {
+    flex-direction: column;
+    align-items: stretch;
+    width: min(20rem, 100%);
+    gap: 1rem;
+  }
+  .ctaRow .cta {
+    width: 100%;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
 }
 
 /* Stitched border that frames the bag content */
@@ -153,9 +165,9 @@
   z-index: 1;
   font-family: var(--tj-body);
   font-weight: 600;
-  letter-spacing: 0.35em;
-  font-size: 0.75rem;
-  padding: 0.5rem 1.25rem;
+  letter-spacing: 0.3em;
+  font-size: 0.65rem;
+  padding: 0.3rem 1rem;
   border: 2px solid var(--tj-ink);
   background: var(--tj-kraft);
   text-transform: uppercase;
@@ -266,6 +278,7 @@
   color: var(--tj-cream);
   text-decoration: none;
   text-transform: uppercase;
+  text-align: center;
   cursor: pointer;
   box-shadow: 4px 4px 0 var(--tj-ink);
   transition:
@@ -429,6 +442,9 @@
   text-transform: none;
   color: var(--tj-red);
   transition: color 0.18s ease;
+  /* Each letter is its own inline-block (for the wave animation), so without
+     this the word can break between letters when the button is narrow. */
+  white-space: nowrap;
 }
 
 .ctaParker:hover .parkerScript {

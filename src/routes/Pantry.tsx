@@ -13,11 +13,13 @@ import TopNav from '../TopNav'
 import Footer from '../Footer'
 import StoreChip from '../StoreChip'
 import { defaultReferencePhotos } from '../bagPhotos'
+import { US_LOCALES } from '../usLocales'
 
 const BASE = import.meta.env.BASE_URL
+const STATE_NAME_BY_CODE = new Map(US_LOCALES.map((l) => [l.code, l.name]))
 
 type SortOrder = 'newest' | 'oldest'
-type TypeFilter = BagType | 'all'
+type TypeFilter = ReadonlySet<BagType>
 
 export default function Pantry() {
   const [bags, setBags] = useState<PantryBag[] | null>(null)
@@ -26,7 +28,20 @@ export default function Pantry() {
   const [stats, setStats] = useState<ProgressStats | null>(null)
   const [visibility, setVisibility] = useState<CategoryVisibility>(DEFAULT_VISIBILITY)
   const [sort, setSort] = useState<SortOrder>('newest')
-  const [typeFilter, setTypeFilter] = useState<TypeFilter>('all')
+  const [typeFilter, setTypeFilter] = useState<TypeFilter>(() => new Set())
+
+  function toggleType(t: BagType) {
+    setTypeFilter((prev) => {
+      const next = new Set(prev)
+      if (next.has(t)) next.delete(t)
+      else next.add(t)
+      return next
+    })
+  }
+
+  function clearTypes() {
+    setTypeFilter(new Set())
+  }
   const [query, setQuery] = useState('')
 
   useEffect(() => {
@@ -42,41 +57,21 @@ export default function Pantry() {
         const byId = new Map(encyclopedia.map((b) => [b.id, b]))
         setEncyclopediaById(byId)
 
-        // States are deduped by stateCode (one row per locale); the other
-        // three types are simple per-bag tallies against the encyclopedia.
-        const totalStateCodes = new Set<string>()
-        const totals: Record<Exclude<BagType, 'state'>, number> = {
-          special: 0,
-          standard: 0,
-        }
-        for (const bag of encyclopedia) {
-          if (bag.type === 'state') {
-            if (bag.stateCode) totalStateCodes.add(bag.stateCode)
-          } else {
-            totals[bag.type]++
-          }
-        }
+        const totals: Record<BagType, number> = { state: 0, special: 0, standard: 0 }
+        for (const bag of encyclopedia) totals[bag.type]++
 
-        const collectedStateCodes = new Set<string>()
-        const collected: Record<Exclude<BagType, 'state'>, number> = {
-          special: 0,
-          standard: 0,
-        }
+        const collected: Record<BagType, number> = { state: 0, special: 0, standard: 0 }
         for (const bag of pantry) {
           if (!bag.encyclopediaId) continue
           const entry = byId.get(bag.encyclopediaId)
           if (!entry) continue
-          if (entry.type === 'state') {
-            if (entry.stateCode) collectedStateCodes.add(entry.stateCode)
-          } else {
-            collected[entry.type]++
-          }
+          collected[entry.type]++
         }
 
         setStats({
           totalBags: pantry.length,
           byType: {
-            state: { collected: collectedStateCodes.size, total: totalStateCodes.size },
+            state: { collected: collected.state, total: totals.state },
             special: { collected: collected.special, total: totals.special },
             standard: { collected: collected.standard, total: totals.standard },
           },
@@ -111,14 +106,23 @@ export default function Pantry() {
     const q = query.trim().toLowerCase()
     const matches = bags.filter((bag) => {
       const entry = bag.encyclopediaId ? encyclopediaById.get(bag.encyclopediaId) : undefined
-      if (typeFilter !== 'all' && entry?.type !== typeFilter) return false
+      if (typeFilter.size > 0 && (!entry || !typeFilter.has(entry.type))) return false
       if (!q) return true
+      const store = stores.get(bag.storeNumber)
+      const storeStateName = store ? STATE_NAME_BY_CODE.get(store.state) ?? '' : ''
       const haystack = [
         bag.name ?? '',
         bag.memory ?? '',
         entry?.name ?? '',
         entry?.state ?? '',
+        entry?.stateCode ?? '',
         entry?.region ?? '',
+        store?.name ?? '',
+        store?.city ?? '',
+        store?.state ?? '',
+        storeStateName,
+        store?.storeNumber ?? '',
+        store?.streetAddress ?? '',
       ]
         .join(' ')
         .toLowerCase()
@@ -129,12 +133,12 @@ export default function Pantry() {
       return sort === 'newest' ? diff : -diff
     })
     return sorted
-  }, [bags, encyclopediaById, typeFilter, query, sort])
+  }, [bags, encyclopediaById, stores, typeFilter, query, sort])
 
-  const filtersActive = typeFilter !== 'all' || query.trim() !== ''
+  const filtersActive = typeFilter.size > 0 || query.trim() !== ''
 
   function clearFilters() {
-    setTypeFilter('all')
+    clearTypes()
     setQuery('')
   }
 
@@ -150,16 +154,16 @@ export default function Pantry() {
 
         <header className="text-center mb-14">
           <p className="font-[var(--tj-body)] tracking-[0.4em] text-xs uppercase font-semibold border border-[var(--tj-ink)] inline-block px-4 py-1.5 mb-6">
-            The Pantry
+            Parker's Pantry
           </p>
           <h1
             className="text-[var(--tj-red)] text-6xl md:text-7xl leading-none"
             style={{ fontFamily: 'var(--tj-script)' }}
           >
-            Every Bag, Every Story
+            The Whole Haul
           </h1>
-          <p className="font-[var(--tj-body)] italic text-base md:text-lg mt-4 max-w-md mx-auto opacity-75">
-            Trader Joe's totes, gathered one grocery run at a time.
+          <p className="font-[var(--tj-body)] italic text-base md:text-lg mt-4 max-w-xl mx-auto opacity-75">
+            Behold: Trader Parker's ever-growing collection of bags, intrepidly brought home from many a valiant expedition to the local Trader Joe's.
           </p>
           <div className="mx-auto mt-6 h-px w-32 bg-[var(--tj-ink)]/40" />
         </header>
@@ -173,7 +177,8 @@ export default function Pantry() {
             <FilterBar
               availableTypes={availableTypes}
               typeFilter={typeFilter}
-              onTypeFilter={setTypeFilter}
+              onToggleType={toggleType}
+              onClearTypes={clearTypes}
               query={query}
               onQuery={setQuery}
               sort={sort}
@@ -242,7 +247,7 @@ function CrumpleOverlay() {
 }
 
 const CATEGORY_STAT_ORDER: { key: BagType; label: string }[] = [
-  { key: 'state', label: 'States' },
+  { key: 'state', label: 'States & Cities' },
   { key: 'special', label: 'Special Editions' },
   { key: 'standard', label: 'Standard Bags' },
 ]
@@ -263,7 +268,7 @@ function StatsRow({
     total?: number
   }
   const cells: Cell[] = [
-    { key: 'totalBags', value: String(stats.totalBags), label: 'Bags Logged' },
+    { key: 'totalBags', value: String(stats.totalBags), label: 'In the Pantry' },
     ...visibleCategories.map(({ key, label }) => {
       const { collected, total } = stats.byType[key]
       return {
@@ -390,7 +395,8 @@ const TYPE_PILL_LABEL: Record<BagType, string> = {
 function FilterBar({
   availableTypes,
   typeFilter,
-  onTypeFilter,
+  onToggleType,
+  onClearTypes,
   query,
   onQuery,
   sort,
@@ -401,7 +407,8 @@ function FilterBar({
 }: {
   availableTypes: BagType[]
   typeFilter: TypeFilter
-  onTypeFilter: (v: TypeFilter) => void
+  onToggleType: (t: BagType) => void
+  onClearTypes: () => void
   query: string
   onQuery: (v: string) => void
   sort: SortOrder
@@ -413,18 +420,19 @@ function FilterBar({
   return (
     <div className="max-w-[720px] mx-auto mb-10 space-y-4">
       <div
-        role="tablist"
-        aria-label="Filter by type"
+        role="group"
+        aria-label="Filter by type — toggle any combination"
         className="flex flex-wrap items-center justify-center gap-2"
       >
-        <TypePill active={typeFilter === 'all'} onClick={() => onTypeFilter('all')}>
+        <TypePill active={typeFilter.size === 0} onClick={onClearTypes}>
           All
         </TypePill>
         {availableTypes.map((t) => (
           <TypePill
             key={t}
-            active={typeFilter === t}
-            onClick={() => onTypeFilter(t)}
+            active={typeFilter.has(t)}
+            onClick={() => onToggleType(t)}
+            checkable
           >
             {TYPE_PILL_LABEL[t]}
           </TypePill>
@@ -433,12 +441,12 @@ function FilterBar({
 
       <div className="flex flex-wrap items-center justify-center gap-3">
         <label className="flex-1 min-w-[14rem] max-w-md">
-          <span className="sr-only">Search memories</span>
+          <span className="sr-only">Search the pantry</span>
           <input
             type="search"
             value={query}
             onChange={(e) => onQuery(e.target.value)}
-            placeholder="Search memories, places, names…"
+            placeholder="Search memories, places, stores, states…"
             className="w-full border-2 border-[var(--tj-ink)] bg-[var(--tj-cream)] px-3 py-2 font-[var(--tj-body)] text-sm outline-none focus:bg-white"
           />
         </label>
@@ -467,24 +475,48 @@ function FilterBar({
 function TypePill({
   active,
   onClick,
+  checkable = false,
   children,
 }: {
   active: boolean
   onClick: () => void
+  /** Render with a checkbox indicator and use aria-pressed instead of the
+      "All" pill's plain-button semantics. Signals the user can toggle on/off. */
+  checkable?: boolean
   children: React.ReactNode
 }) {
   return (
     <button
       type="button"
-      role="tab"
-      aria-selected={active}
+      aria-pressed={checkable ? active : undefined}
       onClick={onClick}
-      className={`font-[var(--tj-body)] tracking-[0.18em] sm:tracking-[0.22em] text-[0.65rem] sm:text-[0.7rem] uppercase font-semibold px-3 sm:px-3.5 py-1.5 sm:py-2 border-2 border-[var(--tj-ink)] transition-colors ${
+      className={`inline-flex items-center gap-1.5 font-[var(--tj-body)] tracking-[0.18em] sm:tracking-[0.22em] text-[0.65rem] sm:text-[0.7rem] uppercase font-semibold px-3 sm:px-3.5 py-1.5 sm:py-2 border-2 border-[var(--tj-ink)] transition-colors ${
         active
           ? 'bg-[var(--tj-ink)] text-[var(--tj-cream)]'
           : 'bg-[var(--tj-cream)] hover:bg-[var(--tj-ink)]/10'
       }`}
     >
+      {checkable && (
+        <span
+          aria-hidden
+          className={`inline-flex items-center justify-center w-3.5 h-3.5 border-2 transition-colors ${
+            active
+              ? 'border-[var(--tj-cream)] bg-[var(--tj-cream)] text-[var(--tj-ink)]'
+              : 'border-[var(--tj-ink)] text-transparent'
+          }`}
+        >
+          <svg viewBox="0 0 12 12" className="w-2.5 h-2.5">
+            <path
+              d="M2 6.5l2.5 2.5L10 3"
+              stroke="currentColor"
+              strokeWidth="1.75"
+              fill="none"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </span>
+      )}
       {children}
     </button>
   )
@@ -495,11 +527,10 @@ function NoMatchesState({ onClear }: { onClear: () => void }) {
     <div className="max-w-md mx-auto text-center py-12 border-2 border-dashed border-[var(--tj-ink)]/40 p-10 bg-[var(--tj-kraft)]/15">
       <div className="text-5xl mb-4 select-none" aria-hidden>🔍</div>
       <h3 className="font-[var(--tj-body)] tracking-[0.25em] text-sm uppercase font-bold mb-3">
-        Nothing matches
+        Nothing in Stock
       </h3>
       <p className="italic text-sm mb-6">
-        No bags fit those filters yet. <br />
-        Try a different type or clear the search.
+        Alas! No bags match those particulars. Tweak the filters, or clear the search to start anew.
       </p>
       <button
         type="button"
@@ -607,10 +638,10 @@ function BagCard({
               {bag.name ?? 'Untitled Bag'}
             </Link>
           </h3>
-          <p className="mt-2 font-[var(--tj-body)] tracking-[0.22em] text-[0.6rem] uppercase opacity-70 flex items-center justify-center gap-[0.5em] flex-wrap">
-            <span>{formatShortDate(bag.dateAcquired)}</span>
-            <span aria-hidden>·</span>
-            <StoreChip storeNumber={bag.storeNumber} store={store} />
+          <p className="mt-2 font-[var(--tj-body)] tracking-[0.22em] text-[0.6rem] uppercase flex items-center justify-center gap-[0.5em] flex-wrap">
+            <span className="opacity-50">{formatShortDate(bag.dateAcquired)}</span>
+            <span aria-hidden className="text-[var(--tj-red)] text-[0.7rem] leading-none">★</span>
+            <StoreChip storeNumber={bag.storeNumber} store={store} className="opacity-50" />
           </p>
         </div>
       </div>

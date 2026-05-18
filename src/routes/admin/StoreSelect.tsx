@@ -129,7 +129,14 @@ export default function StoreSelect({ value, onChange }: Props) {
                 onChange={(e) => setQuery(e.target.value)}
                 className="w-full border-b-2 border-[var(--tj-ink)] bg-white px-3 py-2.5 font-serif text-base outline-none"
               />
-              <ul className="max-h-72 overflow-y-auto">
+              <ul
+                className="max-h-72 overflow-y-auto"
+                onTouchMove={() => {
+                  if (document.activeElement instanceof HTMLElement) {
+                    document.activeElement.blur()
+                  }
+                }}
+              >
                 {filtered.length === 0 ? (
                   <li className="px-3 py-2.5 italic text-sm opacity-70">
                     No stores match "{query}"

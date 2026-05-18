@@ -391,7 +391,14 @@ function EncyclopediaPicker({
             onChange={(e) => setQuery(e.target.value)}
             className="w-full border-b-2 border-[var(--tj-ink)] bg-white px-3 py-2.5 font-serif text-base outline-none"
           />
-          <ul className="max-h-72 overflow-y-auto">
+          <ul
+            className="max-h-72 overflow-y-auto"
+            onTouchMove={() => {
+              if (document.activeElement instanceof HTMLElement) {
+                document.activeElement.blur()
+              }
+            }}
+          >
             {filteredGroups.length === 0 ? (
               <li className="px-3 py-2.5 italic text-sm opacity-70">
                 No bags match "{query}"
@@ -603,6 +610,7 @@ function SavedPanel({
 
   return (
     <div className="space-y-5">
+      <ConfettiBurst />
       <div className="border-2 border-[var(--tj-ink)] bg-[var(--tj-cream)] p-5">
         <h2 className="font-[var(--tj-body)] tracking-[0.25em] text-xs uppercase mb-3">
           {jsonFallback ? 'Bag Saved (Pending Commit)' : 'Bag Saved!'}
@@ -660,6 +668,67 @@ function SavedPanel({
           + Log Another
         </button>
       </div>
+    </div>
+  )
+}
+
+/* Fixed-position star shower that fires once on mount. Uses ★ in the TJ
+   palette so the celebration reads as on-brand rather than generic
+   colored-rectangle confetti. Animation is one-shot (forwards fill); pieces
+   coast off-screen and stay there. Skipped entirely under reduced-motion. */
+function ConfettiBurst({ count = 32 }: { count?: number }) {
+  const pieces = useMemo(() => {
+    const colors = [
+      'var(--tj-red)',
+      'var(--tj-red-dark)',
+      'var(--tj-kraft-deep)',
+      'var(--tj-ink)',
+    ]
+    return Array.from({ length: count }, (_, i) => ({
+      id: i,
+      left: Math.random() * 100,
+      delay: Math.random() * 0.35,
+      duration: 1.8 + Math.random() * 1.4,
+      drift: (Math.random() - 0.5) * 240,
+      rotation: (Math.random() - 0.5) * 720,
+      color: colors[i % colors.length],
+      size: 0.85 + Math.random() * 0.9,
+    }))
+  }, [count])
+
+  return (
+    <div
+      aria-hidden
+      className="pointer-events-none fixed inset-0 z-50 overflow-hidden"
+    >
+      {pieces.map((p) => (
+        <span
+          key={p.id}
+          className="confetti-piece absolute top-0 leading-none select-none"
+          style={
+            {
+              left: `${p.left}%`,
+              color: p.color,
+              fontSize: `${p.size}rem`,
+              animation: `confettiFall ${p.duration}s ${p.delay}s cubic-bezier(0.4, 0, 0.6, 1) forwards`,
+              '--drift': `${p.drift}px`,
+              '--rotation': `${p.rotation}deg`,
+            } as React.CSSProperties
+          }
+        >
+          ★
+        </span>
+      ))}
+      <style>{`
+        @keyframes confettiFall {
+          0%   { transform: translate(0, -10vh) rotate(0); opacity: 0; }
+          10%  { opacity: 1; }
+          100% { transform: translate(var(--drift), 110vh) rotate(var(--rotation)); opacity: 0; }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          .confetti-piece { display: none; }
+        }
+      `}</style>
     </div>
   )
 }

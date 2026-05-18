@@ -45,6 +45,12 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Used by the photo carousels in BagDetail/EncyclopediaDetail. Keeps the
+   horizontal scroll-snap container visually clean while still letting
+   trackpads and touch scroll horizontally. */
+.hide-scrollbar { scrollbar-width: none; -ms-overflow-style: none; }
+.hide-scrollbar::-webkit-scrollbar { display: none; }
+
 html, body, #root {
   margin: 0;
   padding: 0;

@@ -4,7 +4,6 @@ import type { BagType, EncyclopediaBag, PantryBag } from '../types'
 import { US_LOCALES } from '../usLocales'
 import {
   ANGLE_ORDER,
-  DESIGN_NOTES,
   defaultReferencePhotos,
   inferAngleMap,
   photoUrl,
@@ -27,8 +26,6 @@ const BASE = import.meta.env.BASE_URL
 
 type EncyclopediaView = 'gallery' | 'dictionary'
 const VIEW_STORAGE_KEY = 'encyclopedia-view'
-
-const CORN_PATTERN = /\bcorn\b/i
 
 export default function Encyclopedia() {
   const [rawEncyclopedia, setRawEncyclopedia] = useState<EncyclopediaBag[] | null>(null)
@@ -97,20 +94,6 @@ export default function Encyclopedia() {
   )
   const hasDistrict = byState.has('DC')
   const totalKnownBags = encyclopedia?.length ?? 0
-
-  const cornBagCount = useMemo(() => {
-    if (!encyclopedia) return 0
-    let n = 0
-    for (const bag of encyclopedia) {
-      const notes = DESIGN_NOTES[bag.id]
-      const captions = notes?.angleCaptions
-        ? Object.values(notes.angleCaptions).join(' ')
-        : ''
-      const haystack = `${bag.name} ${bag.description ?? ''} ${notes?.subtitle ?? ''} ${notes?.blurb ?? ''} ${captions}`
-      if (CORN_PATTERN.test(haystack)) n++
-    }
-    return n
-  }, [encyclopedia])
 
   const galleryScrubberItems = useMemo<ScrubberItem[]>(() => {
     if (!encyclopedia) return []
@@ -196,32 +179,21 @@ export default function Encyclopedia() {
           <>
             <div className="flex items-center justify-center flex-wrap gap-x-4 md:gap-x-6 gap-y-3 mb-6 font-[var(--tj-body)] tracking-[0.25em] text-[0.7rem] uppercase font-semibold">
               <span>
-                <strong className="text-2xl tracking-normal text-[var(--tj-red)] align-middle mr-2"
-                  style={{ fontFamily: 'var(--tj-script)' }}>
-                  {totalKnownBags}
-                </strong>
+                <StatNumeral>{totalKnownBags}</StatNumeral>
                 bags known
               </span>
               <StatStar />
               <span>
-                <strong className="text-2xl tracking-normal text-[var(--tj-red)] align-middle mr-2"
-                  style={{ fontFamily: 'var(--tj-script)' }}>
-                  {statesWithBags}
-                </strong>
-                states{hasDistrict ? ' + 1 district' : ''} represented
+                <StatNumeral>{statesWithBags}</StatNumeral>
+                states
+                {hasDistrict && (
+                  <>
+                    {' + '}
+                    <StatNumeral className="mx-2">1</StatNumeral>
+                    district
+                  </>
+                )}
               </span>
-              {cornBagCount > 0 && (
-                <>
-                  <StatStar />
-                  <span>
-                    <strong className="text-2xl tracking-normal text-[var(--tj-red)] align-middle mr-2"
-                      style={{ fontFamily: 'var(--tj-script)' }}>
-                      {cornBagCount}
-                    </strong>
-                    bags feature corn
-                  </span>
-                </>
-              )}
             </div>
 
             <ViewToggle view={view} onChange={setView} />
@@ -245,6 +217,7 @@ export default function Encyclopedia() {
                         label={STATES_SECTION.label}
                         count={stateBags.length}
                         blurb={STATES_SECTION.blurb}
+                        first
                       />
                       <ul className={GALLERY_GRID}>
                         {stateBags.map((bag) => (
@@ -257,9 +230,10 @@ export default function Encyclopedia() {
                   )
                 })()}
 
-                {NON_LOCATION_SECTIONS.map((group) => {
+                {NON_LOCATION_SECTIONS.map((group, idx) => {
                   const bags = byType.get(group.type)
                   if (!bags || bags.length === 0) return null
+                  const isFirst = idx === 0 && byState.size === 0
                   if (group.type === 'special') {
                     return (
                       <SpecialSection
@@ -269,6 +243,7 @@ export default function Encyclopedia() {
                         blurb={group.blurb}
                         bags={bags}
                         ownedByEncyclopediaId={ownedByEncyclopediaId}
+                        first={isFirst}
                       />
                     )
                   }
@@ -280,6 +255,7 @@ export default function Encyclopedia() {
                       blurb={group.blurb}
                       bags={bags}
                       ownedByEncyclopediaId={ownedByEncyclopediaId}
+                      first={isFirst}
                     />
                   )
                 })}
@@ -296,7 +272,22 @@ export default function Encyclopedia() {
                 <SectionHeader
                   id={SUGGEST_SECTION.id}
                   label={SUGGEST_SECTION.label}
-                  blurb={SUGGEST_SECTION.blurb}
+                  blurb={
+                    <>
+                      Send a missing bag, or anything off about one that's already
+                      here. Submissions land as a{' '}
+                      <a
+                        href="https://github.com/kayleyseow/tjbags/issues"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="underline underline-offset-2 hover:text-[var(--tj-red)] transition-colors"
+                      >
+                        GitHub issue
+                      </a>{' '}
+                      the maintainer will review.
+                    </>
+                  }
+                  first
                 />
               </div>
               <SuggestForm />
@@ -317,12 +308,14 @@ function SpecialSection({
   blurb,
   bags,
   ownedByEncyclopediaId,
+  first = false,
 }: {
   id: string
   label: string
   blurb: string
   bags: EncyclopediaBag[]
   ownedByEncyclopediaId: Map<string, PantryBag>
+  first?: boolean
 }) {
   const grouped = useMemo(() => {
     const buckets = SPECIAL_MATERIAL_GROUPS.map((g) => ({
@@ -336,10 +329,10 @@ function SpecialSection({
 
   return (
     <section>
-      <SectionHeader id={id} label={label} count={bags.length} blurb={blurb} />
-      {grouped.buckets.map(({ group, bags: groupBags }) => (
+      <SectionHeader id={id} label={label} count={bags.length} blurb={blurb} first={first} />
+      {grouped.buckets.map(({ group, bags: groupBags }, idx) => (
         <div key={group.material}>
-          <MaterialSubheading id={group.id} label={group.label} count={groupBags.length} />
+          <MaterialSubheading id={group.id} label={group.label} count={groupBags.length} first={idx === 0} />
           <ul className={GALLERY_GRID}>
             {groupBags.map((bag) => (
               <li key={bag.id}>
@@ -355,6 +348,7 @@ function SpecialSection({
             id={SPECIAL_OTHER_GROUP.id}
             label={SPECIAL_OTHER_GROUP.label}
             count={grouped.leftover.length}
+            first={grouped.buckets.length === 0}
           />
           <ul className={GALLERY_GRID}>
             {grouped.leftover.map((bag) => (
@@ -373,15 +367,17 @@ function MaterialSubheading({
   id,
   label,
   count,
+  first = false,
 }: {
   id: string
   label: string
   count: number
+  first?: boolean
 }) {
   return (
     <h3
       id={id}
-      className="font-[var(--tj-body)] font-bold tracking-[0.3em] text-sm uppercase mt-10 mb-4 pb-2 border-b border-[var(--tj-ink)]/30 scroll-mt-24"
+      className={`font-[var(--tj-body)] font-bold tracking-[0.3em] text-sm uppercase ${first ? 'mt-2' : 'mt-10'} mb-4 pb-2 border-b border-[var(--tj-ink)]/30 scroll-mt-24`}
     >
       {label}
       <span className="ml-2 font-normal opacity-50">· {count}</span>
@@ -395,16 +391,18 @@ function TypeSection({
   blurb,
   bags,
   ownedByEncyclopediaId,
+  first = false,
 }: {
   id: string
   label: string
   blurb: string
   bags: EncyclopediaBag[]
   ownedByEncyclopediaId: Map<string, PantryBag>
+  first?: boolean
 }) {
   return (
     <section>
-      <SectionHeader id={id} label={label} count={bags.length} blurb={blurb} />
+      <SectionHeader id={id} label={label} count={bags.length} blurb={blurb} first={first} />
       <ul className={GALLERY_GRID}>
         {bags.map((bag) => (
           <li key={bag.id}>
@@ -422,6 +420,23 @@ function StatStar() {
     <span aria-hidden className="hidden md:inline opacity-30 text-base">
       ★
     </span>
+  )
+}
+
+function StatNumeral({
+  children,
+  className = 'mr-2',
+}: {
+  children: React.ReactNode
+  className?: string
+}) {
+  return (
+    <strong
+      className={`text-2xl tracking-normal text-[var(--tj-red)] align-middle ${className}`}
+      style={{ fontFamily: 'var(--tj-script)' }}
+    >
+      {children}
+    </strong>
   )
 }
 

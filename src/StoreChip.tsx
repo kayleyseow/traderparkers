@@ -47,7 +47,7 @@ export default function StoreChip({ storeNumber, store: pre, className = '' }: P
   // tracking-normal override parent contexts that might be uppercase/tracked.
   const chip =
     'inline-flex items-center gap-[0.35em] align-baseline whitespace-nowrap ' +
-    'border border-[var(--tj-ink)]/40 bg-[var(--tj-cream)] px-[0.55em] py-[0.1em] ' +
+    'border border-[var(--tj-ink)]/40 bg-[var(--tj-cream)] px-[0.75em] py-[0.15em] rounded-full ' +
     'font-[var(--tj-body)] font-normal normal-case tracking-normal leading-tight no-underline ' +
     className
 

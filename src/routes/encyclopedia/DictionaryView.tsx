@@ -126,10 +126,11 @@ export default function DictionaryView({
               label={STATES_SECTION.label}
               count={stateBagsCount}
               blurb={STATES_SECTION.blurb}
+              first
             />
-            {[...localesByLetter.entries()].map(([letter, locales]) => (
+            {[...localesByLetter.entries()].map(([letter, locales], idx) => (
               <div key={letter}>
-                <LetterHeading letter={letter} />
+                <LetterHeading letter={letter} first={idx === 0} />
                 {locales.flatMap((locale) =>
                   (stateBagsByCode.get(locale.code) ?? []).map((bag) => (
                     <DictionaryEntry
@@ -145,16 +146,17 @@ export default function DictionaryView({
         )}
 
         {/* ── Non-state sections ── */}
-        {NON_LOCATION_SECTIONS.map(({ type, id, label, blurb }) => {
+        {NON_LOCATION_SECTIONS.map(({ type, id, label, blurb }, idx) => {
           const list = bagsByType.get(type)
           if (!list || list.length === 0) return null
+          const isFirst = idx === 0 && localesByLetter.size === 0
           if (type === 'special') {
             return (
               <section key={type}>
-                <SectionHeader id={id} label={label} count={list.length} blurb={blurb} />
-                {specialGroups.buckets.map(({ group, bags: groupBags }) => (
+                <SectionHeader id={id} label={label} count={list.length} blurb={blurb} first={isFirst} />
+                {specialGroups.buckets.map(({ group, bags: groupBags }, gIdx) => (
                   <div key={group.material}>
-                    <MaterialSubheading id={group.id} label={group.label} />
+                    <MaterialSubheading id={group.id} label={group.label} first={gIdx === 0} />
                     {groupBags.map((bag) => (
                       <DictionaryEntry
                         key={bag.id}
@@ -169,6 +171,7 @@ export default function DictionaryView({
                     <MaterialSubheading
                       id={SPECIAL_OTHER_GROUP.id}
                       label={SPECIAL_OTHER_GROUP.label}
+                      first={specialGroups.buckets.length === 0}
                     />
                     {specialGroups.leftover.map((bag) => (
                       <DictionaryEntry
@@ -184,7 +187,7 @@ export default function DictionaryView({
           }
           return (
             <section key={type}>
-              <SectionHeader id={id} label={label} count={list.length} blurb={blurb} />
+              <SectionHeader id={id} label={label} count={list.length} blurb={blurb} first={isFirst} />
               {list.map((bag) => (
                 <DictionaryEntry
                   key={bag.id}
@@ -202,22 +205,22 @@ export default function DictionaryView({
 
 /* ──────────────────────── PIECES ──────────────────────── */
 
-function LetterHeading({ letter }: { letter: string }) {
+function LetterHeading({ letter, first = false }: { letter: string; first?: boolean }) {
   return (
     <h3
       id={`enc-letter-${letter.toLowerCase()}`}
-      className="font-[var(--tj-body)] font-bold tracking-[0.5em] text-2xl mt-8 mb-2 pb-1 border-b-2 border-[var(--tj-ink)]/30 scroll-mt-24"
+      className={`font-[var(--tj-body)] font-bold tracking-[0.5em] text-2xl ${first ? 'mt-2' : 'mt-8'} mb-2 pb-1 border-b-2 border-[var(--tj-ink)]/30 scroll-mt-24`}
     >
       {letter}
     </h3>
   )
 }
 
-function MaterialSubheading({ id, label }: { id: string; label: string }) {
+function MaterialSubheading({ id, label, first = false }: { id: string; label: string; first?: boolean }) {
   return (
     <h3
       id={id}
-      className="font-[var(--tj-body)] font-bold tracking-[0.35em] text-base mt-8 mb-2 pb-1 border-b border-[var(--tj-ink)]/30 uppercase scroll-mt-24"
+      className={`font-[var(--tj-body)] font-bold tracking-[0.35em] text-base ${first ? 'mt-2' : 'mt-8'} mb-2 pb-1 border-b border-[var(--tj-ink)]/30 uppercase scroll-mt-24`}
     >
       {label}
     </h3>

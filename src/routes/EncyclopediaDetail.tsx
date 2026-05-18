@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
 import { Link, useParams } from 'react-router'
 import type { EncyclopediaBag, EncyclopediaVariant, PantryBag } from '../types'
 import {
@@ -146,35 +146,72 @@ function EncyclopediaView({
     }
   }, [availableAngles, angle])
 
+  const scrollerRef = useRef<HTMLDivElement>(null)
+
+  const scrollToIdx = (i: number) => {
+    const el = scrollerRef.current
+    if (!el) return
+    el.scrollTo({ left: el.clientWidth * i, behavior: 'smooth' })
+  }
+
   const cycleAngle = (dir: 1 | -1) => {
     if (availableAngles.length < 2) return
     const i = availableAngles.indexOf(angle)
-    const nextIdx = (i + dir + availableAngles.length) % availableAngles.length
-    setAngle(availableAngles[nextIdx])
+    const nextIdx = Math.max(0, Math.min(availableAngles.length - 1, i + dir))
+    scrollToIdx(nextIdx)
   }
 
   const cycleColorway = (dir: 1 | -1) => {
     if (colorways.length < 2) return
     const i = colorways.findIndex((c) => c.id === activeColorway?.id)
-    const nextIdx = (i + dir + colorways.length) % colorways.length
-    setActiveColorwayId(colorways[nextIdx].id)
+    const nextIdx = Math.max(0, Math.min(colorways.length - 1, i + dir))
+    scrollToIdx(nextIdx)
   }
 
-  // When colorways are present, the active photo is the active colorway's photo.
-  // Otherwise fall back to angle-driven photo (or single-photo fallback).
-  const fallbackPhoto =
-    !hasAngleData && !hasColorways && photos.length > 0 ? photos[0] : undefined
-  const activeUrl = hasColorways
-    ? activeColorway
-      ? photoUrl(activeColorway.photo)
-      : undefined
-    : hasAngleData
-    ? angleMap[angle]
-      ? photoUrl(angleMap[angle]!)
-      : undefined
-    : fallbackPhoto
-    ? photoUrl(fallbackPhoto)
-    : undefined
+  // When the user swipes the carousel, sync the angle/colorway state to
+  // whichever slide they landed on so captions and the label-button row
+  // track the visible image.
+  const handleScroll = () => {
+    const el = scrollerRef.current
+    if (!el || el.clientWidth === 0) return
+    const next = Math.round(el.scrollLeft / el.clientWidth)
+    if (hasColorways) {
+      const cw = colorways[next]
+      if (cw && cw.id !== activeColorway?.id) setActiveColorwayId(cw.id)
+    } else if (hasAngleData) {
+      const a = availableAngles[next]
+      if (a && a !== angle) setAngle(a)
+    }
+  }
+
+  // When the variant changes the photo list is rebuilt, so reset the
+  // scroller to slide 0 to match the colorway/angle reset above.
+  useEffect(() => {
+    const el = scrollerRef.current
+    if (el) el.scrollLeft = 0
+  }, [activeVariantId])
+
+  // Unified slide list for the swipe carousel. Colorways take precedence,
+  // then angle-tagged photos, then a single-photo fallback. Each slide
+  // carries enough to render itself + its caption.
+  type Slide = { url: string; label: string; caption?: string }
+  const slides = useMemo<Slide[]>(() => {
+    if (hasColorways) {
+      return colorways.map((c) => ({ url: photoUrl(c.photo), label: c.name }))
+    }
+    if (hasAngleData) {
+      return availableAngles.map((a) => ({
+        url: photoUrl(angleMap[a]!),
+        label: ANGLE_LABEL[a],
+        caption: design.angleCaptions?.[a],
+      }))
+    }
+    if (photos.length > 0) {
+      return [{ url: photoUrl(photos[0]), label: '' }]
+    }
+    return []
+  }, [hasColorways, colorways, hasAngleData, availableAngles, angleMap, photos, design.angleCaptions])
+
   const activeCaption = hasAngleData ? design.angleCaptions?.[angle] : undefined
 
   const activePhotoSources =
@@ -275,20 +312,33 @@ function EncyclopediaView({
         )}
 
         {/* Photo viewer (only renders when we have at least one reference photo) */}
-        {activeUrl ? (
+        {slides.length > 0 ? (
           <section className="mt-10">
             <div
               className="relative mx-auto bg-[var(--tj-cream-dark)] border-2 border-[var(--tj-ink)] overflow-hidden"
               style={{ aspectRatio: '4 / 5', maxWidth: '440px' }}
             >
               <PanelGrain />
-              <img
-                key={`${activeVariantId ?? 'none'}-${hasColorways ? activeColorway?.id ?? 'cw' : hasAngleData ? angle : 'single'}`}
-                src={activeUrl}
-                alt={`${displayName} bag${hasColorways && activeColorway ? `, ${activeColorway.name} colorway` : hasAngleData ? `, ${ANGLE_LABEL[angle].toLowerCase()} view` : ''}`}
-                className="relative z-10 w-full h-full object-contain p-6 animate-[bagFade_0.35s_ease]"
-                draggable={false}
-              />
+              <div
+                ref={scrollerRef}
+                onScroll={handleScroll}
+                className="hide-scrollbar relative z-10 w-full h-full flex overflow-x-auto overflow-y-hidden snap-x snap-mandatory"
+                style={{ touchAction: 'pan-x pan-y' }}
+              >
+                {slides.map((s, i) => (
+                  <div
+                    key={`${activeVariantId ?? 'none'}-${i}-${s.url}`}
+                    className="snap-start shrink-0 w-full h-full flex items-center justify-center p-6"
+                  >
+                    <img
+                      src={s.url}
+                      alt={`${displayName} bag${hasColorways ? `, ${s.label} colorway` : hasAngleData ? `, ${s.label.toLowerCase()} view` : ''}`}
+                      className="max-w-full max-h-full object-contain"
+                      draggable={false}
+                    />
+                  </div>
+                ))}
+              </div>
 
               {((hasAngleData && availableAngles.length > 1) ||
                 (hasColorways && colorways.length > 1)) && (
@@ -321,13 +371,13 @@ function EncyclopediaView({
 
             {hasAngleData && availableAngles.length > 1 && (
               <div className="flex justify-center gap-2 mt-5 flex-wrap">
-                {availableAngles.map((a) => {
+                {availableAngles.map((a, i) => {
                   const isActive = a === angle
                   return (
                     <button
                       key={a}
                       type="button"
-                      onClick={() => setAngle(a)}
+                      onClick={() => scrollToIdx(i)}
                       className={`font-[var(--tj-body)] font-semibold tracking-[0.2em] text-[0.65rem] uppercase border-2 border-[var(--tj-ink)] px-3 py-1.5 transition-colors ${
                         isActive
                           ? 'bg-[var(--tj-ink)] text-[var(--tj-cream)]'
@@ -343,13 +393,13 @@ function EncyclopediaView({
 
             {hasColorways && colorways.length > 1 && (
               <div className="flex justify-center gap-2 mt-5 flex-wrap">
-                {colorways.map((c) => {
+                {colorways.map((c, i) => {
                   const isActive = c.id === activeColorway?.id
                   return (
                     <button
                       key={c.id}
                       type="button"
-                      onClick={() => setActiveColorwayId(c.id)}
+                      onClick={() => scrollToIdx(i)}
                       className={`font-[var(--tj-body)] font-semibold tracking-[0.2em] text-[0.65rem] uppercase border-2 border-[var(--tj-ink)] px-3 py-1.5 transition-colors ${
                         isActive
                           ? 'bg-[var(--tj-ink)] text-[var(--tj-cream)]'
@@ -559,12 +609,6 @@ function EncyclopediaView({
 
       </div>
 
-      <style>{`
-        @keyframes bagFade {
-          from { opacity: 0; transform: translateY(6px); }
-          to   { opacity: 1; transform: translateY(0); }
-        }
-      `}</style>
       <Footer />
     </main>
   )
