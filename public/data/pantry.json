@@ -1,16 +1,5 @@
 [
   {
-    "slug": "ca-norcal-2026-05-15",
-    "encyclopediaId": "ca-norcal",
-    "name": "Northern California (California)",
-    "storeNumber": "712",
-    "dateAcquired": "2026-05-15",
-    "memory": "testing the website for parker!",
-    "photos": [
-      "/pantry-photos/ca-norcal-2026-05-15-9dd5ee.png"
-    ]
-  },
-  {
     "slug": "citrus-jute-2026-02-17",
     "encyclopediaId": "citrus-jute",
     "name": "Citrus Jute Bag",
@@ -20,15 +9,6 @@
     "photos": [
       "/pantry-photos/citrus-jute-2026-02-17-e82c26.jpeg"
     ]
-  },
-  {
-    "slug": "pickle-cotton-bag-2025-08-15",
-    "encyclopediaId": "pickle-cotton",
-    "name": "Pickle Cotton Bag",
-    "storeNumber": "542",
-    "dateAcquired": "2025-08-15",
-    "memory": "A pickle. On a bag. It's not deep — I just liked it.",
-    "photos": []
   },
   {
     "slug": "az-2026-05-15",
@@ -64,6 +44,31 @@
       "/pantry-photos/flower-shop-2026-05-17-6f1a06.png",
       "/pantry-photos/flower-shop-2026-05-17-de564b.jpg",
       "/pantry-photos/flower-shop-2026-05-17-7c5a85.png"
+    ]
+  },
+  {
+    "slug": "fearless-flyer-2026-05-17",
+    "encyclopediaId": "fearless-flyer",
+    "name": "Fearless Flyer",
+    "storeNumber": "66",
+    "dateAcquired": "2026-05-17",
+    "memory": "the hand cream is great! Testing out the new workflow after a delete from iphone safari.",
+    "photos": [
+      "/pantry-photos/fearless-flyer-2026-05-17-3e3515.jpeg"
+    ]
+  },
+  {
+    "slug": "classic-reusable-2026-05-17",
+    "encyclopediaId": "classic-reusable",
+    "name": "Canvas Tote",
+    "storeNumber": "547",
+    "dateAcquired": "2026-05-17",
+    "memory": "We walked around nyc and totally got a bag. Test from\nMobile with multiple photo selects.",
+    "photos": [
+      "/pantry-photos/classic-reusable-2026-05-17-686b9a.jpeg",
+      "/pantry-photos/classic-reusable-2026-05-17-c2081b.jpeg",
+      "/pantry-photos/classic-reusable-2026-05-17-0d2799.jpeg",
+      "/pantry-photos/classic-reusable-2026-05-17-04a493.jpeg"
     ]
   }
 ]
