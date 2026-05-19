@@ -282,7 +282,6 @@ app.post('/pantry/edit', async (c) => {
     dateAcquired: string
     memory: string
     photos: string[]
-    parkerPhoto?: string
   }
   let pantry: PantryEntry[]
   try {
@@ -348,7 +347,6 @@ app.post('/pantry/edit', async (c) => {
     dateAcquired: bag.dateAcquired,
     memory: bag.memory,
     photos: finalPhotos,
-    ...(original.parkerPhoto ? { parkerPhoto: original.parkerPhoto } : {}),
   }
   pantry[idx] = updated
 
@@ -459,11 +457,10 @@ function validateBag(bag: IncomingBag): string | null {
    Generic settings endpoint that persists a JSON value at a known
    per-key file path. Keys are allowlisted so the path can't be
    injected. Use a single shared endpoint instead of one per setting
-   so future toggles (e.g. wiring up pins) reuse this surface. */
+   so future toggles reuse this surface. */
 
 const SETTINGS_FILES: Record<string, string> = {
   visibility: 'public/data/visibility.json',
-  pins: 'public/data/pins.json',
 }
 
 app.post('/settings', async (c) => {

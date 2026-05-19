@@ -1,36 +1,14 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Link } from 'react-router'
-import type { EncyclopediaBag, PinnedBag } from '../types'
-import PinnedFavorites from '../PinnedFavorites'
 import styles from './Landing.module.css'
 import sealSvg from '../assets/icons/tp_paper_bag_transparent.svg?raw'
+import { useTitle } from '../useTitle'
 
 const BASE = import.meta.env.BASE_URL
 
 export default function Landing() {
+  useTitle('', undefined, true)
   const [revealed, setRevealed] = useState(false)
-  const [pins, setPins] = useState<PinnedBag[]>([])
-  const [encyclopediaById, setEncyclopediaById] = useState<Map<string, EncyclopediaBag>>(new Map())
-
-  useEffect(() => {
-    fetch(`${BASE}data/pins.json`, { cache: 'no-cache' })
-      .then((r) => r.json() as Promise<PinnedBag[]>)
-      .then(setPins)
-      .catch(() => {
-        /* pins are optional — silently skip if the file is missing */
-      })
-  }, [])
-
-  useEffect(() => {
-    fetch(`${BASE}data/encyclopedia.json`, { cache: 'no-cache' })
-      .then((r) => r.json() as Promise<EncyclopediaBag[]>)
-      .then((encyclopedia) => {
-        setEncyclopediaById(new Map(encyclopedia.map((b) => [b.id, b])))
-      })
-      .catch(() => {
-        /* encyclopedia is only used for pinned-favorites lookups — fine to skip */
-      })
-  }, [])
 
   return (
     <main className={styles.bag}>
@@ -110,8 +88,6 @@ export default function Landing() {
               <p className={styles.visitorTag}>
                 Welcome, fellow TP's bag enthusiast!
               </p>
-
-              <PinnedFavorites pins={pins} encyclopediaById={encyclopediaById} />
 
               <div className={styles.ctaRow}>
                 <Link className={`${styles.cta} ${styles.ctaGhost}`} to="/pantry">Peer into Parker's Pantry</Link>

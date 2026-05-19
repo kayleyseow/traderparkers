@@ -175,18 +175,6 @@ export type PantryBag = {
 
   /** Paths under public/ to photos Parker uploaded. First is the hero shot. */
   photos: string[]
-
-  /** Optional photo of Parker holding/using the bag. */
-  parkerPhoto?: string
-}
-
-/* ──────────────────────────  PINNED FAVORITES  ─────────────────────
-   Parker can pin up to 4 encyclopedia entries as featured favorites,
-   surfaced on the landing page's visitor view. Stored in pins.json. */
-
-export type PinnedBag = {
-  encyclopediaId: string
-  note?: string
 }
 
 /* ──────────────────────────  PROGRESS HELPERS  ────────────────────── */
