@@ -3,17 +3,56 @@
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#a01c1c" />
 
     <!-- Content Security Policy. Blocks inline scripts and restricts loads to
          known origins. If you add a new third-party script, font, or API,
          allow-list its origin in the matching directive below. -->
     <meta
       http-equiv="Content-Security-Policy"
-      content="default-src 'self'; script-src 'self' https://challenges.cloudflare.com; worker-src 'self' blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data:; connect-src 'self' https://parker-bags.kseow.workers.dev; frame-src https://challenges.cloudflare.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"
+      content="default-src 'self'; script-src 'self' https://challenges.cloudflare.com; worker-src 'self' blob:; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com; img-src 'self' data: blob:; connect-src 'self' https://parker-bags.kseow.workers.dev; frame-src https://challenges.cloudflare.com; object-src 'none'; base-uri 'self'; form-action 'self'; upgrade-insecure-requests"
     />
 
     <title>Trader Parker's Bag Bazaar</title>
+    <meta
+      name="description"
+      content="A hand-curated encyclopedia of Trader Joe's reusable tote bags — every state, special edition, and standard design, with photos and the design lore behind each one."
+    />
+    <link rel="canonical" href="https://kayleyseow.github.io/tjbags/" />
+
+    <!-- Open Graph (Facebook, iMessage, Discord, LinkedIn previews) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Trader Parker's Bag Bazaar" />
+    <meta property="og:title" content="Trader Parker's Bag Bazaar" />
+    <meta
+      property="og:description"
+      content="A hand-curated encyclopedia of Trader Joe's reusable tote bags — every state, special edition, and standard design."
+    />
+    <meta property="og:url" content="https://kayleyseow.github.io/tjbags/" />
+
+    <!-- Twitter Card (text-only; no preview image until og-cover.png exists) -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="Trader Parker's Bag Bazaar" />
+    <meta
+      name="twitter:description"
+      content="A hand-curated encyclopedia of Trader Joe's reusable tote bags — every state, special edition, and standard design."
+    />
+
+    <!-- Schema.org structured data. Non-executable (type=application/ld+json),
+         so CSP script-src 'self' does not block it. Only the Encyclopedia is
+         advertised — other routes are noindexed and shouldn't be surfaced. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "@id": "https://kayleyseow.github.io/tjbags/#website",
+        "url": "https://kayleyseow.github.io/tjbags/encyclopedia",
+        "name": "Trader Parker's Bag Bazaar — Encyclopedia",
+        "description": "Every known Trader Joe's reusable tote — state-themed, special edition, and standard."
+      }
+    </script>
 
     <!-- Source Serif 4 — free Adobe-published cousin of FreightText Pro
          (the typeface trader joes uses on their website). Matches TJ's body

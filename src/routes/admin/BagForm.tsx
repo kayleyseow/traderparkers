@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from 'react'
 import type { CategoryVisibility, EncyclopediaBag, PantryBag, Store } from '../../types'
 import { DEFAULT_VISIBILITY } from '../../types'
 import StoreSelect from './StoreSelect'
+import { looksLikeHeic, normalizeImageFile } from './heic'
 
 const BASE = import.meta.env.BASE_URL
 const WORKER_URL = import.meta.env.VITE_WORKER_URL
@@ -17,7 +18,7 @@ type Status =
 export default function BagForm({ password }: Props) {
   const [rawEncyclopedia, setRawEncyclopedia] = useState<EncyclopediaBag[] | null>(null)
   const [visibility, setVisibility] = useState<CategoryVisibility>(DEFAULT_VISIBILITY)
-  const [existingSlugs, setExistingSlugs] = useState<Set<string>>(new Set())
+  const [pantry, setPantry] = useState<PantryBag[]>([])
   const [encyclopediaId, setEncyclopediaId] = useState('')
   const [store, setStore] = useState<Store | null>(null)
   const [date, setDate] = useState(todayISO())
@@ -30,14 +31,14 @@ export default function BagForm({ password }: Props) {
       .then((r) => r.json() as Promise<EncyclopediaBag[]>)
       .then(setRawEncyclopedia)
       .catch(() => setRawEncyclopedia([]))
-    // Slugs are deterministic (`${encyclopediaId}-${date}`), so we can warn
-    // the user before submit if a duplicate is brewing. The Worker enforces
-    // this server-side too — this is just for instant feedback.
+    // Track existing pantry entries so we can flag duplicates (same bag +
+    // same day, hard block) and prior logs (same bag, different day, soft
+    // info warning). Worker is still the source of truth on submit.
     fetch(`${BASE}data/pantry.json`, { cache: 'no-cache' })
       .then((r) => r.json() as Promise<PantryBag[]>)
-      .then((pantry) => setExistingSlugs(new Set(pantry.map((b) => b.slug))))
+      .then(setPantry)
       .catch(() => {
-        /* empty set is fine — server is still the source of truth */
+        /* empty array is fine — server enforces uniqueness on submit */
       })
     // Hide categories that admin has toggled off from the picker. State bags
     // always show. Mirrors the filter on the public encyclopedia.
@@ -67,7 +68,15 @@ export default function BagForm({ password }: Props) {
   )
 
   const pendingSlug = selectedEncyclopediaBag ? `${selectedEncyclopediaBag.id}-${date}` : ''
-  const duplicate = pendingSlug !== '' && existingSlugs.has(pendingSlug)
+  const priorLogs = useMemo(
+    () =>
+      selectedEncyclopediaBag
+        ? pantry.filter((b) => b.encyclopediaId === selectedEncyclopediaBag.id)
+        : [],
+    [pantry, selectedEncyclopediaBag],
+  )
+  const duplicate = pendingSlug !== '' && priorLogs.some((b) => b.slug === pendingSlug)
+  const alreadyLoggedBefore = priorLogs.length > 0 && !duplicate
 
   const valid =
     selectedEncyclopediaBag !== null &&
@@ -215,6 +224,25 @@ export default function BagForm({ password }: Props) {
         </div>
       </Field>
 
+      {alreadyLoggedBefore && (
+        <div className="border-2 border-[var(--tj-kraft)] bg-[var(--tj-kraft)]/20 px-4 py-3 text-sm">
+          <strong className="font-[var(--tj-body)] tracking-[0.15em] text-xs uppercase block mb-1">
+            Previously logged
+          </strong>
+          <span className="italic opacity-90">
+            You've logged this bag{' '}
+            {priorLogs.length === 1 ? 'once' : `${priorLogs.length} times`} before
+            {priorLogs.length <= 3
+              ? ` (${priorLogs
+                  .map((b) => b.dateAcquired)
+                  .sort()
+                  .join(', ')})`
+              : ''}
+            . You can still log it again on a different date.
+          </span>
+        </div>
+      )}
+
       {duplicate && (
         <div className="border-2 border-[var(--tj-red)] bg-[var(--tj-red)]/10 px-4 py-3 text-sm">
           <strong className="font-[var(--tj-body)] tracking-[0.15em] text-xs uppercase block mb-1">
@@ -301,6 +329,19 @@ function EncyclopediaPicker({
   const [open, setOpen] = useState(false)
   const [query, setQuery] = useState('')
   const containerRef = useRef<HTMLDivElement>(null)
+  const touchStartRef = useRef({ x: 0, y: 0 })
+
+  function trackTouchStart(e: React.TouchEvent) {
+    const t = e.touches[0]
+    if (t) touchStartRef.current = { x: t.clientX, y: t.clientY }
+  }
+  function wasScroll(e: React.TouchEvent) {
+    const t = e.changedTouches[0]
+    if (!t) return true
+    const dx = Math.abs(t.clientX - touchStartRef.current.x)
+    const dy = Math.abs(t.clientY - touchStartRef.current.y)
+    return dx > 10 || dy > 10
+  }
 
   const selectedBag = useMemo(
     () => encyclopedia?.find((b) => b.id === value) ?? null,
@@ -309,17 +350,39 @@ function EncyclopediaPicker({
 
   useEffect(() => {
     if (!open) return
-    function close(e: Event) {
-      if (!containerRef.current?.contains(e.target as Node)) {
+    function closeIfOutside(target: Node | null) {
+      if (!target) return
+      if (!containerRef.current?.contains(target)) {
         setOpen(false)
         setQuery('')
       }
     }
-    document.addEventListener('mousedown', close)
-    document.addEventListener('touchstart', close)
+    function onMouseDown(e: MouseEvent) {
+      closeIfOutside(e.target as Node)
+    }
+    let startX = 0
+    let startY = 0
+    function onTouchStart(e: TouchEvent) {
+      const t = e.touches[0]
+      if (!t) return
+      startX = t.clientX
+      startY = t.clientY
+    }
+    function onTouchEnd(e: TouchEvent) {
+      const t = e.changedTouches[0]
+      if (!t) return
+      const dx = Math.abs(t.clientX - startX)
+      const dy = Math.abs(t.clientY - startY)
+      if (dx > 10 || dy > 10) return // scroll, not tap
+      closeIfOutside(t.target as Node)
+    }
+    document.addEventListener('mousedown', onMouseDown)
+    document.addEventListener('touchstart', onTouchStart, { passive: true })
+    document.addEventListener('touchend', onTouchEnd, { passive: true })
     return () => {
-      document.removeEventListener('mousedown', close)
-      document.removeEventListener('touchstart', close)
+      document.removeEventListener('mousedown', onMouseDown)
+      document.removeEventListener('touchstart', onTouchStart)
+      document.removeEventListener('touchend', onTouchEnd)
     }
   }, [open])
 
@@ -393,6 +456,7 @@ function EncyclopediaPicker({
           />
           <ul
             className="max-h-72 overflow-y-auto"
+            onTouchStart={trackTouchStart}
             onTouchMove={() => {
               if (document.activeElement instanceof HTMLElement) {
                 document.activeElement.blur()
@@ -416,6 +480,7 @@ function EncyclopediaPicker({
                           type="button"
                           onMouseDown={(e) => e.preventDefault()}
                           onTouchEnd={(e) => {
+                            if (wasScroll(e)) return
                             e.preventDefault()
                             selectBag(bag.id)
                           }}
@@ -449,10 +514,26 @@ function PhotoPicker({
   photos: File[]
   onChange: (files: File[]) => void
 }) {
-  function onFilesPicked(files: FileList | null) {
+  const [converting, setConverting] = useState(0)
+  const [convertError, setConvertError] = useState<string | null>(null)
+
+  async function onFilesPicked(files: FileList | null) {
     if (!files) return
-    const next = [...photos, ...Array.from(files)].slice(0, 8)
-    onChange(next)
+    setConvertError(null)
+    const picked = Array.from(files)
+    const heicCount = picked.filter(looksLikeHeic).length
+    if (heicCount > 0) setConverting((n) => n + heicCount)
+    try {
+      const normalized = await Promise.all(picked.map(normalizeImageFile))
+      const next = [...photos, ...normalized].slice(0, 8)
+      onChange(next)
+    } catch (err) {
+      setConvertError(
+        `Couldn't convert a HEIC photo: ${(err as Error).message}. Try re-exporting as JPEG.`,
+      )
+    } finally {
+      if (heicCount > 0) setConverting((n) => Math.max(0, n - heicCount))
+    }
   }
 
   function removeAt(i: number) {
@@ -463,7 +544,7 @@ function PhotoPicker({
     <div className="space-y-3">
       <input
         type="file"
-        accept="image/*"
+        accept="image/*,.heic,.heif"
         multiple
         onChange={(e) => {
           onFilesPicked(e.target.files)
@@ -471,6 +552,14 @@ function PhotoPicker({
         }}
         className="w-full text-sm font-serif file:mr-3 file:border-2 file:border-[var(--tj-ink)] file:bg-[var(--tj-cream)] file:px-3 file:py-2 file:font-[var(--tj-body)] file:tracking-[0.15em] file:text-[0.7rem] file:uppercase file:cursor-pointer hover:file:bg-[var(--tj-ink)] hover:file:text-[var(--tj-cream)]"
       />
+      {converting > 0 && (
+        <p className="text-xs italic opacity-70">
+          Converting {converting} HEIC {converting === 1 ? 'photo' : 'photos'} to JPEG…
+        </p>
+      )}
+      {convertError && (
+        <p className="text-xs italic text-[var(--tj-red)]">{convertError}</p>
+      )}
       {photos.length > 0 && (
         <ul className="grid grid-cols-3 sm:grid-cols-4 gap-2">
           {photos.map((file, i) => (
@@ -504,7 +593,20 @@ function PhotoThumb({ file }: { file: File }) {
   }, [file])
   return (
     <div className="aspect-square border-2 border-[var(--tj-ink)] bg-white overflow-hidden">
-      {url && <img src={url} alt={file.name} className="w-full h-full object-cover" />}
+      {url && (
+        <img
+          src={url}
+          alt={file.name}
+          className="block w-full h-full object-cover"
+          onError={() =>
+            console.warn('PhotoThumb preview failed to load', {
+              name: file.name,
+              type: file.type,
+              size: file.size,
+            })
+          }
+        />
+      )}
     </div>
   )
 }

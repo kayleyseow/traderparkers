@@ -63,3 +63,33 @@ PORT=6173 npm run pick:photos    # override port
 3. `npm run pick:photos`, walk through each staged bag, finalize.
 4. Spot-check the resulting `public/bags/<...>/<slug>/*.png` and review the `encyclopedia.json` diff.
 5. Delete `staging/` when done (gitignored, no cleanup needed).
+
+## Other scripts
+
+### prerender.mjs
+
+Runs in `npm run build` after `vite build`. Generates static HTML files at `dist/encyclopedia/<id>/index.html` for every encyclopedia route so GitHub Pages serves them with HTTP 200 (not the SPA-fallback 404) and Googlebot sees the right title, meta description, OG/Twitter tags, and Product JSON-LD without running any JS. No manual invocation.
+
+### scrape-stores.mjs
+
+One-off scrape of `locations.traderjoes.com` to regenerate `public/data/stores.json` (647 store locations). Re-run only when refreshing store data; the output is checked in.
+
+```
+node scripts/scrape-stores.mjs
+```
+
+### scrape-tj-pdp.mjs
+
+Fetches the official product photo (og:image PNG) from a Trader Joe's PDP URL. Handles the CDN's required `Referer: <pdp-url>` header, which is the gotcha that makes plain `curl` fail. Useful for standard bags that still have a current `traderjoes.com/home/products/pdp/...` listing, since those photos are higher quality than Poshmark scrapes.
+
+```
+node scripts/scrape-tj-pdp.mjs <outDir> <slug>=<pdpUrl> [<slug>=<pdpUrl> ...]
+```
+
+### bgremove.mjs
+
+Standalone CLI for `@imgly/background-removal-node` + 4:5 crop. Mirrors the Finalize step inside `pick-photos.mjs` so you can run the same processing on a folder of images outside the picker workflow.
+
+### measure-frames.mjs
+
+Scans the alpha channel of rendered PNGs in `public/decor/frames/` to detect each vintage frame's transparent inset rectangle (where the photo shows through). Prints the inset data used to seed the `FRAME_INSET` map in `src/routes/Pantry.tsx`. Re-run when adding a new frame.

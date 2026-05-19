@@ -10,6 +10,7 @@ compatibility_date = "2025-01-01"
 GITHUB_REPO = "kayleyseow/tjbags"
 GITHUB_BRANCH = "main"
 PANTRY_PATH = "public/data/pantry.json"
+ENCYCLOPEDIA_PATH = "public/data/encyclopedia.json"
 PHOTOS_PATH_PREFIX = "public/pantry-photos"
 # CORS: which site is allowed to call this Worker. Comma-separated for multi-origin.
 # Includes localhost so the Vite dev server can talk to the deployed Worker.

@@ -7,6 +7,7 @@ import Admin from './routes/Admin'
 import BagDetail from './routes/BagDetail'
 import EncyclopediaDetail from './routes/EncyclopediaDetail'
 import About from './routes/About'
+import FrameTuner from './routes/FrameTuner'
 import NotFound from './routes/NotFound'
 
 export default function App() {
@@ -21,6 +22,7 @@ export default function App() {
         <Route path="/admin" element={<Admin />} />
         <Route path="/about" element={<About />} />
         <Route path="/bags/:slug" element={<BagDetail />} />
+        <Route path="/dev/frames" element={<FrameTuner />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>

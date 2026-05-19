@@ -17,6 +17,19 @@ export default function StoreSelect({ value, onChange }: Props) {
   const [query, setQuery] = useState('')
   const [open, setOpen] = useState(false)
   const containerRef = useRef<HTMLDivElement>(null)
+  const touchStartRef = useRef({ x: 0, y: 0 })
+
+  function trackTouchStart(e: React.TouchEvent) {
+    const t = e.touches[0]
+    if (t) touchStartRef.current = { x: t.clientX, y: t.clientY }
+  }
+  function wasScroll(e: React.TouchEvent) {
+    const t = e.changedTouches[0]
+    if (!t) return true
+    const dx = Math.abs(t.clientX - touchStartRef.current.x)
+    const dy = Math.abs(t.clientY - touchStartRef.current.y)
+    return dx > 10 || dy > 10
+  }
 
   useEffect(() => {
     fetch(`${BASE}data/stores.json`, { cache: 'no-cache' })
@@ -27,19 +40,44 @@ export default function StoreSelect({ value, onChange }: Props) {
 
   useEffect(() => {
     if (!open) return
-    function close(e: Event) {
-      if (!containerRef.current?.contains(e.target as Node)) {
+    function closeIfOutside(target: Node | null) {
+      if (!target) return
+      if (!containerRef.current?.contains(target)) {
         setOpen(false)
         setQuery('')
       }
     }
-    // touchstart covers mobile taps outside the dropdown where the synthesized
-    // mousedown can be unreliable (especially while the soft keyboard is up).
-    document.addEventListener('mousedown', close)
-    document.addEventListener('touchstart', close)
+    function onMouseDown(e: MouseEvent) {
+      closeIfOutside(e.target as Node)
+    }
+    // Track touch start position so we can tell a tap from a scroll on
+    // touchend. The old version closed on touchstart, which incorrectly
+    // fired during scrolls when iOS reflowed the viewport (keyboard
+    // dismissal mid-scroll) and synthesized stray taps outside the
+    // container.
+    let startX = 0
+    let startY = 0
+    function onTouchStart(e: TouchEvent) {
+      const t = e.touches[0]
+      if (!t) return
+      startX = t.clientX
+      startY = t.clientY
+    }
+    function onTouchEnd(e: TouchEvent) {
+      const t = e.changedTouches[0]
+      if (!t) return
+      const dx = Math.abs(t.clientX - startX)
+      const dy = Math.abs(t.clientY - startY)
+      if (dx > 10 || dy > 10) return // it was a scroll, not a tap
+      closeIfOutside(t.target as Node)
+    }
+    document.addEventListener('mousedown', onMouseDown)
+    document.addEventListener('touchstart', onTouchStart, { passive: true })
+    document.addEventListener('touchend', onTouchEnd, { passive: true })
     return () => {
-      document.removeEventListener('mousedown', close)
-      document.removeEventListener('touchstart', close)
+      document.removeEventListener('mousedown', onMouseDown)
+      document.removeEventListener('touchstart', onTouchStart)
+      document.removeEventListener('touchend', onTouchEnd)
     }
   }, [open])
 
@@ -131,6 +169,7 @@ export default function StoreSelect({ value, onChange }: Props) {
               />
               <ul
                 className="max-h-72 overflow-y-auto"
+                onTouchStart={trackTouchStart}
                 onTouchMove={() => {
                   if (document.activeElement instanceof HTMLElement) {
                     document.activeElement.blur()
@@ -156,6 +195,7 @@ export default function StoreSelect({ value, onChange }: Props) {
                         // the reflow and suppresses the stray click.
                         onMouseDown={(e) => e.preventDefault()}
                         onTouchEnd={(e) => {
+                          if (wasScroll(e)) return
                           e.preventDefault()
                           selectStore(s)
                         }}

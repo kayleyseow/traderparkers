@@ -14,8 +14,8 @@ export default function Landing() {
     <main className={styles.bag}>
       <CrumpleOverlay />
       <div className={styles.utensils} aria-hidden>
-        <img className={styles.spoon} src={`${BASE}decor/spoon.svg`} alt="" />
-        <img className={styles.fork} src={`${BASE}decor/fork.svg`} alt="" />
+        <img className={styles.spoon} src={`${BASE}decor/icons/spoon.svg`} alt="" />
+        <img className={styles.fork} src={`${BASE}decor/icons/fork.svg`} alt="" />
       </div>
       <div className={styles.border} aria-hidden />
 

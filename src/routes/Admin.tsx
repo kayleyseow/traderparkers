@@ -6,6 +6,7 @@ import EntryForm from './admin/EntryForm'
 import EditPanel from './admin/EditPanel'
 import SettingsForm from './admin/SettingsForm'
 import Footer from '../Footer'
+import { useTitle } from '../useTitle'
 
 type AdminMode = 'log' | 'entry' | 'edit' | 'settings'
 
@@ -17,6 +18,7 @@ const MODE_TITLE: Record<AdminMode, string> = {
 }
 
 export default function Admin() {
+  useTitle('Admin', undefined, true)
   // Password is held in memory only — never in sessionStorage / localStorage.
   // Re-prompt on every fresh page load. The Worker requires it on each save.
   const [password, setPassword] = useState<string | null>(null)

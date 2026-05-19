@@ -4,15 +4,16 @@ import type { EncyclopediaBag, PantryBag, Store } from '../types'
 import {
   ANGLE_LABEL,
   ANGLE_ORDER,
-  DESIGN_NOTES,
-  type DesignNotes,
   inferAngleMap,
   photoUrl,
 } from '../bagPhotos'
+
+type DesignFields = NonNullable<EncyclopediaBag['design']>
 import TopNav from '../TopNav'
 import Footer from '../Footer'
 import MaterialChips from '../MaterialChips'
 import StoreChip from '../StoreChip'
+import { useTitle } from '../useTitle'
 
 const BASE = import.meta.env.BASE_URL
 
@@ -44,6 +45,16 @@ export default function BagDetail() {
       .catch(() => setData({ encyclopedia: [], pantry: [], stores: new Map() }))
   }, [])
 
+  const titleBag = data?.pantry.find((b) => b.slug === slug)
+  const titleEncyclopedia = titleBag?.encyclopediaId
+    ? data?.encyclopedia.find((c) => c.id === titleBag.encyclopediaId)
+    : undefined
+  useTitle(
+    titleBag?.name ?? 'Bag',
+    titleEncyclopedia?.description ?? titleBag?.memory,
+    true,
+  )
+
   if (!data) return <LoadingState />
 
   const bag = data.pantry.find((b) => b.slug === slug)
@@ -53,7 +64,7 @@ export default function BagDetail() {
     ? data.encyclopedia.find((c) => c.id === bag.encyclopediaId)
     : undefined
   const store = data.stores.get(bag.storeNumber)
-  const design = encyclopediaEntry ? DESIGN_NOTES[encyclopediaEntry.id] ?? {} : {}
+  const design: DesignFields = encyclopediaEntry?.design ?? {}
 
   return <BagView bag={bag} encyclopediaEntry={encyclopediaEntry} store={store} design={design} />
 }
@@ -69,7 +80,7 @@ function BagView({
   bag: PantryBag
   encyclopediaEntry: EncyclopediaBag | undefined
   store: Store | undefined
-  design: DesignNotes
+  design: DesignFields
 }) {
   // Two upload paths feed photos in: the curated encyclopedia convention
   // (filenames front/back/left/right/bottom, hand-named) and the Worker
@@ -79,6 +90,22 @@ function BagView({
   const slides = useMemo(() => buildSlides(bag.photos, design), [bag.photos, design])
   const [idx, setIdx] = useState(0)
   const scrollerRef = useRef<HTMLDivElement>(null)
+
+  // Detect the first photo's natural aspect so the viewer panel can adapt to
+  // it. A locked 4:5 box would letterbox very-tall (9:16) or very-wide (16:9)
+  // photos into a small center band; matching the photo's aspect lets the
+  // photo fill the panel. maxHeight caps super-tall photos so they don't
+  // dominate the viewport.
+  const [panelAspect, setPanelAspect] = useState<string>('4 / 5')
+  useEffect(() => {
+    const first = slides[0]
+    if (!first) return
+    const img = new Image()
+    img.onload = () => {
+      setPanelAspect(`${img.naturalWidth} / ${img.naturalHeight}`)
+    }
+    img.src = first.url
+  }, [slides])
 
   const scrollToIdx = (i: number) => {
     const el = scrollerRef.current
@@ -131,7 +158,7 @@ function BagView({
           <section>
             <div
               className="relative mx-auto bg-[var(--tj-cream-dark)] border-2 border-[var(--tj-ink)] overflow-hidden"
-              style={{ aspectRatio: '4 / 5', maxWidth: '440px' }}
+              style={{ aspectRatio: panelAspect, maxWidth: '440px', maxHeight: '80vh' }}
             >
               <PanelGrain />
               {slides.length > 0 ? (
@@ -267,7 +294,7 @@ function BagView({
 
 type Slide = { url: string; label: string; caption?: string }
 
-function buildSlides(photos: string[], design: DesignNotes): Slide[] {
+function buildSlides(photos: string[], design: DesignFields): Slide[] {
   const angleMap = inferAngleMap(photos)
   const angled = ANGLE_ORDER.filter((a) => angleMap[a])
   // Use angle navigation only when every photo opted in to the

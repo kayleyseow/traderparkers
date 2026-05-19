@@ -120,24 +120,76 @@ body {
   border-bottom-width: 3px;
   border-right-width: 3px;
 }
-/* Pantry polaroid resting state + hover. Each polaroid sets a `--tilt` CSS
-   var (its resting rotation). On hover the photo is "picked up" — it lifts
+/* Pantry bag-card tilt + hover. Each card sets a `--tilt` CSS var (its
+   resting rotation). On hover the framed photo is "picked up" — it lifts
    slightly and straightens (tilt reduces toward 0). Smooth transition
    instead of a keyframe wiggle so the motion reads as calm, not jittery. */
-.polaroid {
+.bag-tilt {
   transform: rotate(var(--tilt, 0deg));
-  transition:
-    transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.3s ease;
+  transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   will-change: transform;
 }
 @media (hover: hover) {
-  .polaroid:hover {
+  .bag-tilt:hover {
     transform: rotate(calc(var(--tilt, 0deg) * 0.35)) translateY(-6px);
-    box-shadow:
-      0 4px 0 rgba(42, 31, 20, 0.12),
-      0 18px 30px -10px rgba(42, 31, 20, 0.40);
   }
+}
+
+/* Framed-photo pendulum swing — see About.tsx FramedPhoto.
+   On mouse-in: smooth tilt to 3deg with a slight spring overshoot.
+   On mouse-out: damped pendulum decay back to 0 (passes through neutral
+   a few times, each swing ~70% of the previous, like a real hung frame).
+   --swing-dir flips the rotation sign so left-side hovers swing the
+   frame left and right-side hovers swing it right, just like nudging a
+   real picture from either side. */
+@keyframes pendulum-release {
+  0%   { transform: rotate(calc(3deg * var(--swing-dir, 1))); }
+  18%  { transform: rotate(calc(-2.2deg * var(--swing-dir, 1))); }
+  36%  { transform: rotate(calc(1.4deg * var(--swing-dir, 1))); }
+  54%  { transform: rotate(calc(-0.9deg * var(--swing-dir, 1))); }
+  72%  { transform: rotate(calc(0.5deg * var(--swing-dir, 1))); }
+  85%  { transform: rotate(calc(-0.2deg * var(--swing-dir, 1))); }
+  100% { transform: rotate(0deg); }
+}
+.frame-swing {
+  --swing-dir: 1;
+  transform-origin: top;
+  transition: transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+  filter: drop-shadow(0 4px 6px rgba(42, 31, 20, 0.18))
+          drop-shadow(0 10px 16px rgba(42, 31, 20, 0.10));
+  will-change: transform;
+}
+.frame-swing.swing-left {
+  --swing-dir: -1;
+}
+.frame-swing.is-hover {
+  transform: rotate(calc(3deg * var(--swing-dir)));
+}
+.frame-swing.is-releasing {
+  animation: pendulum-release 1.6s ease-out forwards;
+}
+
+/* Birthday-greeting confetti burst — see About.tsx ConfettiBurst.
+   Each particle flies outward by its own random (--dx, --dy) with rotation,
+   then fades. Particles are colored rectangles, sized like paper strips. */
+@keyframes confetti-burst {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 1;
+  }
+  60% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(var(--dx), var(--dy)) rotate(var(--rot));
+    opacity: 0;
+  }
+}
+.confetti-particle {
+  position: absolute;
+  pointer-events: none;
+  animation: confetti-burst 2400ms cubic-bezier(0.2, 0.7, 0.4, 1) forwards;
+  will-change: transform, opacity;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -146,6 +198,19 @@ body {
   .parker-only-btn::before,
   .parker-only-btn::after { transition: none; }
   .parker-only-btn:hover { transform: none; }
-  .polaroid { transition: none; }
-  .polaroid:hover { transform: rotate(var(--tilt, 0deg)); }
+  .bag-tilt { transition: none; }
+  .bag-tilt:hover { transform: rotate(var(--tilt, 0deg)); }
+  .frame-swing { transition: none; }
+  .frame-swing.is-hover,
+  .frame-swing.is-releasing { transform: none; animation: none; }
+  .confetti-particle { animation: none; opacity: 0; }
+}
+
+/* Touch-only devices (phones, tablets without a mouse) don't really hover,
+   so the frame swing is either invisible or fires unpredictably on tap.
+   Disable it there so the slideshow's click-to-advance feels clean. */
+@media (hover: none) {
+  .frame-swing { transition: none; }
+  .frame-swing.is-hover,
+  .frame-swing.is-releasing { transform: none; animation: none; }
 }

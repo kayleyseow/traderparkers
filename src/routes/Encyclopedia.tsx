@@ -21,6 +21,7 @@ import {
   STATES_SECTION,
   SUGGEST_SECTION,
 } from './encyclopedia/sections'
+import { useTitle } from '../useTitle'
 
 const BASE = import.meta.env.BASE_URL
 
@@ -28,6 +29,27 @@ type EncyclopediaView = 'gallery' | 'dictionary'
 const VIEW_STORAGE_KEY = 'encyclopedia-view'
 
 export default function Encyclopedia() {
+  useTitle({
+    title: 'Encyclopedia',
+    description:
+      "Every known Trader Joe's reusable tote — state-themed, special editions, and the standard lineup, with photos and design notes for each.",
+    canonical: 'https://kayleyseow.github.io/tjbags/encyclopedia',
+    og: {
+      title: "Encyclopedia · Trader Parker's Bag Bazaar",
+      description:
+        "Every known Trader Joe's reusable tote — state, special, and standard designs.",
+      url: 'https://kayleyseow.github.io/tjbags/encyclopedia',
+    },
+    jsonLd: {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: "Trader Parker's Bag Bazaar — Encyclopedia",
+      description:
+        "Every known Trader Joe's reusable tote — state, special, and standard designs.",
+      url: 'https://kayleyseow.github.io/tjbags/encyclopedia',
+      isPartOf: { '@id': 'https://kayleyseow.github.io/tjbags/#website' },
+    },
+  })
   const [rawEncyclopedia, setRawEncyclopedia] = useState<EncyclopediaBag[] | null>(null)
   const [pantry, setPantry] = useState<PantryBag[]>([])
   const [view, setView] = useState<EncyclopediaView>(() => {
@@ -147,6 +169,55 @@ export default function Encyclopedia() {
       <CrumpleOverlay />
 
       <div className="relative z-10 max-w-6xl mx-auto">
+        {/* Wide-screen marginalia. Hidden below 2xl; on wider viewports they hang
+            off the content column into the empty page margins. */}
+        <aside
+          aria-hidden
+          className="group/liberty hidden 2xl:block absolute -left-[17rem] top-[600px] w-[16rem] select-none"
+        >
+          <img
+            src={`${BASE}decor/spots/people/lady-liberty.svg`}
+            alt=""
+            className="w-full h-auto opacity-50 group-hover/liberty:opacity-100 transition-opacity duration-300"
+          />
+          <div className="mt-2 flex items-center gap-1.5 justify-start opacity-0 group-hover/liberty:opacity-100 transition-opacity duration-500">
+            <span className="h-px w-0 group-hover/liberty:w-4 bg-[var(--tj-ink)]/60 shrink-0 transition-[width] duration-500" />
+            <span className="font-[var(--tj-body)] italic tracking-[0.06em] text-[0.7rem] whitespace-nowrap opacity-80">
+              Life, liberty, and the pursuit of bags.
+            </span>
+          </div>
+        </aside>
+
+        {/* Gallery-only marginalia: Victorian-figure spot illustrations
+            sprinkled down the page. Each fades up on hover with a caption. */}
+        {view === 'gallery' && (
+          <>
+            {/* Poly subgroup (largest, first inside Special Editions) */}
+            <GalleryFigure file="spots/people/lady-with-bird-color.svg" caption="Sweet bag-nothings." side="right" top="top-[5200px]" size="lg" />
+            {/* Jute subgroup */}
+            <GalleryFigure file="spots/people/girl-with-chrysanthemums.svg" caption="Caught the bag-quet." side="left" top="top-[6800px]" size="xl" />
+            {/* Canvas subgroup */}
+            <GalleryFigure
+              file="spots/people/letter-lady-color.svg"
+              side="right"
+              top="top-[7500px]"
+              caption={
+                <span className="block text-right leading-snug">
+                  Dearest canvas,
+                  <br />
+                  You complete me.
+                  <br />
+                  Sealed with a bag.
+                  <br />
+                  P.S. See you at checkout.
+                </span>
+              }
+            />
+            {/* Standard Bags section */}
+            <GalleryFigure file="spots/people/little-girl-petticoat-fan-color.svg" caption="Fan-cy bag." side="left" top="top-[8500px]" />
+          </>
+        )}
+
         <TopNav />
 
         <header className="text-center mb-10">
@@ -217,6 +288,7 @@ export default function Encyclopedia() {
                         label={STATES_SECTION.label}
                         count={stateBags.length}
                         blurb={STATES_SECTION.blurb}
+                        ornament={sectionOrnament(STATES_SECTION.ornamentFile, STATES_SECTION.ornamentClass)}
                         first
                       />
                       <ul className={GALLERY_GRID}>
@@ -244,6 +316,7 @@ export default function Encyclopedia() {
                         bags={bags}
                         ownedByEncyclopediaId={ownedByEncyclopediaId}
                         first={isFirst}
+                        ornament={sectionOrnament(group.ornamentFile, group.ornamentClass)}
                       />
                     )
                   }
@@ -256,16 +329,27 @@ export default function Encyclopedia() {
                       bags={bags}
                       ownedByEncyclopediaId={ownedByEncyclopediaId}
                       first={isFirst}
+                      ornament={sectionOrnament(group.ornamentFile, group.ornamentClass)}
                     />
                   )
                 })}
               </div>
             )}
 
-            <div
-              aria-hidden
-              className="border-t-2 border-b-2 border-[var(--tj-ink)] h-1.5 my-16"
-            />
+            <figure className="my-16 flex flex-col items-center" aria-hidden>
+              <img
+                src={`${BASE}decor/${
+                  view === 'dictionary' ? 'spots/animals/dog-pack-color.svg' : 'spots/people/courtship-scene-color.svg'
+                }`}
+                alt=""
+                className="w-full max-w-lg opacity-80 select-none"
+              />
+              <figcaption className="font-[var(--tj-body)] italic text-sm md:text-base opacity-70 mt-3 text-center">
+                {view === 'dictionary'
+                  ? 'Bag a stray for the pack?'
+                  : 'Hand and bag in marriage?'}
+              </figcaption>
+            </figure>
 
             <section>
               <div className="max-w-2xl mx-auto">
@@ -287,6 +371,7 @@ export default function Encyclopedia() {
                       the maintainer will review.
                     </>
                   }
+                  ornament={sectionOrnament(SUGGEST_SECTION.ornamentFile, SUGGEST_SECTION.ornamentClass)}
                   first
                 />
               </div>
@@ -302,6 +387,62 @@ export default function Encyclopedia() {
 
 const GALLERY_GRID = 'grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4'
 
+function GalleryFigure({
+  file,
+  caption,
+  side,
+  top,
+  size = 'md',
+}: {
+  file: string
+  caption: React.ReactNode
+  side: 'left' | 'right'
+  top: string
+  size?: 'md' | 'lg' | 'xl'
+}) {
+  const widthClass = size === 'xl' ? 'w-80' : size === 'lg' ? 'w-60' : 'w-44'
+  const offsetClass =
+    size === 'xl'
+      ? side === 'left' ? '-left-80' : '-right-80'
+      : size === 'lg'
+      ? side === 'left' ? '-left-60' : '-right-60'
+      : side === 'left' ? '-left-44' : '-right-44'
+  const justifyClass = side === 'left' ? 'justify-start' : 'justify-end flex-row-reverse'
+  return (
+    <aside
+      aria-hidden
+      className={`group/figure hidden lg:block absolute ${offsetClass} ${top} ${widthClass} select-none`}
+    >
+      <img
+        src={`${BASE}decor/${file}`}
+        alt=""
+        className="w-full h-auto opacity-55 group-hover/figure:opacity-100 transition-opacity duration-300"
+      />
+      <div className={`mt-2 flex items-center gap-1.5 ${justifyClass} opacity-0 group-hover/figure:opacity-100 transition-opacity duration-500`}>
+        <span className="h-px w-0 group-hover/figure:w-4 bg-[var(--tj-ink)]/60 shrink-0 transition-[width] duration-500" />
+        <span className="font-[var(--tj-body)] italic tracking-[0.06em] text-xs whitespace-nowrap opacity-80">
+          {caption}
+        </span>
+      </div>
+    </aside>
+  )
+}
+
+function sectionOrnament(
+  file: string | undefined,
+  sizeClass = 'h-14 md:h-16',
+): React.ReactNode {
+  if (!file) return null
+  return (
+    <img
+      src={`${BASE}decor/${file}`}
+      alt=""
+      aria-hidden
+      className={`${sizeClass} w-auto select-none`}
+    />
+  )
+}
+
 function SpecialSection({
   id,
   label,
@@ -309,6 +450,7 @@ function SpecialSection({
   bags,
   ownedByEncyclopediaId,
   first = false,
+  ornament,
 }: {
   id: string
   label: string
@@ -316,6 +458,7 @@ function SpecialSection({
   bags: EncyclopediaBag[]
   ownedByEncyclopediaId: Map<string, PantryBag>
   first?: boolean
+  ornament?: React.ReactNode
 }) {
   const grouped = useMemo(() => {
     const buckets = SPECIAL_MATERIAL_GROUPS.map((g) => ({
@@ -329,7 +472,7 @@ function SpecialSection({
 
   return (
     <section>
-      <SectionHeader id={id} label={label} count={bags.length} blurb={blurb} first={first} />
+      <SectionHeader id={id} label={label} count={bags.length} blurb={blurb} first={first} ornament={ornament} />
       {grouped.buckets.map(({ group, bags: groupBags }, idx) => (
         <div key={group.material}>
           <MaterialSubheading id={group.id} label={group.label} count={groupBags.length} first={idx === 0} />
@@ -392,6 +535,7 @@ function TypeSection({
   bags,
   ownedByEncyclopediaId,
   first = false,
+  ornament,
 }: {
   id: string
   label: string
@@ -399,10 +543,11 @@ function TypeSection({
   bags: EncyclopediaBag[]
   ownedByEncyclopediaId: Map<string, PantryBag>
   first?: boolean
+  ornament?: React.ReactNode
 }) {
   return (
     <section>
-      <SectionHeader id={id} label={label} count={bags.length} blurb={blurb} first={first} />
+      <SectionHeader id={id} label={label} count={bags.length} blurb={blurb} first={first} ornament={ornament} />
       <ul className={GALLERY_GRID}>
         {bags.map((bag) => (
           <li key={bag.id}>

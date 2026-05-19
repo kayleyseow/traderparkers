@@ -6,6 +6,10 @@ export type SectionDef = {
   label: string
   scrubberLabel?: string
   blurb: string
+  /** Filename under public/decor/ for the section's leading ornament image. */
+  ornamentFile?: string
+  /** Tailwind size override (e.g. "h-20 md:h-24") for detail-heavy ornaments. */
+  ornamentClass?: string
 }
 
 export type MaterialGroupDef = {
@@ -46,6 +50,8 @@ export const STATES_SECTION = {
   id: 'enc-states',
   label: 'States & Cities',
   scrubberLabel: 'States',
+  ornamentFile: 'icons/compass.svg',
+  ornamentClass: 'h-20 md:h-[5.6rem]',
   blurb:
     'Regional totes — one per state, plus a few that zoom in on specific cities and regions.',
 }
@@ -56,6 +62,8 @@ export const NON_LOCATION_SECTIONS: SectionDef[] = [
     id: 'enc-special',
     label: 'Special Editions',
     scrubberLabel: 'Special',
+    ornamentFile: 'spots/botanical/rose-basket.svg',
+    ornamentClass: 'h-24 md:h-28',
     blurb:
       'Themed bags that aren’t tied to a state — pickle, sardine, cheese, wine.',
   },
@@ -64,6 +72,8 @@ export const NON_LOCATION_SECTIONS: SectionDef[] = [
     id: 'enc-standard',
     label: 'Standard Bags',
     scrubberLabel: 'Standard',
+    ornamentFile: 'spots/animals/three-chickens.svg',
+    ornamentClass: 'h-24 md:h-28',
     blurb:
       'The everyday lineup — insulated, mini canvas, washable paper, and more.',
   },
@@ -73,6 +83,8 @@ export const SUGGEST_SECTION = {
   id: 'enc-suggest',
   label: 'Add or Edit a Bag',
   scrubberLabel: 'Add or Edit',
+  ornamentFile: 'icons/pen-nibs.svg',
+  ornamentClass: 'h-24 md:h-28',
   blurb:
     "Send a missing bag, or anything off about one that's already here. Submissions land as a GitHub issue the maintainer will review.",
 }

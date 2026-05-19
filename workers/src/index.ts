@@ -6,6 +6,7 @@
  *   POST /pantry         — password-gated; commits a new bag + photos to the repo
  *   POST /pantry/edit    — password-gated; updates an existing pantry entry
  *   POST /pantry/delete  — password-gated; removes a pantry entry + its photos
+ *   POST /encyclopedia   — password-gated; commits a new encyclopedia entry + photos
  *   POST /settings       — password-gated; persists per-key JSON settings
  *   POST /suggestions    — public (Turnstile-protected); opens a GitHub issue
  *
@@ -20,6 +21,7 @@ type Env = {
   GITHUB_REPO: string
   GITHUB_BRANCH: string
   PANTRY_PATH: string
+  ENCYCLOPEDIA_PATH: string
   PHOTOS_PATH_PREFIX: string
   ALLOWED_ORIGINS: string
   // Secrets (wrangler secret put)
@@ -52,6 +54,7 @@ const RATE_LIMITED_PATHS = new Set([
   '/pantry',
   '/pantry/edit',
   '/pantry/delete',
+  '/encyclopedia',
   '/settings',
   '/suggestions',
 ])
@@ -74,6 +77,7 @@ app.get('/', (c) =>
       'POST /pantry',
       'POST /pantry/edit',
       'POST /pantry/delete',
+      'POST /encyclopedia',
       'POST /settings',
       'POST /suggestions',
     ],
@@ -437,6 +441,226 @@ app.post('/pantry/delete', async (c) => {
     return c.json({ error: `Failed to commit: ${(err as Error).message}` }, 502)
   }
 })
+
+/* ──────────────────────────  /encyclopedia  ──────────────────────────
+   Commits a brand-new bag design to encyclopedia.json plus its photo
+   files. Photo paths are computed client-side (the frontend knows
+   type→folder convention and locale slugs); the worker just validates
+   the path is safe and writes the files. */
+
+type EncyclopediaAngle = 'front' | 'back' | 'left' | 'right' | 'bottom'
+const ENCYCLOPEDIA_ANGLES: EncyclopediaAngle[] = ['front', 'back', 'left', 'right', 'bottom']
+const MATERIAL_VALUES = new Set([
+  'canvas', 'polypropylene', 'jute', 'paper', 'insulated', 'nylon',
+])
+// Restrict to the existing category folders so the form can't write outside `public/bags/`.
+const PHOTO_DIR_RE = /^bags\/(locations|special-bags|standard-bags|jute-bags|canvas-bags)\/[a-z0-9]+(?:-[a-z0-9]+)*$/
+
+type IncomingEntry = {
+  id: string
+  name: string
+  type: 'state' | 'special' | 'standard'
+  state?: string
+  stateCode?: string
+  region?: string
+  /** Number (1900-2100) for known release years, or a string like "1980s" for vintage canvases. */
+  year?: number | string
+  description?: string
+  source?: string
+  materials?: string[]
+  design?: {
+    subtitle?: string
+    blurb?: string
+    angleCaptions?: Partial<Record<EncyclopediaAngle, string>>
+  }
+  /** Editorial callout for rare/discontinued bags. */
+  note?: string
+  /** Backup URLs supporting the note. */
+  noteSources?: string[]
+  /** Per-angle source URLs; falls back to `source` when an angle isn't listed. */
+  referencePhotoSources?: Partial<Record<EncyclopediaAngle, string>>
+  /** Gallery card photo scale multiplier (0.5-3.0). */
+  cardZoom?: number
+}
+
+type IncomingEntryPhoto = {
+  angle: EncyclopediaAngle
+  name: string
+  base64: string
+}
+
+app.post('/encyclopedia', async (c) => {
+  let body: {
+    password?: string
+    entry?: IncomingEntry
+    photoDir?: string
+    photos?: IncomingEntryPhoto[]
+  }
+  try {
+    body = await c.req.json()
+  } catch {
+    return c.json({ error: 'Invalid JSON' }, 400)
+  }
+
+  const { password, entry, photoDir, photos = [] } = body
+  if (!password || !entry || !photoDir) {
+    return c.json({ error: 'Missing password, entry, or photoDir' }, 400)
+  }
+
+  const incomingHash = await sha256Hex(password)
+  if (!constantTimeEqual(incomingHash, c.env.ADMIN_HASH)) {
+    return c.json({ error: 'Wrong password' }, 401)
+  }
+
+  const fieldError = validateEncyclopediaEntry(entry, photoDir, photos)
+  if (fieldError) return c.json({ error: fieldError }, 400)
+
+  let existing: { content: string; sha: string }
+  try {
+    existing = await ghReadFile(c.env, c.env.ENCYCLOPEDIA_PATH)
+  } catch (err) {
+    return c.json({ error: `Failed to read encyclopedia: ${(err as Error).message}` }, 502)
+  }
+
+  let encyclopedia: { id?: string }[]
+  try {
+    const parsed = JSON.parse(existing.content)
+    if (!Array.isArray(parsed)) throw new Error('not an array')
+    encyclopedia = parsed
+  } catch {
+    return c.json({ error: 'encyclopedia.json is not valid JSON array' }, 502)
+  }
+
+  if (encyclopedia.some((b) => b.id === entry.id)) {
+    return c.json(
+      { error: `An entry with id "${entry.id}" already exists.`, code: 'duplicate_id' },
+      409,
+    )
+  }
+
+  // Stage photos first; their paths feed back into the entry's referencePhotos.
+  const referencePhotos: string[] = []
+  const writes: { path: string; contentBase64: string }[] = []
+  // Iterate in fixed angle order so referencePhotos is deterministic regardless of upload order.
+  for (const angle of ENCYCLOPEDIA_ANGLES) {
+    const p = photos.find((ph) => ph.angle === angle)
+    if (!p) continue
+    const ext = sanitizeExtension(p.name)
+    const repoPath = `${photoDir}/${angle}${ext}`
+    writes.push({ path: 'public/' + repoPath, contentBase64: p.base64 })
+    referencePhotos.push(repoPath)
+  }
+
+  // Strip undefined fields so JSON output stays clean; only include design if it has content.
+  const designHasContent =
+    !!(entry.design?.subtitle || entry.design?.blurb || (entry.design?.angleCaptions && Object.keys(entry.design.angleCaptions).length > 0))
+  const design = designHasContent ? entry.design : undefined
+  const finalEntry: Record<string, unknown> = {
+    id: entry.id,
+    name: entry.name,
+    type: entry.type,
+  }
+  if (entry.state) finalEntry.state = entry.state
+  if (entry.stateCode) finalEntry.stateCode = entry.stateCode
+  if (entry.region) finalEntry.region = entry.region
+  if (entry.year !== undefined) finalEntry.year = entry.year
+  if (entry.description) finalEntry.description = entry.description
+  if (design) finalEntry.design = design
+  if (entry.note) finalEntry.note = entry.note
+  if (entry.noteSources?.length) finalEntry.noteSources = entry.noteSources
+  if (referencePhotos.length) finalEntry.referencePhotos = referencePhotos
+  if (entry.source) finalEntry.source = entry.source
+  if (entry.referencePhotoSources && Object.keys(entry.referencePhotoSources).length > 0) {
+    finalEntry.referencePhotoSources = entry.referencePhotoSources
+  }
+  if (entry.materials?.length) finalEntry.materials = entry.materials
+  if (entry.cardZoom !== undefined) finalEntry.cardZoom = entry.cardZoom
+
+  encyclopedia.push(finalEntry as { id?: string })
+  const newContent = JSON.stringify(encyclopedia, null, 2) + '\n'
+  writes.push({ path: c.env.ENCYCLOPEDIA_PATH, contentBase64: utf8ToBase64(newContent) })
+
+  try {
+    const result = await ghCommitMany(
+      c.env,
+      { writes },
+      `Add encyclopedia entry: ${entry.name}`,
+    )
+    return c.json({ ok: true, id: entry.id, commitUrl: result.commitUrl })
+  } catch (err) {
+    return c.json({ error: `Failed to commit: ${(err as Error).message}` }, 502)
+  }
+})
+
+function validateEncyclopediaEntry(
+  entry: IncomingEntry,
+  photoDir: string,
+  photos: IncomingEntryPhoto[],
+): string | null {
+  if (!entry.id || !/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(entry.id) || entry.id.length > 80) {
+    return 'Invalid id (kebab-case, max 80 chars)'
+  }
+  if (!entry.name || entry.name.length > 200) return 'Invalid name'
+  if (!['state', 'special', 'standard'].includes(entry.type)) return 'Invalid type'
+  if (!PHOTO_DIR_RE.test(photoDir)) return 'Invalid photoDir (must match bags/<category>/<slug>)'
+  if (photos.length > 5) return 'Too many photos (max 5)'
+  for (const p of photos) {
+    if (!ENCYCLOPEDIA_ANGLES.includes(p.angle)) return `Invalid angle: ${p.angle}`
+  }
+  if (entry.description && entry.description.length > 400) return 'Description too long (max 400)'
+  if (entry.design?.subtitle && entry.design.subtitle.length > 200) return 'Subtitle too long'
+  if (entry.design?.blurb && entry.design.blurb.length > 2000) return 'Blurb too long'
+  if (entry.design?.angleCaptions) {
+    if (typeof entry.design.angleCaptions !== 'object' || Array.isArray(entry.design.angleCaptions)) {
+      return 'Invalid angleCaptions'
+    }
+    for (const [k, v] of Object.entries(entry.design.angleCaptions)) {
+      if (!ENCYCLOPEDIA_ANGLES.includes(k as EncyclopediaAngle)) return `Invalid angleCaption key: ${k}`
+      if (typeof v !== 'string' || v.length > 300) return `Invalid angleCaption value for ${k}`
+    }
+  }
+  if (entry.note && entry.note.length > 800) return 'Note too long (max 800)'
+  if (entry.noteSources) {
+    if (!Array.isArray(entry.noteSources)) return 'Invalid noteSources'
+    if (entry.noteSources.length > 10) return 'Too many noteSources (max 10)'
+    for (const s of entry.noteSources) {
+      if (typeof s !== 'string' || s.length > 400) return 'Invalid noteSources entry'
+    }
+  }
+  if (entry.source && entry.source.length > 400) return 'Source URL too long'
+  if (entry.referencePhotoSources) {
+    if (typeof entry.referencePhotoSources !== 'object' || Array.isArray(entry.referencePhotoSources)) {
+      return 'Invalid referencePhotoSources'
+    }
+    for (const [k, v] of Object.entries(entry.referencePhotoSources)) {
+      if (!ENCYCLOPEDIA_ANGLES.includes(k as EncyclopediaAngle)) return `Invalid referencePhotoSource key: ${k}`
+      if (typeof v !== 'string' || v.length > 400) return `Invalid referencePhotoSource value for ${k}`
+    }
+  }
+  if (entry.cardZoom !== undefined) {
+    if (typeof entry.cardZoom !== 'number' || !Number.isFinite(entry.cardZoom) || entry.cardZoom < 0.5 || entry.cardZoom > 3) {
+      return 'Invalid cardZoom (must be 0.5-3.0)'
+    }
+  }
+  if (entry.year !== undefined) {
+    if (typeof entry.year === 'number') {
+      if (!Number.isInteger(entry.year) || entry.year < 1900 || entry.year > 2100) {
+        return 'Invalid year (number must be 1900-2100)'
+      }
+    } else if (typeof entry.year === 'string') {
+      if (!entry.year || entry.year.length > 100) return 'Invalid year string'
+    } else {
+      return 'Invalid year'
+    }
+  }
+  if (entry.materials) {
+    if (!Array.isArray(entry.materials)) return 'Invalid materials'
+    for (const m of entry.materials) {
+      if (!MATERIAL_VALUES.has(m)) return `Invalid material: ${m}`
+    }
+  }
+  return null
+}
 
 function validateBag(bag: IncomingBag): string | null {
   if (!bag.slug || !/^[a-z0-9-]{1,80}$/.test(bag.slug)) {
@@ -856,7 +1080,9 @@ function sanitizeExtension(filename: string): string {
   const m = filename.toLowerCase().match(/\.([a-z0-9]{1,5})$/)
   if (!m) return ''
   const ext = m[1]
-  const allowed = new Set(['jpg', 'jpeg', 'png', 'webp', 'gif', 'heic', 'heif'])
+  // HEIC/HEIF are intentionally excluded — browsers can't render them in <img>.
+  // The admin form transcodes iPhone HEICs to JPEG client-side before upload.
+  const allowed = new Set(['jpg', 'jpeg', 'png', 'webp', 'gif'])
   return allowed.has(ext) ? `.${ext}` : ''
 }
 

@@ -7,6 +7,7 @@ import type {
 } from '../../types'
 import { DEFAULT_VISIBILITY } from '../../types'
 import StoreSelect from './StoreSelect'
+import { looksLikeHeic, normalizeImageFile } from './heic'
 
 const BASE = import.meta.env.BASE_URL
 const WORKER_URL = import.meta.env.VITE_WORKER_URL
@@ -248,6 +249,19 @@ function EditForm({
   // Reject collisions with *other* entries.
   const duplicateSlug =
     slugChanged && data.pantry.some((b) => b.slug !== original.slug && b.slug === newSlug)
+  // Other logs of the same encyclopedia bag, excluding the entry being
+  // edited — drives the soft "previously logged" warning.
+  const otherLogsOfSameBag = useMemo(
+    () =>
+      selectedEncyclopediaBag
+        ? data.pantry.filter(
+            (b) =>
+              b.encyclopediaId === selectedEncyclopediaBag.id && b.slug !== original.slug,
+          )
+        : [],
+    [data.pantry, selectedEncyclopediaBag, original.slug],
+  )
+  const alreadyLoggedBefore = otherLogsOfSameBag.length > 0 && !duplicateSlug
 
   const valid =
     selectedEncyclopediaBag !== null &&
@@ -256,10 +270,10 @@ function EditForm({
     memory.trim().length > 0 &&
     !duplicateSlug
 
-  function addPhotos(files: FileList | null) {
-    if (!files) return
+  function addPhotos(files: File[]) {
+    if (files.length === 0) return
     const next: PhotoSlot[] = [...photos]
-    for (const file of Array.from(files)) {
+    for (const file of files) {
       if (next.length >= 8) break
       next.push({ kind: 'new', file, previewUrl: URL.createObjectURL(file) })
     }
@@ -459,6 +473,28 @@ function EditForm({
         />
       </Field>
 
+      {alreadyLoggedBefore && (
+        <div className="border-2 border-[var(--tj-kraft)] bg-[var(--tj-kraft)]/20 px-4 py-3 text-sm">
+          <strong className="font-[var(--tj-body)] tracking-[0.15em] text-xs uppercase block mb-1">
+            Previously logged
+          </strong>
+          <span className="italic opacity-90">
+            This bag has been logged{' '}
+            {otherLogsOfSameBag.length === 1
+              ? 'once'
+              : `${otherLogsOfSameBag.length} times`}{' '}
+            elsewhere
+            {otherLogsOfSameBag.length <= 3
+              ? ` (${otherLogsOfSameBag
+                  .map((b) => b.dateAcquired)
+                  .sort()
+                  .join(', ')})`
+              : ''}
+            .
+          </span>
+        </div>
+      )}
+
       {duplicateSlug && (
         <div className="border-2 border-[var(--tj-red)] bg-[var(--tj-red)]/10 px-4 py-3 text-sm">
           <strong className="font-[var(--tj-body)] tracking-[0.15em] text-xs uppercase block mb-1">
@@ -536,10 +572,31 @@ function PhotoEditor({
   onMove,
 }: {
   photos: PhotoSlot[]
-  onAdd: (files: FileList | null) => void
+  onAdd: (files: File[]) => void
   onRemove: (index: number) => void
   onMove: (index: number, direction: -1 | 1) => void
 }) {
+  const [converting, setConverting] = useState(0)
+  const [convertError, setConvertError] = useState<string | null>(null)
+
+  async function handlePicked(files: FileList | null) {
+    if (!files) return
+    setConvertError(null)
+    const picked = Array.from(files)
+    const heicCount = picked.filter(looksLikeHeic).length
+    if (heicCount > 0) setConverting((n) => n + heicCount)
+    try {
+      const normalized = await Promise.all(picked.map(normalizeImageFile))
+      onAdd(normalized)
+    } catch (err) {
+      setConvertError(
+        `Couldn't convert a HEIC photo: ${(err as Error).message}. Try re-exporting as JPEG.`,
+      )
+    } finally {
+      if (heicCount > 0) setConverting((n) => Math.max(0, n - heicCount))
+    }
+  }
+
   return (
     <div className="space-y-3">
       {photos.length > 0 && (
@@ -606,16 +663,24 @@ function PhotoEditor({
       {photos.length < 5 ? (
         <input
           type="file"
-          accept="image/*"
+          accept="image/*,.heic,.heif"
           multiple
           onChange={(e) => {
-            onAdd(e.target.files)
+            handlePicked(e.target.files)
             e.target.value = ''
           }}
           className="w-full text-sm font-serif file:mr-3 file:border-2 file:border-[var(--tj-ink)] file:bg-[var(--tj-cream)] file:px-3 file:py-2 file:font-[var(--tj-body)] file:tracking-[0.15em] file:text-[0.7rem] file:uppercase file:cursor-pointer hover:file:bg-[var(--tj-ink)] hover:file:text-[var(--tj-cream)]"
         />
       ) : (
         <p className="text-xs italic opacity-60">Maximum 5 photos.</p>
+      )}
+      {converting > 0 && (
+        <p className="text-xs italic opacity-70">
+          Converting {converting} HEIC {converting === 1 ? 'photo' : 'photos'} to JPEG…
+        </p>
+      )}
+      {convertError && (
+        <p className="text-xs italic text-[var(--tj-red)]">{convertError}</p>
       )}
     </div>
   )

@@ -53,8 +53,31 @@ export type EncyclopediaBag = {
    */
   year?: number | string
 
-  /** A short blurb describing the design. */
+  /**
+   * Short hand-written summary used as the SEO `<meta name="description">`
+   * for routes that render this bag. NOT shown on the encyclopedia pages
+   * themselves — those use `design.blurb`. Target ~150-160 chars.
+   */
   description?: string
+
+  /**
+   * Editorial design copy. Migrated out of src/bagPhotos.ts in 2026-05-18 so
+   * the encyclopedia.json schema owns this content.
+   *
+   * - `subtitle`: italic phrase rendered after the name in the dictionary view
+   *   (e.g. "the Beautiful").
+   * - `blurb`: long-form design commentary shown in the dictionary row and the
+   *   detail page's "about this design" paragraph. Target ~500-600 chars per
+   *   the design-notes-blurb-length convention.
+   * - `angleCaptions`: per-side captions for the photo viewer.
+   */
+  design?: {
+    subtitle?: string
+    blurb?: string
+    angleCaptions?: Partial<
+      Record<'front' | 'back' | 'left' | 'right' | 'bottom', string>
+    >
+  }
 
   /**
    * Editorial callout shown above the metadata on the detail page —

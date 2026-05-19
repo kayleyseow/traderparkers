@@ -1,0 +1,9 @@
+User-agent: *
+Disallow: /tjbags/
+Allow: /tjbags/encyclopedia
+Allow: /tjbags/assets/
+Allow: /tjbags/favicon.ico
+Allow: /tjbags/apple-touch-icon.png
+Allow: /tjbags/sitemap.xml
+
+Sitemap: https://kayleyseow.github.io/tjbags/sitemap.xml

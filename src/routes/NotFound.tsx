@@ -2,8 +2,10 @@ import { Link } from 'react-router'
 import TopNav from '../TopNav'
 import Footer from '../Footer'
 import landingStyles from './Landing.module.css'
+import { useTitle } from '../useTitle'
 
 export default function NotFound() {
+  useTitle('Not Found', 'The page you were looking for is not on the shelf today.', true)
   return (
     <main className="relative min-h-screen bg-[var(--tj-cream)] text-[var(--tj-ink)] px-6 pt-6 md:pt-8 overflow-hidden">
       <div className="relative z-10 max-w-6xl mx-auto">

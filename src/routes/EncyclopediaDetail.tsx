@@ -4,7 +4,6 @@ import type { EncyclopediaBag, EncyclopediaVariant, PantryBag } from '../types'
 import {
   ANGLE_LABEL,
   ANGLE_ORDER,
-  DESIGN_NOTES,
   type Angle,
   inferAngleMap,
   photoUrl,
@@ -14,6 +13,7 @@ import Footer from '../Footer'
 import MaterialChips from '../MaterialChips'
 import { US_LOCALES } from '../usLocales'
 import { SPECIAL_MATERIAL_GROUPS } from './encyclopedia/sections'
+import { useTitle } from '../useTitle'
 
 const BASE = import.meta.env.BASE_URL
 
@@ -34,6 +34,42 @@ export default function EncyclopediaDetail() {
       .then(([encyclopedia, pantry]) => setData({ encyclopedia, pantry }))
       .catch(() => setData({ encyclopedia: [], pantry: [] }))
   }, [])
+
+  const titleEntry = data?.encyclopedia.find((c) => c.id === id)
+  const seoDescription =
+    titleEntry?.description ?? truncateForMeta(titleEntry?.design?.blurb)
+  const canonicalUrl = id ? `https://kayleyseow.github.io/tjbags/encyclopedia/${id}` : undefined
+  const ogImage = titleEntry?.referencePhotos?.[0]
+    ? `https://kayleyseow.github.io/tjbags/${titleEntry.referencePhotos[0]}`
+    : undefined
+  const displayName = titleEntry?.region ?? titleEntry?.name ?? 'Bag'
+
+  useTitle({
+    title: displayName,
+    description: seoDescription,
+    canonical: titleEntry ? canonicalUrl : undefined,
+    og: titleEntry
+      ? {
+          title: `${displayName} · Trader Parker's`,
+          description: seoDescription,
+          url: canonicalUrl,
+          image: ogImage,
+        }
+      : undefined,
+    jsonLd: titleEntry
+      ? {
+          '@context': 'https://schema.org',
+          '@type': 'Product',
+          name: displayName,
+          description: seoDescription,
+          image: titleEntry.referencePhotos?.map(
+            (p) => `https://kayleyseow.github.io/tjbags/${p}`,
+          ),
+          brand: { '@type': 'Brand', name: "Trader Joe's" },
+          category: 'Reusable shopping bag',
+        }
+      : undefined,
+  })
 
   if (!data) return <LoadingState />
 
@@ -97,7 +133,7 @@ function EncyclopediaView({
   prev: EncyclopediaBag | undefined
   next: EncyclopediaBag | undefined
 }) {
-  const design = DESIGN_NOTES[entry.id] ?? {}
+  const design = entry.design ?? {}
 
   const variants = entry.variants ?? []
   const [activeVariantId, setActiveVariantId] = useState<string | undefined>(
@@ -252,7 +288,13 @@ function EncyclopediaView({
           to="/encyclopedia"
           className="inline-flex items-center gap-2 mt-6 font-[var(--tj-body)] tracking-[0.22em] text-[0.65rem] uppercase font-semibold opacity-65 hover:opacity-100 hover:text-[var(--tj-red)] transition-colors"
         >
-          <span aria-hidden>←</span> Back to the Encyclopedia
+          <img
+            src={`${BASE}decor/icons/finger-point-left.svg`}
+            alt=""
+            aria-hidden
+            className="h-3 w-auto opacity-80 select-none"
+          />
+          Back to the Encyclopedia
         </Link>
 
         <header className="text-center mt-2">
@@ -577,8 +619,14 @@ function EncyclopediaView({
             <div>
               {prev && (
                 <Link to={`/encyclopedia/${prev.id}`} className="block group">
-                  <p className="font-[var(--tj-body)] tracking-[0.25em] text-[0.6rem] uppercase font-semibold opacity-60 mb-1">
-                    ← Previous
+                  <p className="font-[var(--tj-body)] tracking-[0.25em] text-[0.6rem] uppercase font-semibold opacity-60 mb-1 flex items-center gap-1.5">
+                    <img
+                      src={`${BASE}decor/icons/finger-point-left.svg`}
+                      alt=""
+                      aria-hidden
+                      className="h-3 w-auto select-none"
+                    />
+                    Previous
                   </p>
                   <p
                     className="text-2xl md:text-3xl text-[var(--tj-ink)] group-hover:text-[var(--tj-red)] transition-colors leading-tight"
@@ -592,8 +640,14 @@ function EncyclopediaView({
             <div className="text-right">
               {next && (
                 <Link to={`/encyclopedia/${next.id}`} className="block group">
-                  <p className="font-[var(--tj-body)] tracking-[0.25em] text-[0.6rem] uppercase font-semibold opacity-60 mb-1">
-                    Next →
+                  <p className="font-[var(--tj-body)] tracking-[0.25em] text-[0.6rem] uppercase font-semibold opacity-60 mb-1 flex items-center justify-end gap-1.5">
+                    Next
+                    <img
+                      src={`${BASE}decor/icons/finger-point-right.svg`}
+                      alt=""
+                      aria-hidden
+                      className="h-3 w-auto select-none"
+                    />
                   </p>
                   <p
                     className="text-2xl md:text-3xl text-[var(--tj-ink)] group-hover:text-[var(--tj-red)] transition-colors leading-tight"
@@ -726,4 +780,12 @@ function PanelGrain() {
       <rect width="100%" height="100%" filter="url(#panelGrainEncyclopedia)" />
     </svg>
   )
+}
+
+/** Cuts a long blurb to a meta-description-friendly length at a word boundary. */
+function truncateForMeta(s: string | undefined, max = 155): string | undefined {
+  if (!s) return undefined
+  const trimmed = s.trim()
+  if (trimmed.length <= max) return trimmed
+  return trimmed.slice(0, max).replace(/\s+\S*$/, '').trim() + '…'
 }

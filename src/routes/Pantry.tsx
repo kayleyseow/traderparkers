@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from 'react'
-import { Link } from 'react-router'
+import { Link, useLocation } from 'react-router'
 import type {
   BagType,
   CategoryVisibility,
@@ -14,6 +14,7 @@ import Footer from '../Footer'
 import StoreChip from '../StoreChip'
 import { defaultReferencePhotos } from '../bagPhotos'
 import { US_LOCALES } from '../usLocales'
+import { useTitle } from '../useTitle'
 
 const BASE = import.meta.env.BASE_URL
 const STATE_NAME_BY_CODE = new Map(US_LOCALES.map((l) => [l.code, l.name]))
@@ -22,6 +23,11 @@ type SortOrder = 'newest' | 'oldest'
 type TypeFilter = ReadonlySet<BagType>
 
 export default function Pantry() {
+  useTitle(
+    'Pantry',
+    "Parker's logged Trader Joe's tote collection — every bag found in the wild, with the store and date each was acquired.",
+    true,
+  )
   const [bags, setBags] = useState<PantryBag[] | null>(null)
   const [stores, setStores] = useState<Map<string, Store>>(new Map())
   const [encyclopediaById, setEncyclopediaById] = useState<Map<string, EncyclopediaBag>>(new Map())
@@ -44,9 +50,24 @@ export default function Pantry() {
   }
   const [query, setQuery] = useState('')
 
+  // Mock-data toggle: visiting /pantry?mock=1 swaps the pantry source to
+  // public/data/pantry-mock.json so we can preview the frame system across
+  // varied photo aspects without touching the real pantry. useLocation makes
+  // this reactive to SPA navigations (otherwise the effect wouldn't re-run
+  // when the query string toggles).
+  const location = useLocation()
+  const isMock = new URLSearchParams(location.search).has('mock')
+  const pantryUrl = `${BASE}data/${isMock ? 'pantry-mock.json' : 'pantry.json'}`
+
+  // Plaque color scheme — try ?plaque=slate | navy | brown in the URL to
+  // preview each option. Default is navy (best contrast with the red script).
+  const plaqueScheme = new URLSearchParams(location.search).get('plaque') ?? 'navy'
+  const plaqueBg =
+    plaqueScheme === 'slate' ? '#3a3d44' : plaqueScheme === 'brown' ? '#3a2418' : '#1c2640'
+
   useEffect(() => {
     Promise.all([
-      fetch(`${BASE}data/pantry.json`, { cache: 'no-cache' }).then((r) => r.json() as Promise<PantryBag[]>),
+      fetch(pantryUrl, { cache: 'no-cache' }).then((r) => r.json() as Promise<PantryBag[]>),
       fetch(`${BASE}data/stores.json`, { cache: 'no-cache' }).then((r) => r.json() as Promise<Store[]>),
       fetch(`${BASE}data/encyclopedia.json`, { cache: 'no-cache' }).then((r) => r.json() as Promise<EncyclopediaBag[]>),
     ])
@@ -88,7 +109,7 @@ export default function Pantry() {
       .catch(() => {
         /* keep defaults */
       })
-  }, [])
+  }, [pantryUrl])
 
   const availableTypes = useMemo(() => {
     if (!bags) return [] as BagType[]
@@ -142,12 +163,117 @@ export default function Pantry() {
     setQuery('')
   }
 
+  // Detect each bag's hero photo aspect (W/H) once. Used by the round-robin
+  // frame picker below so landscape photos land on landscape frames, etc.
+  const [photoAspects, setPhotoAspects] = useState<Map<string, number>>(new Map())
+  useEffect(() => {
+    if (!bags) return
+    for (const bag of bags) {
+      const heroSrc = bag.photos[0]
+      if (!heroSrc) continue
+      if (photoAspects.has(heroSrc)) continue
+      const url = resolvePhotoUrl(heroSrc)
+      if (!url) continue
+      const img = new Image()
+      img.onload = () => {
+        const a = img.naturalWidth / img.naturalHeight
+        setPhotoAspects((prev) => {
+          if (prev.has(heroSrc)) return prev
+          const next = new Map(prev)
+          next.set(heroSrc, a)
+          return next
+        })
+      }
+      img.src = url
+    }
+  }, [bags, photoAspects])
+
+  // Assign each bag a frame using least-used-from-compatible-set. Iterates in
+  // display order (newest first) so the most recent bags get first pick of
+  // unique frames. Recomputes when bags or aspect data changes.
+  //
+  // When the photo's aspect is outside every frame's compatibility tolerance
+  // (e.g. 9:16 phone video), we pick the closest-aspect frame from the top 3
+  // candidates and tag it with `stretchTo` — BagCard then sets the container
+  // aspect to the photo's actual aspect, distorting the frame slightly so the
+  // photo fits cleanly. Every photo gets a usable frame.
+  type Assignment = { frame: FrameDef; stretchTo: number | null }
+  const frameAssignment = useMemo(() => {
+    const assignment = new Map<string, Assignment>()
+    if (!bags) return assignment
+    const usage = new Map<string, number>()
+    const tolerance = 0.3
+    const ordered = [...bags].sort(
+      (a, b) => new Date(b.dateAcquired).getTime() - new Date(a.dateAcquired).getTime(),
+    )
+    for (const bag of ordered) {
+      const override = BAG_OVERRIDES[bag.slug]
+      if (override?.frame) {
+        const forced = BAG_FRAMES.find((f) => f.file === override.frame)
+        if (forced) {
+          assignment.set(bag.slug, { frame: forced, stretchTo: null })
+          usage.set(forced.file, (usage.get(forced.file) ?? 0) + 1)
+          continue
+        }
+      }
+      const heroSrc = bag.photos[0]
+      const aspect = heroSrc ? photoAspects.get(heroSrc) : undefined
+
+      let pool: FrameDef[]
+      let stretchTo: number | null = null
+      if (aspect !== undefined) {
+        // First try frames within aspect tolerance (no stretch needed).
+        const compatible = BAG_FRAMES.filter(
+          (f) =>
+            f.photoAspect !== undefined &&
+            Math.abs(Math.log(f.photoAspect / aspect)) < tolerance,
+        )
+        if (compatible.length > 0) {
+          pool = compatible
+        } else {
+          // No compatible frame: take the top 3 closest by aspect, then stretch.
+          pool = [...BAG_FRAMES]
+            .filter((f) => f.photoAspect !== undefined)
+            .sort(
+              (a, b) =>
+                Math.abs(Math.log(a.photoAspect! / aspect)) -
+                Math.abs(Math.log(b.photoAspect! / aspect)),
+            )
+            .slice(0, 3)
+          stretchTo = aspect
+        }
+      } else {
+        pool = BAG_FRAMES
+      }
+
+      // Pick the least-used frame in this pool; ties broken by pool order.
+      let best = pool[0]
+      let bestCount = usage.get(best.file) ?? 0
+      for (const f of pool) {
+        const c = usage.get(f.file) ?? 0
+        if (c < bestCount) {
+          best = f
+          bestCount = c
+        }
+      }
+      assignment.set(bag.slug, { frame: best, stretchTo })
+      usage.set(best.file, (usage.get(best.file) ?? 0) + 1)
+    }
+    return assignment
+  }, [bags, photoAspects])
+
   return (
     <main
       id="pantry"
       className="relative min-h-screen bg-[var(--tj-cream)] text-[var(--tj-ink)] px-6 pt-6 md:pt-8 overflow-hidden"
     >
       <CrumpleOverlay />
+
+      {isMock && (
+        <div className="fixed top-3 left-1/2 -translate-x-1/2 z-50 bg-[var(--tj-red)] text-[var(--tj-cream)] font-[var(--tj-body)] font-semibold tracking-[0.25em] text-[0.65rem] uppercase px-3 py-1.5 border-2 border-[var(--tj-ink)] shadow-[0_3px_0_rgba(42,31,20,0.2)] pointer-events-none">
+          Mock Data
+        </div>
+      )}
 
       <div className="relative z-10 max-w-6xl mx-auto">
         <TopNav />
@@ -190,19 +316,25 @@ export default function Pantry() {
             {filteredBags.length === 0 ? (
               <NoMatchesState onClear={clearFilters} />
             ) : (
-              <ul className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-x-6 gap-y-14 md:gap-y-16">
-                {filteredBags.map((bag, index) => (
-                  <li key={bag.slug}>
-                    <BagCard
-                      bag={bag}
-                      store={stores.get(bag.storeNumber)}
-                      encyclopediaEntry={
-                        bag.encyclopediaId ? encyclopediaById.get(bag.encyclopediaId) : undefined
-                      }
-                      index={index}
-                    />
-                  </li>
-                ))}
+              <ul className="columns-1 md:columns-2 xl:columns-3 gap-x-4 md:gap-x-5">
+                {filteredBags.map((bag, index) => {
+                  const assigned = frameAssignment.get(bag.slug)
+                  return (
+                    <li key={bag.slug} className="mb-6 md:mb-8 break-inside-avoid">
+                      <BagCard
+                        bag={bag}
+                        store={stores.get(bag.storeNumber)}
+                        encyclopediaEntry={
+                          bag.encyclopediaId ? encyclopediaById.get(bag.encyclopediaId) : undefined
+                        }
+                        index={index}
+                        assignedFrame={assigned?.frame}
+                        stretchTo={assigned?.stretchTo ?? null}
+                        plaqueBg={plaqueBg}
+                      />
+                    </li>
+                  )
+                })}
               </ul>
             )}
           </>
@@ -525,7 +657,12 @@ function TypePill({
 function NoMatchesState({ onClear }: { onClear: () => void }) {
   return (
     <div className="max-w-md mx-auto text-center py-12 border-2 border-dashed border-[var(--tj-ink)]/40 p-10 bg-[var(--tj-kraft)]/15">
-      <div className="text-5xl mb-4 select-none" aria-hidden>🔍</div>
+      <img
+        src={`${BASE}decor/icons/magnifying-glass.svg`}
+        alt=""
+        aria-hidden
+        className="mx-auto h-20 w-auto mb-4 opacity-80 select-none"
+      />
       <h3 className="font-[var(--tj-body)] tracking-[0.25em] text-sm uppercase font-bold mb-3">
         Nothing in Stock
       </h3>
@@ -552,7 +689,12 @@ function LoadingState() {
 function EmptyState() {
   return (
     <div className="max-w-md mx-auto text-center py-12 border-2 border-dashed border-[var(--tj-ink)]/40 p-10 bg-[var(--tj-kraft)]/15">
-      <div className="text-5xl mb-4 select-none" aria-hidden>🛍️</div>
+      <img
+        src={`${BASE}decor/icons/shopping_bag.svg`}
+        alt=""
+        aria-hidden
+        className="mx-auto h-20 w-auto mb-4 opacity-80 select-none"
+      />
       <h3 className="font-[var(--tj-body)] tracking-[0.25em] text-sm uppercase font-bold mb-3">
         No Bags Logged Yet
       </h3>
@@ -570,16 +712,162 @@ function EmptyState() {
   )
 }
 
+// Vintage frame variants. Aspect matches each SVG's viewBox so the frame
+// renders to true scale; inset defines where the frame's hollow center sits
+// so the photo can be inset behind it. Frame is picked deterministically
+// from the bag slug so each bag always gets the same one across reloads.
+export type FrameDef = {
+  file: string
+  aspect: string
+  inset: { top: string; right: string; bottom: string; left: string }
+  /**
+   * Optional CSS rotation applied to the frame img (degrees, clockwise).
+   * `aspect` and `inset` describe the FINAL displayed container, so the
+   * rotation just rotates the SVG visually. For 90/270 the frame img is
+   * sized via CSS container queries so it fills the container after rotation.
+   */
+  rotate?: 0 | 90 | 180 | 270
+  /**
+   * Photo aspect ratio (W/H) this frame is tuned for. Used by the aspect-aware
+   * picker so an uploaded landscape photo automatically lands on a landscape
+   * frame, portrait on a portrait frame, etc. ~1.33 = 4:3 horizontal,
+   * ~0.75 = 3:4 portrait, ~1.78 = 16:9, etc.
+   */
+  photoAspect?: number
+}
+// Inset values are measured by `scripts/measure-frames.mjs` (pixel-walks the
+// rendered frame from center outward to find the transparent "hole"). Re-run
+// the script after re-exporting any frame and paste the new values here.
+// Or use the interactive tuner at /dev/frames to dial each one visually.
+export const BAG_FRAMES: FrameDef[] = [
+  { file: 'embellished.svg',       aspect: '1374 / 1831',                inset: { top: '13%',   right: '0%',    bottom: '12%',   left: '0%' },    photoAspect: 0.75 },
+  { file: 'horizontal-hung.svg',   aspect: '1178 / 1146',                inset: { top: '28%',   right: '0%',    bottom: '11%',   left: '2%' },    photoAspect: 1.33 },
+  { file: 'lines-transparent.svg', aspect: '1786 / 1123',  rotate: 90,   inset: { top: '14%',   right: '19%',   bottom: '13%',   left: '8.5%' },  photoAspect: 1.78 },
+  { file: 'lines-transparent.svg', aspect: '1123 / 1786',                inset: { top: '19.5%', right: '15%',   bottom: '12%',   left: '15%' },   photoAspect: 0.5625 },
+  { file: 'baroque-portrait.svg',  aspect: '655 / 900',                  inset: { top: '20%',   right: '2%',    bottom: '16%',   left: '5%' },    photoAspect: 0.75 },
+  { file: 'baroque-landscape.svg', aspect: '800 / 447',                  inset: { top: '15%',   right: '7%',    bottom: '17%',   left: '7%' },    photoAspect: 1.78 },
+  { file: 'cartouche.svg',         aspect: '600 / 506',                  inset: { top: '13%',   right: '11%',   bottom: '13%',   left: '11%' },   photoAspect: 1.33 },
+  { file: 'ornate-corners.svg',    aspect: '1126 / 1500',                inset: { top: '12.5%', right: '16%',   bottom: '12%',   left: '15%' },   photoAspect: 0.75 },
+  { file: 'rococo-oval.svg',       aspect: '796 / 991',                  inset: { top: '16%',   right: '18%',   bottom: '15.5%', left: '18%' },   photoAspect: 0.75 },
+  { file: 'pearl-swag.svg',        aspect: '1024 / 757',                 inset: { top: '22%',   right: '13.5%', bottom: '21.5%', left: '13.5%' }, photoAspect: 1.78 },
+  { file: 'dragonfly-nest.svg',    aspect: '1272 / 1800',                inset: { top: '6%',    right: '10%',   bottom: '8%',    left: '10%' },   photoAspect: 0.75 },
+  { file: 'crested-square.svg',    aspect: '840 / 880',                  inset: { top: '17.5%', right: '24%',   bottom: '22%',   left: '23%' },   photoAspect: 0.75 },
+  { file: 'shell-landscape.svg',   aspect: '927 / 627',                  inset: { top: '1.5%',  right: '10%',   bottom: '0.5%',  left: '9.5%' },  photoAspect: 1.78 },
+  { file: 'floral-baroque.svg',    aspect: '417 / 626',                  inset: { top: '22%',   right: '21%',   bottom: '22%',   left: '22%' },   photoAspect: 0.75 },
+  { file: 'garden-trellis.svg',    aspect: '581 / 776',                  inset: { top: '16%',   right: '9%',    bottom: '12%',   left: '6%' },    photoAspect: 0.8 },
+  { file: 'harvest-wreath.svg',    aspect: '988 / 1272',                 inset: { top: '36%',   right: '18%',   bottom: '20%',   left: '21.5%' }, photoAspect: 0.75 },
+  { file: 'florid-portrait.svg',   aspect: '778 / 1188',                 inset: { top: '31.5%', right: '20.5%', bottom: '14.5%', left: '20%' },   photoAspect: 0.75 },
+  { file: 'cherub-arch.svg',       aspect: '622 / 792',                  inset: { top: '9.5%',  right: '16%',   bottom: '13%',   left: '14.5%' }, photoAspect: 0.75 },
+]
+
+function frameForSlug(slug: string): FrameDef {
+  let h = 0
+  for (let i = 0; i < slug.length; i++) h = ((h * 31) + slug.charCodeAt(i)) | 0
+  return BAG_FRAMES[Math.abs(h) % BAG_FRAMES.length]
+}
+
+// Per-bag tweaks when the auto-picked frame doesn't fit a particular photo.
+// - `frame`: force a specific frame file (overrides the auto-pick).
+// - `frameAspect` / `frameRotate` / `frameInset`: inline overrides of the
+//   forced frame's default config — useful for "rotated alternate" variants
+//   of a frame without adding duplicate entries to BAG_FRAMES.
+// - `squishY`: multiply the frame's natural height (e.g. 0.8 = 20% shorter).
+// - `photoZoom`: CSS scale on the photo inside the inset (e.g. 1.4 = 40% zoom in).
+// - `photoShiftY`: CSS translateY on the photo (e.g. '-10%' to shift up).
+// - `frameShiftY`: CSS translateY on the frame img (e.g. '20%' to shift frame down).
+type BagOverride = {
+  frame?: string
+  frameAspect?: string
+  frameRotate?: 0 | 90 | 180 | 270
+  frameInset?: { top: string; right: string; bottom: string; left: string }
+  squishY?: number
+  photoZoom?: number
+  photoShiftY?: string
+  frameShiftY?: string
+}
+const BAG_OVERRIDES: Record<string, BagOverride> = {
+  'flower-shop-2026-05-17': { squishY: 0.8 },
+  // Force rotated landscape embellished for the 4:3 horizontal hero photo.
+  // Replaces the older pearl-swag + zoom/shift hack — embellished's rotated
+  // variant is purpose-tuned for 4:3 horizontals.
+  'citrus-jute-2026-02-17': {
+    frame: 'embellished.svg',
+    frameAspect: '1831 / 1374',
+    frameRotate: 90,
+    frameInset: { top: '13%', right: '0%', bottom: '12%', left: '0%' },
+  },
+  'classic-reusable-2026-05-17': { frame: 'embellished.svg' },
+  'az-2026-05-15': { frame: 'baroque-landscape.svg' },
+  'ky-2026-05-15': { squishY: 0.95 },
+  // Lines-transparent now defaults to landscape (rotate: 90). Fearless-flyer
+  // has a very tall portrait photo so we override back to the unrotated
+  // portrait variant.
+  'fearless-flyer-2026-05-17': {
+    frame: 'lines-transparent.svg',
+    frameAspect: '1123 / 1786',
+    frameRotate: 0,
+    frameInset: { top: '19.5%', right: '15%', bottom: '12%', left: '15%' },
+  },
+}
+
+function squishAspect(aspect: string, factor: number): string {
+  const [w, h] = aspect.split('/').map((s) => parseFloat(s.trim()))
+  return `${w} / ${h * factor}`
+}
+
+// Frame img CSS. Without rotation it just fills the container. With 90/270 it
+// swaps width/height using container query units so the rotated SVG still
+// fills the container correctly. Optional translateY layered on top is applied
+// LAST in screen space (so "shift down" reads as down regardless of rotation).
+export function frameImgStyle(
+  rotate: 0 | 90 | 180 | 270,
+  shiftY?: string,
+): React.CSSProperties {
+  const shift = shiftY ? `translateY(${shiftY}) ` : ''
+  if (rotate === 0) {
+    return {
+      inset: 0,
+      width: '100%',
+      height: '100%',
+      transform: shift || undefined,
+    }
+  }
+  if (rotate === 180) {
+    return {
+      inset: 0,
+      width: '100%',
+      height: '100%',
+      transform: `${shift}rotate(180deg)`,
+    }
+  }
+  // 90 or 270 — swap dimensions via container query units so the rotated SVG
+  // fills the container post-rotation. Centered via translate.
+  return {
+    top: '50%',
+    left: '50%',
+    width: '100cqh',
+    height: '100cqw',
+    transform: `${shift}translate(-50%, -50%) rotate(${rotate}deg)`,
+    transformOrigin: 'center center',
+  }
+}
+
 function BagCard({
   bag,
   store,
   encyclopediaEntry,
-  index,
+  index: _index,
+  assignedFrame,
+  stretchTo,
+  plaqueBg,
 }: {
   bag: PantryBag
   store: Store | undefined
   encyclopediaEntry: EncyclopediaBag | undefined
   index: number
+  assignedFrame: FrameDef | undefined
+  stretchTo: number | null
+  plaqueBg: string
 }) {
   // Hero photo only — Parker's first upload, or the encyclopedia's front
   // photo as fallback. Full gallery lives on the bag detail page.
@@ -588,120 +876,129 @@ function BagCard({
   const heroUrl = resolvePhotoUrl(heroSrc)
   const usingFallbackPhotos = bag.photos.length === 0 && Boolean(heroSrc)
 
-  // Alternate tilt by render order — guarantees no two consecutive
-  // polaroids share an angle. ±0.5° reads as "barely askew," not chaotic.
-  const tilt = index % 2 === 0 ? 0.5 : -0.5
+  // Frames sit flat (no resting tilt) so they look "museum-mounted" rather
+  // than askew. The bag-tilt class still provides the hover lift behavior.
+  const tilt = 0
+
+  // Frame comes from the parent's round-robin assignment. Fall back to slug
+  // hash if no assignment yet (race condition before bags state loads).
+  const baseFrame = assignedFrame ?? frameForSlug(bag.slug)
+  const override = BAG_OVERRIDES[bag.slug] ?? {}
+
+  // Merge inline override fields onto the base frame so overrides can swap
+  // rotation / aspect / inset without needing duplicate BAG_FRAMES entries.
+  // `stretchTo` (from the assigner) wins over the frame's natural aspect when
+  // no compatible frame existed for this photo — the frame visually distorts
+  // to fit the photo's actual aspect.
+  const baseAspect =
+    override.frameAspect ?? (stretchTo !== null ? `${stretchTo}` : baseFrame.aspect)
+  const frame: FrameDef = {
+    file: baseFrame.file,
+    aspect: baseAspect,
+    rotate: override.frameRotate ?? baseFrame.rotate ?? 0,
+    inset: override.frameInset ?? baseFrame.inset,
+  }
+  const aspect = override.squishY ? squishAspect(frame.aspect, override.squishY) : frame.aspect
+  const photoStyle =
+    override.photoZoom || override.photoShiftY
+      ? {
+          transform: `translateY(${override.photoShiftY ?? '0'}) scale(${override.photoZoom ?? 1})`,
+        }
+      : undefined
 
   return (
-    <article className="relative py-4">
-      {/* Polaroid. White frame, thick bottom caption area, slight tilt. The
-          tape strip is a decorative element at the top, also slightly off-
-          axis so it reads as hand-applied washi tape. */}
+    <article className="relative">
       <div
-        className="polaroid relative bg-white border border-[var(--tj-ink)]/25 p-3 md:p-4 pb-4 md:pb-5 shadow-[0_3px_0_rgba(42,31,20,0.10),0_14px_24px_-8px_rgba(42,31,20,0.35)] mx-auto max-w-[420px]"
+        className="bag-tilt relative mx-auto max-w-[380px]"
         style={{ '--tilt': `${tilt}deg` } as React.CSSProperties}
       >
-        <span
-          aria-hidden
-          className="absolute -top-3 left-1/2 -translate-x-1/2 rotate-[6deg] w-20 h-5 bg-[var(--tj-cream-dark)]/80 border border-[var(--tj-ink)]/15 shadow-[0_1px_0_rgba(42,31,20,0.08)]"
-        />
-
         <Link
           to={`/bags/${bag.slug}`}
           aria-label={`View detail for ${bag.name ?? bag.slug}`}
-          className="relative block aspect-square overflow-hidden bg-[var(--tj-kraft)]/30"
+          className="relative block w-full overflow-hidden"
+          style={{ aspectRatio: aspect, containerType: 'size' }}
         >
-          {heroUrl ? (
-            <img
-              src={heroUrl}
-              alt={bag.name ?? bag.slug}
-              className="w-full h-full object-contain p-2"
-            />
-          ) : (
-            <div className="w-full h-full flex items-center justify-center text-[var(--tj-ink)]/30 text-5xl">
-              ✦
-            </div>
-          )}
-        </Link>
-
-        {/* Caption area in the polaroid's white margin — script bag name,
-            then a thin line of metadata. Title wraps gracefully on long names
-            ("Boston (Massachusetts)") with a slightly tighter line-height and
-            balanced wrap distribution so two-line captions still look intentional. */}
-        <div className="mt-3 text-center px-1">
-          <h3
-            lang="en"
-            className="text-[var(--tj-red)] text-3xl md:text-4xl leading-[1.05] text-balance break-words hyphens-auto"
-            style={{ fontFamily: 'var(--tj-script)' }}
-          >
-            <Link to={`/bags/${bag.slug}`} className="hover:opacity-80 transition-opacity">
-              {bag.name ?? 'Untitled Bag'}
-            </Link>
-          </h3>
-          <p className="mt-2 font-[var(--tj-body)] tracking-[0.22em] text-[0.6rem] uppercase flex items-center justify-center gap-[0.5em] flex-wrap">
-            <span className="opacity-50">{formatShortDate(bag.dateAcquired)}</span>
-            <span aria-hidden className="text-[var(--tj-red)] text-[0.7rem] leading-none">★</span>
-            <StoreChip storeNumber={bag.storeNumber} store={store} className="opacity-50" />
-          </p>
-        </div>
-      </div>
-
-      {/* Parker's voice in sticky-note form: warm lined paper, washi tape on
-          top, slight rotation so it reads "stuck on the page" rather than
-          aligned to the grid. Memory and the encyclopedia link share the
-          same note — Parker's perspective is one unit. */}
-      {(bag.memory || encyclopediaEntry) && (
-        <div className="mt-7 mx-auto max-w-[380px] px-2">
+          {/* Photo sits behind the frame, inset to fit the frame's hollow
+              center. Frame is overlaid on top so it can extend over the
+              photo's edges decoratively. */}
           <div
-            className="relative bg-[#FBEFC4] border border-[var(--tj-ink)]/20 px-6 pt-6 pb-4 shadow-[0_2px_0_rgba(42,31,20,0.08),0_12px_22px_-8px_rgba(42,31,20,0.28)]"
-            style={{
-              backgroundImage:
-                'repeating-linear-gradient(to bottom, transparent 0, transparent calc(1.75rem - 1px), rgba(168, 117, 60, 0.30) calc(1.75rem - 1px), rgba(168, 117, 60, 0.30) 1.75rem)',
-              backgroundPositionY: '0.96rem',
-              transform: 'rotate(-0.7deg)',
-            }}
+            className="absolute overflow-hidden"
+            style={frame.inset}
           >
-            {/* Washi tape strip — narrower than the polaroid's, slightly
-                rotated, sits like a real piece of tape across the top edge. */}
-            <span
-              aria-hidden
-              className="absolute -top-2 left-1/2 -translate-x-1/2 -rotate-3 w-16 h-4 bg-[var(--tj-kraft)]/75 border border-[var(--tj-ink)]/15 shadow-[0_1px_0_rgba(42,31,20,0.08)]"
-            />
-
-            {bag.memory && (
-              <blockquote
-                className="italic text-base md:text-lg text-[var(--tj-ink)]/85"
-                style={{ lineHeight: '1.75rem' }}
-              >
-                “{bag.memory}”
-                <footer
-                  className="font-[var(--tj-body)] tracking-[0.25em] text-[0.6rem] uppercase font-semibold opacity-60 not-italic"
-                  style={{ lineHeight: '1.75rem' }}
-                >
-                  — Parker
-                </footer>
-              </blockquote>
-            )}
-
-            {encyclopediaEntry && (
-              <div
-                className={`${bag.memory ? 'mt-3 pt-2 border-t border-dashed border-[var(--tj-ink)]/25' : ''} text-center`}
-              >
-                <Link
-                  to={`/encyclopedia/${encyclopediaEntry.id}`}
-                  className="inline-block font-[var(--tj-body)] tracking-[0.2em] text-[0.65rem] uppercase font-semibold opacity-65 hover:opacity-100 hover:text-[var(--tj-red)] underline-offset-2 hover:underline transition-colors"
-                >
-                  ↳ More info
-                </Link>
+            {heroUrl ? (
+              <img
+                src={heroUrl}
+                alt={bag.name ?? bag.slug}
+                className="w-full h-full object-contain p-1"
+                style={photoStyle}
+              />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center text-[var(--tj-ink)]/30 text-5xl">
+                ✦
               </div>
             )}
           </div>
+          <img
+            src={`${BASE}decor/frames/${frame.file}`}
+            alt=""
+            aria-hidden
+            className="absolute pointer-events-none select-none"
+            style={frameImgStyle(frame.rotate ?? 0, override.frameShiftY)}
+          />
+        </Link>
+      </div>
+
+      {/* Gallery plaque — engraved-nameplate aesthetic: cream title cartouche
+          at the top sitting on a navy body. Mounted flat below the framed
+          photo for a museum-installation feel. */}
+      <div className="mt-4 mx-auto max-w-[360px]">
+        <div
+          className="relative border-4 border-double border-[var(--tj-cream)]/40 overflow-hidden shadow-[0_2px_0_rgba(42,31,20,0.20),0_8px_16px_-8px_rgba(42,31,20,0.35)]"
+          style={{ backgroundColor: plaqueBg }}
+        >
+          {/* Title cartouche — cream highlight band */}
+          <div className="bg-[var(--tj-cream)] border-b-4 border-double border-[var(--tj-ink)]/30 px-3 py-2">
+            <h3
+              lang="en"
+              className="text-[var(--tj-red)] text-2xl md:text-3xl leading-none text-balance break-words hyphens-auto text-center"
+              style={{ fontFamily: 'var(--tj-script)' }}
+            >
+              <Link to={`/bags/${bag.slug}`} className="hover:opacity-80 transition-opacity">
+                {bag.name ?? 'Untitled Bag'}
+              </Link>
+            </h3>
+          </div>
+
+          {/* Body — navy with cream text */}
+          <div className="text-[var(--tj-cream)] px-3.5 py-2.5 md:px-4 md:py-3">
+            <p className="font-[var(--tj-body)] tracking-[0.22em] text-[0.55rem] uppercase flex items-center justify-center gap-[0.5em] flex-wrap opacity-80">
+              <span>{formatShortDate(bag.dateAcquired)}</span>
+              <span aria-hidden className="text-[var(--tj-red)]/70 text-[0.7rem] leading-none">·</span>
+              <StoreChip storeNumber={bag.storeNumber} store={store} className="text-[var(--tj-ink)]" />
+            </p>
+
+            {bag.memory && (
+              <>
+                <div aria-hidden className="my-2 flex items-center justify-center gap-2 opacity-45">
+                  <span className="h-px w-9 bg-[var(--tj-cream)]" />
+                  <span className="text-[var(--tj-red)] text-[0.7rem] leading-none">✦</span>
+                  <span className="h-px w-9 bg-[var(--tj-cream)]" />
+                </div>
+                <blockquote className="italic text-[0.85rem] md:text-sm text-center leading-tight opacity-90">
+                  “{bag.memory}”
+                  <footer className="mt-1 font-[var(--tj-body)] tracking-[0.25em] text-[0.55rem] uppercase font-semibold opacity-70 not-italic">
+                    — Parker
+                  </footer>
+                </blockquote>
+              </>
+            )}
+          </div>
         </div>
-      )}
+      </div>
 
       {usingFallbackPhotos && (
         <p className="mt-3 text-center font-[var(--tj-body)] tracking-[0.18em] text-[0.55rem] uppercase opacity-45">
-          Reference photos shown — Parker hasn't added her own yet.
+          Reference photos shown. Parker hasn't added her own yet.
         </p>
       )}
     </article>

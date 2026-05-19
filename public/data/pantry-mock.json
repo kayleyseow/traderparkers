@@ -1,0 +1,170 @@
+[
+  {
+    "slug": "mock-aaa-horiz-4-3",
+    "name": "Mock 4:3 Horizontal A",
+    "storeNumber": "78",
+    "dateAcquired": "2026-06-01",
+    "memory": "Testing aspect-aware picker with 4:3 horizontal photo.",
+    "photos": ["/pantry-photos/citrus-jute-2026-02-17-e82c26.jpeg"]
+  },
+  {
+    "slug": "mock-bbb-horiz-4-3",
+    "name": "Mock 4:3 Horizontal B",
+    "storeNumber": "78",
+    "dateAcquired": "2026-06-02",
+    "memory": "Different slug → different landscape frame.",
+    "photos": ["/pantry-photos/classic-reusable-2026-05-17-0d2799.jpeg"]
+  },
+  {
+    "slug": "mock-ccc-horiz-4-3",
+    "name": "Mock 4:3 Horizontal C",
+    "storeNumber": "78",
+    "dateAcquired": "2026-06-03",
+    "memory": "Third 4:3 horizontal — third frame variant.",
+    "photos": ["/pantry-photos/classic-reusable-2026-05-17-c2081b.jpeg"]
+  },
+  {
+    "slug": "mock-ddd-horiz-16-9",
+    "name": "Mock 16:9 Horizontal A",
+    "storeNumber": "232",
+    "dateAcquired": "2026-06-04",
+    "memory": "16:9 horizontal — should pick a 16:9-tuned frame.",
+    "photos": ["/pantry-photos/az-2026-05-15-f8b96a.jpeg"]
+  },
+  {
+    "slug": "mock-eee-horiz-16-9",
+    "name": "Mock 16:9 Horizontal B",
+    "storeNumber": "232",
+    "dateAcquired": "2026-06-05",
+    "memory": "Different slug + 16:9.",
+    "photos": ["/pantry-photos/az-2026-05-15-f8b96a.jpeg"]
+  },
+  {
+    "slug": "mock-fff-portrait-3-4",
+    "name": "Mock 3:4 Portrait A",
+    "storeNumber": "66",
+    "dateAcquired": "2026-06-06",
+    "memory": "3:4 portrait phone shot.",
+    "photos": ["/pantry-photos/ky-2026-05-15-13166f.jpeg"]
+  },
+  {
+    "slug": "mock-ggg-portrait-3-4",
+    "name": "Mock 3:4 Portrait B",
+    "storeNumber": "66",
+    "dateAcquired": "2026-06-07",
+    "memory": "Different slug → different portrait frame.",
+    "photos": ["/pantry-photos/ky-2026-05-15-13166f.jpeg"]
+  },
+  {
+    "slug": "mock-hhh-portrait-3-4",
+    "name": "Mock 3:4 Portrait C",
+    "storeNumber": "66",
+    "dateAcquired": "2026-06-08",
+    "memory": "Third 3:4 portrait — third frame.",
+    "photos": ["/pantry-photos/az-2026-05-15-f4ec9c.jpeg"]
+  },
+  {
+    "slug": "mock-iii-portrait-3-4",
+    "name": "Mock 3:4 Portrait D",
+    "storeNumber": "66",
+    "dateAcquired": "2026-06-09",
+    "memory": "Fourth 3:4 portrait — see how variety holds up.",
+    "photos": ["/pantry-photos/classic-reusable-2026-05-17-04a493.jpeg"]
+  },
+  {
+    "slug": "mock-jjj-portrait-4-5",
+    "name": "Mock 4:5 Portrait",
+    "storeNumber": "78",
+    "dateAcquired": "2026-06-10",
+    "memory": "4:5 portrait (Instagram-ish) — should still land on a portrait frame.",
+    "photos": ["/pantry-photos/flower-shop-2026-05-17-7c5a85.png"]
+  },
+  {
+    "slug": "mock-kkk-very-tall",
+    "name": "Mock Very Tall Portrait",
+    "storeNumber": "78",
+    "dateAcquired": "2026-06-11",
+    "memory": "9:16-ish very tall — likely triggers fallback since no frame is tuned that tall.",
+    "photos": ["/pantry-photos/fearless-flyer-2026-05-17-3e3515.jpeg"]
+  },
+  {
+    "slug": "mock-lll-horiz-4-3",
+    "name": "Mock 4:3 Horizontal D",
+    "storeNumber": "232",
+    "dateAcquired": "2026-06-12",
+    "memory": "Fourth 4:3 horizontal — exercising hash distribution.",
+    "photos": ["/pantry-photos/citrus-jute-2026-02-17-e82c26.jpeg"]
+  },
+  {
+    "slug": "mock-mmm-portrait-9-16",
+    "name": "Mock 9:16 Portrait",
+    "storeNumber": "78",
+    "dateAcquired": "2026-06-13",
+    "memory": "9:16 phone-video aspect — tests the very-tall edge case.",
+    "photos": ["/pantry-photos/mock-9x16-portrait.jpg"]
+  },
+  {
+    "slug": "mock-nnn-portrait-3-4",
+    "name": "Mock 3:4 Portrait E",
+    "storeNumber": "66",
+    "dateAcquired": "2026-06-14",
+    "memory": "Filling out the portrait pool to exercise all 13 portrait frames.",
+    "photos": ["/pantry-photos/ky-2026-05-15-13166f.jpeg"]
+  },
+  {
+    "slug": "mock-ooo-portrait-3-4",
+    "name": "Mock 3:4 Portrait F",
+    "storeNumber": "66",
+    "dateAcquired": "2026-06-15",
+    "memory": "Another portrait.",
+    "photos": ["/pantry-photos/az-2026-05-15-f4ec9c.jpeg"]
+  },
+  {
+    "slug": "mock-ppp-portrait-3-4",
+    "name": "Mock 3:4 Portrait G",
+    "storeNumber": "66",
+    "dateAcquired": "2026-06-16",
+    "memory": "Round-robin coverage check.",
+    "photos": ["/pantry-photos/classic-reusable-2026-05-17-04a493.jpeg"]
+  },
+  {
+    "slug": "mock-qqq-portrait-3-4",
+    "name": "Mock 3:4 Portrait H",
+    "storeNumber": "66",
+    "dateAcquired": "2026-06-17",
+    "memory": "Round-robin coverage check.",
+    "photos": ["/pantry-photos/classic-reusable-2026-05-17-686b9a.jpeg"]
+  },
+  {
+    "slug": "mock-rrr-portrait-3-4",
+    "name": "Mock 3:4 Portrait I",
+    "storeNumber": "66",
+    "dateAcquired": "2026-06-18",
+    "memory": "Round-robin coverage check.",
+    "photos": ["/pantry-photos/ky-2026-05-15-13166f.jpeg"]
+  },
+  {
+    "slug": "mock-sss-portrait-3-4",
+    "name": "Mock 3:4 Portrait J",
+    "storeNumber": "66",
+    "dateAcquired": "2026-06-19",
+    "memory": "Round-robin coverage check.",
+    "photos": ["/pantry-photos/az-2026-05-15-f4ec9c.jpeg"]
+  },
+  {
+    "slug": "mock-ttt-portrait-4-5",
+    "name": "Mock 4:5 Portrait B",
+    "storeNumber": "78",
+    "dateAcquired": "2026-06-20",
+    "memory": "Another 4:5 to exercise garden-trellis.",
+    "photos": ["/pantry-photos/flower-shop-2026-05-17-de564b.jpg"]
+  },
+  {
+    "slug": "mock-uuu-portrait-3-4",
+    "name": "Mock 3:4 Portrait K",
+    "storeNumber": "66",
+    "dateAcquired": "2026-06-21",
+    "memory": "Final portrait to cover the deepest pool entries.",
+    "photos": ["/pantry-photos/classic-reusable-2026-05-17-686b9a.jpeg"]
+  }
+]
