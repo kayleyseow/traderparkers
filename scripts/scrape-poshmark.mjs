@@ -66,7 +66,7 @@ const QUERIES = {
   'washable-paper-lunch': 'trader joes washable paper lunch bag',
   'bottle-holder-bag': 'trader joes bottle holder bag',
   'classic-reusable-tote': 'trader joes classic reusable grocery tote',
-  'reusable-flower-bag': 'trader joes flower bag tall',
+  'vintage-hibiscus': 'trader joes vintage hibiscus insulated bag flower',
   'reusable-breakfast-tote': 'trader joes breakfast tote bag',
 
   'halloween-mini-canvas': 'trader joes halloween mini canvas tote',

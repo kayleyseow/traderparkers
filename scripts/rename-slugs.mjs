@@ -33,7 +33,8 @@ const RENAMES = {
   'mini-canvas-tote': 'mini-canvas',
   'canvas-micro-tote': 'canvas-micro',
   'bottle-holder-bag': 'bottle-holder',
-  'reusable-flower-bag': 'reusable-flower',
+  'reusable-flower-bag': 'vintage-hibiscus',
+  'reusable-flower': 'vintage-hibiscus',
 }
 
 function renamePathSegment(path) {

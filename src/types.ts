@@ -46,8 +46,12 @@ export type EncyclopediaBag = {
    */
   region?: string
 
-  /** Release year, when known. */
-  year?: number
+  /**
+   * Release year, when known. Usually a number (2024), but accepts a
+   * string for the pre-polypropylene-era canvases where exact years
+   * aren't sourceable ("1980s", "late 1990s"). Display-only.
+   */
+  year?: number | string
 
   /** A short blurb describing the design. */
   description?: string
