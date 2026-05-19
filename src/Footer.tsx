@@ -1,5 +1,5 @@
 import { Link } from 'react-router'
-import redDotLogo from './assets/icons/orig_red_dot_tp_logo.svg'
+import redDotLogo from './assets/icons/orig_red_dot_tp_logo.png'
 
 /**
  * Site-wide footer used on every interior page (everything except the

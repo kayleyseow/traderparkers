@@ -344,7 +344,7 @@ export default function Encyclopedia() {
                 alt=""
                 className="w-full max-w-lg opacity-80 select-none"
               />
-              <figcaption className="font-[var(--tj-body)] italic text-sm md:text-base opacity-70 mt-3 text-center">
+              <figcaption className="font-[var(--tj-body)] italic text-sm md:text-base mt-3 text-center">
                 {view === 'dictionary'
                   ? 'Bag a stray for the pack?'
                   : 'Hand and bag in marriage?'}

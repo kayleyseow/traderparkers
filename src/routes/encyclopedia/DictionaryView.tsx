@@ -15,11 +15,18 @@ import {
 
 const BASE = import.meta.env.BASE_URL
 
-type DictMargin = { file: string; caption: string; side: 'left' | 'right' }
+type DictMargin = {
+  file: string
+  caption: string
+  side: 'left' | 'right'
+  /** Tailwind margin-top class to nudge a single entry away from neighboring marginalia
+      (e.g. `mt-24` to clear the lady-liberty caption on the left side). */
+  marginTop?: string
+}
 const DICTIONARY_MARGINS: Record<string, DictMargin> = {
   // ── States ──
   az: { file: 'spots/scenes/whimsical-airship.svg', caption: 'Bag voyage.', side: 'right' },
-  'ca-norcal': { file: 'spots/animals/hermit-crab.svg', caption: 'Bag claws.', side: 'left' },
+  'ca-norcal': { file: 'spots/animals/hermit-crab.svg', caption: 'Bag claws.', side: 'left', marginTop: 'mt-40' },
   fl: { file: 'spots/animals/dolphin.svg', caption: 'Make a splash, bag.', side: 'right' },
   ga: { file: 'spots/botanical/peach-branch-color.svg', caption: 'Just peachy.', side: 'left' },
   'ga-atlanta': { file: 'spots/scenes/sailing-boat-color.svg', caption: 'Admit one bag.', side: 'right' },
@@ -263,12 +270,12 @@ function LetterHeading({ letter, first = false }: { letter: string; first?: bool
   )
 }
 
-function DictionaryMargin({ file, caption, side }: DictMargin) {
+function DictionaryMargin({ file, caption, side, marginTop }: DictMargin) {
   const sideClass = side === 'left' ? '-left-44' : '-right-44'
   return (
     <aside
       aria-hidden
-      className={`group/margin hidden lg:block absolute ${sideClass} top-1/2 -translate-y-1/2 w-44 select-none`}
+      className={`group/margin hidden lg:block absolute ${sideClass} top-1/2 -translate-y-1/2 w-44 select-none ${marginTop ?? ''}`}
     >
       <img
         src={`${BASE}decor/${file}`}

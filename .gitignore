@@ -42,6 +42,15 @@ dist-ssr
 src/assets/icons/*_temp.png
 src/assets/icons/*_temp.svg
 
+# Original (pre-compression) parker photos — scripts/compress-parker-photos.mjs
+# stashes the originals as `<name>_full.<ext>` next to the live (compressed)
+# version. Keep them locally for safety, don't ship them.
+src/assets/parker/*_full.jpg
+src/assets/parker/*_full.jpeg
+src/assets/parker/*_full.png
+
+scripts/compress-parker-photos.mjs
+
 # Illustrator source files — large binaries, not meant for git.
 trader_parkers_bag_logo.ai
 

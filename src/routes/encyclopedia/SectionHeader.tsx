@@ -29,7 +29,7 @@ export default function SectionHeader({
         </div>
       )}
       <div className="flex-1 min-w-0">
-        <div className="flex items-baseline gap-4">
+        <div className="flex items-baseline gap-x-4 gap-y-1 flex-wrap">
           <h2
             id={id}
             className="text-[var(--tj-red)] text-4xl md:text-5xl scroll-mt-24 leading-none"
