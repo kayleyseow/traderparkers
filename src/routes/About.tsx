@@ -133,15 +133,15 @@ export default function About() {
               <InlineLink href="https://www.traderjoes.com">
                 Trader Joe's
               </InlineLink>{' '}
-              collection went. State bags turned into city totes, cities into limited edition
-              releases. In the span of a week, I now know more about Trader Joe's bags than I'll ever need to and hey, I think I can dare to say this website hosts{' '}
+              bag archive went. State bags turned into city totes, cities into limited edition releases, limited releases into bags you can't even purchase. In the span of a 
+              week, I've learned more about Trader Joe's bags than I'll ever need to and hey, we can confidently say this website hosts{' '}
               <Link
                 to="/encyclopedia"
                 className="underline underline-offset-2 hover:text-[var(--tj-red)]"
               >
-                the world's first TJ's tote encyclopedia
+                the world's first (and only!) TJ's tote encyclopedia
               </Link>
-              <FootnoteRef n={1} />. From one trader to another, I hope you love this corner of the internet, and that it's a small reminder to get the bag(s).
+              <FootnoteRef n={1} />. From one trader to another, I hope you love this corner of the internet, and that it stays a small reminder to always get the bag(s).
             </p>
             <p className="text-left italic opacity-75">
               safe travels,
@@ -219,31 +219,31 @@ export default function About() {
                   },
                 ]}
               />
-              Trader Parker is the kind of person who treats a Trader Joe's run like
-              a minor expedition. Our trader is documented to swear by a staple dinner item, her saving grace: the{' '}
+              Trader Parker is the kind of person who treats every single TJ's run like a minor expedition. While our trader is keen on exploring new releases, 
+              she is documented to swear by a staple dinner item, her saving grace: the{' '}
               <InlineLink href="https://www.traderjoes.com/home/products/pdp/organic-red-lentil-sedanini-058259">
                 red lentil pasta
               </InlineLink>
-              , for the "protein"<FootnoteRef n={2} />. For breakfast, she's bound to grab a heaping scoop of the{' '}
+              , for the "protein"<FootnoteRef n={2} />. For breakfast, she's bound to grab a heaping scoop of{' '}
               <InlineLink href="https://www.traderjoes.com/home/products/pdp/nonfat-plain-greek-yogurt-062905">
                 nonfat plain greek yogurt
               </InlineLink>
-              . And not to forget, she loves her{' '}
+              . And not to forget, although not a TJ's item, she does love her{' '}
               <InlineLink href="https://www.costco.com/p/-/kirkland-signature-protein-bar-variety-pack-212-oz-20-count/100296198">
                 cardboard fix
               </InlineLink>
-              , reserved just for snack time though.
+              , also "for the protein." This one's just for snack time, though.
             </p>
             <p>
-              The crew vividly remembers Trader Joe's runs
+              The crew vividly remembers after-work Trader Joe's runs
               to <StoreChip storeNumber="137" className="px-[0.5em] py-[0.05em] gap-[0.2em] text-[0.85em]" /> during that one summer in
-              Seattle (especially the snack runs). Trader Kayley's favorite memory is of them lugging
-              two, 24-packs of{' '}
+              Seattle (especially the pre-hike snack runs). Trader Kayley's favorite memory is of them lugging
+              two{' '}
               <InlineLink href="https://www.traderjoes.com/home/products/pdp/purified-water-080802">
-                water
+                24-packs of water
               </InlineLink>{' '}
               half an hour back to the apartment
-              <FootnoteRef n={3} /> in preparation for the (very wild) one-day Olympics trip<FootnoteRef n={4} />. What can we say, #worthit.
+              <FootnoteRef n={3} /> in preparation for the (very wild) one-day Olympics trip<FootnoteRef n={4} />. What can we say, #worthit & #wesurvived.
             </p>
           </Section>
 
@@ -384,13 +384,13 @@ export default function About() {
             <SubSection label="The Archive">
             <p>
               The archive holds 85 entries: 43 state bags, 29 specials, 13
-              standards. There is no single source for any of this. Trader
-              Kayley started by hunting down a bag for every state with a
-              Trader Joe's, one painstaking search at a time, then
-              cross-referenced the results against the Trader Joe's
+              standards. There is no single source for any of this. It
+              started as a hunt for a bag in every state with a
+              Trader Joe's, one painstaking search at a time,
+              cross-referenced against the Trader Joe's
               Bag Swap Group's community checklist
-              <FootnoteRef n={5} /> (March 2023, 63 polypropylene bags)
-              and stitched in the special-edition releases by hand. 410 reference photos were dug up from{' '}
+              <FootnoteRef n={5} /> (March 2023, 63 polypropylene bags),
+              with the special-edition releases stitched in by hand. 344 reference photos were dug up from{' '}
               <InlineLink href="https://www.reddit.com/r/traderjoes">
                 Reddit
               </InlineLink>
@@ -400,60 +400,79 @@ export default function About() {
               <InlineLink href="https://www.etsy.com">Etsy</InlineLink>,{' '}
               <InlineLink href="https://www.amazon.com">Amazon</InlineLink>
               , and{' '}
-              <InlineLink href="https://www.ebay.com">eBay</InlineLink>,
-              mostly one at a time. A small{' '}
+              <InlineLink href="https://www.ebay.com">eBay</InlineLink>
+              , mostly one at a time. The 43 state bags came first, done
+              by hand over one long night: find each listing, download
+              the photos, knock out the background in Adobe Illustrator,
+              crop, rotate, then bundle and label everything into
+              folders, one bag at a time. That night is what prompted
+              the{' '}
               <InlineLink href="https://github.com/kayleyseow/tjbags/blob/main/scripts/scrape-poshmark.mjs">
                 Poshmark scraper
-              </InlineLink>{' '}
-              handles part of the haul; Poshmark specifically because
-              sellers there reliably upload front, back, left, right, and
-              bottom shots of each bag, which is exactly the multi-angle
-              structure the archive uses. The harder half is still
-              figuring out what to look for in the first place. In
-              hindsight, a proper general-purpose scraper would have
-              turned many days into one afternoon.
+              </InlineLink>
+              , which took over most of the haul for the special and
+              standard bags. Poshmark specifically, because sellers
+              there reliably upload front, back, left, right, and bottom
+              shots of each bag, which is exactly the multi-angle
+              structure the archive uses. In hindsight, a proper
+              general-purpose scraper would have turned many long nights
+              into one afternoon. The harder half is still figuring out
+              what to look for in the first place. The one shortcut
+              throughout was Claude, which could read each photo and
+              describe what it saw, so writing every caption and blurb
+              didn't end up taking twice as long.
             </p>
             </SubSection>
             <SubSection label="The Pipeline">
             <p>
-              Each bag photo runs through a small pipeline before it lands
-              on the page. iPhone shots come in as{' '}
+              Each bag photo runs through a small pipeline before it
+              lands on the page. iPhone shots come in as{' '}
               <InlineLink href="https://en.wikipedia.org/wiki/High_Efficiency_Image_File_Format">
                 HEIC
-              </InlineLink>{' '}
-              and get converted to JPEG via{' '}
+              </InlineLink>
+              , as Apple just LOVES being special, and get converted to
+              JPEG via{' '}
               <InlineLink href="https://www.npmjs.com/package/heic-convert">
                 heic-convert
               </InlineLink>
-              , backgrounds are knocked out with{' '}
+              . Backgrounds are then knocked out with{' '}
               <InlineLink href="https://github.com/imgly/background-removal-node">
                 @imgly's background-removal-node
               </InlineLink>
-              ,{' '}
+              , and{' '}
               <InlineLink href="https://sharp.pixelplumbing.com">
                 sharp
               </InlineLink>{' '}
-              resizes everything to a consistent width, and a vintage
-              engraved frame from{' '}
+              resizes everything to a consistent width. The background
+              removal is genuinely good, but it stumbles when the bag is
+              close in color to whatever it was shot against, or when
+              there is a lot going on in the shot; those photos get
+              pulled aside and cleaned, cropped, and rotated by hand
+              instead.
+            </p>
+            <p>
+              On top of that goes a vintage engraved frame from{' '}
               <InlineLink href="https://thegraphicsfairy.com">
                 The Graphics Fairy
-              </InlineLink>{' '}
-              slips over the top. Each entry can carry multiple angles
-              (back, left, right), so a single bag is often a small
-              folder of shots. Frames are picked round-robin from a pool
-              whose aspect matches the photo, so landscape shots land on
-              landscape frames and no single frame gets reused too often.
-              A handful of bags have manual overrides where the auto-pick
-              didn't quite fit. Half of that pipeline is automated; the other half
-              (deciding which shots are good, cleaning up stray
-              background artifacts, nudging a frame inset that's off by
-              two percent) is painstaking, and a unified
-              culler-cleaner-fitter would have saved most of it.
+              </InlineLink>
+              . Each entry can carry multiple angles (back, left,
+              right), so a single bag is often a small folder of shots.
+              Frames are picked round-robin from a pool whose aspect
+              matches the photo, so landscape shots land on landscape
+              frames and no single frame gets reused too often. A
+              handful of bags have manual overrides where the auto-pick
+              didn't quite fit. Half of that pipeline is automated; the
+              other half (deciding which shots are good, nudging a frame
+              inset that's off by two percent) is painstaking, and a
+              unified culler-cleaner-fitter would have saved most of it.
             </p>
             </SubSection>
             <SubSection label="The Backend">
             <p>
-              There is no database. Admin edits and Suggest-a-bag
+              Cat's out of the bag: there is no database.
+            </p>
+            <p>
+              Admin edits and Suggest-a-bag
               submissions go through a small{' '}
               <InlineLink href="https://workers.cloudflare.com">
                 Cloudflare Worker
@@ -468,40 +487,53 @@ export default function About() {
               </InlineLink>
               , so each submission lands as a single atomic commit even
               when it touches multiple files. Every bag, every edit,
-              every suggestion is a git commit.{' '}
+              every suggestion is a git commit. (This is enough to make any seasoned developer shed a few tears, I know.){' '}
               <InlineLink href="https://www.cloudflare.com/products/turnstile/">
                 Turnstile
               </InlineLink>{' '}
-              sits in front of the Suggest form to keep the bots out. It
-              works because the site is small and slow-moving. It would
-              not scale to anything bigger; it is, plainly, a weekend's
-              worth of architectural choices.
+              sits in front of the Suggest form to keep the bots out.
+              The whole thing works because the site is small and
+              slow-moving. It would not scale to anything bigger; it is,
+              plainly, a weekend's worth of architectural choices.
             </p>
             </SubSection>
             <SubSection label="The Polish">
             <p>
-              All the page's flourishes (confetti bursts, swinging
-              frames, cat fade-ins, hover wiggles, polaroid lifts)
-              respect{' '}
+              Accessibility was not an afterthought. Every flourish on
+              the site (confetti bursts, swinging frames, cat fade-ins,
+              hover wiggles, polaroid lifts) respects{' '}
               <InlineLink href="https://developer.mozilla.org/en-US/docs/Web/CSS/@media/prefers-reduced-motion">
                 prefers-reduced-motion
               </InlineLink>
               , so if your system asks for less motion, the animations
-              soften or sit still entirely.
+              soften or sit still entirely. Hover-driven effects are
+              switched off on touch screens so they never fire on a
+              stray tap. The decorative art is hidden from screen
+              readers while every real control keeps a plain-text label,
+              headings and landmarks are properly structured, anchor
+              links land clear of the sticky nav, and every interactive
+              piece (the hidden ones included) works from the keyboard
+              with Enter and Space.
             </p>
+            <details className="group">
+              <summary className="cursor-pointer list-none font-[var(--tj-body)] tracking-[0.18em] text-[0.7rem] uppercase opacity-75 hover:opacity-100 hover:text-[var(--tj-red)] transition-opacity">
+                psst, a few things worth finding [click me!]
+              </summary>
+              <p className="mt-3">
+                On this page, hover the birthday greeting up top, brush
+                one of the hung photos, give the red dot on the
+                bazaar's awning a tap, and slow down near the cats in
+                the margins. Around the rest of the site, decline the
+                welcome on the landing page and hover the figures
+                tucked into the encyclopedia gallery's margins.
+              </p>
+            </details>
             <p>
               In sum: a one-line idea ("document Parker's growing tote
               collection") quietly outgrew itself into a fully cataloged,
               version-controlled, captcha-protected weekend obsession.
               What was meant to be a birthday card became an
-              encyclopedia engine. Trader Kayley regrets nothing.
-            </p>
-            <p>
-              A few things to find, while you're here: hover the birthday
-              greeting up top for a heart-shaped confetti burst, brush a
-              hung photo to set it swaying on its hardware, tap the red
-              dot on the bazaar's awning for a little playlist, and pass
-              by the cats in the margins to read their taglines.
+              encyclopedia engine.<FootnoteRef n={6} />
             </p>
             </SubSection>
           </Section>
@@ -510,7 +542,7 @@ export default function About() {
             label="Credits & Thanks"
             marginCat={<MarginCat file="spots/cats/cat-tux-color.svg" side="right" tagline="Much obliged" />}
           >
-            <ul className="space-y-3 list-none p-0 pl-6">
+            <ul className="space-y-3 list-none p-0">
               <CreditRow
                 title="Fonts"
                 detail={
@@ -550,12 +582,7 @@ export default function About() {
                     public-domain engravings from{' '}
                     <InlineLink href="https://thegraphicsfairy.com">
                       The Graphics Fairy
-                    </InlineLink>{' '}
-                    (a{' '}
-                    <InlineLink href="https://www.traderjoes.com/home/fearless-flyer">
-                      Fearless-Flyer
                     </InlineLink>
-                    -shaped gold mine)
                   </>
                 }
               />
@@ -586,7 +613,7 @@ export default function About() {
                   <>
                     cross-referenced against the Trader Joe's Bag Swap
                     Group's community checklist
-                    <FootnoteRef n={5} /> of 63 polypropylene bags
+                    <FootnoteRef n={5} repeat /> of 63 polypropylene bags
                     (March 2023 revision)
                   </>
                 }
@@ -613,36 +640,34 @@ export default function About() {
             <p className="italic">
               Trader Joe's, the wordmark, and the visual style being lovingly
               imitated here all belong to Trader Joe's Company. This site is a
-              personal, non-commercial fan project, made for one specific person
-              who happens to really like their bags.
+              personal, non-commercial fan project, made for their biggest fan.
             </p>
             <ol className="list-none p-0 m-0 mt-6 pt-4 border-t border-[var(--tj-ink)]/20 text-xs space-y-2 opacity-75">
               <Footnote n={1}>
                 As far as we can tell. If a more thorough one exists, please
-                point us at it.
+                point us at it!
               </Footnote>
               <Footnote n={2}>
                 Yes, the box really does say "protein." Trader Kayley tried it once with{' '}
                 <InlineLink href="https://www.traderjoes.com/home/products/pdp/organic-vodka-sauce-059975">
                 vodka sauce
                 </InlineLink>{' '}
-                and found out she did not share the same love of it. She sticks to{' '}
+                but found out she did not share the same love of it. She sticks to{' '}
                 <InlineLink href="https://www.traderjoes.com/home/products/pdp/italian-fusilli-009295">
                   regular pasta
                 </InlineLink>{' '}
                 now.
               </Footnote>
               <Footnote n={3}>
-                Bad enough that our valiant traders took the bus one stop.
+                Bad enough that our valiant traders took the 31 bus one stop down Roosevelt Way.
               </Footnote>
               <Footnote n={4}>
                 See the "golden hour" slide on the frame above (
                 <InlineLink href="https://www.fws.gov/apps/carp/rivers/refuge/dungeness/visit-us/activities">
                   Dungeness Spit Trail
                 </InlineLink>
-                , lighthouse). That's the end of the Olympics
-                day. Taken at sunset...ah, we were so oblivious to the
-                lighthouse incident.
+                , lighthouse, Port Angeles, WA). It was taken at the end of the Olympics
+                daytrip. Taken at sunset, pre-lighthouse.
               </Footnote>
               <Footnote n={5}>
                 Per the{' '}
@@ -654,6 +679,9 @@ export default function About() {
                   checklist
                 </InlineLink>{' '}
                 (private Facebook group, March 2023 revision).
+              </Footnote>
+              <Footnote n={6}>
+                Trader Kayley regrets nothing.
               </Footnote>
             </ol>
           </Section>
@@ -1198,12 +1226,13 @@ function InlineLink({ href, children }: { href: string; children: React.ReactNod
   )
 }
 
-function FootnoteRef({ n }: { n: number }) {
+function FootnoteRef({ n, repeat = false }: { n: number; repeat?: boolean }) {
   return (
     <sup className="ml-0.5">
       <a
+        id={repeat ? undefined : `noteref-${n}`}
         href={`#note-${n}`}
-        className="font-[var(--tj-body)] tracking-[0.1em] text-[0.55rem] no-underline opacity-75 hover:text-[var(--tj-red)] hover:opacity-100"
+        className="font-[var(--tj-body)] tracking-[0.1em] text-[0.55rem] no-underline opacity-75 hover:text-[var(--tj-red)] hover:opacity-100 scroll-mt-24"
       >
         [{n}]
       </a>
@@ -1214,9 +1243,13 @@ function FootnoteRef({ n }: { n: number }) {
 function Footnote({ n, children }: { n: number; children: React.ReactNode }) {
   return (
     <li id={`note-${n}`} className="flex gap-2 scroll-mt-24">
-      <span className="font-[var(--tj-body)] tracking-[0.15em] text-[0.55rem] uppercase shrink-0 mt-[0.15em] opacity-75">
+      <a
+        href={`#noteref-${n}`}
+        aria-label={`Back to reference ${n}`}
+        className="font-[var(--tj-body)] tracking-[0.15em] text-[0.55rem] uppercase shrink-0 mt-[0.15em] opacity-75 no-underline hover:text-[var(--tj-red)] hover:opacity-100"
+      >
         [{n}]
-      </span>
+      </a>
       <span>{children}</span>
     </li>
   )
