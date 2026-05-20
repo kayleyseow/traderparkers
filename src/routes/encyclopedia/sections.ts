@@ -22,32 +22,32 @@ export type MaterialGroupDef = {
 export const SPECIAL_MATERIAL_GROUPS: MaterialGroupDef[] = [
   {
     material: 'polypropylene',
-    id: 'enc-special-polypropylene',
+    id: 'special-polypropylene',
     label: 'Polypropylene',
     scrubberLabel: 'Poly',
   },
   {
     material: 'jute',
-    id: 'enc-special-jute',
+    id: 'special-jute',
     label: 'Jute',
     scrubberLabel: 'Jute',
   },
   {
     material: 'canvas',
-    id: 'enc-special-canvas',
+    id: 'special-canvas',
     label: 'Canvas',
     scrubberLabel: 'Canvas',
   },
 ]
 
 export const SPECIAL_OTHER_GROUP = {
-  id: 'enc-special-other',
+  id: 'special-other',
   label: 'Other',
   scrubberLabel: 'Other',
 }
 
 export const STATES_SECTION = {
-  id: 'enc-states',
+  id: 'states',
   label: 'States & Cities',
   scrubberLabel: 'States',
   ornamentFile: 'icons/compass.svg',
@@ -59,7 +59,7 @@ export const STATES_SECTION = {
 export const NON_LOCATION_SECTIONS: SectionDef[] = [
   {
     type: 'special',
-    id: 'enc-special',
+    id: 'special',
     label: 'Special Editions',
     scrubberLabel: 'Special',
     ornamentFile: 'spots/botanical/rose-basket.svg',
@@ -69,7 +69,7 @@ export const NON_LOCATION_SECTIONS: SectionDef[] = [
   },
   {
     type: 'standard',
-    id: 'enc-standard',
+    id: 'standard',
     label: 'Standard Bags',
     scrubberLabel: 'Standard',
     ornamentFile: 'spots/animals/three-chickens.svg',
@@ -80,7 +80,7 @@ export const NON_LOCATION_SECTIONS: SectionDef[] = [
 ]
 
 export const SUGGEST_SECTION = {
-  id: 'enc-suggest',
+  id: 'suggest',
   label: 'Add or Edit a Bag',
   scrubberLabel: 'Add or Edit',
   ornamentFile: 'icons/pen-nibs.svg',

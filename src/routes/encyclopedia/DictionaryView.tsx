@@ -139,7 +139,7 @@ export default function DictionaryView({
         kind: 'section',
       })
       for (const letter of localesByLetter.keys()) {
-        items.push({ id: `enc-letter-${letter.toLowerCase()}`, label: letter, kind: 'letter' })
+        items.push({ id: `letter-${letter.toLowerCase()}`, label: letter, kind: 'letter' })
       }
     }
     for (const { type, id, label, scrubberLabel } of NON_LOCATION_SECTIONS) {
@@ -262,7 +262,7 @@ export default function DictionaryView({
 function LetterHeading({ letter, first = false }: { letter: string; first?: boolean }) {
   return (
     <h3
-      id={`enc-letter-${letter.toLowerCase()}`}
+      id={`letter-${letter.toLowerCase()}`}
       className={`font-[var(--tj-body)] font-bold tracking-[0.5em] text-2xl ${first ? 'mt-2' : 'mt-8'} mb-2 pb-1 border-b-2 border-[var(--tj-ink)]/30 scroll-mt-24`}
     >
       {letter}

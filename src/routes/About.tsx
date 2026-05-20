@@ -1,8 +1,9 @@
-import { useEffect, useMemo, useState } from 'react'
+import { useEffect, useMemo, useRef, useState } from 'react'
+import { Link } from 'react-router'
 import TopNav from '../TopNav'
 import Footer from '../Footer'
 import StoreChip from '../StoreChip'
-import redDotLogo from '../assets/icons/orig_red_dot_tp_logo.svg'
+import redDotLogo from '../assets/icons/orig_red_dot_tp_logo.png'
 import parkerChopsticks from '../assets/parker/p-chopsticks.jpg'
 import parkerKBull from '../assets/parker/p-k-bull.jpeg'
 import parkerMast from '../assets/parker/p-r-mast.jpeg'
@@ -14,16 +15,15 @@ import { useTitle } from '../useTitle'
 
 const BASE = import.meta.env.BASE_URL
 
-/* Easter-egg playlist. Clicking the red-dot logo on the bazaar-stall
-   awning cycles through these in order, then back to silence. Each click
-   advances the iframe to the next track. CSP allows www.youtube.com in
-   frame-src. To add/swap a track: drop in the YouTube video ID (the part
-   after `v=` or after `youtu.be/`), plus a friendly title + artist for
-   the now-playing chip and an optional `start` offset in seconds. */
+/* Easter-egg playlist behind the red-dot logo on the bazaar-stall awning.
+   See BazaarSecret below for the click gestures. CSP allows www.youtube.com
+   in frame-src. To add/swap a track: drop in the YouTube video ID (the part
+   after `v=` or after `youtu.be/`), plus a friendly title + artist for the
+   now-playing chip and an optional `start` offset in seconds. */
 type SecretTrack = { id: string; title: string; artist: string; start?: number }
 const BAZAAR_SECRET_TRACKS: SecretTrack[] = [
   { id: 'CeA92xqw-QI', title: 'Bags', artist: 'Clairo', start: 6 },
-  { id: 'UWhY6kfKEts', title: 'Brazil', artist: 'Declan McKenna' },
+  { id: 'UWhY6kfKEts', title: 'Brazil', artist: 'Declan McKenna', start: 4 },
   { id: '_hLJeGl9wi8', title: 'Money Machine', artist: '100 gecs' },
   { id: 'R_iTpfSCIVk', title: 'Pink Pony Club', artist: 'Chappell Roan' },
 ]
@@ -129,9 +129,19 @@ export default function About() {
                 ]}
               />
               Ahoy! This website started as a way for you to document your growing TJ's bag collection—your bazaar, if I may—but I fear it's turned into something more.
-              There was no way of realizing how deep the Trader Joe's collection went. State bags turned into city totes, cities into limited edition
-              releases. In the span of a week, I now know more about Trader Joe's bags than I'll ever need to and hey, I think I can dare to say this website hosts 
-              the world's first TJ's tote encyclopedia<FootnoteRef n={1} />. From one trader to another, I hope you love this corner of the internet, and that it's a small reminder to bag 'em all.
+              There was no way of realizing how deep the{' '}
+              <InlineLink href="https://www.traderjoes.com">
+                Trader Joe's
+              </InlineLink>{' '}
+              collection went. State bags turned into city totes, cities into limited edition
+              releases. In the span of a week, I now know more about Trader Joe's bags than I'll ever need to and hey, I think I can dare to say this website hosts{' '}
+              <Link
+                to="/encyclopedia"
+                className="underline underline-offset-2 hover:text-[var(--tj-red)]"
+              >
+                the world's first TJ's tote encyclopedia
+              </Link>
+              <FootnoteRef n={1} />. From one trader to another, I hope you love this corner of the internet, and that it's a small reminder to get the bag(s).
             </p>
             <p className="text-left italic opacity-75">
               safe travels,
@@ -259,19 +269,128 @@ export default function About() {
             <p className="text-left italic opacity-75">
               - Trader Nick
             </p>
+            <p>
+              Trader Teja's placeholder. Hey Teja, when you find
+              yourself in the codebase: open{' '}
+              <code className="font-mono text-[0.85em] bg-[var(--tj-ink)]/5 px-1 py-[0.05em] rounded-sm">
+                src/routes/About.tsx
+              </code>{' '}
+              in your editor, hit{' '}
+              <kbd className="font-[var(--tj-body)] tracking-[0.1em] text-[0.75em] uppercase border border-[var(--tj-ink)]/40 rounded-sm px-1 py-[0.05em]">
+                Ctrl+Shift+F
+              </kbd>{' '}
+              , and search for "Trader Teja" to land right
+              here. Rewrite this paragraph with whatever you'd like to
+              say to Parker for her birthday, keep the "- Trader Teja"
+              signoff at the bottom so future-you can find it again.
+            </p>
+            <p className="text-left italic opacity-75">
+              - Trader Teja
+            </p>
           </Section>
 
           <Section
             label="Under the Hood"
             marginCat={<MarginCat file="icons/magnifying-glass.svg" side="right" mirror tagline="Mind the seams" tilt={20} />}
           >
+            <SubSection label="Tech Stack">
+              <ul className="space-y-3 list-none p-0 pl-6">
+                <CreditRow
+                  title="Built With"
+                  detail={
+                    <>
+                      <InlineLink href="https://react.dev">React</InlineLink>
+                      ,{' '}
+                      <InlineLink href="https://reactrouter.com">
+                        React Router
+                      </InlineLink>
+                      ,{' '}
+                      <InlineLink href="https://vite.dev">Vite</InlineLink>
+                      ,{' '}
+                      <InlineLink href="https://www.typescriptlang.org">
+                        TypeScript
+                      </InlineLink>
+                      ,{' '}
+                      <InlineLink href="https://tailwindcss.com">
+                        Tailwind
+                      </InlineLink>
+                    </>
+                  }
+                />
+                <CreditRow
+                  title="Backend"
+                  detail={
+                    <>
+                      admin and suggestions handled by a{' '}
+                      <InlineLink href="https://workers.cloudflare.com">
+                        Cloudflare Worker
+                      </InlineLink>{' '}
+                      committing to GitHub via the{' '}
+                      <InlineLink href="https://docs.github.com/en/rest/git">
+                        Git Data API
+                      </InlineLink>
+                      , with{' '}
+                      <InlineLink href="https://www.cloudflare.com/products/turnstile/">
+                        Turnstile
+                      </InlineLink>{' '}
+                      for captcha
+                    </>
+                  }
+                />
+                <CreditRow
+                  title="Deployment"
+                  detail={
+                    <>
+                      auto-deployed via{' '}
+                      <InlineLink href="https://github.com/features/actions">
+                        GitHub Actions
+                      </InlineLink>{' '}
+                      on every push to main, hosted on{' '}
+                      <InlineLink href="https://pages.github.com">
+                        GitHub Pages
+                      </InlineLink>
+                    </>
+                  }
+                />
+                <CreditRow
+                  title="Pic Processing"
+                  detail={
+                    <>
+                      HEIC conversion via{' '}
+                      <InlineLink href="https://www.npmjs.com/package/heic-convert">
+                        heic-convert
+                      </InlineLink>
+                      , background removal via{' '}
+                      <InlineLink href="https://github.com/imgly/background-removal-node">
+                        @imgly/background-removal-node
+                      </InlineLink>
+                      , image resizing via{' '}
+                      <InlineLink href="https://sharp.pixelplumbing.com">
+                        sharp
+                      </InlineLink>
+                    </>
+                  }
+                />
+                <CreditRow
+                  title="Source Code"
+                  detail={
+                    <InlineLink href="https://github.com/kayleyseow/tjbags">
+                      github.com/kayleyseow/tjbags
+                    </InlineLink>
+                  }
+                />
+              </ul>
+            </SubSection>
+            <SubSection label="The Archive">
             <p>
               The archive holds 84 entries: 43 state bags, 28 specials, 13
               standards. There is no single source for any of this. Trader
-              Kayley cross-referenced each bag against the Trader Joe's
+              Kayley started by hunting down a bag for every state with a
+              Trader Joe's, one painstaking search at a time, then
+              cross-referenced the results against the Trader Joe's
               Bag Swap Group's community checklist
               <FootnoteRef n={5} /> (March 2023, 63 polypropylene bags)
-              and stitched in the special-edition releases by hand. 339 reference photos were dug up from{' '}
+              and stitched in the special-edition releases by hand. 405 reference photos were dug up from{' '}
               <InlineLink href="https://www.reddit.com/r/traderjoes">
                 Reddit
               </InlineLink>
@@ -294,6 +413,8 @@ export default function About() {
               hindsight, a proper general-purpose scraper would have
               turned many days into one afternoon.
             </p>
+            </SubSection>
+            <SubSection label="The Pipeline">
             <p>
               Each bag photo runs through a small pipeline before it lands
               on the page. iPhone shots come in as{' '}
@@ -319,15 +440,18 @@ export default function About() {
               </InlineLink>{' '}
               slips over the top. Each entry can carry multiple angles
               (back, left, right), so a single bag is often a small
-              folder of shots. The frame each bag gets is deterministic,
-              picked from a hash of its slug, so the same bag always sits
-              in the same frame, no matter how many times the page
-              reloads. Half of that pipeline is automated; the other half
+              folder of shots. Frames are picked round-robin from a pool
+              whose aspect matches the photo, so landscape shots land on
+              landscape frames and no single frame gets reused too often.
+              A handful of bags have manual overrides where the auto-pick
+              didn't quite fit. Half of that pipeline is automated; the other half
               (deciding which shots are good, cleaning up stray
               background artifacts, nudging a frame inset that's off by
               two percent) is painstaking, and a unified
               culler-cleaner-fitter would have saved most of it.
             </p>
+            </SubSection>
+            <SubSection label="The Backend">
             <p>
               There is no database. Admin edits and Suggest-a-bag
               submissions go through a small{' '}
@@ -353,6 +477,8 @@ export default function About() {
               not scale to anything bigger; it is, plainly, a weekend's
               worth of architectural choices.
             </p>
+            </SubSection>
+            <SubSection label="The Polish">
             <p>
               All the page's flourishes (confetti bursts, swinging
               frames, cat fade-ins, hover wiggles, polaroid lifts)
@@ -373,52 +499,23 @@ export default function About() {
             <p>
               A few things to find, while you're here: hover the birthday
               greeting up top for a heart-shaped confetti burst, brush a
-              hung photo to set it swaying on its hardware, and pass by
-              the cats in the margins to read their taglines.
+              hung photo to set it swaying on its hardware, tap the red
+              dot on the bazaar's awning for a little playlist, and pass
+              by the cats in the margins to read their taglines.
             </p>
-            <ol className="list-none p-0 m-0 mt-6 pt-4 border-t border-[var(--tj-ink)]/20 text-xs space-y-2 opacity-75">
-              <Footnote n={1}>
-                As far as we can tell. If a more thorough one exists, please
-                point us at it.
-              </Footnote>
-              <Footnote n={2}>
-                Yes, the box really does say "protein." Trader Kayley tried it once with{' '}
-                <InlineLink href="https://www.traderjoes.com/home/products/pdp/organic-vodka-sauce-059975">
-                vodka sauce
-                </InlineLink>{' '}
-                and found out she did not share the same love of it. She sticks to regular pasta now.
-              </Footnote>
-              <Footnote n={3}>
-                Bad enough that our valiant traders took the bus one stop.
-              </Footnote>
-              <Footnote n={4}>
-                See the "golden hour" slide on the frame above (Dungeness
-                Spit Trail, lighthouse). That's the end of the Olympics
-                day. Taken at sunset...ah, we were so oblivious to the
-                lighthouse incident.
-              </Footnote>
-              <Footnote n={5}>
-                Per the Trader Joe's Bag Swap Group's pinned community
-                checklist (private Facebook group, March 2023 revision).
-              </Footnote>
-            </ol>
+            </SubSection>
           </Section>
 
           <Section
             label="Credits & Thanks"
             marginCat={<MarginCat file="spots/cats/cat-tux-color.svg" side="right" tagline="Much obliged" />}
           >
-            <div className="space-y-6">
-              <div>
-                <h3 className="font-[var(--tj-body)] tracking-[0.25em] text-[0.65rem] uppercase mb-3 opacity-75">
-                  Sources
-                </h3>
-                <ul className="space-y-3 list-none p-0 pl-6">
+            <ul className="space-y-3 list-none p-0 pl-6">
               <CreditRow
-                title="Trader Joe's Font"
+                title="Fonts"
                 detail={
                   <>
-                    by{' '}
+                    script by{' '}
                     <InlineLink href="https://www.fontspace.com/fontopia">
                       Fontopia
                     </InlineLink>{' '}
@@ -430,6 +527,19 @@ export default function About() {
                     <InlineLink href="https://www.fontspace.com/trader-joes-font-f34830">
                       Fontspace
                     </InlineLink>
+                    {' · '}body{' '}
+                    <InlineLink href="https://fonts.google.com/specimen/Source+Serif+4">
+                      Source Serif 4
+                    </InlineLink>{' '}
+                    by{' '}
+                    <InlineLink href="https://github.com/adobe-fonts/source-serif">
+                      Adobe
+                    </InlineLink>{' '}
+                    (
+                    <InlineLink href="https://openfontlicense.org">
+                      OFL
+                    </InlineLink>
+                    )
                   </>
                 }
               />
@@ -493,101 +603,11 @@ export default function About() {
                   </>
                 }
               />
-                </ul>
-              </div>
-              <div>
-                <h3 className="font-[var(--tj-body)] tracking-[0.25em] text-[0.65rem] uppercase mb-3 opacity-75">
-                  Tech Stack
-                </h3>
-                <ul className="space-y-3 list-none p-0 pl-6">
-              <CreditRow
-                title="Built With"
-                detail={
-                  <>
-                    <InlineLink href="https://react.dev">React</InlineLink>
-                    ,{' '}
-                    <InlineLink href="https://reactrouter.com">
-                      React Router
-                    </InlineLink>
-                    ,{' '}
-                    <InlineLink href="https://vite.dev">Vite</InlineLink>
-                    ,{' '}
-                    <InlineLink href="https://www.typescriptlang.org">
-                      TypeScript
-                    </InlineLink>
-                    ,{' '}
-                    <InlineLink href="https://tailwindcss.com">
-                      Tailwind
-                    </InlineLink>
-                    , and a lot of love for a{' '}
-                    <InlineLink href="https://www.traderjoes.com">
-                      particular grocery store
-                    </InlineLink>
-                  </>
-                }
-              />
-              <CreditRow
-                title="Photo Processing"
-                detail={
-                  <>
-                    HEIC conversion via{' '}
-                    <InlineLink href="https://www.npmjs.com/package/heic-convert">
-                      heic-convert
-                    </InlineLink>
-                    , background removal via{' '}
-                    <InlineLink href="https://github.com/imgly/background-removal-node">
-                      @imgly/background-removal-node
-                    </InlineLink>
-                    , image resizing via{' '}
-                    <InlineLink href="https://sharp.pixelplumbing.com">
-                      sharp
-                    </InlineLink>
-                  </>
-                }
-              />
-              <CreditRow
-                title="Hosted On"
-                detail={
-                  <InlineLink href="https://pages.github.com">
-                    GitHub Pages
-                  </InlineLink>
-                }
-              />
-              <CreditRow
-                title="Backend"
-                detail={
-                  <>
-                    admin and suggestions handled by a{' '}
-                    <InlineLink href="https://workers.cloudflare.com">
-                      Cloudflare Worker
-                    </InlineLink>{' '}
-                    committing to GitHub via the{' '}
-                    <InlineLink href="https://docs.github.com/en/rest/git">
-                      Git Data API
-                    </InlineLink>
-                    , with{' '}
-                    <InlineLink href="https://www.cloudflare.com/products/turnstile/">
-                      Turnstile
-                    </InlineLink>{' '}
-                    for captcha
-                  </>
-                }
-              />
-              <CreditRow
-                title="Source"
-                detail={
-                  <InlineLink href="https://github.com/kayleyseow/tjbags">
-                    github.com/kayleyseow/tjbags
-                  </InlineLink>
-                }
-              />
-                </ul>
-              </div>
-            </div>
+            </ul>
           </Section>
 
           <Section
-            label="A Note"
+            label="Notes"
             marginCat={<MarginCat file="spots/cats/cat-red-umbrella-color.svg" side="left" tagline="Just in case" topClass="-top-[24rem]" />}
           >
             <p className="italic">
@@ -596,6 +616,46 @@ export default function About() {
               personal, non-commercial fan project, made for one specific person
               who happens to really like their bags.
             </p>
+            <ol className="list-none p-0 m-0 mt-6 pt-4 border-t border-[var(--tj-ink)]/20 text-xs space-y-2 opacity-75">
+              <Footnote n={1}>
+                As far as we can tell. If a more thorough one exists, please
+                point us at it.
+              </Footnote>
+              <Footnote n={2}>
+                Yes, the box really does say "protein." Trader Kayley tried it once with{' '}
+                <InlineLink href="https://www.traderjoes.com/home/products/pdp/organic-vodka-sauce-059975">
+                vodka sauce
+                </InlineLink>{' '}
+                and found out she did not share the same love of it. She sticks to{' '}
+                <InlineLink href="https://www.traderjoes.com/home/products/pdp/italian-fusilli-009295">
+                  regular pasta
+                </InlineLink>{' '}
+                now.
+              </Footnote>
+              <Footnote n={3}>
+                Bad enough that our valiant traders took the bus one stop.
+              </Footnote>
+              <Footnote n={4}>
+                See the "golden hour" slide on the frame above (
+                <InlineLink href="https://www.fws.gov/apps/carp/rivers/refuge/dungeness/visit-us/activities">
+                  Dungeness Spit Trail
+                </InlineLink>
+                , lighthouse). That's the end of the Olympics
+                day. Taken at sunset...ah, we were so oblivious to the
+                lighthouse incident.
+              </Footnote>
+              <Footnote n={5}>
+                Per the{' '}
+                <InlineLink href="https://www.facebook.com/groups/1718013795118071/">
+                  Trader Joe's Bag Swap Group
+                </InlineLink>
+                's pinned community{' '}
+                <InlineLink href={`${BASE}bags/poly-bag-list.webp`}>
+                  checklist
+                </InlineLink>{' '}
+                (private Facebook group, March 2023 revision).
+              </Footnote>
+            </ol>
           </Section>
         </article>
 
@@ -623,6 +683,23 @@ function Section({
       </h2>
       <div className="space-y-4">{children}</div>
     </section>
+  )
+}
+
+function SubSection({
+  label,
+  children,
+}: {
+  label: string
+  children: React.ReactNode
+}) {
+  return (
+    <div>
+      <h3 className="font-[var(--tj-body)] tracking-[0.25em] text-[0.65rem] uppercase opacity-75 mb-3 text-left">
+        {label}
+      </h3>
+      <div className="space-y-4">{children}</div>
+    </div>
   )
 }
 
@@ -947,16 +1024,40 @@ function ConfettiBurst() {
   )
 }
 
-/* The bazaar's hidden play button. Clicking the red-dot toggles a hidden
-   YouTube iframe with autoplay. While playing, the dot spins slowly like a
-   vinyl record. Click again to stop. */
+/* The bazaar's hidden play button — earbud-style gestures on the red-dot logo.
+   Single click = play/pause, double = skip ahead, triple = back a track.
+   Play/pause talks to the YouTube embed via postMessage (enablejsapi=1) so a
+   pause resumes from the same spot; skips remount the iframe for fresh
+   autoplay. While playing, the dot spins slowly like a vinyl record. */
+const CLICK_WINDOW_MS = 280
+
 function BazaarSecret() {
-  // null = silent. 0..N-1 = which track is playing. Clicking cycles forward
-  // through the playlist and then back to null. The iframe is keyed on the
-  // track index so React unmounts/remounts on each change, which forces a
-  // fresh autoplay of the next track.
+  // null = nothing loaded yet. 0..N-1 = which track the iframe holds.
   const [trackIndex, setTrackIndex] = useState<number | null>(null)
+  const [isPlaying, setIsPlaying] = useState(false)
   const [chipVisible, setChipVisible] = useState(false)
+  // Mobile browsers block autoplay of hidden iframes; on touch we show a chip instead.
+  const [isTouchOnly, setIsTouchOnly] = useState(false)
+  const [mobileNoteKey, setMobileNoteKey] = useState(0)
+  const [mobileNoteVisible, setMobileNoteVisible] = useState(false)
+
+  const iframeRef = useRef<HTMLIFrameElement | null>(null)
+  const clickCountRef = useRef(0)
+  const clickTimerRef = useRef<number | null>(null)
+  // Mirror state into a ref so the deferred click dispatch reads fresh values.
+  const stateRef = useRef({ trackIndex, isPlaying })
+  stateRef.current = { trackIndex, isPlaying }
+
+  const trackCount = BAZAAR_SECRET_TRACKS.length
+
+  useEffect(() => {
+    if (typeof window === 'undefined') return
+    const mq = window.matchMedia('(pointer: coarse)')
+    setIsTouchOnly(mq.matches)
+    const handler = (e: MediaQueryListEvent) => setIsTouchOnly(e.matches)
+    mq.addEventListener('change', handler)
+    return () => mq.removeEventListener('change', handler)
+  }, [])
 
   useEffect(() => {
     if (trackIndex === null) {
@@ -968,23 +1069,72 @@ function BazaarSecret() {
     return () => clearTimeout(t)
   }, [trackIndex])
 
-  function advance() {
-    setTrackIndex((i) => {
-      if (i === null) return 0
-      if (i + 1 >= BAZAAR_SECRET_TRACKS.length) return null
-      return i + 1
-    })
+  useEffect(() => {
+    if (mobileNoteKey === 0) return
+    setMobileNoteVisible(true)
+    const t = setTimeout(() => setMobileNoteVisible(false), 3000)
+    return () => clearTimeout(t)
+  }, [mobileNoteKey])
+
+  useEffect(
+    () => () => {
+      if (clickTimerRef.current !== null) window.clearTimeout(clickTimerRef.current)
+    },
+    [],
+  )
+
+  const sendCommand = (func: 'playVideo' | 'pauseVideo') => {
+    iframeRef.current?.contentWindow?.postMessage(
+      JSON.stringify({ event: 'command', func, args: [] }),
+      'https://www.youtube.com',
+    )
   }
 
-  const playing = trackIndex !== null
+  const togglePlay = () => {
+    const { trackIndex: ti, isPlaying: playing } = stateRef.current
+    if (ti === null) {
+      // Nothing loaded — first press starts the playlist.
+      setTrackIndex(0)
+      setIsPlaying(true)
+      return
+    }
+    sendCommand(playing ? 'pauseVideo' : 'playVideo')
+    setIsPlaying(!playing)
+  }
+
+  const skip = (dir: 1 | -1) => {
+    const { trackIndex: ti } = stateRef.current
+    // From silence: forward lands on track 0, back wraps to the last track.
+    const from = ti ?? (dir === 1 ? -1 : 0)
+    setTrackIndex((from + dir + trackCount) % trackCount)
+    setIsPlaying(true)
+  }
+
+  const handleClick = () => {
+    if (isTouchOnly) {
+      setMobileNoteKey((k) => k + 1)
+      return
+    }
+    clickCountRef.current += 1
+    if (clickTimerRef.current !== null) window.clearTimeout(clickTimerRef.current)
+    clickTimerRef.current = window.setTimeout(() => {
+      const count = clickCountRef.current
+      clickCountRef.current = 0
+      clickTimerRef.current = null
+      if (count === 1) togglePlay()
+      else if (count === 2) skip(1)
+      else skip(-1)
+    }, CLICK_WINDOW_MS)
+  }
+
   const current = trackIndex !== null ? BAZAAR_SECRET_TRACKS[trackIndex] : null
 
   return (
     <>
       <button
         type="button"
-        onClick={advance}
-        aria-label={playing ? 'Next track or stop' : 'Play the music'}
+        onClick={handleClick}
+        aria-label="Music: click to play or pause, double-click to skip ahead, triple-click to go back"
         className="absolute left-1/2 top-[80%] -translate-x-1/2 -translate-y-1/2 cursor-pointer"
       >
         <img
@@ -992,7 +1142,7 @@ function BazaarSecret() {
           alt=""
           aria-hidden
           className={`h-12 md:h-14 w-auto select-none ${
-            playing
+            isPlaying
               ? 'animate-[spin_6s_linear_infinite]'
               : '-rotate-[8deg]'
           }`}
@@ -1008,11 +1158,22 @@ function BazaarSecret() {
           ♪ {current.title} · {current.artist}
         </div>
       )}
+      {isTouchOnly && (
+        <div
+          aria-hidden
+          className={`absolute left-1/2 top-[80%] -translate-x-1/2 translate-y-11 -rotate-[6deg] origin-center whitespace-nowrap font-[var(--tj-body)] tracking-[0.18em] text-[0.6rem] uppercase pointer-events-none transition-opacity duration-500 ${
+            mobileNoteVisible ? 'opacity-80' : 'opacity-0'
+          }`}
+        >
+          ♪ This playlist only spins on desktop
+        </div>
+      )}
       {current && (
         <iframe
+          ref={iframeRef}
           key={trackIndex}
           title="Now playing"
-          src={`https://www.youtube.com/embed/${current.id}?autoplay=1${
+          src={`https://www.youtube.com/embed/${current.id}?enablejsapi=1&autoplay=1${
             current.start ? `&start=${current.start}` : ''
           }`}
           allow="autoplay; encrypted-media"

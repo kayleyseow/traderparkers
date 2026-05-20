@@ -317,7 +317,7 @@ export default function Pantry() {
               <NoMatchesState onClear={clearFilters} />
             ) : (
               <ul className="columns-1 md:columns-2 xl:columns-3 gap-x-4 md:gap-x-5">
-                {filteredBags.map((bag, index) => {
+                {filteredBags.map((bag) => {
                   const assigned = frameAssignment.get(bag.slug)
                   return (
                     <li key={bag.slug} className="mb-6 md:mb-8 break-inside-avoid">
@@ -327,7 +327,6 @@ export default function Pantry() {
                         encyclopediaEntry={
                           bag.encyclopediaId ? encyclopediaById.get(bag.encyclopediaId) : undefined
                         }
-                        index={index}
                         assignedFrame={assigned?.frame}
                         stretchTo={assigned?.stretchTo ?? null}
                         plaqueBg={plaqueBg}
@@ -760,12 +759,6 @@ export const BAG_FRAMES: FrameDef[] = [
   { file: 'cherub-arch.svg',       aspect: '622 / 792',                  inset: { top: '9.5%',  right: '16%',   bottom: '13%',   left: '14.5%' }, photoAspect: 0.75 },
 ]
 
-function frameForSlug(slug: string): FrameDef {
-  let h = 0
-  for (let i = 0; i < slug.length; i++) h = ((h * 31) + slug.charCodeAt(i)) | 0
-  return BAG_FRAMES[Math.abs(h) % BAG_FRAMES.length]
-}
-
 // Per-bag tweaks when the auto-picked frame doesn't fit a particular photo.
 // - `frame`: force a specific frame file (overrides the auto-pick).
 // - `frameAspect` / `frameRotate` / `frameInset`: inline overrides of the
@@ -856,7 +849,6 @@ function BagCard({
   bag,
   store,
   encyclopediaEntry,
-  index: _index,
   assignedFrame,
   stretchTo,
   plaqueBg,
@@ -864,7 +856,6 @@ function BagCard({
   bag: PantryBag
   store: Store | undefined
   encyclopediaEntry: EncyclopediaBag | undefined
-  index: number
   assignedFrame: FrameDef | undefined
   stretchTo: number | null
   plaqueBg: string
@@ -880,9 +871,9 @@ function BagCard({
   // than askew. The bag-tilt class still provides the hover lift behavior.
   const tilt = 0
 
-  // Frame comes from the parent's round-robin assignment. Fall back to slug
-  // hash if no assignment yet (race condition before bags state loads).
-  const baseFrame = assignedFrame ?? frameForSlug(bag.slug)
+  // Frame comes from the parent's round-robin assignment. Fall back to the
+  // first frame if no assignment yet (race condition before bags state loads).
+  const baseFrame = assignedFrame ?? BAG_FRAMES[0]
   const override = BAG_OVERRIDES[bag.slug] ?? {}
 
   // Merge inline override fields onto the base frame so overrides can swap

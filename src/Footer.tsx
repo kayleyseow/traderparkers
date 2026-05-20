@@ -16,13 +16,14 @@ export default function Footer() {
       className="relative z-10 mt-10 border-t border-[var(--tj-ink)]/30"
     >
       <div className="max-w-6xl mx-auto px-6 pt-4 pb-2">
-        {/* Top row: logo (center on desktop, top on mobile) flanked by
-            wordmark on the left and footer nav on the right. */}
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-3">
+        {/* Top row: logo pinned to true page center on desktop via a
+            3-column grid so it doesn't drift with the wordmark/nav widths.
+            Mobile stacks: logo, wordmark, nav. */}
+        <div className="flex flex-col items-center gap-3 sm:grid sm:grid-cols-[1fr_auto_1fr] sm:gap-4">
           <Link
             to="/"
             aria-label="Trader Parker's Bag Bazaar"
-            className="sm:order-2 shrink-0"
+            className="shrink-0 sm:col-start-2 sm:justify-self-center"
           >
             <img
               src={redDotLogo}
@@ -33,13 +34,13 @@ export default function Footer() {
           </Link>
           <Link
             to="/"
-            className="sm:order-1 font-[var(--tj-body)] font-semibold tracking-[0.25em] text-[0.7rem] uppercase opacity-80 hover:opacity-100 underline-offset-4 hover:underline"
+            className="font-[var(--tj-body)] font-semibold tracking-[0.25em] text-[0.7rem] uppercase opacity-80 hover:opacity-100 underline-offset-4 hover:underline sm:col-start-1 sm:row-start-1 sm:justify-self-start"
           >
             Trader Parker's Bag Bazaar
           </Link>
           <nav
             aria-label="Footer navigation"
-            className="sm:order-3 flex items-center gap-x-4 gap-y-1 md:gap-3 flex-wrap justify-center"
+            className="flex items-center gap-x-4 gap-y-1 md:gap-3 flex-wrap justify-center sm:col-start-3 sm:row-start-1 sm:justify-self-end"
           >
             <FooterLink to="/pantry">Pantry</FooterLink>
             <Separator />
@@ -54,7 +55,7 @@ export default function Footer() {
           <span aria-hidden className="text-[var(--tj-red)]">
             ★
           </span>
-          Made with love for Parker · Est. 2026
+          Stocked for Parker · Est. 2026
           <span aria-hidden className="text-[var(--tj-red)]">
             ★
           </span>

@@ -34,6 +34,9 @@ export default function AlphabetScrubber({ items }: { items: ScrubberItem[] }) {
   const jump = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
     setActiveId(id)
+    if (typeof window !== 'undefined') {
+      history.replaceState(null, '', `#${id}`)
+    }
   }
 
   if (items.length === 0) return null

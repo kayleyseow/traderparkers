@@ -62,6 +62,18 @@ export default function Encyclopedia() {
     localStorage.setItem(VIEW_STORAGE_KEY, view)
   }, [view])
 
+  // Sections render after the async fetch resolves, by which time the browser
+  // has long given up on the initial hash scroll. Re-apply it once the data
+  // (and a view switch) settles so /encyclopedia#standard etc. work as links.
+  useEffect(() => {
+    if (rawEncyclopedia === null) return
+    const hash = window.location.hash.slice(1)
+    if (!hash) return
+    requestAnimationFrame(() => {
+      document.getElementById(hash)?.scrollIntoView({ block: 'start' })
+    })
+  }, [rawEncyclopedia, view])
+
   useEffect(() => {
     Promise.all([
       fetch(`${BASE}data/encyclopedia.json`, { cache: 'no-cache' }).then((r) => r.json() as Promise<EncyclopediaBag[]>),
@@ -235,7 +247,7 @@ export default function Encyclopedia() {
             This list is hand-curated, so almost certainly incomplete and probably
             wrong about a few. Spot something off?{' '}
             <a
-              href="#enc-suggest"
+              href="#suggest"
               className="underline underline-offset-2 hover:text-[var(--tj-red)] transition-colors"
             >
               Tell the Captain.
