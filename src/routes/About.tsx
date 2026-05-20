@@ -383,14 +383,14 @@ export default function About() {
             </SubSection>
             <SubSection label="The Archive">
             <p>
-              The archive holds 84 entries: 43 state bags, 28 specials, 13
+              The archive holds 85 entries: 43 state bags, 29 specials, 13
               standards. There is no single source for any of this. Trader
               Kayley started by hunting down a bag for every state with a
               Trader Joe's, one painstaking search at a time, then
               cross-referenced the results against the Trader Joe's
               Bag Swap Group's community checklist
               <FootnoteRef n={5} /> (March 2023, 63 polypropylene bags)
-              and stitched in the special-edition releases by hand. 405 reference photos were dug up from{' '}
+              and stitched in the special-edition releases by hand. 410 reference photos were dug up from{' '}
               <InlineLink href="https://www.reddit.com/r/traderjoes">
                 Reddit
               </InlineLink>

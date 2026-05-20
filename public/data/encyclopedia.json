@@ -2648,6 +2648,46 @@
     ]
   },
   {
+    "id": "red-hibiscus",
+    "name": "Red Hibiscus Bag",
+    "type": "special",
+    "description": "An early-2000s Trader Joe's polypropylene shopper in a deep red hibiscus print, the classic circle logo centered on the front and back. Dates to around 2006 and long discontinued.",
+    "design": {
+      "subtitle": "The Tropical Throwback",
+      "blurb": "One of Trader Joe's earlier polypropylene shoppers. The body is a deep red woven poly carrying an allover hibiscus print, large blooms layered light on dark across the front and back, each face centered on the classic Trader Joe's circle logo. The side panels switch to a soft coral ground with a few bold red hibiscus flowers in bloom, and the underside is a plain dark red with no print. The woven poly construction is noticeably sturdier than the thin film totes that came later, which is much of why these have lasted.",
+      "angleCaptions": {
+        "front": "The Trader Joe's circle logo on a layered red hibiscus print",
+        "back": "The circle logo again, hibiscus blooms wrapping the back panel",
+        "left": "A coral side panel with bold red hibiscus flowers",
+        "right": "The opposite side panel, more red hibiscus in bloom",
+        "bottom": "A plain dark-red base, no print"
+      }
+    },
+    "source": "https://www.ebay.com/itm/146255753777",
+    "year": 2006,
+    "note": "A vintage release dating to around 2006 and long out of print. It surfaces now only through resale listings and collector hand-me-downs. The woven polypropylene has held up remarkably well, with owners reporting bags from this run still in everyday use nearly two decades later.",
+    "noteSources": [
+      "https://www.reddit.com/r/traderjoes/comments/1gr9rgr/tj_bags_still_in_use_after_an_18_year_endurance/"
+    ],
+    "referencePhotos": [
+      "bags/special-bags/red-hibiscus/front.png",
+      "bags/special-bags/red-hibiscus/back.png",
+      "bags/special-bags/red-hibiscus/left.png",
+      "bags/special-bags/red-hibiscus/right.png",
+      "bags/special-bags/red-hibiscus/bottom.png"
+    ],
+    "referencePhotoSources": [
+      "https://www.ebay.com/itm/146255753777",
+      "https://www.ebay.com/itm/146255753777",
+      "https://www.ebay.com/itm/146255753777",
+      "https://www.ebay.com/itm/146255753777",
+      "https://www.ebay.com/itm/146255753777"
+    ],
+    "materials": [
+      "polypropylene"
+    ]
+  },
+  {
     "id": "surfboard",
     "name": "Surfboard",
     "type": "special",
