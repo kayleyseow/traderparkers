@@ -172,3 +172,9 @@ npx wrangler delete
 ```
 
 Removes the Worker. Site falls back to the JSON-snippet manual flow. No data is lost — `pantry.json` lives in your repo.
+
+---
+
+<p align="center">
+  <img src="../src/assets/icons/orig_red_dot_tp_logo.png" alt="Parker's Bag Bazaar Worker" width="52" />
+</p>

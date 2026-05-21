@@ -14,6 +14,8 @@ Everything ships as a static site to [GitHub Pages](https://pages.github.com), s
 
 A bag that shares a shape with another but differs only in print (e.g. the mini canvas tote, which has Classic, Halloween, and Pastel versions) collapses into a single encyclopedia entry with switchable variants, rather than cluttering the catalog with near-duplicate pages. Older prints of a state bag are the exception: a genuinely different design of the same state earns its own entry, since the point of the catalog is to show how the bags changed over time.
 
+The full reasoning behind all of this — every major decision, the tradeoffs, and where it would break at scale — is written up in [`docs/design-decisions.md`](docs/design-decisions.md).
+
 ### Saving bags
 
 Parker logs new bags from her phone (or laptop, but I took extra precautions for .heic files, thanks Apple) through a password-gated admin form. Since GitHub Pages can't write anything, an optional [Cloudflare Worker](workers/README.md) sits behind that form and commits the new entry and photos straight to this repo, which triggers a rebuild. Every bag, every edit, every suggestion lands as a single git commit. (Enough to make any seasoned developer shed more than a few tears, I know.) If the Worker isn't deployed, the site still works completely; the form just falls back to showing the JSON to copy and paste in by hand. Nothing about the catalog depends on the backend existing.
@@ -64,3 +66,9 @@ The code is all that license covers. It does not extend to the bag catalog data 
 This is an unofficial fan project and isn't affiliated with or endorsed by Trader Joe's. The vintage engravings throughout the site come from [The Graphics Fairy](https://thegraphicsfairy.com/), and the type is set in [Source Serif 4](https://fonts.google.com/specimen/Source+Serif+4) with the [Trader Joe's script font](https://www.fontspace.com/trader-joes-font-f34830) by [Fontopia](https://www.fontspace.com/fontopia) for the headings. Made with love as a birthday gift.
 
 And somewhere on [the About page](https://kayleyseow.github.io/tjbags/about) there's a hidden playlist. The first song is "Bags," by Clairo. You'll have to find the rest of the surprises.
+
+---
+
+<p align="center">
+  <img src="src/assets/icons/orig_red_dot_tp_logo.png" alt="Trader Parker's Bag Bazaar" width="52" />
+</p>

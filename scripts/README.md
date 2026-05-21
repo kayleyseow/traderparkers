@@ -93,3 +93,9 @@ Standalone CLI for `@imgly/background-removal-node` + 4:5 crop. Mirrors the Fina
 ### measure-frames.mjs
 
 Scans the alpha channel of rendered PNGs in `public/decor/frames/` to detect each vintage frame's transparent inset rectangle (where the photo shows through). Prints the inset data used to seed the `FRAME_INSET` map in `src/routes/Pantry.tsx`. Re-run when adding a new frame.
+
+---
+
+<p align="center">
+  <img src="../src/assets/icons/orig_red_dot_tp_logo.png" alt="Trader Parker's Bag Bazaar" width="52" />
+</p>
