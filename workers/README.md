@@ -1,10 +1,14 @@
-# Parker's Bag Bazaar — Cloudflare Worker
+# Trader Parker's Bag Bazaar — Cloudflare Worker
 
-This is the small backend that powers two things on the static GH Pages site:
+This is the small backend that powers the admin and suggestion features on the static GH Pages site:
 
 | Endpoint | Who can call it | What it does |
 |---|---|---|
+| `POST /auth/check` | Parker (login gate) | Verifies the admin password before the form unlocks. |
 | `POST /pantry` | Parker (password-gated) | Commits a new bag entry + photos to the `tjbags` GitHub repo. GH Pages then rebuilds and the bag appears. |
+| `POST /pantry/edit` | Parker (password-gated) | Updates an existing pantry entry. |
+| `POST /pantry/delete` | Parker (password-gated) | Removes a pantry entry and its photos. |
+| `POST /settings` | Parker (password-gated) | Persists per-key site settings (e.g. visibility toggles). |
 | `POST /suggestions` | Anyone (Turnstile-protected) | Opens a GitHub issue with a proposed encyclopedia entry. You review and decide whether to add it. |
 
 Without this Worker deployed, the site still works — the admin form falls back to "show me JSON to copy-paste manually." Deploying the Worker is what flips the site into "Parker can actually save bags from her phone" mode.
