@@ -53,6 +53,12 @@ The site deploys itself. Every push to `main` triggers a [GitHub Actions](https:
 
 The build does one thing worth calling out. A single-page app normally serves the same empty HTML shell for every URL, which is bad for deep links and invisible to search engines. So after Vite finishes, the build [prerenders](scripts/prerender.mjs) a real static HTML file for every encyclopedia route — each one carrying the right title, meta tags, and structured data — and the workflow copies `index.html` to `404.html` so GitHub Pages hands unknown paths back to React Router instead of erroring. [A link straight to a single bag](https://kayleyseow.github.io/tjbags/encyclopedia/nj) returns a true page, not a blank shell.
 
+## License
+
+The source code in this repository is licensed under the [MIT License](LICENSE), so you're welcome to learn from it and reuse it.
+
+The code is all that license covers. It does not extend to the bag catalog data or the reference photos, Parker's own collection photos, the Trader Joe's script font ([CC BY-NC](https://creativecommons.org/licenses/by-nc/4.0/)), or the Trader Joe's name, wordmark, and visual style. Those belong to their respective owners and are used here only under their own terms. See [Credits](#credits) for the full list.
+
 ## Credits
 
 This is an unofficial fan project and isn't affiliated with or endorsed by Trader Joe's. The vintage engravings throughout the site come from [The Graphics Fairy](https://thegraphicsfairy.com/), and the type is set in [Source Serif 4](https://fonts.google.com/specimen/Source+Serif+4) with the [Trader Joe's script font](https://www.fontspace.com/trader-joes-font-f34830) by [Fontopia](https://www.fontspace.com/fontopia) for the headings. Made with love as a birthday gift.
