@@ -1438,7 +1438,7 @@
         "back": "The neighborhood from the other side, more palms and a Trader Joe’s Market awning",
         "left": "Side panel: palm trees and a vintage VW van rolling past",
         "right": "Other side: more palms, another VW van silhouette",
-        "bottom": "Looking down: sky-blue cooler base with lime-green zipper trim"
+        "bottom": "Looking down at the plain insulated base, zipper trim running around the lid edge above"
       }
     },
     "source": "https://www.traderjoes.com/home/products/pdp/mini-insulated-totes-peach-blue-081833",
@@ -1485,27 +1485,27 @@
         "description": "An earlier paired-colorway capsule (often released alongside lavender). Bright pink body with the storefront-silhouette print.",
         "referencePhotos": [
           "bags/standard-bags/mini-insulated/pink_front.png",
-          "bags/standard-bags/mini-insulated/pink_back.png"
+          "bags/standard-bags/mini-insulated/pink_right.png"
         ]
       },
       {
         "id": "coral",
         "name": "Coral",
-        "description": "Dusty rose / coral colorway. Likely paired with another color in a seasonal capsule.",
+        "description": "Dusty rose / coral colorway with the storefront-silhouette print. Likely paired with another color in a seasonal capsule.",
         "referencePhotos": [
-          "bags/standard-bags/mini-insulated/coral_left.png",
-          "bags/standard-bags/mini-insulated/coral_right.png"
+          "bags/standard-bags/mini-insulated/coral_front.png",
+          "bags/standard-bags/mini-insulated/coral_right.png",
+          "bags/standard-bags/mini-insulated/coral_bottom.png"
         ]
       },
       {
         "id": "red",
         "name": "Red",
-        "description": "Holiday 'Red and Emerald' capsule pairing. Bright red body; the back panel is a plain solid red rather than the storefront print.",
+        "description": "Holiday 'Red and Emerald' capsule pairing. Bright red body with the storefront-silhouette print in black, palm trees and a vintage VW van on the side panels.",
         "referencePhotos": [
           "bags/standard-bags/mini-insulated/red_front.png",
           "bags/standard-bags/mini-insulated/red_back.png",
-          "bags/standard-bags/mini-insulated/red_right.png",
-          "bags/standard-bags/mini-insulated/red_bottom.png"
+          "bags/standard-bags/mini-insulated/red_right.png"
         ]
       }
     ]
