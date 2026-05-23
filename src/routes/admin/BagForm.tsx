@@ -40,8 +40,9 @@ export default function BagForm({ password }: Props) {
       .catch(() => {
         /* empty array is fine — server enforces uniqueness on submit */
       })
-    // Hide categories that admin has toggled off from the picker. State bags
-    // always show. Mirrors the filter on the public encyclopedia.
+    // Hide categories Parker has toggled off in Settings. The picker feeds
+    // her Pantry, so it honors her visibility prefs. The public Encyclopedia
+    // ignores them — every TJ bag stays catalogued there.
     fetch(`${BASE}data/visibility.json`, { cache: 'no-cache' })
       .then((r) => (r.ok ? (r.json() as Promise<CategoryVisibility>) : null))
       .then((v) => {

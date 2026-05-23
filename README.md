@@ -10,6 +10,8 @@ The Bag Bazaar is two things at once: a complete reference catalog of every Trad
 
 The site has two halves that stay deliberately separate, even though they cross-link. The **[Encyclopedia](https://kayleyseow.github.io/tjbags/encyclopedia)** (`/encyclopedia`) is a reference: every TJ bag design that exists, 85 entries spanning state bags, special editions, and standard bags. It stands on its own as a fan resource and never frames itself around what Parker happens to own. **[Parker's Collection](https://kayleyseow.github.io/tjbags/pantry)** (`/pantry`) is the personal half: the bags she's collected, each with her own photos, the store she found it in, the date, and the memory attached to it. Ownership shows up on the catalog side only as a quiet aside, never as a progress bar.
 
+Parker can also toggle which categories (state, special, standard) appear in her own Pantry from the admin settings panel, so the journal stays a celebration of what she chooses to celebrate. That toggle is hers alone — it never touches the Encyclopedia, which always shows every Trader Joe's bag.
+
 Everything ships as a static site to [GitHub Pages](https://pages.github.com), so there's no server in the hot path. The whole catalog is a handful of flat JSON files under `public/data/` — [`encyclopedia.json`](public/data/encyclopedia.json) holds every bag design, [`pantry.json`](public/data/pantry.json) holds Parker's collection, and [`stores.json`](public/data/stores.json) is a snapshot of every US Trader Joe's location. Cat's out of the bag: there's no database. The site just fetches these files and renders them. The dataset is small enough that this is about as simple and as fast as it gets, and editing a bag is as easy as editing a JSON file.
 
 A bag that shares a shape with another but differs only in print (e.g. the mini canvas tote, which has Classic, Halloween, and Pastel versions) collapses into a single encyclopedia entry with switchable variants, rather than cluttering the catalog with near-duplicate pages. Older prints of a state bag are the exception: a genuinely different design of the same state earns its own entry, since the point of the catalog is to show how the bags changed over time.
@@ -65,7 +67,7 @@ The code is all that license covers. It does not extend to the bag catalog data 
 
 This is an unofficial fan project and isn't affiliated with or endorsed by Trader Joe's. The vintage engravings throughout the site come from [The Graphics Fairy](https://thegraphicsfairy.com/), and the type is set in [Source Serif 4](https://fonts.google.com/specimen/Source+Serif+4) with the [Trader Joe's script font](https://www.fontspace.com/trader-joes-font-f34830) by [Fontopia](https://www.fontspace.com/fontopia) for the headings. Made with love as a birthday gift.
 
-And somewhere on [the About page](https://kayleyseow.github.io/tjbags/about) there's a hidden playlist. The first song is "Bags," by Clairo. You'll have to find the rest of the surprises.
+And somewhere on [the About page](https://kayleyseow.github.io/tjbags/about) there's a hidden playlist. The first song is "Bags," by Clairo (the live version she recorded at Electric Lady, ofc). I trust you to find the rest of the surprises.
 
 ---
 

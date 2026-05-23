@@ -111,8 +111,9 @@ function VisibilitySection({ password }: { password: string }) {
           Category Visibility
         </h3>
         <p className="font-[var(--tj-body)] italic text-sm opacity-75">
-          Decide which categories appear on the public encyclopedia, the
-          Pantry stats row, and the Log-a-Bag picker.
+          Pick which categories appear in your Pantry, the progress row, and
+          the Log-a-Bag picker. The Encyclopedia ignores this setting and
+          always shows every Trader Joe's bag.
         </p>
       </div>
 

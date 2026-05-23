@@ -214,9 +214,10 @@ export type ProgressStats = {
 }
 
 /* ──────────────────────────  CATEGORY VISIBILITY  ──────────────────
-   Admin toggle for which bag categories appear on the public encyclopedia,
-   the Pantry stats row, and the Log-a-Bag picker. One boolean per BagType.
-   Stored in public/data/visibility.json. */
+   Parker's toggle for which bag categories appear in her Pantry views —
+   the progress row, the type pills and bag cards, and the Log-a-Bag
+   picker. The public Encyclopedia ignores this and always shows every
+   TJ bag. One boolean per BagType. Stored in public/data/visibility.json. */
 
 export type CategoryVisibility = {
   state: boolean

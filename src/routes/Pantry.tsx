@@ -117,16 +117,17 @@ export default function Pantry() {
     for (const bag of bags) {
       if (!bag.encyclopediaId) continue
       const entry = encyclopediaById.get(bag.encyclopediaId)
-      if (entry) present.add(entry.type)
+      if (entry && visibility[entry.type]) present.add(entry.type)
     }
     return TYPE_ORDER.filter((t) => present.has(t))
-  }, [bags, encyclopediaById])
+  }, [bags, encyclopediaById, visibility])
 
   const filteredBags = useMemo(() => {
     if (!bags) return [] as PantryBag[]
     const q = query.trim().toLowerCase()
     const matches = bags.filter((bag) => {
       const entry = bag.encyclopediaId ? encyclopediaById.get(bag.encyclopediaId) : undefined
+      if (entry && !visibility[entry.type]) return false
       if (typeFilter.size > 0 && (!entry || !typeFilter.has(entry.type))) return false
       if (!q) return true
       const store = stores.get(bag.storeNumber)
@@ -154,9 +155,19 @@ export default function Pantry() {
       return sort === 'newest' ? diff : -diff
     })
     return sorted
-  }, [bags, encyclopediaById, stores, typeFilter, query, sort])
+  }, [bags, encyclopediaById, stores, typeFilter, query, sort, visibility])
 
   const filtersActive = typeFilter.size > 0 || query.trim() !== ''
+
+  // Bags Parker hasn't hidden via Settings visibility. Used as the denominator
+  // in "Showing X of Y" so hidden-category bags don't inflate Y.
+  const visibleTotalCount = useMemo(() => {
+    if (!bags) return 0
+    return bags.filter((bag) => {
+      const entry = bag.encyclopediaId ? encyclopediaById.get(bag.encyclopediaId) : undefined
+      return !entry || visibility[entry.type]
+    }).length
+  }, [bags, encyclopediaById, visibility])
 
   function clearFilters() {
     clearTypes()
@@ -310,7 +321,7 @@ export default function Pantry() {
               sort={sort}
               onSort={setSort}
               visibleCount={filteredBags.length}
-              totalCount={bags.length}
+              totalCount={visibleTotalCount}
               filtersActive={filtersActive}
             />
             {filteredBags.length === 0 ? (
