@@ -4,6 +4,8 @@ This is a writeup of the decisions behind [Trader Parker's Bag Bazaar](../README
 
 It is also honest about the parts that were lucky, the parts that were a quick fix, and the parts I would do differently. A case study that only lists wins isn't a case study.
 
+As a companion, [`pages.md`](pages.md) walks through every page of the finished site with screenshots, including the admin views hidden behind a password. It is useful to keep open alongside this doc so you can see what each decision actually produced.
+
 ---
 
 ## Context and constraints

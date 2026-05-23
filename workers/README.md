@@ -11,6 +11,8 @@ This is the small backend that powers the admin and suggestion features on the s
 | `POST /settings` | Parker (password-gated) | Persists per-key site settings (e.g. visibility toggles). |
 | `POST /suggestions` | Anyone (Turnstile-protected) | Opens a GitHub issue with a proposed encyclopedia entry. You review and decide whether to add it. |
 
+The admin and suggestion UIs that call these endpoints live in the main app. For screenshots of each, see [`docs/pages.md`](../docs/pages.md).
+
 Without this Worker deployed, the site still works — the admin form falls back to "show me JSON to copy-paste manually." Deploying the Worker is what flips the site into "Parker can actually save bags from her phone" mode.
 
 ---

@@ -4,7 +4,9 @@ A love letter to Trader Joe's tote bags, and to its biggest fan, Parker ♥
 
 The Bag Bazaar is two things at once: a complete reference catalog of every Trader Joe's reusable bag ever printed, and a personal scrapbook of the ones Parker actually owns. It's built with React, Vite, and TypeScript, and you can visit it live at [kayleyseow.github.io/tjbags](https://kayleyseow.github.io/tjbags/).
 
-![Trader Parker's Bag Bazaar](docs/screenshot.png)
+![Trader Parker's Bag Bazaar](docs/screenshots/encyclopedia-gallery.png)
+
+For a tour of every page on the site, including the password-gated admin views, see [`docs/pages.md`](docs/pages.md).
 
 ## Design
 
