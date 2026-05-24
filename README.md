@@ -6,7 +6,7 @@ The Bag Bazaar is two things at once: a complete reference catalog of every Trad
 
 ![Trader Parker's Bag Bazaar](docs/screenshots/encyclopedia-gallery.png)
 
-For a tour of every page on the site, including the password-gated admin views, see [`docs/pages.md`](docs/pages.md).
+For the full tour of every page on the site, including the password-gated admin views, see [**`docs/pages.md`**](docs/pages.md).
 
 ## Design
 
@@ -28,11 +28,17 @@ Parker logs new bags from her phone (or laptop, but I took extra precautions for
 
 Most of the work in a project like this is photos, not code. The reference shots are scraped from resale listings, then run through background removal and cropped to a consistent 4:5 frame; Parker's own photos go through the same crop. The `scripts/` folder holds that whole pipeline — a scraper, a little local photo picker for assigning front/back/side angles, and a few smaller helpers. It has [its own README](scripts/README.md) if you want the details.
 
+### Suggesting a bag
+
+If you've spotted a Trader Joe's bag that isn't in the [Encyclopedia](https://kayleyseow.github.io/tjbags/encyclopedia), there's a public **Suggest a Bag** form at the bottom of that page (gated by [Cloudflare Turnstile](https://www.cloudflare.com/products/turnstile/) so the spam doesn't get in). Submissions land as [GitHub issues](https://github.com/kayleyseow/tjbags/issues) for me to review and merge by hand, so the catalog stays curated even while it stays open to anyone who's seen something new.
+
 ## Built with
 
-[TypeScript](https://www.typescriptlang.org) and [React](https://react.dev) across the board, with [React Router](https://reactrouter.com) handling navigation and [Tailwind CSS](https://tailwindcss.com) for styling, all bundled by [Vite](https://vite.dev). The photo and scraping tooling under `scripts/` is plain [Node.js](https://nodejs.org), leaning on [sharp](https://sharp.pixelplumbing.com) and [heic-convert](https://www.npmjs.com/package/heic-convert) for image processing and [@imgly's background-removal library](https://github.com/imgly/background-removal-node) to cut bags out of resale photos. The optional backend is a [Cloudflare Worker](https://workers.cloudflare.com), written in TypeScript too.
+[TypeScript](https://www.typescriptlang.org) and [React](https://react.dev) across the board, with [React Router](https://reactrouter.com) handling navigation and [Tailwind CSS](https://tailwindcss.com) doing most of the styling (with a handful of CSS Modules where the landing page wanted its own paper-bag look), all bundled by [Vite](https://vite.dev). The photo and scraping tooling under `scripts/` is plain [Node.js](https://nodejs.org), leaning on [sharp](https://sharp.pixelplumbing.com) and [heic-convert](https://www.npmjs.com/package/heic-convert) for image processing and [@imgly's background-removal library](https://github.com/imgly/background-removal-node) to cut bags out of resale photos. The optional backend is a [Cloudflare Worker](https://workers.cloudflare.com), written in TypeScript too.
 
 ## Running it locally
+
+You'll need [Node.js](https://nodejs.org) 20 or newer (Vite 7 and React 19 don't run on older versions). Any modern evergreen browser will do; the site uses container queries and modern CSS but nothing exotic.
 
 ```bash
 npm install
