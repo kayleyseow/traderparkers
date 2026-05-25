@@ -757,11 +757,11 @@ export const BAG_FRAMES: FrameDef[] = [
   { file: 'baroque-portrait.svg',  aspect: '655 / 900',                  inset: { top: '20%',   right: '2%',    bottom: '16%',   left: '5%' },    photoAspect: 0.75 },
   { file: 'baroque-landscape.svg', aspect: '800 / 447',                  inset: { top: '15%',   right: '7%',    bottom: '17%',   left: '7%' },    photoAspect: 1.78 },
   { file: 'cartouche.svg',         aspect: '600 / 506',                  inset: { top: '13%',   right: '11%',   bottom: '13%',   left: '11%' },   photoAspect: 1.33 },
-  { file: 'ornate-corners.svg',    aspect: '1126 / 1500',                inset: { top: '12.5%', right: '16%',   bottom: '12%',   left: '15%' },   photoAspect: 0.75 },
   { file: 'rococo-oval.svg',       aspect: '796 / 991',                  inset: { top: '16%',   right: '18%',   bottom: '15.5%', left: '18%' },   photoAspect: 0.75 },
   { file: 'pearl-swag.svg',        aspect: '1024 / 757',                 inset: { top: '22%',   right: '13.5%', bottom: '21.5%', left: '13.5%' }, photoAspect: 1.78 },
   { file: 'dragonfly-nest.svg',    aspect: '1272 / 1800',                inset: { top: '6%',    right: '10%',   bottom: '8%',    left: '10%' },   photoAspect: 0.75 },
-  { file: 'crested-square.svg',    aspect: '840 / 880',                  inset: { top: '17.5%', right: '24%',   bottom: '22%',   left: '23%' },   photoAspect: 0.75 },
+  { file: 'crested-square.svg',    aspect: '840 / 880',                  inset: { top: '17.5%', right: '21.5%', bottom: '21.5%', left: '21.5%' }, photoAspect: 0.75 },
+  { file: 'crested-square.svg',    aspect: '840 / 880',                  inset: { top: '17.5%', right: '19.5%', bottom: '21.5%', left: '19%' },   photoAspect: 0.8 },
   { file: 'shell-landscape.svg',   aspect: '927 / 627',                  inset: { top: '1.5%',  right: '10%',   bottom: '0.5%',  left: '9.5%' },  photoAspect: 1.78 },
   { file: 'floral-baroque.svg',    aspect: '417 / 626',                  inset: { top: '22%',   right: '21%',   bottom: '22%',   left: '22%' },   photoAspect: 0.75 },
   { file: 'garden-trellis.svg',    aspect: '581 / 776',                  inset: { top: '16%',   right: '9%',    bottom: '12%',   left: '6%' },    photoAspect: 0.8 },
@@ -775,7 +775,10 @@ export const BAG_FRAMES: FrameDef[] = [
 // - `frameAspect` / `frameRotate` / `frameInset`: inline overrides of the
 //   forced frame's default config — useful for "rotated alternate" variants
 //   of a frame without adding duplicate entries to BAG_FRAMES.
-// - `squishY`: multiply the frame's natural height (e.g. 0.8 = 20% shorter).
+// - `squishY`: multiply the bag card's natural height (e.g. 0.8 = 20% shorter).
+//   Squishes container + photo + frame together.
+// - `frameScaleX` / `frameScaleY`: CSS scale on JUST the frame SVG image, not
+//   the container or photo (e.g. 0.9 = narrow the frame artwork 10%).
 // - `photoZoom`: CSS scale on the photo inside the inset (e.g. 1.4 = 40% zoom in).
 // - `photoShiftY`: CSS translateY on the photo (e.g. '-10%' to shift up).
 // - `frameShiftY`: CSS translateY on the frame img (e.g. '20%' to shift frame down).
@@ -785,6 +788,8 @@ type BagOverride = {
   frameRotate?: 0 | 90 | 180 | 270
   frameInset?: { top: string; right: string; bottom: string; left: string }
   squishY?: number
+  frameScaleX?: number
+  frameScaleY?: number
   photoZoom?: number
   photoShiftY?: string
   frameShiftY?: string
@@ -823,17 +828,24 @@ function squishAspect(aspect: string, factor: number): string {
 // swaps width/height using container query units so the rotated SVG still
 // fills the container correctly. Optional translateY layered on top is applied
 // LAST in screen space (so "shift down" reads as down regardless of rotation).
+// scaleX/scaleY are applied in the SVG's natural coordinate space (before
+// rotation), so they squish the artwork along its own axes.
 export function frameImgStyle(
   rotate: 0 | 90 | 180 | 270,
   shiftY?: string,
+  scaleX?: number,
+  scaleY?: number,
 ): React.CSSProperties {
-  const shift = shiftY ? `translateY(${shiftY}) ` : ''
+  const shift = shiftY ? `translateY(${shiftY})` : ''
+  const hasScale = (scaleX !== undefined && scaleX !== 1) || (scaleY !== undefined && scaleY !== 1)
+  const scale = hasScale ? `scale(${scaleX ?? 1}, ${scaleY ?? 1})` : ''
   if (rotate === 0) {
+    const t = [shift, scale].filter(Boolean).join(' ')
     return {
       inset: 0,
       width: '100%',
       height: '100%',
-      transform: shift || undefined,
+      transform: t || undefined,
     }
   }
   if (rotate === 180) {
@@ -841,7 +853,7 @@ export function frameImgStyle(
       inset: 0,
       width: '100%',
       height: '100%',
-      transform: `${shift}rotate(180deg)`,
+      transform: [shift, 'rotate(180deg)', scale].filter(Boolean).join(' '),
     }
   }
   // 90 or 270 — swap dimensions via container query units so the rotated SVG
@@ -851,7 +863,9 @@ export function frameImgStyle(
     left: '50%',
     width: '100cqh',
     height: '100cqw',
-    transform: `${shift}translate(-50%, -50%) rotate(${rotate}deg)`,
+    transform: [shift, 'translate(-50%, -50%)', `rotate(${rotate}deg)`, scale]
+      .filter(Boolean)
+      .join(' '),
     transformOrigin: 'center center',
   }
 }
@@ -945,7 +959,12 @@ function BagCard({
             alt=""
             aria-hidden
             className="absolute pointer-events-none select-none"
-            style={frameImgStyle(frame.rotate ?? 0, override.frameShiftY)}
+            style={frameImgStyle(
+              frame.rotate ?? 0,
+              override.frameShiftY,
+              override.frameScaleX,
+              override.frameScaleY,
+            )}
           />
         </Link>
       </div>

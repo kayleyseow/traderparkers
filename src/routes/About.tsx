@@ -11,6 +11,11 @@ import parkerHike from '../assets/parker/hike-selfie.jpg'
 import parkerSunset from '../assets/parker/sunset-selfie.jpg'
 import parkerScreenshot from '../assets/parker/p-n-screenshot.jpg'
 import parkerPointFive from '../assets/parker/p-point-five.jpg'
+import tejaTimesSquareHeart from '../assets/parker/t-p-times-square-heart.jpeg'
+import tejaTree from '../assets/parker/t-p-tree.jpeg'
+import tejaStairs from '../assets/parker/p-stairs.jpeg'
+import tejaTimesSquare from '../assets/parker/t-p-times-square.jpeg'
+import tejaSelfie from '../assets/parker/t-p-selfie.jpeg'
 import { useTitle } from '../useTitle'
 
 const BASE = import.meta.env.BASE_URL
@@ -212,7 +217,7 @@ export default function About() {
                       <>
                         golden hour
                         <span className="block not-italic font-[var(--tj-body)] tracking-[0.22em] text-[0.55rem] uppercase opacity-60 mt-1">
-                          Jul 2024 · Dungeness Spit Trail, lighthouse
+                          Jul 2024 · Dungeness Spit Trail
                         </span>
                       </>
                     ),
@@ -251,42 +256,132 @@ export default function About() {
             label="From the Crew"
             marginCat={<MarginCat file="spots/cats/cat-lake.jpg" side="left" tagline="Off the clock" />}
           >
-            <p>
-              Trader Nick's placeholder. Hey Nick, when you find
-              yourself in the codebase: open{' '}
-              <code className="font-mono text-[0.85em] bg-[var(--tj-ink)]/5 px-1 py-[0.05em] rounded-sm">
-                src/routes/About.tsx
-              </code>{' '}
-              in your editor, hit{' '}
-              <kbd className="font-[var(--tj-body)] tracking-[0.1em] text-[0.75em] uppercase border border-[var(--tj-ink)]/40 rounded-sm px-1 py-[0.05em]">
-                Ctrl+Shift+F
-              </kbd>{' '}
-              , and search for "Trader Nick" to land right
-              here. Rewrite this paragraph with whatever you'd like to
-              say to Parker for her birthday, keep the "- Trader Nick"
-              signoff at the bottom so future-you can find it again.
-            </p>
-            <p className="text-left italic opacity-75">
-              - Trader Nick
-            </p>
-            <p>
-              Trader Teja's placeholder. Hey Teja, when you find
-              yourself in the codebase: open{' '}
-              <code className="font-mono text-[0.85em] bg-[var(--tj-ink)]/5 px-1 py-[0.05em] rounded-sm">
-                src/routes/About.tsx
-              </code>{' '}
-              in your editor, hit{' '}
-              <kbd className="font-[var(--tj-body)] tracking-[0.1em] text-[0.75em] uppercase border border-[var(--tj-ink)]/40 rounded-sm px-1 py-[0.05em]">
-                Ctrl+Shift+F
-              </kbd>{' '}
-              , and search for "Trader Teja" to land right
-              here. Rewrite this paragraph with whatever you'd like to
-              say to Parker for her birthday, keep the "- Trader Teja"
-              signoff at the bottom so future-you can find it again.
-            </p>
-            <p className="text-left italic opacity-75">
-              - Trader Teja
-            </p>
+            <div className="flex flex-col md:flex-row-reverse items-center gap-6 md:gap-8">
+              {/* Placeholder frame for Nick — add `src` / `alt` / `caption` when his photo arrives. */}
+              <FramedPhoto
+                frame="frames/cartouche.svg"
+                aspect="600 / 506"
+                inset={{ top: '13%', right: '11%', bottom: '13%', left: '11%' }}
+                swing
+              />
+              <div className="flex-1 min-w-0 space-y-4">
+                <p>
+                  Trader Nick's placeholder. Hey Nick, when you find
+                  yourself in the codebase: open{' '}
+                  <code className="font-mono text-[0.85em] bg-[var(--tj-ink)]/5 px-1 py-[0.05em] rounded-sm">
+                    src/routes/About.tsx
+                  </code>{' '}
+                  in your editor, hit{' '}
+                  <kbd className="font-[var(--tj-body)] tracking-[0.1em] text-[0.75em] uppercase border border-[var(--tj-ink)]/40 rounded-sm px-1 py-[0.05em]">
+                    Ctrl+Shift+F
+                  </kbd>{' '}
+                  , and search for "Trader Nick" to land right
+                  here. Rewrite this paragraph with whatever you'd like to
+                  say to Parker for her birthday, keep the "- Trader Nick"
+                  signoff at the bottom so future-you can find it again.
+                </p>
+                <p className="text-left italic opacity-75">
+                  - Trader Nick
+                </p>
+              </div>
+            </div>
+
+            <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+              <FramedPhoto
+                frame="frames/crested-square.svg"
+                aspect="840 / 978"
+                inset={{ top: '17.5%', right: '21.5%', bottom: '21.5%', left: '21.5%' }}
+                swing
+                widthClass="w-[258px] sm:w-[306px]"
+                captionClass="-mt-6"
+                slides={[
+                  {
+                    src: tejaTimesSquareHeart,
+                    alt: 'Teja and Parker, heart hands in Times Square',
+                    caption: (
+                      <>
+                        queens of hearts
+                        <span className="block not-italic font-[var(--tj-body)] tracking-[0.22em] text-[0.55rem] uppercase opacity-60 mt-1">
+                          Dec 2025 · Times Square, NYC
+                        </span>
+                      </>
+                    ),
+                  },
+                  {
+                    src: tejaTree,
+                    alt: 'Teja and Parker by a tree',
+                    zoom: 1.3,
+                    shiftY: '-8%',
+                    caption: (
+                      <>
+                        deck the halls
+                        <span className="block not-italic font-[var(--tj-body)] tracking-[0.22em] text-[0.55rem] uppercase opacity-60 mt-1">
+                          Dec 2025 · Manhattan, NYC
+                        </span>
+                      </>
+                    ),
+                  },
+                  {
+                    src: tejaStairs,
+                    alt: 'Parker on the stairs',
+                    caption: (
+                      <>
+                        pretty in pink
+                        <span className="block not-italic font-[var(--tj-body)] tracking-[0.22em] text-[0.55rem] uppercase opacity-60 mt-1">
+                          Dec 2025 · Manhattan, NYC
+                        </span>
+                      </>
+                    ),
+                  },
+                  {
+                    src: tejaTimesSquare,
+                    alt: 'Teja and Parker in Times Square',
+                    zoom: 1.8,
+                    shiftY: '-10%',
+                    caption: (
+                      <>
+                        double trouble in the big apple
+                        <span className="block not-italic font-[var(--tj-body)] tracking-[0.22em] text-[0.55rem] uppercase opacity-60 mt-1">
+                          Dec 2025 · Times Square, NYC
+                        </span>
+                      </>
+                    ),
+                  },
+                  {
+                    src: tejaSelfie,
+                    alt: 'Teja and Parker selfie',
+                    caption: (
+                      <>
+                        the it girls
+                        <span className="block not-italic font-[var(--tj-body)] tracking-[0.22em] text-[0.55rem] uppercase opacity-60 mt-1">
+                          Dec 2025 · Manhattan, NYC
+                        </span>
+                      </>
+                    ),
+                  },
+                ]}
+              />
+              <div className="flex-1 min-w-0 space-y-4">
+                <p>
+                  Trader Teja's placeholder. Hey Teja, when you find
+                  yourself in the codebase: open{' '}
+                  <code className="font-mono text-[0.85em] bg-[var(--tj-ink)]/5 px-1 py-[0.05em] rounded-sm">
+                    src/routes/About.tsx
+                  </code>{' '}
+                  in your editor, hit{' '}
+                  <kbd className="font-[var(--tj-body)] tracking-[0.1em] text-[0.75em] uppercase border border-[var(--tj-ink)]/40 rounded-sm px-1 py-[0.05em]">
+                    Ctrl+Shift+F
+                  </kbd>{' '}
+                  , and search for "Trader Teja" to land right
+                  here. Rewrite this paragraph with whatever you'd like to
+                  say to Parker for her birthday, keep the "- Trader Teja"
+                  signoff at the bottom so future-you can find it again.
+                </p>
+                <p className="text-left italic opacity-75">
+                  - Trader Teja
+                </p>
+              </div>
+            </div>
           </Section>
 
           <Section
@@ -809,6 +904,9 @@ type FramedPhotoSlide = {
   /** CSS scale multiplier applied to this slide's image (1.0 = no zoom).
       Useful when a photo needs to be cropped tighter inside the frame. */
   zoom?: number
+  /** Vertical shift for the photo inside its inset (e.g. '-10%' to shift up).
+      Pairs with zoom > 1 to re-center the visible crop. */
+  shiftY?: string
   /** 'cover' (default) crops to fill the frame's window; 'contain' shows
       the whole photo with kraft-colored letterboxing when aspects differ. */
   fit?: 'cover' | 'contain'
@@ -832,6 +930,8 @@ function FramedPhoto({
   zoom,
   fit,
   slides,
+  widthClass = 'w-52 sm:w-64',
+  captionClass = 'mt-1.5',
 }: {
   src?: string
   alt?: string
@@ -852,6 +952,11 @@ function FramedPhoto({
   /** When provided, the frame becomes a click-to-cycle gallery. Each click
       advances to the next slide. Hover-swing still works independently. */
   slides?: FramedPhotoSlide[]
+  /** Tailwind width classes for the frame. Defaults to `w-52 sm:w-64`. */
+  widthClass?: string
+  /** Tailwind margin/spacing classes for the caption block (e.g. `-mt-6` to
+      tuck the caption up into the bottom of the frame). Defaults to `mt-1.5`. */
+  captionClass?: string
 }) {
   const effectiveSlides: FramedPhotoSlide[] =
     slides && slides.length > 0
@@ -902,7 +1007,7 @@ function FramedPhoto({
 
   return (
     <span
-      className={`block w-52 sm:w-64 ${floatClass}`}
+      className={`block ${widthClass} ${floatClass}`}
       onMouseEnter={swing ? onEnter : undefined}
       onMouseLeave={swing ? () => setPhase('release') : undefined}
     >
@@ -939,12 +1044,20 @@ function FramedPhoto({
           className="absolute overflow-hidden bg-[var(--tj-kraft)]/20"
           style={slideInset}
         >
-          <img
-            src={current.src}
-            alt={current.alt}
-            className={`w-full h-full ${current.fit === 'contain' ? 'object-contain' : 'object-cover'}`}
-            style={current.zoom ? { transform: `scale(${current.zoom})` } : undefined}
-          />
+          {current.src && (
+            <img
+              src={current.src}
+              alt={current.alt}
+              className={`w-full h-full ${current.fit === 'contain' ? 'object-contain' : 'object-cover'}`}
+              style={
+                current.zoom || current.shiftY
+                  ? {
+                      transform: `translateY(${current.shiftY ?? '0'}) scale(${current.zoom ?? 1})`,
+                    }
+                  : undefined
+              }
+            />
+          )}
         </span>
         <img
           src={`${BASE}decor/${slideFrame}`}
@@ -954,7 +1067,7 @@ function FramedPhoto({
         />
       </span>
       {current.caption && (
-        <span className="block text-center text-xs italic opacity-75 mt-1.5">
+        <span className={`block text-center text-xs italic opacity-75 ${captionClass}`}>
           {current.caption}
         </span>
       )}

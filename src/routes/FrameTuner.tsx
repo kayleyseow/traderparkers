@@ -51,6 +51,8 @@ export default function FrameTuner() {
   const [photoZoom, setPhotoZoom] = useState(1)
   const [photoShiftY, setPhotoShiftY] = useState(0)
   const [frameShiftY, setFrameShiftY] = useState(0)
+  const [frameScaleX, setFrameScaleX] = useState(1)
+  const [frameScaleY, setFrameScaleY] = useState(1)
   const [squishY, setSquishY] = useState(1)
 
   // Reset tuning state to the frame's defaults when switching frames.
@@ -63,6 +65,8 @@ export default function FrameTuner() {
     setPhotoZoom(1)
     setPhotoShiftY(0)
     setFrameShiftY(0)
+    setFrameScaleX(1)
+    setFrameScaleY(1)
     setSquishY(1)
   }
 
@@ -87,11 +91,16 @@ export default function FrameTuner() {
       ? { transform: `translateY(${photoShiftY}%) scale(${photoZoom})` }
       : undefined
 
-  // Frame style — handles rotation + optional shift via the shared helper so
-  // the tuner preview matches the live BagCard render exactly.
+  // Frame style — handles rotation + optional shift + scale via the shared
+  // helper so the tuner preview matches the live BagCard render exactly.
   const frameStyle = {
     position: 'absolute' as const,
-    ...frameImgStyle(rotation, frameShiftY !== 0 ? `${frameShiftY}%` : undefined),
+    ...frameImgStyle(
+      rotation,
+      frameShiftY !== 0 ? `${frameShiftY}%` : undefined,
+      frameScaleX,
+      frameScaleY,
+    ),
   }
 
   const codeSnippet = `{
@@ -104,6 +113,8 @@ export default function FrameTuner() {
     photoZoom !== 1 && `photoZoom: ${photoZoom}`,
     photoShiftY !== 0 && `photoShiftY: '${photoShiftY}%'`,
     frameShiftY !== 0 && `frameShiftY: '${frameShiftY}%'`,
+    frameScaleX !== 1 && `frameScaleX: ${frameScaleX}`,
+    frameScaleY !== 1 && `frameScaleY: ${frameScaleY}`,
     squishY !== 1 && `squishY: ${squishY}`,
   ]
     .filter(Boolean)
@@ -235,7 +246,9 @@ export default function FrameTuner() {
               <NumSlider label="Photo zoom" value={photoZoom} onChange={setPhotoZoom} min={0.5} max={2.5} step={0.05} format={(v) => `${v.toFixed(2)}×`} />
               <NumSlider label="Photo shiftY" value={photoShiftY} onChange={setPhotoShiftY} min={-50} max={50} step={1} format={(v) => `${v}%`} />
               <NumSlider label="Frame shiftY" value={frameShiftY} onChange={setFrameShiftY} min={-50} max={50} step={1} format={(v) => `${v}%`} />
-              <NumSlider label="Squish Y" value={squishY} onChange={setSquishY} min={0.5} max={1.5} step={0.01} format={(v) => `${v.toFixed(2)}×`} />
+              <NumSlider label="Frame scaleX" value={frameScaleX} onChange={setFrameScaleX} min={0.5} max={1.5} step={0.01} format={(v) => `${v.toFixed(2)}×`} />
+              <NumSlider label="Frame scaleY" value={frameScaleY} onChange={setFrameScaleY} min={0.5} max={1.5} step={0.01} format={(v) => `${v.toFixed(2)}×`} />
+              <NumSlider label="Squish Y (card)" value={squishY} onChange={setSquishY} min={0.5} max={1.5} step={0.01} format={(v) => `${v.toFixed(2)}×`} />
             </fieldset>
 
             <div className="border border-[var(--tj-ink)]/30 p-4">
