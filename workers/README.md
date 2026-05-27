@@ -83,7 +83,9 @@ npx wrangler secret put GITHUB_TOKEN
 
 npx wrangler secret put ADMIN_HASH
 # Paste the SHA-256 hex of the admin password.
-# (Use the SAME value as PASSWORD_HASH in src/routes/admin/hashPassword.ts.)
+# The Worker's /auth/check is the only place the password is verified
+# (the frontend PasswordGate just POSTs the entry here), so this secret
+# is the single source of truth — pick the password, hash it, paste it.
 
 npx wrangler secret put TURNSTILE_SECRET
 # Paste your Turnstile secret key
@@ -129,7 +131,7 @@ VITE_TURNSTILE_SITE_KEY=0x4AAAA...                   # site key from Step 3
 
 Restart the Vite dev server. The admin form now POSTs to the Worker; the suggestion form on `/encyclopedia` becomes active.
 
-For the production GH Pages build, set those same env vars in your GitHub Actions deploy workflow (whenever you set that up — `.env.local` is for local dev only).
+For the production GH Pages build, those same env vars are set directly in the GitHub Actions deploy workflow ([`.github/workflows/deploy.yml`](../.github/workflows/deploy.yml), in the `Build` step). They're public by design (the site key is meant to ship to the browser and the Worker URL is visible to anyone who hits the form), so they're committed in the clear rather than stored as repo secrets. Update them there if your Worker URL or Turnstile site key changes; `.env.local` only covers local dev.
 
 ---
 

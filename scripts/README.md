@@ -90,9 +90,17 @@ node scripts/scrape-tj-pdp.mjs <outDir> <slug>=<pdpUrl> [<slug>=<pdpUrl> ...]
 
 Standalone CLI for `@imgly/background-removal-node` + 4:5 crop. Mirrors the Finalize step inside `pick-photos.mjs` so you can run the same processing on a folder of images outside the picker workflow.
 
+### compress-parker-photos.mjs
+
+Resizes and recompresses the About-page photos in `src/assets/parker/` for web display (max ~1600px wide). Backs up each original to `<name>_full.<ext>` first, then overwrites the original in place. Re-runnable: files whose `_full` backup already exists are treated as compressed and skipped.
+
+```
+node scripts/compress-parker-photos.mjs
+```
+
 ### measure-frames.mjs
 
-Scans the alpha channel of rendered PNGs in `public/decor/frames/` to detect each vintage frame's transparent inset rectangle (where the photo shows through). Prints the inset data used to seed the `FRAME_INSET` map in `src/routes/Pantry.tsx`. Re-run when adding a new frame.
+Rasterizes each vintage frame SVG in `public/decor/frames/` (via sharp) and scans the resulting alpha channel to detect the frame's transparent inset rectangle (where the photo shows through). Prints the inset data used to seed the `BAG_FRAMES` map in `src/routes/Pantry.tsx`. Re-run when adding a new frame.
 
 ---
 
