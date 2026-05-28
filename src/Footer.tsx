@@ -1,5 +1,8 @@
+import { useEffect, useState } from 'react'
 import { Link } from 'react-router'
 import redDotLogo from './assets/icons/orig_red_dot_tp_logo.png'
+
+const BASE = import.meta.env.BASE_URL
 
 /**
  * Site-wide footer used on every interior page (everything except the
@@ -10,6 +13,22 @@ import redDotLogo from './assets/icons/orig_red_dot_tp_logo.png'
  * parent page's content width.
  */
 export default function Footer() {
+  // Live count of bags in Parker's collection, pulled from the pantry data.
+  // Stays null until it loads so the sign-off reads cleanly without it.
+  const [bagCount, setBagCount] = useState<number | null>(null)
+  useEffect(() => {
+    let active = true
+    fetch(`${BASE}data/pantry.json`)
+      .then((r) => r.json() as Promise<unknown[]>)
+      .then((d) => {
+        if (active && Array.isArray(d)) setBagCount(d.length)
+      })
+      .catch(() => {})
+    return () => {
+      active = false
+    }
+  }, [])
+
   return (
     <footer
       role="contentinfo"
@@ -32,12 +51,14 @@ export default function Footer() {
               className="h-12 md:h-14 w-auto select-none"
             />
           </Link>
-          <Link
-            to="/"
+          <a
+            href="https://github.com/kayleyseow/tjbags"
+            target="_blank"
+            rel="noreferrer"
             className="font-[var(--tj-body)] font-semibold tracking-[0.25em] text-[0.7rem] uppercase opacity-80 hover:opacity-100 underline-offset-4 hover:underline sm:col-start-1 sm:row-start-1 sm:justify-self-start"
           >
             Trader Parker's Bag Bazaar
-          </Link>
+          </a>
           <nav
             aria-label="Footer navigation"
             className="flex items-center gap-x-4 gap-y-1 md:gap-3 flex-wrap justify-center sm:col-start-3 sm:row-start-1 sm:justify-self-end"
@@ -55,7 +76,12 @@ export default function Footer() {
           <span aria-hidden className="text-[var(--tj-red)]">
             ★
           </span>
-          Stocked for Parker · Est. 2026
+          <span>
+            Stocked for Parker
+            {bagCount !== null &&
+              ` · ${bagCount} ${bagCount === 1 ? 'Bag' : 'Bags'} Collected`}
+            {' · Est. 2026'}
+          </span>
           <span aria-hidden className="text-[var(--tj-red)]">
             ★
           </span>
