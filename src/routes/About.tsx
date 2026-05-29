@@ -139,14 +139,17 @@ export default function About() {
                 Trader Joe's
               </InlineLink>{' '}
               bag archive went. State bags turned into city totes, cities into limited edition releases, limited releases into bags you can't even purchase. In the span of a 
-              week, I've learned more about Trader Joe's bags than I'll ever need to and hey, we can confidently say this website hosts{' '}
-              <Link
-                to="/encyclopedia"
-                className="underline underline-offset-2 hover:text-[var(--tj-red)]"
-              >
-                the world's first (and only!) TJ's tote encyclopedia
-              </Link>
-              <FootnoteRef n={1} />. From one trader to another, I hope you love this corner of the internet, and that it stays a small reminder to always get the bag(s).
+              week, I've learned more about Trader Joe's bags than I'll ever need to and hey, we can confidently say{' '}
+              <FootnoteRef n={1}>
+                this website hosts{' '}
+                <Link
+                  to="/encyclopedia"
+                  className="underline underline-offset-2 hover:text-[var(--tj-red)]"
+                >
+                  the world's first (and only!) TJ's tote encyclopedia
+                </Link>
+              </FootnoteRef>
+              . From one trader to another, I hope you love this corner of the internet, and that it stays a small reminder to always get the bag(s).
             </p>
             <p className="text-left italic opacity-75">
               safe travels,
@@ -225,11 +228,15 @@ export default function About() {
                 ]}
               />
               Trader Parker is the kind of person who treats every single TJ's run like a minor expedition. While our trader is keen on exploring new releases, 
-              she is documented to swear by a staple dinner item, her saving grace: the{' '}
-              <InlineLink href="https://www.traderjoes.com/home/products/pdp/organic-red-lentil-sedanini-058259">
-                red lentil pasta
-              </InlineLink>
-              , for the "protein"<FootnoteRef n={2} />. For breakfast, she's bound to grab a heaping scoop of{' '}
+              she is documented to swear by a staple dinner item, her saving grace:{' '}
+              <FootnoteRef n={2}>
+                the{' '}
+                <InlineLink href="https://www.traderjoes.com/home/products/pdp/organic-red-lentil-sedanini-058259">
+                  red lentil pasta
+                </InlineLink>
+                , for the "protein"
+              </FootnoteRef>
+              . For breakfast, she's bound to grab a heaping scoop of{' '}
               <InlineLink href="https://www.traderjoes.com/home/products/pdp/nonfat-plain-greek-yogurt-062905">
                 nonfat plain greek yogurt
               </InlineLink>
@@ -242,19 +249,21 @@ export default function About() {
             <p>
               The crew vividly remembers after-work Trader Joe's runs
               to <StoreChip storeNumber="137" className="px-[0.5em] py-[0.05em] gap-[0.2em] text-[0.85em]" /> during that one summer in
-              Seattle (especially the pre-hike snack runs). Trader Kayley's favorite memory is of them lugging
-              two{' '}
-              <InlineLink href="https://www.traderjoes.com/home/products/pdp/purified-water-080802">
-                24-packs of water
-              </InlineLink>{' '}
-              half an hour back to the apartment
-              <FootnoteRef n={3} /> in preparation for the (very wild) one-day Olympics trip<FootnoteRef n={4} />. What can we say, #worthit & #wesurvived.
+              Seattle (especially the pre-hike snack runs). Trader Kayley's favorite memory is of them{' '}
+              <FootnoteRef n={3}>
+                lugging two{' '}
+                <InlineLink href="https://www.traderjoes.com/home/products/pdp/purified-water-080802">
+                  24-packs of water
+                </InlineLink>{' '}
+                half an hour back to the apartment
+              </FootnoteRef>
+              {' '}in preparation for the <FootnoteRef n={4}>(very wild) one-day Olympics trip</FootnoteRef>. What can we say, #worthit & #wesurvived.
             </p>
           </Section>
 
           <Section
             label="From the Crew"
-            marginCat={<MarginCat file="spots/cats/cat-lake.jpg" side="left" tagline="Off the clock" />}
+            marginCat={<MarginCat file="spots/cats/cat-lake.jpg" side="left" tagline="Off the clock" widthClass="w-44" offsetClass="-left-56" />}
           >
             <div className="flex flex-col md:flex-row-reverse items-center gap-6 md:gap-8">
               {/* Placeholder frame for Nick — add `src` / `alt` / `caption` when his photo arrives. */}
@@ -363,13 +372,43 @@ export default function About() {
               />
               <div className="flex-1 min-w-0 space-y-4">
                 <p>
-                  Happy Birthday Parker! I started writing this entry with so much to say, but as I write this, I realize the words I come up with feel much too small for someone who means so much <3. Nevertheless, this is my small corner to you.
+                  Happy Birthday Parker! I started writing this entry with so much to say, but as I write this, I realize the words I come up with feel much too small for someone who means so much &lt;3. Nevertheless, this is my small corner to you.
                      You've always been someone who knew what you wanted and made a plan to get there, and I've always admired that about you! I don’t think I could have become as motivated as I am now without you. You pursue the things you care about (like TJ's) with so much heart and intention.
                      Your enthusiasm and coolness are infectious, and I'm so grateful to be your friend.
-                     Miss you so much, and I can't wait to go on more exciting trips with you! <3
+                     Miss you so much, and I can't wait to go on more exciting trips with you! &lt;3
                 </p>
                 <p className="text-left italic opacity-75">
                   - Trader Teja 🌿
+                </p>
+              </div>
+            </div>
+
+            <div className="flex flex-col md:flex-row-reverse items-center gap-6 md:gap-8">
+              {/* Placeholder frame for Uma — add `src` / `alt` / `caption` when her photo arrives. */}
+              <FramedPhoto
+                frame="frames/cartouche.svg"
+                aspect="600 / 506"
+                inset={{ top: '13%', right: '11%', bottom: '13%', left: '11%' }}
+                swing
+              />
+              <div className="flex-1 min-w-0 space-y-4">
+                <p>
+                  Trader Uma's placeholder. Hey Uma, when you find
+                  yourself in the codebase: open{' '}
+                  <code className="font-mono text-[0.85em] bg-[var(--tj-ink)]/5 px-1 py-[0.05em] rounded-sm">
+                    src/routes/About.tsx
+                  </code>{' '}
+                  in your editor, hit{' '}
+                  <kbd className="font-[var(--tj-body)] tracking-[0.1em] text-[0.75em] uppercase border border-[var(--tj-ink)]/40 rounded-sm px-1 py-[0.05em]">
+                    Ctrl+Shift+F
+                  </kbd>{' '}
+                  , and search for "Trader Uma" to land right
+                  here. Rewrite this paragraph with whatever you'd like to
+                  say to Parker for her birthday, keep the "- Trader Uma"
+                  signoff at the bottom so future-you can find it again.
+                </p>
+                <p className="text-left italic opacity-75">
+                  - Trader Uma
                 </p>
               </div>
             </div>
@@ -473,9 +512,11 @@ export default function About() {
               standards. There is no single source for any of this. It
               started as a hunt for a bag in every state with a
               Trader Joe's, one painstaking search at a time,
-              cross-referenced against the Trader Joe's
-              Bag Swap Group's community checklist
-              <FootnoteRef n={5} /> (March 2023, 63 polypropylene bags),
+              cross-referenced against the{' '}
+              <FootnoteRef n={5}>
+                Trader Joe's Bag Swap Group's community checklist
+              </FootnoteRef>
+              {' '}(March 2023, 63 polypropylene bags),
               with the special-edition releases stitched in by hand. 344 reference photos were dug up from{' '}
               <InlineLink href="https://www.reddit.com/r/traderjoes">
                 Reddit
@@ -618,16 +659,12 @@ export default function About() {
               In sum: a one-line idea ("document Parker's growing tote
               collection") quietly outgrew itself into a fully cataloged,
               version-controlled, captcha-protected weekend obsession.
-              What was meant to be a birthday card became an
-              encyclopedia engine.<FootnoteRef n={6} />
+              <FootnoteRef n={6}>What was meant to be a birthday card became an encyclopedia engine.</FootnoteRef>
             </p>
             </SubSection>
           </Section>
 
-          <Section
-            label="Credits & Thanks"
-            marginCat={<MarginCat file="spots/cats/cat-tux-color.svg" side="right" tagline="Much obliged" />}
-          >
+          <Section label="Credits & Thanks">
             <ul className="space-y-3 list-none p-0">
               <CreditRow
                 title="Fonts"
@@ -721,7 +758,12 @@ export default function About() {
 
           <Section
             label="Notes"
-            marginCat={<MarginCat file="spots/cats/cat-red-umbrella-color.svg" side="left" tagline="Just in case" topClass="-top-[24rem]" />}
+            marginCat={
+              <>
+                <MarginCat file="spots/cats/cat-red-umbrella-color.svg" side="left" tagline="Just in case" topClass="-top-[24rem]" />
+                <MarginCat file="spots/cats/cat-tux-color.svg" side="right" tagline="Much obliged" />
+              </>
+            }
           >
             <p className="italic">
               Trader Joe's, the wordmark, and the visual style being lovingly
@@ -824,6 +866,8 @@ function MarginCat({
   tagline,
   tilt = 0,
   topClass = 'top-0',
+  widthClass = 'w-32',
+  offsetClass,
 }: {
   file: string
   side: 'left' | 'right'
@@ -833,8 +877,10 @@ function MarginCat({
   tilt?: number
   /** Tailwind top-* class to override the default `top-0` anchor (e.g. `-top-20` to lift). */
   topClass?: string
+  widthClass?: string
+  offsetClass?: string
 }) {
-  const sideClass = side === 'left' ? '-left-44' : '-right-44'
+  const sideClass = offsetClass ?? (side === 'left' ? '-left-44' : '-right-44')
   const defaultFlip = side === 'left'
   const flip = mirror ? !defaultFlip : defaultFlip
   const transformParts = [
@@ -844,7 +890,7 @@ function MarginCat({
   return (
     <aside
       aria-hidden
-      className={`group hidden xl:block absolute ${sideClass} ${topClass} w-32 select-none`}
+      className={`group hidden xl:block absolute ${sideClass} ${topClass} ${widthClass} select-none`}
     >
       <img
         src={`${BASE}decor/${file}`}
@@ -1330,17 +1376,33 @@ function InlineLink({ href, children }: { href: string; children: React.ReactNod
   )
 }
 
-function FootnoteRef({ n, repeat = false }: { n: number; repeat?: boolean }) {
-  return (
+function FootnoteRef({
+  n,
+  repeat = false,
+  children,
+}: {
+  n: number
+  repeat?: boolean
+  children?: React.ReactNode
+}) {
+  const id = repeat ? undefined : `noteref-${n}`
+  const caret = (
     <sup className="ml-0.5">
       <a
-        id={repeat ? undefined : `noteref-${n}`}
+        id={children ? undefined : id}
         href={`#note-${n}`}
         className="font-[var(--tj-body)] tracking-[0.1em] text-[0.55rem] no-underline opacity-75 hover:text-[var(--tj-red)] hover:opacity-100 scroll-mt-24"
       >
         [{n}]
       </a>
     </sup>
+  )
+  if (!children) return caret
+  return (
+    <span id={id} className="scroll-mt-24">
+      {children}
+      {caret}
+    </span>
   )
 }
 

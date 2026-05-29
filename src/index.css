@@ -192,6 +192,25 @@ body {
   will-change: transform, opacity;
 }
 
+/* Wikipedia-style flash on the footnote source. When a back-arrow inside the
+   Notes list is clicked, the matching phrase in the body becomes the URL
+   :target and pulses a soft kraft-yellow highlight so the eye lands on it. */
+@keyframes noteref-flash {
+  0%   { background-color: rgba(234, 216, 168, 0.95); box-shadow: 0 0 0 0.15rem rgba(234, 216, 168, 0.95); }
+  70%  { background-color: rgba(234, 216, 168, 0.75); box-shadow: 0 0 0 0.15rem rgba(234, 216, 168, 0.75); }
+  100% { background-color: transparent; box-shadow: 0 0 0 0.15rem transparent; }
+}
+[id^="noteref-"]:target,
+li[id^="note-"]:target {
+  border-radius: 0.2rem;
+  animation: noteref-flash 2.6s ease-out forwards;
+}
+a[id^="noteref-"]:target,
+span[id^="noteref-"]:target sup a,
+li[id^="note-"]:target > a {
+  color: var(--tj-red);
+}
+
 @media (prefers-reduced-motion: reduce) {
   .parker-wave { animation: none; }
   .parker-only-btn,
@@ -204,6 +223,12 @@ body {
   .frame-swing.is-hover,
   .frame-swing.is-releasing { transform: none; animation: none; }
   .confetti-particle { animation: none; opacity: 0; }
+  [id^="noteref-"]:target,
+  li[id^="note-"]:target {
+    animation: none;
+    background-color: rgba(234, 216, 168, 0.9);
+    box-shadow: 0 0 0 0.15rem rgba(234, 216, 168, 0.9);
+  }
 }
 
 /* Touch-only devices (phones, tablets without a mouse) don't really hover,
