@@ -363,22 +363,13 @@ export default function About() {
               />
               <div className="flex-1 min-w-0 space-y-4">
                 <p>
-                  Trader Teja's placeholder. Hey Teja, when you find
-                  yourself in the codebase: open{' '}
-                  <code className="font-mono text-[0.85em] bg-[var(--tj-ink)]/5 px-1 py-[0.05em] rounded-sm">
-                    src/routes/About.tsx
-                  </code>{' '}
-                  in your editor, hit{' '}
-                  <kbd className="font-[var(--tj-body)] tracking-[0.1em] text-[0.75em] uppercase border border-[var(--tj-ink)]/40 rounded-sm px-1 py-[0.05em]">
-                    Ctrl+Shift+F
-                  </kbd>{' '}
-                  , and search for "Trader Teja" to land right
-                  here. Rewrite this paragraph with whatever you'd like to
-                  say to Parker for her birthday, keep the "- Trader Teja"
-                  signoff at the bottom so future-you can find it again.
+                  Happy Birthday Parker! I started writing this entry with so much to say, but as I write this, I realize the words I come up with feel much too small for someone who means so much <3. Nevertheless, this is my small corner to you.
+                     You've always been someone who knew what you wanted and made a plan to get there, and I've always admired that about you! I don’t think I could have become as motivated as I am now without you. You pursue the things you care about (like TJ's) with so much heart and intention.
+                     Your enthusiasm and coolness are infectious, and I'm so grateful to be your friend.
+                     Miss you so much, and I can't wait to go on more exciting trips with you! <3
                 </p>
                 <p className="text-left italic opacity-75">
-                  - Trader Teja
+                  - Trader Teja 🌿
                 </p>
               </div>
             </div>
