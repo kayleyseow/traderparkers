@@ -79,7 +79,7 @@ export default function Footer() {
           <span>
             Stocked for Parker
             {bagCount !== null &&
-              ` · ${bagCount} ${bagCount === 1 ? 'Bag' : 'Bags'} Collected`}
+              ` · ${bagCount} ${bagCount === 1 ? 'Bag' : 'Bags'} in da Pantry`}
             {' · Est. 2026'}
           </span>
           <span aria-hidden className="text-[var(--tj-red)]">
