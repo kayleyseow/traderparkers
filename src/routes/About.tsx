@@ -412,6 +412,36 @@ export default function About() {
                 </p>
               </div>
             </div>
+
+            <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+              {/* Placeholder frame for Camille — add `src` / `alt` / `caption` when her photo arrives. */}
+              <FramedPhoto
+                frame="frames/cartouche.svg"
+                aspect="600 / 506"
+                inset={{ top: '13%', right: '11%', bottom: '13%', left: '11%' }}
+                swing
+              />
+              <div className="flex-1 min-w-0 space-y-4">
+                <p>
+                  Trader Camille's placeholder. Hey Camille, when you find
+                  yourself in the codebase: open{' '}
+                  <code className="font-mono text-[0.85em] bg-[var(--tj-ink)]/5 px-1 py-[0.05em] rounded-sm">
+                    src/routes/About.tsx
+                  </code>{' '}
+                  in your editor, hit{' '}
+                  <kbd className="font-[var(--tj-body)] tracking-[0.1em] text-[0.75em] uppercase border border-[var(--tj-ink)]/40 rounded-sm px-1 py-[0.05em]">
+                    Ctrl+Shift+F
+                  </kbd>{' '}
+                  , and search for "Trader Camille" to land right
+                  here. Rewrite this paragraph with whatever you'd like to
+                  say to Parker for her birthday, keep the "- Trader Camille"
+                  signoff at the bottom so future-you can find it again.
+                </p>
+                <p className="text-left italic opacity-75">
+                  - Trader Camille
+                </p>
+              </div>
+            </div>
           </Section>
 
           <Section
