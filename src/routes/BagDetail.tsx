@@ -115,7 +115,7 @@ function BagView({
 
   const cycle = (dir: 1 | -1) => {
     if (slides.length < 2) return
-    const next = Math.max(0, Math.min(slides.length - 1, idx + dir))
+    const next = (idx + dir + slides.length) % slides.length
     scrollToIdx(next)
   }
 

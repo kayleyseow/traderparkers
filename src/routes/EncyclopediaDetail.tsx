@@ -193,14 +193,14 @@ function EncyclopediaView({
   const cycleAngle = (dir: 1 | -1) => {
     if (availableAngles.length < 2) return
     const i = availableAngles.indexOf(angle)
-    const nextIdx = Math.max(0, Math.min(availableAngles.length - 1, i + dir))
+    const nextIdx = (i + dir + availableAngles.length) % availableAngles.length
     scrollToIdx(nextIdx)
   }
 
   const cycleColorway = (dir: 1 | -1) => {
     if (colorways.length < 2) return
     const i = colorways.findIndex((c) => c.id === activeColorway?.id)
-    const nextIdx = Math.max(0, Math.min(colorways.length - 1, i + dir))
+    const nextIdx = (i + dir + colorways.length) % colorways.length
     scrollToIdx(nextIdx)
   }
 
