@@ -5,12 +5,16 @@ import Footer from '../Footer'
 import StoreChip from '../StoreChip'
 import redDotLogo from '../assets/icons/orig_red_dot_tp_logo.png'
 import parkerChopsticks from '../assets/parker/p-chopsticks.jpg'
+import parkerChopsticks2 from '../assets/parker/p-chopsticks-2.jpeg'
 import parkerKBull from '../assets/parker/p-k-bull.jpeg'
 import parkerMast from '../assets/parker/p-r-mast.jpeg'
 import parkerHike from '../assets/parker/hike-selfie.jpg'
 import parkerSunset from '../assets/parker/sunset-selfie.jpg'
 import parkerScreenshot from '../assets/parker/p-n-screenshot.jpg'
 import parkerPointFive from '../assets/parker/p-point-five.jpg'
+import parkerUHike from '../assets/parker/p-u-hike.jpeg'
+import parkerUHikeGif from '../assets/parker/p-u-hike.gif'
+import parkerKSunset from '../assets/parker/p-k-sunset-selfie.jpeg'
 import tejaTimesSquareHeart from '../assets/parker/t-p-times-square-heart.jpeg'
 import tejaTree from '../assets/parker/t-p-tree.jpeg'
 import tejaStairs from '../assets/parker/p-stairs.jpeg'
@@ -184,15 +188,15 @@ export default function About() {
                     ),
                   },
                   {
-                    src: parkerHike,
-                    alt: 'Parker on the way to a hike, in the car',
-                    fit: 'contain',
-                    zoom: 1.05,
+                    src: parkerChopsticks2,
+                    alt: 'Parker with chopsticks',
+                    zoom: 1.3,
+                    shiftY: '14%',
                     caption: (
                       <>
-                        backseat princesses
+                        level 2 chopsticks
                         <span className="block not-italic font-[var(--tj-body)] tracking-[0.22em] text-[0.55rem] uppercase opacity-60 mt-1">
-                          Jun 2024 · otw 2 Lake 22
+                          Jun 2026 · San Jose, CA
                         </span>
                       </>
                     ),
@@ -221,6 +225,19 @@ export default function About() {
                         golden hour
                         <span className="block not-italic font-[var(--tj-body)] tracking-[0.22em] text-[0.55rem] uppercase opacity-60 mt-1">
                           Jul 2024 · Dungeness Spit Trail
+                        </span>
+                      </>
+                    ),
+                  },
+                  {
+                    src: parkerKSunset,
+                    alt: 'Parker and Kayley at sunset',
+                    zoom: 1.2,
+                    caption: (
+                      <>
+                        touching grass
+                        <span className="block not-italic font-[var(--tj-body)] tracking-[0.22em] text-[0.55rem] uppercase opacity-60 mt-1">
+                          Jun 2026 · Sierra Vista, SJ
                         </span>
                       </>
                     ),
@@ -383,34 +400,91 @@ export default function About() {
               </div>
             </div>
 
-            <div className="flex flex-col md:flex-row-reverse items-center gap-6 md:gap-8">
-              {/* Placeholder frame for Uma — add `src` / `alt` / `caption` when her photo arrives. */}
+            {/* Uma's entry floats the frame after the first paragraph so it
+                sits beside the 2nd/3rd paragraphs, with the opening and closing
+                lines wrapping full-width above and below it. */}
+            <div className="space-y-4 after:clear-both after:block after:content-['']">
+              <p>Happy Birthday, Parker!!!</p>
               <FramedPhoto
-                frame="frames/cartouche.svg"
-                aspect="600 / 506"
-                inset={{ top: '13%', right: '11%', bottom: '13%', left: '11%' }}
+                frame="frames/rococo-oval.svg"
+                aspect="991 / 796"
+                rotate={90}
+                inset={{ top: '16%', right: '13.5%', bottom: '15.5%', left: '13%' }}
+                widthClass="w-48 sm:w-72 md:w-80 mt-6"
+                float="right"
                 swing
+                slides={[
+                  {
+                    src: parkerUHike,
+                    alt: 'Parker and Uma on a hike',
+                    fit: 'contain',
+                    caption: (
+                      <>
+                        summit about us
+                        <span className="block not-italic font-[var(--tj-body)] tracking-[0.22em] text-[0.55rem] uppercase opacity-60 mt-1">
+                          Jul 2024 · Deer Park Trail, WA
+                        </span>
+                      </>
+                    ),
+                  },
+                  {
+                    src: parkerUHikeGif,
+                    alt: 'Parker and Uma on a hike (animated)',
+                    fit: 'contain',
+                    caption: (
+                      <>
+                        peak company
+                        <span className="block not-italic font-[var(--tj-body)] tracking-[0.22em] text-[0.55rem] uppercase opacity-60 mt-1">
+                          Jul 2024 · Deer Park Trail, WA
+                        </span>
+                      </>
+                    ),
+                  },
+                  {
+                    src: parkerHike,
+                    alt: 'Parker on the way to a hike, in the car',
+                    fit: 'contain',
+                    zoom: 0.95,
+                    caption: (
+                      <>
+                        backseat princesses
+                        <span className="block not-italic font-[var(--tj-body)] tracking-[0.22em] text-[0.55rem] uppercase opacity-60 mt-1">
+                          Jun 2024 · otw 2 Lake 22
+                        </span>
+                      </>
+                    ),
+                  },
+                ]}
               />
-              <div className="flex-1 min-w-0 space-y-4">
-                <p>
-                  Trader Uma's placeholder. Hey Uma, when you find
-                  yourself in the codebase: open{' '}
-                  <code className="font-mono text-[0.85em] bg-[var(--tj-ink)]/5 px-1 py-[0.05em] rounded-sm">
-                    src/routes/About.tsx
-                  </code>{' '}
-                  in your editor, hit{' '}
-                  <kbd className="font-[var(--tj-body)] tracking-[0.1em] text-[0.75em] uppercase border border-[var(--tj-ink)]/40 rounded-sm px-1 py-[0.05em]">
-                    Ctrl+Shift+F
-                  </kbd>{' '}
-                  , and search for "Trader Uma" to land right
-                  here. Rewrite this paragraph with whatever you'd like to
-                  say to Parker for her birthday, keep the "- Trader Uma"
-                  signoff at the bottom so future-you can find it again.
-                </p>
-                <p className="text-left italic opacity-75">
-                  - Trader Uma
-                </p>
-              </div>
+              <p>
+                It's wild to think that we met through the Bits of Good dev
+                bootcamp. Back then we were both just figuring things out, and
+                somehow that turned into Seattle internships, weekend hikes,
+                late-night conversations, and an Among Us birthday cake.
+              </p>
+              <p>
+                Some of my favorite memories with you are honestly the simple
+                ones- walking along the piers when you first got to Seattle,
+                spending weekends exploring trails, and all the random
+                conversations we've had. You're one of those people who's just
+                easy to spend time with, and I've always appreciated that.
+              </p>
+              <p className="clear-both">
+                I've also always admired how thoughtful and genuine you are.
+                You care about the people around you, show up for your friends,
+                and have a way of making people feel comfortable and included.
+                You hold our hands when we don't know how to ice skate :))
+              </p>
+              <p>
+                I'm really glad our paths crossed. It's been fun getting to
+                know you, and seeing all the things you've accomplished. I hope
+                this year brings plenty of happiness, new adventures, new tote
+                bags, and lots of reasons to celebrate. Miss you, and looking
+                forward to the next time we get to hang out!
+              </p>
+              <p className="text-left italic opacity-75">
+                - Trader Uma
+              </p>
             </div>
 
             <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
@@ -983,6 +1057,30 @@ type FramedPhotoSlide = {
   frame?: string
   aspect?: string
   inset?: { top: string; right: string; bottom: string; left: string }
+  /** Frame rotation in degrees, paired with a swapped `aspect` (e.g. a
+      portrait oval turned 90° to hold a landscape photo). */
+  rotate?: 0 | 90 | 180 | 270
+}
+
+/** Frame-image style for a given rotation. 0° fills the box directly; 90/270
+    swap dimensions via container units so the rotated SVG still fills, which
+    requires `containerType: 'size'` on the wrapping span. */
+function frameRotateStyle(rotate: 0 | 90 | 180 | 270): React.CSSProperties {
+  if (rotate === 90 || rotate === 270) {
+    return {
+      top: '50%',
+      left: '50%',
+      width: '100cqh',
+      height: '100cqw',
+      transform: `translate(-50%, -50%) rotate(${rotate}deg)`,
+    }
+  }
+  return {
+    inset: 0,
+    width: '100%',
+    height: '100%',
+    transform: rotate === 180 ? 'rotate(180deg)' : undefined,
+  }
 }
 
 function FramedPhoto({
@@ -991,6 +1089,7 @@ function FramedPhoto({
   frame,
   aspect,
   inset,
+  rotate = 0,
   float,
   caption,
   swing = false,
@@ -1005,6 +1104,7 @@ function FramedPhoto({
   frame: string
   aspect: string
   inset: { top: string; right: string; bottom: string; left: string }
+  rotate?: 0 | 90 | 180 | 270
   float?: 'left' | 'right'
   caption?: React.ReactNode
   /** When true, the frame rotates around its top edge on hover with a
@@ -1039,6 +1139,7 @@ function FramedPhoto({
   const slideFrame = current.frame ?? frame
   const slideAspect = current.aspect ?? aspect
   const slideInset = current.inset ?? inset
+  const slideRotate = current.rotate ?? rotate
   // 'rest' = settled at 0deg. 'hover' = transitioning/held at ±3deg.
   // 'release' = playing the pendulum-release keyframe back to 0.
   // 'side' = which half of the frame the cursor entered from; flips the
@@ -1080,7 +1181,10 @@ function FramedPhoto({
     >
       <span
         className={`block relative ${frameClasses} ${hasMultiple ? 'cursor-pointer' : ''}`}
-        style={{ aspectRatio: slideAspect }}
+        style={{
+          aspectRatio: slideAspect,
+          containerType: slideRotate === 90 || slideRotate === 270 ? 'size' : undefined,
+        }}
         onAnimationEnd={
           swing
             ? () => {
@@ -1130,7 +1234,8 @@ function FramedPhoto({
           src={`${BASE}decor/${slideFrame}`}
           alt=""
           aria-hidden
-          className="absolute inset-0 w-full h-full pointer-events-none select-none"
+          className="absolute pointer-events-none select-none"
+          style={frameRotateStyle(slideRotate)}
         />
       </span>
       {current.caption && (
