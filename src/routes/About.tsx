@@ -352,7 +352,7 @@ export default function About() {
                     alt: 'Parker on the stairs',
                     caption: (
                       <>
-                        pretty in pink
+                      kinokuniya!
                         <span className="block not-italic font-[var(--tj-body)] tracking-[0.22em] text-[0.55rem] uppercase opacity-60 mt-1">
                           Dec 2025 · Manhattan, NYC
                         </span>
@@ -366,7 +366,7 @@ export default function About() {
                     shiftY: '-10%',
                     caption: (
                       <>
-                        double trouble in the big apple
+                        photoshoot with the ads (≧▽≦)
                         <span className="block not-italic font-[var(--tj-body)] tracking-[0.22em] text-[0.55rem] uppercase opacity-60 mt-1">
                           Dec 2025 · Times Square, NYC
                         </span>
@@ -378,7 +378,7 @@ export default function About() {
                     alt: 'Teja and Parker selfie',
                     caption: (
                       <>
-                        the it girls
+                        cuties
                         <span className="block not-italic font-[var(--tj-body)] tracking-[0.22em] text-[0.55rem] uppercase opacity-60 mt-1">
                           Dec 2025 · Manhattan, NYC
                         </span>
