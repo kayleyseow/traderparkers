@@ -56,6 +56,7 @@ const BAZAAR_SECRET_TRACKS: SecretTrack[] = [
   { id: 'UWhY6kfKEts', title: 'Brazil', artist: 'Declan McKenna', start: 4 },
   { id: '_hLJeGl9wi8', title: 'Money Machine', artist: '100 gecs' },
   { id: 'R_iTpfSCIVk', title: 'Pink Pony Club', artist: 'Chappell Roan' },
+  { id: '9YO5ruvFSCU', title: 'stupid horse', artist: '100 gecs' },
 ]
 
 const ALEXA_GALLERY = [
