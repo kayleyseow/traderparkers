@@ -169,6 +169,11 @@ body {
   animation: pendulum-release 1.6s ease-out forwards;
 }
 
+@keyframes glint-sweep {
+  0%   { transform: translateX(-130%); }
+  100% { transform: translateX(130%); }
+}
+
 /* Birthday-greeting confetti burst — see About.tsx ConfettiBurst.
    Each particle flies outward by its own random (--dx, --dy) with rotation,
    then fades. Particles are colored rectangles, sized like paper strips. */
@@ -222,6 +227,8 @@ li[id^="note-"]:target > a {
   .frame-swing { transition: none; }
   .frame-swing.is-hover,
   .frame-swing.is-releasing { transform: none; animation: none; }
+  .alexa-spotlight { opacity: 0 !important; }
+  .glint-streak { animation: none !important; }
   .confetti-particle { animation: none; opacity: 0; }
   [id^="noteref-"]:target,
   li[id^="note-"]:target {
@@ -238,4 +245,5 @@ li[id^="note-"]:target > a {
   .frame-swing { transition: none; }
   .frame-swing.is-hover,
   .frame-swing.is-releasing { transform: none; animation: none; }
+  .glint-streak { animation: none !important; }
 }

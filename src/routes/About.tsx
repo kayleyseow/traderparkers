@@ -18,6 +18,10 @@ import parkerMCat from '../assets/parker/p-m-cat.jpeg'
 import parkerMPicnic from '../assets/parker/p-m-picnic.jpeg'
 import parkerMMom from '../assets/parker/p-m-mom.jpeg'
 import parkerMBlur from '../assets/parker/p-m-blur.jpeg'
+import parkerASelfie from '../assets/parker/p-a-selfie.jpeg'
+import parkerASkate from '../assets/parker/p-a-skate.jpeg'
+import parkerAPyramid from '../assets/parker/p-a-pyramid.jpeg'
+import parkerANap from '../assets/parker/p-a-nap.jpeg'
 import parkerKSunset from '../assets/parker/p-k-sunset-selfie.jpeg'
 import tejaTimesSquareHeart from '../assets/parker/t-p-times-square-heart.jpeg'
 import tejaTree from '../assets/parker/t-p-tree.jpeg'
@@ -39,6 +43,41 @@ const BAZAAR_SECRET_TRACKS: SecretTrack[] = [
   { id: 'UWhY6kfKEts', title: 'Brazil', artist: 'Declan McKenna', start: 4 },
   { id: '_hLJeGl9wi8', title: 'Money Machine', artist: '100 gecs' },
   { id: 'R_iTpfSCIVk', title: 'Pink Pony Club', artist: 'Chappell Roan' },
+]
+
+const ALEXA_GALLERY = [
+  {
+    src: parkerASelfie,
+    alt: 'Friends making heart hands over heart-shaped pancakes',
+    frame: 'frames/horizontal-hung.svg',
+    aspect: '1178 / 1146',
+    inset: { top: '28%', right: '13%', bottom: '12%', left: '13%' },
+    grow: 1.028,
+  },
+  {
+    src: parkerASkate,
+    alt: 'Skating past a Christmas tree at an outdoor rink',
+    frame: 'frames/rococo-oval.svg',
+    aspect: '796 / 991',
+    inset: { top: '16%', right: '18%', bottom: '15.5%', left: '18%' },
+    grow: 0.803,
+  },
+  {
+    src: parkerAPyramid,
+    alt: 'Posing in a human pyramid',
+    frame: 'frames/crested-square.svg',
+    aspect: '840 / 978',
+    inset: { top: '17.5%', right: '21.5%', bottom: '21.5%', left: '21.5%' },
+    grow: 1.017,
+  },
+  {
+    src: parkerANap,
+    alt: 'Napping with fuzzy blankets and plushies',
+    frame: 'frames/cartouche.svg',
+    aspect: '600 / 506',
+    inset: { top: '13%', right: '11%', bottom: '13%', left: '11%' },
+    grow: 1.028,
+  },
 ]
 
 export default function About() {
@@ -405,9 +444,6 @@ export default function About() {
               </div>
             </div>
 
-            {/* Uma's entry floats the frame after the first paragraph so it
-                sits beside the 2nd/3rd paragraphs, with the opening and closing
-                lines wrapping full-width above and below it. */}
             <div className="flex flex-col gap-4 md:block md:space-y-4 md:after:clear-both md:after:block md:after:content-['']">
               <p>Happy Birthday, Parker!!!</p>
               <FramedPhoto
@@ -590,6 +626,27 @@ export default function About() {
               <p className="text-left italic opacity-75">
                 - Trader Madhu
               </p>
+            </div>
+
+            <div className="space-y-5">
+              <div className="text-center">
+                <div
+                  className="inline-block border-4 border-double border-[var(--tj-cream)]/40 overflow-hidden shadow-[0_2px_0_rgba(42,31,20,0.20),0_8px_16px_-8px_rgba(42,31,20,0.35)]"
+                  style={{ backgroundColor: '#1c2640' }}
+                >
+                  <div className="bg-[var(--tj-cream)] border-b-4 border-double border-[var(--tj-ink)]/30 px-5 py-2">
+                    <p className="font-[var(--tj-body)] tracking-[0.28em] text-sm md:text-base uppercase text-[var(--tj-red)]">
+                      Trader Alexa's Archive
+                    </p>
+                  </div>
+                  <div className="px-5 py-2">
+                    <p className="font-serif italic text-xs md:text-sm text-center text-[var(--tj-cream)]/70">
+                      a portrait gallery
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <AlexaGallery />
             </div>
           </Section>
 
@@ -1169,6 +1226,8 @@ function FramedPhoto({
   floatAt = 'base',
   caption,
   swing = false,
+  glow = false,
+  glint = false,
   zoom,
   fit,
   slides,
@@ -1182,14 +1241,14 @@ function FramedPhoto({
   inset: { top: string; right: string; bottom: string; left: string }
   rotate?: 0 | 90 | 180 | 270
   float?: 'left' | 'right'
-  /** 'base' floats at every width; 'md' stacks the frame as a centered block
-      on small screens and only floats from the md breakpoint up. */
   floatAt?: 'base' | 'md'
   caption?: React.ReactNode
   /** When true, the frame rotates around its top edge on hover with a
       slight overshoot, and on mouse-out plays a damped pendulum decay
       animation. Best for frames that visually hang from hardware. */
   swing?: boolean
+  glow?: boolean
+  glint?: boolean
   /** Single-photo zoom shortcut. Equivalent to setting `zoom` on a slide.
       Ignored when `slides` is provided (use per-slide zoom instead). */
   zoom?: number
@@ -1260,7 +1319,7 @@ function FramedPhoto({
 
   return (
     <span
-      className={`block ${widthClass} ${floatClass}`}
+      className={`block ${widthClass} ${floatClass} ${glow || glint ? 'group' : ''}`}
       onMouseEnter={swing ? onEnter : undefined}
       onMouseLeave={swing ? () => setPhase('release') : undefined}
     >
@@ -1314,12 +1373,26 @@ function FramedPhoto({
               }
             />
           )}
+          {glint && (
+            <span
+              aria-hidden
+              className="glint-streak pointer-events-none absolute inset-0 -translate-x-[130%] group-hover:animate-[glint-sweep_0.7s_ease-out]"
+              style={{
+                background:
+                  'linear-gradient(105deg, transparent 35%, rgba(255,255,255,0.45) 50%, transparent 65%)',
+              }}
+            />
+          )}
         </span>
         <img
           src={`${BASE}decor/${slideFrame}`}
           alt=""
           aria-hidden
-          className="absolute pointer-events-none select-none"
+          className={`absolute pointer-events-none select-none ${
+            glow
+              ? 'transition-[filter] duration-300 ease-out group-hover:[filter:drop-shadow(0_0_4px_rgba(245,230,200,0.85))_drop-shadow(0_0_11px_rgba(245,230,200,0.5))]'
+              : ''
+          }`}
           style={frameRotateStyle(slideRotate)}
         />
       </span>
@@ -1329,6 +1402,97 @@ function FramedPhoto({
         </span>
       )}
     </span>
+  )
+}
+
+function AlexaGallery() {
+  const wallRef = useRef<HTMLDivElement>(null)
+  const [lit, setLit] = useState(false)
+  const [focused, setFocused] = useState<number | null>(null)
+
+  const trackSpot = (e: React.MouseEvent<HTMLDivElement>) => {
+    const el = wallRef.current
+    if (!el) return
+    const r = el.getBoundingClientRect()
+    el.style.setProperty('--spot-x', `${e.clientX - r.left}px`)
+    el.style.setProperty('--spot-y', `${e.clientY - r.top}px`)
+  }
+
+  return (
+    <>
+      <div
+        className="md:hidden relative left-1/2 -translate-x-1/2 w-[min(520px,92vw)] p-4 border-4 border-double border-[var(--tj-cream)]/40 shadow-[inset_0_2px_8px_rgba(0,0,0,0.35)]"
+        style={{ backgroundColor: '#1c2640' }}
+      >
+        <div className="flex items-start gap-3">
+          {[0, 1].map((c) => (
+            <div key={c} className="flex-1 flex flex-col gap-3">
+              {ALEXA_GALLERY.filter((_, i) => i % 2 === c).map((p) => (
+                <div key={p.src} className="[&>span]:mb-0">
+                  <FramedPhoto
+                    frame={p.frame}
+                    aspect={p.aspect}
+                    inset={p.inset}
+                    widthClass="w-full"
+                    src={p.src}
+                    alt={p.alt}
+                    glow
+                    glint
+                  />
+                </div>
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div
+        ref={wallRef}
+        onMouseMove={trackSpot}
+        onMouseEnter={() => setLit(true)}
+        onMouseLeave={() => {
+          setLit(false)
+          setFocused(null)
+        }}
+        className="hidden md:block relative overflow-hidden left-1/2 -translate-x-1/2 w-[min(1000px,92vw)] p-6 border-4 border-double border-[var(--tj-cream)]/40 shadow-[inset_0_2px_10px_rgba(0,0,0,0.35)]"
+        style={{ backgroundColor: '#1c2640' }}
+      >
+        <div
+          aria-hidden
+          className="alexa-spotlight pointer-events-none absolute inset-0 transition-opacity duration-500"
+          style={{
+            opacity: lit ? 1 : 0,
+            background:
+              'radial-gradient(circle 200px at var(--spot-x, 50%) var(--spot-y, 50%), rgba(245,230,200,0.18), transparent 70%)',
+          }}
+        />
+        <div className="relative flex items-center gap-4">
+          {ALEXA_GALLERY.map((p, i) => (
+            <div
+              key={p.src}
+              onMouseEnter={() => setFocused(i)}
+              className="[&>span]:mb-0 transition-opacity duration-300"
+              style={{
+                flexGrow: p.grow,
+                flexBasis: 0,
+                opacity: focused === null || focused === i ? 1 : 0.4,
+              }}
+            >
+              <FramedPhoto
+                frame={p.frame}
+                aspect={p.aspect}
+                inset={p.inset}
+                widthClass="w-full"
+                src={p.src}
+                alt={p.alt}
+                glow
+                glint
+              />
+            </div>
+          ))}
+        </div>
+      </div>
+    </>
   )
 }
 
