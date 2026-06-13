@@ -14,6 +14,10 @@ import parkerScreenshot from '../assets/parker/p-n-screenshot.jpg'
 import parkerPointFive from '../assets/parker/p-point-five.jpg'
 import parkerUHike from '../assets/parker/p-u-hike.jpeg'
 import parkerUHikeGif from '../assets/parker/p-u-hike.gif'
+import parkerMCat from '../assets/parker/p-m-cat.jpeg'
+import parkerMPicnic from '../assets/parker/p-m-picnic.jpeg'
+import parkerMMom from '../assets/parker/p-m-mom.jpeg'
+import parkerMBlur from '../assets/parker/p-m-blur.jpeg'
 import parkerKSunset from '../assets/parker/p-k-sunset-selfie.jpeg'
 import tejaTimesSquareHeart from '../assets/parker/t-p-times-square-heart.jpeg'
 import tejaTree from '../assets/parker/t-p-tree.jpeg'
@@ -403,15 +407,16 @@ export default function About() {
             {/* Uma's entry floats the frame after the first paragraph so it
                 sits beside the 2nd/3rd paragraphs, with the opening and closing
                 lines wrapping full-width above and below it. */}
-            <div className="space-y-4 after:clear-both after:block after:content-['']">
+            <div className="flex flex-col gap-4 md:block md:space-y-4 md:after:clear-both md:after:block md:after:content-['']">
               <p>Happy Birthday, Parker!!!</p>
               <FramedPhoto
                 frame="frames/rococo-oval.svg"
                 aspect="991 / 796"
                 rotate={90}
                 inset={{ top: '16%', right: '13.5%', bottom: '15.5%', left: '13%' }}
-                widthClass="w-48 sm:w-72 md:w-80 mt-6"
+                widthClass="order-first w-64 sm:w-80 md:w-80 md:mt-6"
                 float="right"
+                floatAt="md"
                 swing
                 slides={[
                   {
@@ -447,7 +452,7 @@ export default function About() {
                     zoom: 0.95,
                     caption: (
                       <>
-                        backseat princesses
+                        passenger princesses
                         <span className="block not-italic font-[var(--tj-body)] tracking-[0.22em] text-[0.55rem] uppercase opacity-60 mt-1">
                           Jun 2024 · otw 2 Lake 22
                         </span>
@@ -515,6 +520,75 @@ export default function About() {
                   - Trader Camille
                 </p>
               </div>
+            </div>
+
+            <div className="flex flex-col gap-4 md:block md:space-y-4 md:after:clear-both md:after:block md:after:content-['']">
+              <p>Happy Birthday My One and True Catgirl!</p>
+              <p>
+                I have no idea what string of fate pulled us together, but every
+                day I thank my lucky stars we sat together on that bus on day 1
+                (it's always day 1).
+              </p>
+              <FramedPhoto
+                frame="frames/horizontal-hung.svg"
+                aspect="1178 / 1146"
+                inset={{ top: '28%', right: '13%', bottom: '12%', left: '13%' }}
+                widthClass="order-first w-64 sm:w-80 md:w-80 md:mt-6"
+                float="right"
+                floatAt="md"
+                swing
+                slides={[
+                  {
+                    src: parkerMCat,
+                    alt: 'Madhu and Parker, Parker wearing cat ears',
+                    caption: <>nya</>,
+                  },
+                  {
+                    src: parkerMPicnic,
+                    alt: 'Madhu and Parker at a park picnic',
+                    caption: <>thanks for listening</>,
+                  },
+                  {
+                    src: parkerMBlur,
+                    alt: 'Blurry candid of Parker, Madhu, and a friend',
+                    caption: <>outer wilds</>,
+                  },
+                  {
+                    src: parkerMMom,
+                    alt: 'Parker curled up on the couch at home',
+                    caption: <>ur mom *lipbite* lmao</>,
+                  },
+                ]}
+              />
+              <p>
+                There are so many moments with you that I'm grateful I got to
+                share: you've eaten my terrible pasta, run to the pharmacy for me
+                when I thought I was dying, given me your bed in a tiny tiny
+                house, let me pet your cat(s), studied with me, suffered with me,
+                explored with me, built an app (or two) with me... watched great
+                horrors (the boys) with me, shared cheese with me, made me feel
+                like I always had someone caring for and watching out for me,
+                given me great advice, locked toes with me (ok idk if this one
+                has actually happened but a girl can dream).
+              </p>
+              <p className="clear-both">
+                It's been a lovely almost 6 years knowing you (holy shit wtf 6
+                years?? we should celebrate our anniversary), and I'm looking
+                forward to the adventures we're going to share over the next 100
+                years at least.
+              </p>
+              <p>
+                Also at some point I will convince you to join my friends and
+                family commune.
+              </p>
+              <p>
+                I have no doubt you're going to make the world a better place,
+                and I can't wait to see what we do together. You're amazing and I
+                love you.
+              </p>
+              <p className="text-left italic opacity-75">
+                - Trader Madhu
+              </p>
             </div>
           </Section>
 
@@ -1091,6 +1165,7 @@ function FramedPhoto({
   inset,
   rotate = 0,
   float,
+  floatAt = 'base',
   caption,
   swing = false,
   zoom,
@@ -1106,6 +1181,9 @@ function FramedPhoto({
   inset: { top: string; right: string; bottom: string; left: string }
   rotate?: 0 | 90 | 180 | 270
   float?: 'left' | 'right'
+  /** 'base' floats at every width; 'md' stacks the frame as a centered block
+      on small screens and only floats from the md breakpoint up. */
+  floatAt?: 'base' | 'md'
   caption?: React.ReactNode
   /** When true, the frame rotates around its top edge on hover with a
       slight overshoot, and on mouse-out plays a damped pendulum decay
@@ -1150,11 +1228,17 @@ function FramedPhoto({
   const [side, setSide] = useState<'left' | 'right'>('right')
 
   const floatClass =
-    float === 'left'
-      ? 'float-left mr-5 mb-3'
-      : float === 'right'
-        ? 'float-right ml-5 mb-3'
-        : 'mx-auto mb-4'
+    floatAt === 'md'
+      ? float === 'left'
+        ? 'mx-auto md:float-left md:mr-5 md:mb-3'
+        : float === 'right'
+          ? 'mx-auto md:float-right md:ml-5 md:mb-3'
+          : 'mx-auto mb-4'
+      : float === 'left'
+        ? 'float-left mr-5 mb-3'
+        : float === 'right'
+          ? 'float-right ml-5 mb-3'
+          : 'mx-auto mb-4'
 
   const frameClasses = swing
     ? [
