@@ -38,6 +38,9 @@ import tejaTree from '../assets/parker/t-p-tree.jpeg'
 import tejaStairs from '../assets/parker/p-stairs.jpeg'
 import tejaTimesSquare from '../assets/parker/t-p-times-square.jpeg'
 import tejaSelfie from '../assets/parker/t-p-selfie.jpeg'
+import robertPrincess from '../assets/parker/r-princess.jpg'
+import robertNothing from '../assets/parker/r-nothing-happening.jpg'
+import robertParkerra from '../assets/parker/r-parkerra.jpg'
 import { useTitle } from '../useTitle'
 
 const BASE = import.meta.env.BASE_URL
@@ -636,26 +639,56 @@ export default function About() {
             <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
               {/* Placeholder frame for Robert — add `src` / `alt` / `caption` when his photo arrives. */}
               <FramedPhoto
-                frame="frames/cartouche.svg"
-                aspect="600 / 506"
-                inset={{ top: '13%', right: '11%', bottom: '13%', left: '11%' }}
+                frame="frames/shell-landscape.svg"
+                aspect="500 / 350"
+                inset={{ top: '18%', right: '9%', bottom: '10%', left: '9%' }}
                 swing
+                slides={[
+                  {
+                    src: robertPrincess,
+                    alt: 'Parker princess carrying Robert',
+                    caption: (
+                      <>
+                        prince charming
+                        <span className="block not-italic font-[var(--tj-body)] tracking-[0.22em] text-[0.55rem] uppercase opacity-60 mt-1">
+                          Jul 2024 · Alki Beach, WA
+                        </span>
+                      </>
+                    ),
+                  },
+                  {
+                    src: robertNothing,
+                    alt: 'Midnight breakfast with Parker!',
+                    caption: (
+                      <>
+                        nothing happening
+                        <span className="block not-italic font-[var(--tj-body)] tracking-[0.22em] text-[0.55rem] uppercase opacity-60 mt-1">
+                          Dec 2024 · Brittain?, GA (Stucen)
+                        </span>
+                      </>
+                    ),
+                  },
+                  {
+                    src: robertParkerra,
+                    alt: 'Parker and Emily holding the Among Us graduation cake',
+                    caption: (
+                      <>
+                        parkerra
+                        <span className="block not-italic font-[var(--tj-body)] tracking-[0.22em] text-[0.55rem] uppercase opacity-60 mt-1">
+                          Dec 2024 · Whistler, GA
+                        </span>
+                      </>
+                    ),
+                  },
+                ]}
               />
               <div className="flex-1 min-w-0 space-y-4">
+                <p>Happy birthday Parker!</p>
                 <p>
-                  Trader Robert's placeholder. Hey Robert, when you find
-                  yourself in the codebase: open{' '}
-                  <code className="font-mono text-[0.85em] bg-[var(--tj-ink)]/5 px-1 py-[0.05em] rounded-sm">
-                    src/routes/About.tsx
-                  </code>{' '}
-                  in your editor, hit{' '}
-                  <kbd className="font-[var(--tj-body)] tracking-[0.1em] text-[0.75em] uppercase border border-[var(--tj-ink)]/40 rounded-sm px-1 py-[0.05em]">
-                    Ctrl+Shift+F
-                  </kbd>{' '}
-                  , and search for "Trader Robert" to land right
-                  here. Rewrite this paragraph with whatever you'd like to
-                  say to Parker for her birthday, keep the "- Trader Robert"
-                  signoff at the bottom so future-you can find it again.
+                I'm so glad that I decided to go to the Olympic Sculpture Park meetup forever and a half ago and ended up meeting you. I love how it's always fun to hang out with you! You've got a way of making people feel relaxed; perhaps it's how you seem to have sage advice for so many things.
+                </p>
+                <p>
+                  I hope this 23<sup>rd</sup> year brings you joy and success. I've gotta visit some time!
                 </p>
                 <p className="text-left italic opacity-75">
                   - Trader Robert
