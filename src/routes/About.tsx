@@ -22,6 +22,16 @@ import parkerASelfie from '../assets/parker/p-a-selfie.jpeg'
 import parkerASkate from '../assets/parker/p-a-skate.jpeg'
 import parkerAPyramid from '../assets/parker/p-a-pyramid.jpeg'
 import parkerANap from '../assets/parker/p-a-nap.jpeg'
+import parkerHSummit from '../assets/parker/p-h-summit.jpeg'
+import parkerHBeach from '../assets/parker/p-h-beach.jpeg'
+import parkerHCar from '../assets/parker/p-h-car.jpeg'
+import parkerHMirror from '../assets/parker/p-h-mirror.jpeg'
+import parkerHSquad from '../assets/parker/p-h-squad.jpg'
+import parkerHHuddle from '../assets/parker/p-h-huddle.jpeg'
+import parkerHBridge from '../assets/parker/p-h-bridge.jpg'
+import parkerHDorm from '../assets/parker/p-h-dorm.jpg'
+import parkerHPit from '../assets/parker/p-h-pit.jpeg'
+import parkerHSkyline from '../assets/parker/p-h-skyline.jpeg'
 import parkerKSunset from '../assets/parker/p-k-sunset-selfie.jpeg'
 import tejaTimesSquareHeart from '../assets/parker/t-p-times-square-heart.jpeg'
 import tejaTree from '../assets/parker/t-p-tree.jpeg'
@@ -77,6 +87,100 @@ const ALEXA_GALLERY = [
     aspect: '600 / 506',
     inset: { top: '13%', right: '11%', bottom: '13%', left: '11%' },
     grow: 1.028,
+  },
+]
+
+// Ordered so the wide landscape frames (summit, huddle) are spaced out, keeping
+// 3-4 frames in view per page of the carousel.
+const HEMADRI_GALLERY: {
+  src: string
+  alt: string
+  frame: string
+  aspect: string
+  inset: { top: string; right: string; bottom: string; left: string }
+  grow: number
+  zoom?: number
+}[] = [
+  {
+    src: parkerHBeach,
+    alt: 'Beach selfie at dusk beside a dug-out sand pit',
+    frame: 'frames/embellished.svg',
+    aspect: '1374 / 1831',
+    inset: { top: '12.5%', right: '15.9%', bottom: '12.1%', left: '15%' },
+    grow: 0.751,
+  },
+  {
+    src: parkerHBridge,
+    alt: 'Four friends on the Brooklyn Bridge',
+    frame: 'frames/lines-ivory.svg',
+    aspect: '1123 / 1786',
+    inset: { top: '19.5%', right: '14.8%', bottom: '9.5%', left: '14.6%' },
+    grow: 0.629,
+  },
+  {
+    src: parkerHMirror,
+    alt: "Mirror selfie under a neon you're-really-pretty sign",
+    frame: 'frames/cherub-arch-ivory.svg',
+    aspect: '622 / 792',
+    inset: { top: '11.1%', right: '15.9%', bottom: '18.1%', left: '13.1%' },
+    grow: 0.785,
+  },
+  {
+    src: parkerHSummit,
+    alt: 'Four friends at a mountain summit overlook',
+    frame: 'frames/baroque-landscape.svg',
+    aspect: '800 / 447',
+    inset: { top: '7.5%', right: '2.5%', bottom: '6.5%', left: '2.5%' },
+    grow: 1.79,
+    zoom: 0.9,
+  },
+  {
+    src: parkerHCar,
+    alt: 'Two friends chatting in a parked car',
+    frame: 'frames/baroque-portrait.svg',
+    aspect: '655 / 900',
+    inset: { top: '21.2%', right: '18.6%', bottom: '18%', left: '18.9%' },
+    grow: 0.84,
+  },
+  {
+    src: parkerHSquad,
+    alt: 'Close-up group selfie of five friends',
+    frame: 'frames/floral-baroque-ivory.svg',
+    aspect: '417 / 626',
+    inset: { top: '22.6%', right: '21.1%', bottom: '22.1%', left: '22.1%' },
+    grow: 0.85,
+  },
+  {
+    src: parkerHHuddle,
+    alt: 'Overhead view of three friends in a group hug',
+    frame: 'frames/cartouche.svg',
+    aspect: '600 / 506',
+    inset: { top: '13%', right: '11%', bottom: '13%', left: '11%' },
+    grow: 1.186,
+  },
+  {
+    src: parkerHSkyline,
+    alt: 'Three friends with the Chicago skyline behind them',
+    frame: 'frames/garden-trellis.svg',
+    aspect: '581 / 776',
+    inset: { top: '15.8%', right: '9.4%', bottom: '11.6%', left: '8.3%' },
+    grow: 0.96,
+  },
+  {
+    src: parkerHDorm,
+    alt: 'Late-night dorm-room selfie with three friends',
+    frame: 'frames/dragonfly-nest-ivory.svg',
+    aspect: '1272 / 1800',
+    inset: { top: '4.7%', right: '7.1%', bottom: '5.4%', left: '7.7%' },
+    grow: 0.707,
+  },
+  {
+    src: parkerHPit,
+    alt: 'Two friends sitting inside a deep dug sand pit at the beach',
+    frame: 'frames/florid-portrait-ivory.svg',
+    aspect: '778 / 1188',
+    inset: { top: '33.6%', right: '21.5%', bottom: '15.5%', left: '22.5%' },
+    grow: 0.9,
   },
 ]
 
@@ -635,7 +739,7 @@ export default function About() {
                   style={{ backgroundColor: '#1c2640' }}
                 >
                   <div className="bg-[var(--tj-cream)] border-b-4 border-double border-[var(--tj-ink)]/30 px-5 py-2">
-                    <p className="font-[var(--tj-body)] tracking-[0.28em] text-sm md:text-base uppercase text-[var(--tj-red)]">
+                    <p className="font-serif tracking-[0.08em] text-sm md:text-base text-[var(--tj-red)]">
                       Trader Alexa's Archive
                     </p>
                   </div>
@@ -647,6 +751,27 @@ export default function About() {
                 </div>
               </div>
               <AlexaGallery />
+            </div>
+
+            <div className="space-y-5">
+              <div className="text-center">
+                <div
+                  className="inline-block border-4 border-double border-[var(--tj-cream)]/40 overflow-hidden shadow-[0_2px_0_rgba(42,31,20,0.20),0_8px_16px_-8px_rgba(42,31,20,0.35)]"
+                  style={{ backgroundColor: '#1c2640' }}
+                >
+                  <div className="bg-[var(--tj-cream)] border-b-4 border-double border-[var(--tj-ink)]/30 px-5 py-2">
+                    <p className="font-serif tracking-[0.08em] text-sm md:text-base text-[var(--tj-red)]">
+                      Trader Hemadri's Heirlooms
+                    </p>
+                  </div>
+                  <div className="px-5 py-2">
+                    <p className="font-serif italic text-xs md:text-sm text-center text-[var(--tj-cream)]/70">
+                      ten frames, one favorite person
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <HemadriCarousel />
             </div>
           </Section>
 
@@ -1390,7 +1515,7 @@ function FramedPhoto({
           aria-hidden
           className={`absolute pointer-events-none select-none ${
             glow
-              ? 'transition-[filter] duration-300 ease-out group-hover:[filter:drop-shadow(0_0_4px_rgba(245,230,200,0.85))_drop-shadow(0_0_11px_rgba(245,230,200,0.5))]'
+              ? 'transition-[filter] duration-300 ease-out group-hover:[filter:drop-shadow(0_0_4px_rgba(245,230,200,0.6))_drop-shadow(0_0_11px_rgba(245,230,200,0.35))]'
               : ''
           }`}
           style={frameRotateStyle(slideRotate)}
@@ -1408,7 +1533,6 @@ function FramedPhoto({
 function AlexaGallery() {
   const wallRef = useRef<HTMLDivElement>(null)
   const [lit, setLit] = useState(false)
-  const [focused, setFocused] = useState<number | null>(null)
 
   const trackSpot = (e: React.MouseEvent<HTMLDivElement>) => {
     const el = wallRef.current
@@ -1450,11 +1574,8 @@ function AlexaGallery() {
         ref={wallRef}
         onMouseMove={trackSpot}
         onMouseEnter={() => setLit(true)}
-        onMouseLeave={() => {
-          setLit(false)
-          setFocused(null)
-        }}
-        className="hidden md:block relative overflow-hidden left-1/2 -translate-x-1/2 w-[min(1000px,92vw)] p-6 border-4 border-double border-[var(--tj-cream)]/40 shadow-[inset_0_2px_10px_rgba(0,0,0,0.35)]"
+        onMouseLeave={() => setLit(false)}
+        className="hidden md:block relative overflow-hidden left-1/2 -translate-x-1/2 w-[min(1240px,92vw)] p-6 border-4 border-double border-[var(--tj-cream)]/40 shadow-[inset_0_2px_10px_rgba(0,0,0,0.35)]"
         style={{ backgroundColor: '#1c2640' }}
       >
         <div
@@ -1463,19 +1584,17 @@ function AlexaGallery() {
           style={{
             opacity: lit ? 1 : 0,
             background:
-              'radial-gradient(circle 200px at var(--spot-x, 50%) var(--spot-y, 50%), rgba(245,230,200,0.18), transparent 70%)',
+              'radial-gradient(circle 200px at var(--spot-x, 50%) var(--spot-y, 50%), rgba(245,230,200,0.12), transparent 70%)',
           }}
         />
         <div className="relative flex items-center gap-4">
-          {ALEXA_GALLERY.map((p, i) => (
+          {ALEXA_GALLERY.map((p) => (
             <div
               key={p.src}
-              onMouseEnter={() => setFocused(i)}
-              className="[&>span]:mb-0 transition-opacity duration-300"
+              className="[&>span]:mb-0"
               style={{
                 flexGrow: p.grow,
                 flexBasis: 0,
-                opacity: focused === null || focused === i ? 1 : 0.4,
               }}
             >
               <FramedPhoto
@@ -1493,6 +1612,164 @@ function AlexaGallery() {
         </div>
       </div>
     </>
+  )
+}
+
+function HemadriCarousel() {
+  const track = useRef<HTMLDivElement>(null)
+  const wallRef = useRef<HTMLDivElement>(null)
+  const programmatic = useRef(false)
+  const timer = useRef<number | undefined>(undefined)
+  const n = HEMADRI_GALLERY.length
+  const [lit, setLit] = useState(false)
+
+  const trackSpot = (e: React.MouseEvent<HTMLDivElement>) => {
+    const el = wallRef.current
+    if (!el) return
+    const r = el.getBoundingClientRect()
+    el.style.setProperty('--spot-x', `${e.clientX - r.left}px`)
+    el.style.setProperty('--spot-y', `${e.clientY - r.top}px`)
+  }
+
+  // Width of one copy of the strip (10 frames + their gaps), measured live so
+  // it stays exact across breakpoints. Three identical copies are rendered;
+  // the scroll position is kept in the middle one and wrapped by exactly this
+  // distance at the seams, which is invisible since the copies are identical.
+  const copyWidth = () => {
+    const el = track.current
+    if (!el || el.children.length <= n) return 0
+    return (el.children[n] as HTMLElement).offsetLeft - (el.children[0] as HTMLElement).offsetLeft
+  }
+
+  useEffect(() => {
+    const el = track.current
+    const w = copyWidth()
+    if (el && w) el.scrollLeft = w
+    return () => window.clearTimeout(timer.current)
+  }, [])
+
+  const recenter = () => {
+    const el = track.current
+    if (!el || programmatic.current) return
+    const w = copyWidth()
+    if (!w) return
+    const target = w + (el.scrollLeft % w)
+    if (Math.abs(target - el.scrollLeft) > 1) el.scrollLeft = target
+  }
+
+  const step = (d: number) => {
+    const el = track.current
+    if (!el) return
+    const w = copyWidth()
+    if (!w) return
+    programmatic.current = true
+    el.scrollLeft = w + (el.scrollLeft % w)
+    el.scrollBy({ left: d * Math.min(el.clientWidth * 0.85, w * 0.9), behavior: 'smooth' })
+    window.clearTimeout(timer.current)
+    timer.current = window.setTimeout(() => {
+      programmatic.current = false
+      recenter()
+    }, 600)
+  }
+
+  const handBtn =
+    'group shrink-0 rounded opacity-90 transition-[opacity,transform] hover:opacity-100 focus:outline-none focus-visible:opacity-100 focus-visible:ring-2 focus-visible:ring-[var(--tj-cream)]/40'
+  const handImg =
+    'h-6 sm:h-8 w-auto select-none transition-[filter] duration-150 ease-out group-hover:[filter:drop-shadow(0_0_4px_rgba(245,230,200,0.62))_drop-shadow(0_0_10px_rgba(245,230,200,0.42))] group-active:[filter:drop-shadow(0_0_4px_rgba(245,230,200,0.62))_drop-shadow(0_0_10px_rgba(245,230,200,0.42))]'
+
+  return (
+    <div
+      ref={wallRef}
+      onMouseMove={trackSpot}
+      onMouseEnter={() => setLit(true)}
+      onMouseLeave={() => setLit(false)}
+      className="relative overflow-hidden left-1/2 -translate-x-1/2 w-[min(1240px,92vw)] py-6 px-2 sm:px-3 border-4 border-double border-[var(--tj-cream)]/40 shadow-[inset_0_2px_10px_rgba(0,0,0,0.35)]"
+      style={{ backgroundColor: '#1c2640' }}
+    >
+      <div
+        aria-hidden
+        className="alexa-spotlight pointer-events-none absolute inset-0 transition-opacity duration-500"
+        style={{
+          opacity: lit ? 1 : 0,
+          background:
+            'radial-gradient(circle 200px at var(--spot-x, 50%) var(--spot-y, 50%), rgba(245,230,200,0.12), transparent 70%)',
+        }}
+      />
+      <div className="relative flex items-center gap-2 sm:gap-4">
+        <button
+          type="button"
+          aria-label="Previous photos"
+          onClick={() => step(-1)}
+          className={`${handBtn} active:-translate-x-1`}
+        >
+          <img
+            src={`${BASE}decor/icons/finger-point-left.svg`}
+            alt=""
+            aria-hidden
+            className={handImg}
+          />
+        </button>
+
+        <div
+          ref={track}
+          onScroll={recenter}
+          tabIndex={0}
+          role="group"
+          aria-roledescription="carousel"
+          aria-label="Trader Hemadri's heirlooms"
+          onKeyDown={(e) => {
+            if (e.key === 'ArrowLeft') {
+              e.preventDefault()
+              step(-1)
+            } else if (e.key === 'ArrowRight') {
+              e.preventDefault()
+              step(1)
+            }
+          }}
+          className="flex-1 min-w-0 flex items-center gap-4 overflow-x-auto snap-x snap-mandatory px-1 py-1 focus:outline-none [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          style={{ ['--h']: 'clamp(260px, 42vh, 380px)' } as React.CSSProperties}
+        >
+          {[0, 1, 2].map((copy) =>
+            HEMADRI_GALLERY.map((p) => (
+              <div
+                key={`${copy}-${p.src}`}
+                aria-hidden={copy === 1 ? undefined : true}
+                className="snap-start shrink-0 [&>span]:mb-0"
+                style={
+                  { ['--ratio']: p.grow, width: 'calc(var(--ratio) * var(--h))' } as React.CSSProperties
+                }
+              >
+                <FramedPhoto
+                  frame={p.frame}
+                  aspect={p.aspect}
+                  inset={p.inset}
+                  widthClass="w-full"
+                  src={p.src}
+                  alt={p.alt}
+                  zoom={p.zoom}
+                  glow
+                  glint
+                />
+              </div>
+            )),
+          )}
+        </div>
+
+        <button
+          type="button"
+          aria-label="Next photos"
+          onClick={() => step(1)}
+          className={`${handBtn} active:translate-x-1`}
+        >
+          <img
+            src={`${BASE}decor/icons/finger-point-right.svg`}
+            alt=""
+            aria-hidden
+            className={handImg}
+          />
+        </button>
+      </div>
+    </div>
   )
 }
 
