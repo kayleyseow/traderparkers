@@ -23,6 +23,17 @@ import parkerASkate from '../assets/parker/p-a-skate.jpeg'
 import parkerAPyramid from '../assets/parker/p-a-pyramid.jpeg'
 import parkerANap from '../assets/parker/p-a-nap.jpeg'
 import parkerKSunset from '../assets/parker/p-k-sunset-selfie.jpeg'
+import parkerNBeach from '../assets/parker/n-beach.jpg'
+import parkerNEnjoyingOutdoors from '../assets/parker/n-enjoying-outdoors.jpg'
+import parkerNFinalDayChat from '../assets/parker/n-final-day-chat.jpg'
+import parkerNFinalDayPier from '../assets/parker/n-final-day-pier.jpg'
+import parkerNFinalDayPiggyStatue from '../assets/parker/n-final-day-piggy-statue.jpg'
+import parkerNLastOneline from '../assets/parker/n-last-oneline.jpg'
+import parkerNPizzaPizza from '../assets/parker/n-pizza-pizza.jpg'
+import parkerNProudChopsticks from '../assets/parker/n-proud-chopsticks.jpg'
+import parkerNStickersTraderJoesShopping from '../assets/parker/n-stickers-traderjoes-shopping.jpg'
+import parkerNPackageForMe from '../assets/parker/n-package-for-me.jpg'
+import parkerNMyCatIsNotMe from '../assets/parker/n-my-cat-is-not-me.png'
 import tejaTimesSquareHeart from '../assets/parker/t-p-times-square-heart.jpeg'
 import tejaTree from '../assets/parker/t-p-tree.jpeg'
 import tejaStairs from '../assets/parker/p-stairs.jpeg'
@@ -328,30 +339,190 @@ export default function About() {
             label="From the Crew"
             marginCat={<MarginCat file="spots/cats/cat-lake.jpg" side="left" tagline="Off the clock" widthClass="w-44" offsetClass="-left-56" />}
           >
-            <div className="flex flex-col md:flex-row-reverse items-center gap-6 md:gap-8">
-              {/* Placeholder frame for Nick & Camille — add `src` / `alt` / `caption` when their photo arrives. */}
-              <FramedPhoto
-                frame="frames/cartouche.svg"
-                aspect="600 / 506"
-                inset={{ top: '13%', right: '11%', bottom: '13%', left: '11%' }}
-                swing
-              />
-              <div className="flex-1 min-w-0 space-y-4">
+            <div className="space-y-8">
+              <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
+                <FramedPhoto
+                  frame="frames/cartouche.svg"
+                  aspect="600 / 506"
+                  inset={{ top: '13%', right: '11%', bottom: '13%', left: '11%' }}
+                  widthClass="w-full"
+                  slides={[
+                    {
+                      src: parkerNBeach,
+                      alt: 'parker beach photos for breal',
+                      caption: (
+                        <>
+                          Robert and Parker putting their photo practice to work
+                          <span className="block not-italic font-[var(--tj-body)] tracking-[0.22em] text-[0.55rem] uppercase opacity-60 mt-1">
+                            Idk about you but I've def started taking WAY more photos cuz of Teja and Xavier. Gotta document the memories!
+                          </span>
+                        </>
+                      ),
+                    },
+                    {
+                      src: parkerNEnjoyingOutdoors,
+                      alt: 'much nature much wow',
+                      caption: (
+                        <>
+                          Only enjoying nature the best way we know how
+                          <span className="block not-italic font-[var(--tj-body)] tracking-[0.22em] text-[0.55rem] uppercase opacity-60 mt-1">
+                            Much nature, much wow. Much fun, much sun.
+                          </span>
+                        </>
+                      ),
+                    },
+                  ]}
+                />
+                <FramedPhoto
+                  frame="frames/cartouche.svg"
+                  aspect="600 / 506"
+                  inset={{ top: '13%', right: '11%', bottom: '13%', left: '11%' }}
+                  widthClass="w-full"
+                  slides={[
+                    {
+                      src: parkerNFinalDayChat,
+                      alt: 'Chatting that last night',
+                      caption: (
+                        <>
+                          Late night chats
+                          <span className="block not-italic font-[var(--tj-body)] tracking-[0.22em] text-[0.55rem] uppercase opacity-60 mt-1">
+                            The gang that will chat together forever ❤️
+                          </span>
+                        </>
+                      ),
+                    },
+                    {
+                      src: parkerNFinalDayPier,
+                      alt: 'We at the pier gang',
+                      caption: (
+                        <>
+                          Pier vibes
+                          <span className="block not-italic font-[var(--tj-body)] tracking-[0.22em] text-[0.55rem] uppercase opacity-60 mt-1">
+                            You'll now live in a place that has no piers, +1 for Seattle!
+                          </span>
+                        </>
+                      ),
+                    },
+                  ]}
+                />
+                <FramedPhoto
+                  frame="frames/cartouche.svg"
+                  aspect="600 / 506"
+                  inset={{ top: '13%', right: '11%', bottom: '13%', left: '11%' }}
+                  widthClass="w-full"
+                  slides={[
+                    {
+                      src: parkerNFinalDayPiggyStatue,
+                      alt: 'piggy statue say what',
+                      caption: (
+                        <>
+                          I don't know what this statue was for
+                          <span className="block not-italic font-[var(--tj-body)] tracking-[0.22em] text-[0.55rem] uppercase opacity-60 mt-1">
+                            We were so happy with the random piggy photo lmao
+                          </span>
+                        </>
+                      ),
+                    },
+                    {
+                      src: parkerNLastOneline,
+                      alt: 'public transit for the win',
+                      caption: (
+                        <>
+                          Last time riding the oneline that summer
+                          <span className="block not-italic font-[var(--tj-body)] tracking-[0.22em] text-[0.55rem] uppercase opacity-60 mt-1">
+                            We were trained well by Xavier and Teja to constantly take photos no matter what we're doing
+                          </span>
+                        </>
+                      ),
+                    },
+                    {
+                      src: parkerNPizzaPizza,
+                      alt: 'pizza pizza pizza pizza',
+                      caption: (
+                        <>
+                          pizza pizza pizza pizza
+                          <span className="block not-italic font-[var(--tj-body)] tracking-[0.22em] text-[0.55rem] uppercase opacity-60 mt-1">
+                            pizza pizza pizza pizza pizza pizza pizza pizza pizza. It actually was pretty good pizza
+                          </span>
+                        </>
+                      ),
+                    },
+                  ]}
+                />
+                <FramedPhoto
+                  frame="frames/cartouche.svg"
+                  aspect="600 / 506"
+                  inset={{ top: '13%', right: '11%', bottom: '13%', left: '11%' }}
+                  widthClass="w-full"
+                  slides={[
+                    {
+                      src: parkerNProudChopsticks,
+                      alt: 'chopstick enjoyer',
+                      caption: (
+                        <>
+                          The greatest and proudest chopsticks user I have ever met
+                          <span className="block not-italic font-[var(--tj-body)] tracking-[0.22em] text-[0.55rem] uppercase opacity-60 mt-1">
+                            I will never forget the chopstick skills you showcased that day, your terrific skills are only to be outmatched by my sub-5 year old nieces! lol
+                          </span>
+                        </>
+                      ),
+                    },
+                    {
+                      src: parkerNStickersTraderJoesShopping,
+                      alt: 'Nick and Parker, extra stickers for Nick (post TJs shopping trip)',
+                      caption: (
+                        <>
+                          Sticker-ridden Nick w/Parker, post TJ's shopping trip
+                          <span className="block not-italic font-[var(--tj-body)] tracking-[0.22em] text-[0.55rem] uppercase opacity-60 mt-1">
+                            Our shopping day at TJ's together, and I had plenty of extra stickers I was graciously gifted that day.
+                          </span>
+                        </>
+                      ),
+                    },
+                    {
+                      src: parkerNPackageForMe,
+                      alt: 'Parker & Co package for Nick',
+                      caption: (
+                        <>
+                          Thanks for getting my stuff back to me! lol
+                          <span className="block not-italic font-[var(--tj-body)] tracking-[0.22em] text-[0.55rem] uppercase opacity-60 mt-1">
+                            Ol' reliable Parker & Co coming through with getting my prized goods back to me safe and sound!
+                          </span>
+                        </>
+                      ),
+                    },
+                  ]}
+                />
+                <FramedPhoto
+                  frame="frames/cartouche.svg"
+                  aspect="600 / 506"
+                  inset={{ top: '13%', right: '11%', bottom: '13%', left: '11%' }}
+                  widthClass="w-full"
+                  src={parkerNMyCatIsNotMe}
+                  alt="my cat is not me"
+                  caption={
+                    <>
+                      I swear I didn't turn into my cat here
+                      <span className="block not-italic font-[var(--tj-body)] tracking-[0.22em] text-[0.55rem] uppercase opacity-60 mt-1">
+                        I always enjoy our chats we have, and I hope we can keep regularly having them to keep up-to-date on our lives together (and keep
+                        up-to-date on how the kitties are doing too lol)
+                      </span>
+                    </>
+                  }
+                />
+              </div>
+              <div className="space-y-4">
                 <p>
-                  Trader Nick & Camille's placeholder. Hey Nick & Camille,
-                  when you find yourselves in the codebase: open{' '}
-                  <code className="font-mono text-[0.85em] bg-[var(--tj-ink)]/5 px-1 py-[0.05em] rounded-sm">
-                    src/routes/About.tsx
-                  </code>{' '}
-                  in your editor, hit{' '}
-                  <kbd className="font-[var(--tj-body)] tracking-[0.1em] text-[0.75em] uppercase border border-[var(--tj-ink)]/40 rounded-sm px-1 py-[0.05em]">
-                    Ctrl+Shift+F
-                  </kbd>{' '}
-                  , and search for "Trader Nick & Camille" to land right
-                  here. Rewrite this paragraph with whatever you'd like to
-                  say to Parker for her birthday, keep the "- Trader Nick &
-                  Camille" signoff at the bottom so future-you can find it
-                  again.
+                  Happy birthday, Parker! I hope this next year brings you as much joy and fun as you have always brought to others. 
+                  I feel incredibly lucky to have met you and our crew, and to have shared so many fun memories together. 
+                  There was never a dull moment when we hung out, and I hope every day has been as fulfilling and exciting for you since then!
+                  Plenty of adbentures had, and plenty of adventures to come. Can't wait to see you again! (You're def on my list of most reliable
+                  people I could ever count on)
+                </p>
+                <p>
+                  Thank you for being someone who is always positive. I'm so happy of what you've accomplished since we met, and I hope you keep 
+                  crushing life. We will def visit you in your new city, and you'll def have to meet our babies (the cats) sometime. But for now, Happy Birthday
+                  and I hope you have a wonderful next year!
                 </p>
                 <p className="text-left italic opacity-75">
                   - Trader Nick & Camille
