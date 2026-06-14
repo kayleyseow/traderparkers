@@ -103,6 +103,7 @@ const HEMADRI_GALLERY: {
   inset: { top: string; right: string; bottom: string; left: string }
   grow: number
   zoom?: number
+  shiftY?: string
 }[] = [
   {
     src: parkerHBeach,
@@ -111,6 +112,8 @@ const HEMADRI_GALLERY: {
     aspect: '1374 / 1831',
     inset: { top: '12.5%', right: '15.9%', bottom: '12.1%', left: '15%' },
     grow: 0.751,
+    zoom: 1.12,
+    shiftY: '6%',
   },
   {
     src: parkerHBridge,
@@ -636,13 +639,14 @@ export default function About() {
               </p>
             </div>
 
-            <div className="flex flex-col md:flex-row items-center gap-6 md:gap-8">
+            <div className="flex flex-col md:flex-row items-center gap-6 md:gap-12">
               {/* Placeholder frame for Robert — add `src` / `alt` / `caption` when his photo arrives. */}
               <FramedPhoto
                 frame="frames/shell-landscape.svg"
                 aspect="500 / 350"
                 inset={{ top: '18%', right: '9%', bottom: '10%', left: '9%' }}
                 swing
+                widthClass="w-72 sm:w-[360px]"
                 slides={[
                   {
                     src: robertPrincess,
@@ -1387,6 +1391,7 @@ function FramedPhoto({
   glow = false,
   glint = false,
   zoom,
+  shiftY,
   fit,
   slides,
   widthClass = 'w-52 sm:w-64',
@@ -1410,6 +1415,9 @@ function FramedPhoto({
   /** Single-photo zoom shortcut. Equivalent to setting `zoom` on a slide.
       Ignored when `slides` is provided (use per-slide zoom instead). */
   zoom?: number
+  /** Single-photo vertical shift shortcut (e.g. '6%'). Pairs with zoom > 1 to
+      re-center the visible crop. Ignored when `slides` is provided. */
+  shiftY?: string
   /** Single-photo fit shortcut. Ignored when `slides` is provided. */
   fit?: 'cover' | 'contain'
   /** When provided, the frame becomes a click-to-cycle gallery. Each click
@@ -1424,7 +1432,7 @@ function FramedPhoto({
   const effectiveSlides: FramedPhotoSlide[] =
     slides && slides.length > 0
       ? slides
-      : [{ src: src ?? '', alt: alt ?? '', caption, zoom, fit }]
+      : [{ src: src ?? '', alt: alt ?? '', caption, zoom, shiftY, fit }]
   const [slideIdx, setSlideIdx] = useState(0)
   const current = effectiveSlides[slideIdx % effectiveSlides.length]
   const hasMultiple = effectiveSlides.length > 1
@@ -1780,6 +1788,7 @@ function HemadriCarousel() {
                   src={p.src}
                   alt={p.alt}
                   zoom={p.zoom}
+                  shiftY={p.shiftY}
                   glow
                   glint
                 />
