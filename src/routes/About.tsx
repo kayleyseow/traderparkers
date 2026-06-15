@@ -94,6 +94,134 @@ const ALEXA_GALLERY = [
   },
 ]
 
+// Nick & Camille's reel — one photo per frame, each with its own nameplate
+// carrying Nick's caption + note. Lives on the cream page (no dark wall) so the
+// words stay readable. `grow` is the frame's width-to-height ratio: every frame
+// shares a row height and gets its width from this.
+const NICK_GALLERY: {
+  src: string
+  alt: string
+  frame: string
+  aspect: string
+  inset: { top: string; right: string; bottom: string; left: string }
+  grow: number
+  caption: string
+  sub: string
+  zoom?: number
+}[] = [
+  {
+    src: parkerNBeach,
+    alt: 'parker beach photos for breal',
+    frame: 'frames/embellished.svg',
+    aspect: '1374.36 / 1830.86',
+    inset: { top: '12.5%', right: '15.9%', bottom: '12.1%', left: '15%' },
+    grow: 0.751,
+    zoom: 1.12,
+    caption: 'Robert and Parker putting their photo practice to work',
+    sub: "Idk about you but I've def started taking WAY more photos cuz of Teja and Xavier. Gotta document the memories!",
+  },
+  {
+    src: parkerNFinalDayPier,
+    alt: 'We at the pier gang',
+    frame: 'frames/shell-landscape.svg',
+    aspect: '927.69 / 627.51',
+    inset: { top: '18%', right: '9%', bottom: '10%', left: '9%' },
+    grow: 1.478,
+    caption: 'Pier vibes',
+    sub: "You'll now live in a place that has no piers, +1 for Seattle!",
+  },
+  {
+    src: parkerNEnjoyingOutdoors,
+    alt: 'much nature much wow',
+    frame: 'frames/garden-trellis.svg',
+    aspect: '581.36 / 775.77',
+    inset: { top: '15.8%', right: '9.4%', bottom: '11.6%', left: '8.3%' },
+    grow: 0.749,
+    caption: 'Only enjoying nature the best way we know how',
+    sub: 'Much nature, much wow. Much fun, much sun.',
+  },
+  {
+    src: parkerNProudChopsticks,
+    alt: 'chopstick enjoyer',
+    frame: 'frames/baroque-portrait.svg',
+    aspect: '655.34 / 900.33',
+    inset: { top: '21.2%', right: '18.6%', bottom: '18%', left: '18.9%' },
+    grow: 0.728,
+    caption: 'The greatest and proudest chopsticks user I have ever met',
+    sub: 'I will never forget the chopstick skills you showcased that day, your terrific skills are only to be outmatched by my sub-5 year old nieces! lol',
+  },
+  {
+    src: parkerNPizzaPizza,
+    alt: 'pizza pizza pizza pizza',
+    frame: 'frames/cartouche.svg',
+    aspect: '600 / 506',
+    inset: { top: '13%', right: '11%', bottom: '13%', left: '11%' },
+    grow: 1.186,
+    caption: 'pizza pizza pizza pizza',
+    sub: 'pizza pizza pizza pizza pizza pizza pizza pizza pizza. It actually was pretty good pizza',
+  },
+  {
+    src: parkerNFinalDayChat,
+    alt: 'Chatting that last night',
+    frame: 'frames/dragonfly-nest.svg',
+    aspect: '1272 / 1800',
+    inset: { top: '4.7%', right: '7.1%', bottom: '5.4%', left: '7.7%' },
+    grow: 0.707,
+    caption: 'Late night chats',
+    sub: 'The gang that will chat together forever ❤️',
+  },
+  {
+    src: parkerNFinalDayPiggyStatue,
+    alt: 'piggy statue say what',
+    frame: 'frames/cherub-arch.svg',
+    aspect: '622.39 / 792.49',
+    inset: { top: '11.1%', right: '15.9%', bottom: '18.1%', left: '13.1%' },
+    grow: 0.785,
+    caption: "I don't know what this statue was for",
+    sub: 'We were so happy with the random piggy photo lmao',
+  },
+  {
+    src: parkerNMyCatIsNotMe,
+    alt: 'my cat is not me',
+    frame: 'frames/baroque-landscape.svg',
+    aspect: '800 / 447',
+    inset: { top: '7.5%', right: '2.5%', bottom: '6.5%', left: '2.5%' },
+    grow: 1.79,
+    caption: "I swear I didn't turn into my cat here",
+    sub: 'I always enjoy our chats we have, and I hope we can keep regularly having them to keep up-to-date on our lives together (and keep up-to-date on how the kitties are doing too lol)',
+  },
+  {
+    src: parkerNLastOneline,
+    alt: 'public transit for the win',
+    frame: 'frames/floral-baroque.svg',
+    aspect: '417 / 626',
+    inset: { top: '22.6%', right: '21.1%', bottom: '22.1%', left: '22.1%' },
+    grow: 0.666,
+    caption: 'Last time riding the oneline that summer',
+    sub: 'We were trained well by Xavier and Teja to constantly take photos no matter what we\'re doing',
+  },
+  {
+    src: parkerNPackageForMe,
+    alt: 'Parker & Co package for Nick',
+    frame: 'frames/horizontal-hung.svg',
+    aspect: '1178.03 / 1146.41',
+    inset: { top: '28%', right: '13%', bottom: '12%', left: '13%' },
+    grow: 1.028,
+    caption: 'Thanks for getting my stuff back to me! lol',
+    sub: "Ol' reliable Parker & Co coming through with getting my prized goods back to me safe and sound!",
+  },
+  {
+    src: parkerNStickersTraderJoesShopping,
+    alt: 'Nick and Parker, extra stickers for Nick (post TJs shopping trip)',
+    frame: 'frames/florid-portrait.svg',
+    aspect: '777.84 / 1188.1',
+    inset: { top: '33.6%', right: '21.5%', bottom: '15.5%', left: '22.5%' },
+    grow: 0.655,
+    caption: "Sticker-ridden Nick w/Parker, post TJ's shopping trip",
+    sub: "Our shopping day at TJ's together, and I had plenty of extra stickers I was graciously gifted that day.",
+  },
+]
+
 export default function About() {
   useTitle(
     'About',
@@ -335,182 +463,9 @@ export default function About() {
             </p>
           </Section>
 
-          <Section
-            label="From the Crew"
-            marginCat={<MarginCat file="spots/cats/cat-lake.jpg" side="left" tagline="Off the clock" widthClass="w-44" offsetClass="-left-56" />}
-          >
+          <Section label="From the Crew">
             <div className="space-y-8">
-              <div className="grid gap-6 sm:grid-cols-2 xl:grid-cols-3">
-                <FramedPhoto
-                  frame="frames/cartouche.svg"
-                  aspect="600 / 506"
-                  inset={{ top: '13%', right: '11%', bottom: '13%', left: '11%' }}
-                  widthClass="w-full"
-                  slides={[
-                    {
-                      src: parkerNBeach,
-                      alt: 'parker beach photos for breal',
-                      caption: (
-                        <>
-                          Robert and Parker putting their photo practice to work
-                          <span className="block not-italic font-[var(--tj-body)] tracking-[0.22em] text-[0.55rem] uppercase opacity-60 mt-1">
-                            Idk about you but I've def started taking WAY more photos cuz of Teja and Xavier. Gotta document the memories!
-                          </span>
-                        </>
-                      ),
-                    },
-                    {
-                      src: parkerNEnjoyingOutdoors,
-                      alt: 'much nature much wow',
-                      caption: (
-                        <>
-                          Only enjoying nature the best way we know how
-                          <span className="block not-italic font-[var(--tj-body)] tracking-[0.22em] text-[0.55rem] uppercase opacity-60 mt-1">
-                            Much nature, much wow. Much fun, much sun.
-                          </span>
-                        </>
-                      ),
-                    },
-                  ]}
-                />
-                <FramedPhoto
-                  frame="frames/cartouche.svg"
-                  aspect="600 / 506"
-                  inset={{ top: '13%', right: '11%', bottom: '13%', left: '11%' }}
-                  widthClass="w-full"
-                  slides={[
-                    {
-                      src: parkerNFinalDayChat,
-                      alt: 'Chatting that last night',
-                      caption: (
-                        <>
-                          Late night chats
-                          <span className="block not-italic font-[var(--tj-body)] tracking-[0.22em] text-[0.55rem] uppercase opacity-60 mt-1">
-                            The gang that will chat together forever ❤️
-                          </span>
-                        </>
-                      ),
-                    },
-                    {
-                      src: parkerNFinalDayPier,
-                      alt: 'We at the pier gang',
-                      caption: (
-                        <>
-                          Pier vibes
-                          <span className="block not-italic font-[var(--tj-body)] tracking-[0.22em] text-[0.55rem] uppercase opacity-60 mt-1">
-                            You'll now live in a place that has no piers, +1 for Seattle!
-                          </span>
-                        </>
-                      ),
-                    },
-                  ]}
-                />
-                <FramedPhoto
-                  frame="frames/cartouche.svg"
-                  aspect="600 / 506"
-                  inset={{ top: '13%', right: '11%', bottom: '13%', left: '11%' }}
-                  widthClass="w-full"
-                  slides={[
-                    {
-                      src: parkerNFinalDayPiggyStatue,
-                      alt: 'piggy statue say what',
-                      caption: (
-                        <>
-                          I don't know what this statue was for
-                          <span className="block not-italic font-[var(--tj-body)] tracking-[0.22em] text-[0.55rem] uppercase opacity-60 mt-1">
-                            We were so happy with the random piggy photo lmao
-                          </span>
-                        </>
-                      ),
-                    },
-                    {
-                      src: parkerNLastOneline,
-                      alt: 'public transit for the win',
-                      caption: (
-                        <>
-                          Last time riding the oneline that summer
-                          <span className="block not-italic font-[var(--tj-body)] tracking-[0.22em] text-[0.55rem] uppercase opacity-60 mt-1">
-                            We were trained well by Xavier and Teja to constantly take photos no matter what we're doing
-                          </span>
-                        </>
-                      ),
-                    },
-                    {
-                      src: parkerNPizzaPizza,
-                      alt: 'pizza pizza pizza pizza',
-                      caption: (
-                        <>
-                          pizza pizza pizza pizza
-                          <span className="block not-italic font-[var(--tj-body)] tracking-[0.22em] text-[0.55rem] uppercase opacity-60 mt-1">
-                            pizza pizza pizza pizza pizza pizza pizza pizza pizza. It actually was pretty good pizza
-                          </span>
-                        </>
-                      ),
-                    },
-                  ]}
-                />
-                <FramedPhoto
-                  frame="frames/cartouche.svg"
-                  aspect="600 / 506"
-                  inset={{ top: '13%', right: '11%', bottom: '13%', left: '11%' }}
-                  widthClass="w-full"
-                  slides={[
-                    {
-                      src: parkerNProudChopsticks,
-                      alt: 'chopstick enjoyer',
-                      caption: (
-                        <>
-                          The greatest and proudest chopsticks user I have ever met
-                          <span className="block not-italic font-[var(--tj-body)] tracking-[0.22em] text-[0.55rem] uppercase opacity-60 mt-1">
-                            I will never forget the chopstick skills you showcased that day, your terrific skills are only to be outmatched by my sub-5 year old nieces! lol
-                          </span>
-                        </>
-                      ),
-                    },
-                    {
-                      src: parkerNStickersTraderJoesShopping,
-                      alt: 'Nick and Parker, extra stickers for Nick (post TJs shopping trip)',
-                      caption: (
-                        <>
-                          Sticker-ridden Nick w/Parker, post TJ's shopping trip
-                          <span className="block not-italic font-[var(--tj-body)] tracking-[0.22em] text-[0.55rem] uppercase opacity-60 mt-1">
-                            Our shopping day at TJ's together, and I had plenty of extra stickers I was graciously gifted that day.
-                          </span>
-                        </>
-                      ),
-                    },
-                    {
-                      src: parkerNPackageForMe,
-                      alt: 'Parker & Co package for Nick',
-                      caption: (
-                        <>
-                          Thanks for getting my stuff back to me! lol
-                          <span className="block not-italic font-[var(--tj-body)] tracking-[0.22em] text-[0.55rem] uppercase opacity-60 mt-1">
-                            Ol' reliable Parker & Co coming through with getting my prized goods back to me safe and sound!
-                          </span>
-                        </>
-                      ),
-                    },
-                  ]}
-                />
-                <FramedPhoto
-                  frame="frames/cartouche.svg"
-                  aspect="600 / 506"
-                  inset={{ top: '13%', right: '11%', bottom: '13%', left: '11%' }}
-                  widthClass="w-full"
-                  src={parkerNMyCatIsNotMe}
-                  alt="my cat is not me"
-                  caption={
-                    <>
-                      I swear I didn't turn into my cat here
-                      <span className="block not-italic font-[var(--tj-body)] tracking-[0.22em] text-[0.55rem] uppercase opacity-60 mt-1">
-                        I always enjoy our chats we have, and I hope we can keep regularly having them to keep up-to-date on our lives together (and keep
-                        up-to-date on how the kitties are doing too lol)
-                      </span>
-                    </>
-                  }
-                />
-              </div>
+              <NickCarousel />
               <div className="space-y-4">
                 <p>
                   Happy birthday, Parker! I hope this next year brings you as much joy and fun as you have always brought to others. 
@@ -990,7 +945,10 @@ export default function About() {
               didn't end up taking twice as long.
             </p>
             </SubSection>
-            <SubSection label="The Pipeline">
+            <SubSection
+              label="The Pipeline"
+              marginCat={<MarginCat file="spots/cats/cat-lake.jpg" side="left" tagline="Off the clock" widthClass="w-44" offsetClass="-left-56" />}
+            >
             <p>
               Each bag photo runs through a small pipeline before it
               lands on the page. iPhone shots come in as{' '}
@@ -1284,13 +1242,16 @@ function Section({
 
 function SubSection({
   label,
+  marginCat,
   children,
 }: {
   label: string
+  marginCat?: React.ReactNode
   children: React.ReactNode
 }) {
   return (
-    <div>
+    <div className="relative">
+      {marginCat}
       <h3 className="font-[var(--tj-body)] tracking-[0.25em] text-[0.65rem] uppercase opacity-75 mb-3 text-left">
         {label}
       </h3>
@@ -1697,6 +1658,158 @@ function AlexaGallery() {
         </div>
       </div>
     </>
+  )
+}
+
+/* Nick & Camille's horizontal reel. Same infinite-scroll mechanic as the
+   gallery walls (three identical copies, parked in the middle, wrapped at the
+   seams), but on the cream page with a nameplate under each frame instead of a
+   dark spotlight wall. Frames share a row height via --h; each frame's width
+   comes from its --ratio (the frame's aspect). */
+function NickCarousel() {
+  const track = useRef<HTMLDivElement>(null)
+  const programmatic = useRef(false)
+  const timer = useRef<number | undefined>(undefined)
+  const n = NICK_GALLERY.length
+
+  const copyWidth = () => {
+    const el = track.current
+    if (!el || el.children.length <= n) return 0
+    return (el.children[n] as HTMLElement).offsetLeft - (el.children[0] as HTMLElement).offsetLeft
+  }
+
+  useEffect(() => {
+    const el = track.current
+    const w = copyWidth()
+    if (el && w) el.scrollLeft = w
+    return () => window.clearTimeout(timer.current)
+  }, [])
+
+  const recenter = () => {
+    const el = track.current
+    if (!el || programmatic.current) return
+    const w = copyWidth()
+    if (!w) return
+    const target = w + (el.scrollLeft % w)
+    if (Math.abs(target - el.scrollLeft) > 1) el.scrollLeft = target
+  }
+
+  const step = (d: number) => {
+    const el = track.current
+    if (!el) return
+    const w = copyWidth()
+    if (!w) return
+    programmatic.current = true
+    el.scrollLeft = w + (el.scrollLeft % w)
+    el.scrollBy({ left: d * Math.min(el.clientWidth * 0.85, w * 0.9), behavior: 'smooth' })
+    window.clearTimeout(timer.current)
+    timer.current = window.setTimeout(() => {
+      programmatic.current = false
+      recenter()
+    }, 600)
+  }
+
+  const navBtn =
+    'hidden lg:block absolute top-[calc(var(--h)/2)] -translate-y-1/2 z-10 group rounded opacity-60 transition-opacity hover:opacity-100 focus:outline-none focus-visible:opacity-100 focus-visible:ring-2 focus-visible:ring-[var(--tj-ink)]/30'
+
+  return (
+    <div
+      className="relative left-1/2 -translate-x-1/2 w-[min(56rem,92vw)]"
+      style={{ ['--h']: 'clamp(240px, 35vh, 340px)' } as React.CSSProperties}
+    >
+      <button
+        type="button"
+        aria-label="Previous photos"
+        onClick={() => step(-1)}
+        className={`${navBtn} left-2 active:-translate-x-0.5`}
+      >
+        <img
+          src={`${BASE}decor/icons/finger-point-left.svg`}
+          alt=""
+          aria-hidden
+          className="h-6 sm:h-8 w-auto select-none"
+        />
+      </button>
+
+      <div
+        ref={track}
+        onScroll={recenter}
+        tabIndex={0}
+        role="group"
+        aria-roledescription="carousel"
+        aria-label="Trader Nick & Camille's photos of Parker"
+        onKeyDown={(e) => {
+          if (e.key === 'ArrowLeft') {
+            e.preventDefault()
+            step(-1)
+          } else if (e.key === 'ArrowRight') {
+            e.preventDefault()
+            step(1)
+          }
+        }}
+        className="mx-auto w-full max-w-2xl flex items-start gap-4 sm:gap-5 overflow-x-auto snap-x snap-mandatory px-1 py-1 focus:outline-none [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+      >
+        {[0, 1, 2].map((copy) =>
+          NICK_GALLERY.map((p) => (
+            <figure
+              key={`${copy}-${p.src}`}
+              aria-hidden={copy === 1 ? undefined : true}
+              className="snap-start shrink-0 m-0"
+              style={
+                { ['--ratio']: p.grow, width: 'calc(var(--ratio) * var(--h) + 4rem)' } as React.CSSProperties
+              }
+            >
+              <div
+                className="mx-auto [&>span]:mb-0"
+                style={{ width: 'calc(var(--ratio) * var(--h))' } as React.CSSProperties}
+              >
+                <FramedPhoto
+                  frame={p.frame}
+                  aspect={p.aspect}
+                  inset={p.inset}
+                  widthClass="w-full"
+                  src={p.src}
+                  alt={p.alt}
+                  zoom={p.zoom}
+                  glint
+                />
+              </div>
+              <figcaption className="mt-4 mx-auto w-full max-w-[340px]">
+                <div
+                  className="relative border-4 border-double border-[var(--tj-cream)]/40 overflow-hidden shadow-[0_2px_0_rgba(42,31,20,0.20),0_8px_16px_-8px_rgba(42,31,20,0.35)]"
+                  style={{ backgroundColor: '#1c2640' }}
+                >
+                  <div className="bg-[var(--tj-cream)] border-b-4 border-double border-[var(--tj-ink)]/30 px-3 py-2">
+                    <p className="font-serif text-[var(--tj-red)] text-sm md:text-base leading-snug text-balance text-center">
+                      {p.caption}
+                    </p>
+                  </div>
+                  <div className="text-[var(--tj-cream)] px-3.5 py-2.5">
+                    <p className="font-[var(--tj-body)] text-[0.62rem] md:text-[0.66rem] leading-snug text-center opacity-90">
+                      {p.sub}
+                    </p>
+                  </div>
+                </div>
+              </figcaption>
+            </figure>
+          )),
+        )}
+      </div>
+
+      <button
+        type="button"
+        aria-label="Next photos"
+        onClick={() => step(1)}
+        className={`${navBtn} right-2 active:translate-x-0.5`}
+      >
+        <img
+          src={`${BASE}decor/icons/finger-point-right.svg`}
+          alt=""
+          aria-hidden
+          className="h-6 sm:h-8 w-auto select-none"
+        />
+      </button>
+    </div>
   )
 }
 
