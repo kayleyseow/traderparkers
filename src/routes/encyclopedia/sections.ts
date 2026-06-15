@@ -82,7 +82,7 @@ export const NON_LOCATION_SECTIONS: SectionDef[] = [
 export const SUGGEST_SECTION = {
   id: 'suggest',
   label: 'Add or Edit a Bag',
-  scrubberLabel: 'Add or Edit',
+  scrubberLabel: 'Suggest',
   ornamentFile: 'icons/pen-nibs.svg',
   ornamentClass: 'h-24 md:h-28',
   blurb:
