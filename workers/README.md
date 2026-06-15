@@ -5,7 +5,7 @@ This is the small backend that powers the admin and suggestion features on the s
 | Endpoint | Who can call it | What it does |
 |---|---|---|
 | `POST /auth/check` | Parker (login gate) | Verifies the admin password before the form unlocks. |
-| `POST /pantry` | Parker (password-gated) | Commits a new bag entry + photos to the `tjbags` GitHub repo. GH Pages then rebuilds and the bag appears. |
+| `POST /pantry` | Parker (password-gated) | Commits a new bag entry + photos to the `traderparkers` GitHub repo. GH Pages then rebuilds and the bag appears. |
 | `POST /pantry/edit` | Parker (password-gated) | Updates an existing pantry entry. |
 | `POST /pantry/delete` | Parker (password-gated) | Removes a pantry entry and its photos. |
 | `POST /settings` | Parker (password-gated) | Persists per-key site settings (e.g. visibility toggles). |
@@ -43,7 +43,7 @@ npx wrangler login          # opens a browser; click "Allow"
 1. Go to <https://github.com/settings/personal-access-tokens/new>.
 2. **Token name:** `parker-bags-worker`
 3. **Expiration:** whatever you're comfortable with (90 days is fine; you'll get an email before it expires).
-4. **Repository access:** select **Only select repositories** → pick `tjbags`.
+4. **Repository access:** select **Only select repositories** → pick `traderparkers`.
 5. **Repository permissions:** set these (everything else stays "No access"):
    - **Contents** → **Read and write** *(needed to commit `pantry.json` and photos)*
    - **Issues** → **Read and write** *(needed to create suggestion issues)*
@@ -97,9 +97,9 @@ Each one prompts for the value. They get encrypted by Cloudflare and are never v
 
 ## Step 5 — Update `wrangler.toml` for your repo
 
-`wrangler.toml` already points at `kayleyseow/tjbags` with the correct paths. If you fork this repo or rename anything, update these:
+`wrangler.toml` already points at `kayleyseow/traderparkers` with the correct paths. If you fork this repo or rename anything, update these:
 
-- `GITHUB_REPO` — `<your-github-username>/tjbags`
+- `GITHUB_REPO` — `<your-github-username>/traderparkers`
 - `ALLOWED_ORIGINS` — comma-separated list of origins allowed to call this Worker. Should include your GH Pages URL (e.g. `https://kayleyseow.github.io`) and the local Vite ports (`http://localhost:5173`, etc.).
 
 ---

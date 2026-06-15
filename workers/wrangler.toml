@@ -7,7 +7,7 @@ compatibility_date = "2025-01-01"
 
 # Public-ish config. Update GITHUB_REPO and ALLOWED_ORIGIN for your deploy.
 [vars]
-GITHUB_REPO = "kayleyseow/tjbags"
+GITHUB_REPO = "kayleyseow/traderparkers"
 GITHUB_BRANCH = "main"
 PANTRY_PATH = "public/data/pantry.json"
 ENCYCLOPEDIA_PATH = "public/data/encyclopedia.json"
