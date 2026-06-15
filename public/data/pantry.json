@@ -1,1 +1,13 @@
-[]
+[
+  {
+    "slug": "az-sonoran-voyage-2026-06-15",
+    "encyclopediaId": "az-sonoran-voyage",
+    "name": "Sonoran Voyage (Arizona)",
+    "storeNumber": "191",
+    "dateAcquired": "2026-06-15",
+    "memory": "testing new workers endpoint from the admin console.",
+    "photos": [
+      "/pantry-photos/az-sonoran-voyage-2026-06-15-8f1c06.png"
+    ]
+  }
+]
