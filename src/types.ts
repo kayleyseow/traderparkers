@@ -183,7 +183,7 @@ export type PantryBag = {
   slug: string
 
   /**
-   * Links this bag to a EncyclopediaBag.id. Optional — Parker can log a bag
+   * Links this bag to an EncyclopediaBag.id. Optional — Parker can log a bag
    * that isn't in the encyclopedia yet (we'll add it later).
    */
   encyclopediaId?: string

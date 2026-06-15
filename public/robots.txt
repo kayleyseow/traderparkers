@@ -1,10 +1,10 @@
 User-agent: *
-Disallow: /tjbags/
-Allow: /tjbags/encyclopedia
-Allow: /tjbags/assets/
-Allow: /tjbags/favicon.ico
-Allow: /tjbags/apple-touch-icon.png
-Allow: /tjbags/og-cover.png
-Allow: /tjbags/sitemap.xml
+Disallow: /traderparkers/
+Allow: /traderparkers/encyclopedia
+Allow: /traderparkers/assets/
+Allow: /traderparkers/favicon.ico
+Allow: /traderparkers/apple-touch-icon.png
+Allow: /traderparkers/og-cover.png
+Allow: /traderparkers/sitemap.xml
 
-Sitemap: https://kayleyseow.github.io/tjbags/sitemap.xml
+Sitemap: https://kayleyseow.github.io/traderparkers/sitemap.xml

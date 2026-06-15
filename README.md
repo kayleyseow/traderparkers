@@ -2,7 +2,7 @@
 
 A love letter to Trader Joe's tote bags, and to its biggest fan, Parker ♥
 
-The Bag Bazaar is two things at once: a complete reference catalog of every Trader Joe's reusable bag ever printed, and a personal scrapbook of the ones Parker actually owns. It's built with React, Vite, and TypeScript, and you can visit it live at [kayleyseow.github.io/tjbags](https://kayleyseow.github.io/tjbags/).
+The Bag Bazaar is two things at once: a complete reference catalog of every Trader Joe's reusable bag ever printed, and a personal scrapbook of the ones Parker actually owns. It's built with React, Vite, and TypeScript, and you can visit it live at [kayleyseow.github.io/traderparkers](https://kayleyseow.github.io/traderparkers/).
 
 ![Trader Parker's Bag Bazaar](docs/screenshots/encyclopedia-gallery.png)
 
@@ -10,7 +10,7 @@ For the full tour of every page on the site, including the password-gated admin 
 
 ## Design
 
-The site has two halves that stay deliberately separate, even though they cross-link. The **[Encyclopedia](https://kayleyseow.github.io/tjbags/encyclopedia)** (`/encyclopedia`) is a reference: every TJ bag design that exists, 85 entries spanning state bags, special editions, and standard bags. It stands on its own as a fan resource and never frames itself around what Parker happens to own. **[Parker's Collection](https://kayleyseow.github.io/tjbags/pantry)** (`/pantry`) is the personal half: the bags she's collected, each with her own photos, the store she found it in, the date, and the memory attached to it. Ownership shows up on the catalog side only as a quiet aside, never as a progress bar.
+The site has two halves that stay deliberately separate, even though they cross-link. The **[Encyclopedia](https://kayleyseow.github.io/traderparkers/encyclopedia)** (`/encyclopedia`) is a reference: every TJ bag design that exists, 85 entries spanning state bags, special editions, and standard bags. It stands on its own as a fan resource and never frames itself around what Parker happens to own. **[Parker's Collection](https://kayleyseow.github.io/traderparkers/pantry)** (`/pantry`) is the personal half: the bags she's collected, each with her own photos, the store she found it in, the date, and the memory attached to it. Ownership shows up on the catalog side only as a quiet aside, never as a progress bar.
 
 Parker can also toggle which categories (state, special, standard) appear in her own Pantry from the admin settings panel, so the journal stays a celebration of what she chooses to celebrate. That toggle is hers alone — it never touches the Encyclopedia, which always shows every Trader Joe's bag.
 
@@ -30,11 +30,11 @@ Most of the work in a project like this is photos, not code. The reference shots
 
 ### Suggesting a bag
 
-If you've spotted a Trader Joe's bag that isn't in the [Encyclopedia](https://kayleyseow.github.io/tjbags/encyclopedia), there's a public **Suggest a Bag** form at the bottom of that page (gated by [Cloudflare Turnstile](https://www.cloudflare.com/products/turnstile/) so the spam doesn't get in). Submissions land as [GitHub issues](https://github.com/kayleyseow/tjbags/issues) for me to review and merge by hand, so the catalog stays curated even while it stays open to anyone who's seen something new.
+If you've spotted a Trader Joe's bag that isn't in the [Encyclopedia](https://kayleyseow.github.io/traderparkers/encyclopedia), there's a public **Suggest a Bag** form at the bottom of that page (gated by [Cloudflare Turnstile](https://www.cloudflare.com/products/turnstile/) so the spam doesn't get in). Submissions land as [GitHub issues](https://github.com/kayleyseow/traderparkers/issues) for me to review and merge by hand, so the catalog stays curated even while it stays open to anyone who's seen something new.
 
 ## Built with
 
-[TypeScript](https://www.typescriptlang.org) and [React](https://react.dev) across the board, with [React Router](https://reactrouter.com) handling navigation and [Tailwind CSS](https://tailwindcss.com) doing most of the styling (with a handful of CSS Modules where the landing page wanted its own paper-bag look), all bundled by [Vite](https://vite.dev). The photo and scraping tooling under `scripts/` is plain [Node.js](https://nodejs.org), leaning on [sharp](https://sharp.pixelplumbing.com) and [heic-convert](https://www.npmjs.com/package/heic-convert) for image processing and [@imgly's background-removal library](https://github.com/imgly/background-removal-node) to cut bags out of resale photos. The optional backend is a [Cloudflare Worker](https://workers.cloudflare.com), written in TypeScript too.
+[TypeScript](https://www.typescriptlang.org) and [React](https://react.dev) across the board, with [React Router](https://reactrouter.com) handling navigation and [Tailwind CSS](https://tailwindcss.com) doing most of the styling (with a handful of CSS Modules where the landing page wanted its own paper-bag look), all bundled by [Vite](https://vite.dev). The photo and scraping tooling under `scripts/` is plain [Node.js](https://nodejs.org), leaning on [sharp](https://sharp.pixelplumbing.com) for image processing and [@imgly's background-removal library](https://github.com/imgly/background-removal-node) to cut bags out of resale photos, while the admin transcodes HEIC uploads to JPEG in the browser with [heic-to](https://www.npmjs.com/package/heic-to). The optional backend is a [Cloudflare Worker](https://workers.cloudflare.com), written in TypeScript too.
 
 ## Running it locally
 
@@ -63,7 +63,7 @@ The two photo commands are just the entry points to a larger pipeline — scrapi
 
 The site deploys itself. Every push to `main` triggers a [GitHub Actions](https://github.com/features/actions) workflow ([`.github/workflows/deploy.yml`](.github/workflows/deploy.yml)) that runs `npm run build` and publishes the result to GitHub Pages.
 
-The build does one thing worth calling out. A single-page app normally serves the same empty HTML shell for every URL, which is bad for deep links and invisible to search engines. So after Vite finishes, the build [prerenders](scripts/prerender.mjs) a real static HTML file for every encyclopedia route — each one carrying the right title, meta tags, and structured data — and the workflow copies `index.html` to `404.html` so GitHub Pages hands unknown paths back to React Router instead of erroring. [A link straight to a single bag](https://kayleyseow.github.io/tjbags/encyclopedia/nj) returns a true page, not a blank shell.
+The build does one thing worth calling out. A single-page app normally serves the same empty HTML shell for every URL, which is bad for deep links and invisible to search engines. So after Vite finishes, the build [prerenders](scripts/prerender.mjs) a real static HTML file for every encyclopedia route — each one carrying the right title, meta tags, and structured data — and the workflow copies `index.html` to `404.html` so GitHub Pages hands unknown paths back to React Router instead of erroring. [A link straight to a single bag](https://kayleyseow.github.io/traderparkers/encyclopedia/nj) returns a true page, not a blank shell.
 
 ## License
 
@@ -75,7 +75,7 @@ The code is all that license covers. It does not extend to the bag catalog data 
 
 This is an unofficial fan project and isn't affiliated with or endorsed by Trader Joe's. The vintage engravings throughout the site come from [The Graphics Fairy](https://thegraphicsfairy.com/), and the type is set in [Source Serif 4](https://fonts.google.com/specimen/Source+Serif+4) with the [Trader Joe's script font](https://www.fontspace.com/trader-joes-font-f34830) by [Fontopia](https://www.fontspace.com/fontopia) for the headings. Made with love as a birthday gift.
 
-And somewhere on [the About page](https://kayleyseow.github.io/tjbags/about) there's a hidden playlist. The first song is "Bags," by Clairo (the live version she recorded at Electric Lady, ofc). I trust you to find the rest of the surprises.
+And somewhere on [the About page](https://kayleyseow.github.io/traderparkers/about) there's a hidden playlist. The first song is "Bags," by Clairo (the live version she recorded at Electric Lady, ofc). I trust you to find the rest of the surprises.
 
 ---
 

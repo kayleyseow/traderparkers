@@ -15,7 +15,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 
-const SITE_ORIGIN = 'https://kayleyseow.github.io/tjbags'
+const SITE_ORIGIN = 'https://kayleyseow.github.io/traderparkers'
 const BRAND = "Trader Parker's"
 const DIST = 'dist'
 const TEMPLATE_PATH = path.join(DIST, 'index.html')

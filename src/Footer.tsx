@@ -52,7 +52,7 @@ export default function Footer() {
             />
           </Link>
           <a
-            href="https://github.com/kayleyseow/tjbags"
+            href="https://github.com/kayleyseow/traderparkers"
             target="_blank"
             rel="noreferrer"
             className="font-[var(--tj-body)] font-semibold tracking-[0.25em] text-[0.7rem] uppercase opacity-80 hover:opacity-100 underline-offset-4 hover:underline sm:col-start-1 sm:row-start-1 sm:justify-self-start"

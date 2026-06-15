@@ -38,9 +38,9 @@ export default function EncyclopediaDetail() {
   const titleEntry = data?.encyclopedia.find((c) => c.id === id)
   const seoDescription =
     titleEntry?.description ?? truncateForMeta(titleEntry?.design?.blurb)
-  const canonicalUrl = id ? `https://kayleyseow.github.io/tjbags/encyclopedia/${id}` : undefined
+  const canonicalUrl = id ? `https://kayleyseow.github.io/traderparkers/encyclopedia/${id}` : undefined
   const ogImage = titleEntry?.referencePhotos?.[0]
-    ? `https://kayleyseow.github.io/tjbags/${titleEntry.referencePhotos[0]}`
+    ? `https://kayleyseow.github.io/traderparkers/${titleEntry.referencePhotos[0]}`
     : undefined
   const displayName = titleEntry?.region ?? titleEntry?.name ?? 'Bag'
 
@@ -63,7 +63,7 @@ export default function EncyclopediaDetail() {
           name: displayName,
           description: seoDescription,
           image: titleEntry.referencePhotos?.map(
-            (p) => `https://kayleyseow.github.io/tjbags/${p}`,
+            (p) => `https://kayleyseow.github.io/traderparkers/${p}`,
           ),
           brand: { '@type': 'Brand', name: "Trader Joe's" },
           category: 'Reusable shopping bag',

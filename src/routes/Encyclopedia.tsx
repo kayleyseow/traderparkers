@@ -33,12 +33,12 @@ export default function Encyclopedia() {
     title: 'Encyclopedia',
     description:
       "Every known Trader Joe's reusable tote — state-themed, special editions, and the standard lineup, with photos and design notes for each.",
-    canonical: 'https://kayleyseow.github.io/tjbags/encyclopedia',
+    canonical: 'https://kayleyseow.github.io/traderparkers/encyclopedia',
     og: {
       title: "Encyclopedia · Trader Parker's Bag Bazaar",
       description:
         "Every known Trader Joe's reusable tote — state, special, and standard designs.",
-      url: 'https://kayleyseow.github.io/tjbags/encyclopedia',
+      url: 'https://kayleyseow.github.io/traderparkers/encyclopedia',
     },
     jsonLd: {
       '@context': 'https://schema.org',
@@ -46,8 +46,8 @@ export default function Encyclopedia() {
       name: "Trader Parker's Bag Bazaar — Encyclopedia",
       description:
         "Every known Trader Joe's reusable tote — state, special, and standard designs.",
-      url: 'https://kayleyseow.github.io/tjbags/encyclopedia',
-      isPartOf: { '@id': 'https://kayleyseow.github.io/tjbags/#website' },
+      url: 'https://kayleyseow.github.io/traderparkers/encyclopedia',
+      isPartOf: { '@id': 'https://kayleyseow.github.io/traderparkers/#website' },
     },
   })
   const [rawEncyclopedia, setRawEncyclopedia] = useState<EncyclopediaBag[] | null>(null)
@@ -373,7 +373,7 @@ export default function Encyclopedia() {
                       Send a missing bag, or anything off about one that's already
                       here. Submissions land as a{' '}
                       <a
-                        href="https://github.com/kayleyseow/tjbags/issues"
+                        href="https://github.com/kayleyseow/traderparkers/issues"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="underline underline-offset-2 hover:text-[var(--tj-red)] transition-colors"

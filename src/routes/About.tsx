@@ -105,10 +105,7 @@ const ALEXA_GALLERY = [
   },
 ]
 
-// Nick & Camille's reel — one photo per frame, each with its own nameplate
-// carrying Nick's caption + note. Lives on the cream page (no dark wall) so the
-// words stay readable. `grow` is the frame's width-to-height ratio: every frame
-// shares a row height and gets its width from this.
+// Nick & Camille's reel: one photo per frame, each with its own nameplate.
 const NICK_GALLERY: {
   src: string
   alt: string
@@ -579,7 +576,7 @@ export default function About() {
                   Happy birthday, Parker! I hope this next year brings you as much joy and fun as you have always brought to others. 
                   I feel incredibly lucky to have met you and our crew, and to have shared so many fun memories together. 
                   There was never a dull moment when we hung out, and I hope every day has been as fulfilling and exciting for you since then!
-                  Plenty of adbentures had, and plenty of adventures to come. Can't wait to see you again! (You're def on my list of most reliable
+                  Plenty of adventures had, and plenty of adventures to come. Can't wait to see you again! (You're def on my list of most reliable
                   people I could ever count on)
                 </p>
                 <p>
@@ -1024,8 +1021,8 @@ export default function About() {
                 <CreditRow
                   title="Source Code"
                   detail={
-                    <InlineLink href="https://github.com/kayleyseow/tjbags">
-                      github.com/kayleyseow/tjbags
+                    <InlineLink href="https://github.com/kayleyseow/traderparkers">
+                      github.com/kayleyseow/traderparkers
                     </InlineLink>
                   }
                 />
@@ -1059,7 +1056,7 @@ export default function About() {
               crop, rotate, then bundle and label everything into
               folders, one bag at a time. That night is what prompted
               the{' '}
-              <InlineLink href="https://github.com/kayleyseow/tjbags/blob/main/scripts/scrape-poshmark.mjs">
+              <InlineLink href="https://github.com/kayleyseow/traderparkers/blob/main/scripts/scrape-poshmark.mjs">
                 Poshmark scraper
               </InlineLink>
               , which took over most of the haul for the special and
@@ -1133,7 +1130,7 @@ export default function About() {
                 Cloudflare Worker
               </InlineLink>{' '}
               that commits straight to the{' '}
-              <InlineLink href="https://github.com/kayleyseow/tjbags">
+              <InlineLink href="https://github.com/kayleyseow/traderparkers">
                 GitHub repo
               </InlineLink>{' '}
               via the{' '}
@@ -1789,11 +1786,7 @@ function AlexaGallery() {
   )
 }
 
-/* Nick & Camille's horizontal reel. Same infinite-scroll mechanic as the
-   gallery walls (three identical copies, parked in the middle, wrapped at the
-   seams), but on the cream page with a nameplate under each frame instead of a
-   dark spotlight wall. Frames share a row height via --h; each frame's width
-   comes from its --ratio (the frame's aspect). */
+/* Nick & Camille's photo reel: infinite-scroll carousel, one nameplate per frame. */
 function NickCarousel() {
   const track = useRef<HTMLDivElement>(null)
   const programmatic = useRef(false)

@@ -79,7 +79,7 @@ A single logged bag from Parker's pantry: her own photos, the store she found it
 
 ### About: `/about`
 
-The story of the gift, the build, and the people. Also home to a hidden playlist (see [Easter eggs](#easter-eggs)). The intro is on the left, the "Under the Hood" technical writeup is on the right.
+The story of the gift, the build, and the people. A "From the Crew" section gathers birthday notes from Parker's friends, several paired with a horizontal carousel of their photos. Also home to a hidden playlist (see [Easter eggs](#easter-eggs)). The intro is on the left, the "Under the Hood" technical writeup is on the right.
 
 <table>
   <tr>
