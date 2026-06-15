@@ -75,7 +75,7 @@ The code is all that license covers. It does not extend to the bag catalog data 
 
 This is an unofficial fan project and isn't affiliated with or endorsed by Trader Joe's. The vintage engravings throughout the site come from [The Graphics Fairy](https://thegraphicsfairy.com/), and the type is set in [Source Serif 4](https://fonts.google.com/specimen/Source+Serif+4) with the [Trader Joe's script font](https://www.fontspace.com/trader-joes-font-f34830) by [Fontopia](https://www.fontspace.com/fontopia) for the headings. Made with love as a birthday gift.
 
-And somewhere on [the About page](https://kayleyseow.github.io/traderparkers/about) there's a hidden playlist. The first song is "Bags," by Clairo (the live version she recorded at Electric Lady, ofc). I trust you to find the rest of the surprises.
+And somewhere on [the About page](https://kayleyseow.github.io/traderparkers/about) there's a hidden playlist. The first song is "Bags," by Clairo ([the live version she recorded at Electric Lady, ofc](https://open.spotify.com/track/3ISKxnCGKc5B9zr9CTUB3v)). I trust you to find the rest of the surprises.
 
 ---
 
