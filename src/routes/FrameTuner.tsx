@@ -5,16 +5,25 @@ import { useTitle } from '../useTitle'
 
 const BASE = import.meta.env.BASE_URL
 
-// Reference photos with orientation labels — pick a horizontal one to tune
-// landscape frames, a vertical one for portrait frames.
+// Reference "photos" for tuning frames — generated blank squares at each common
+// aspect ratio, so the tuner needs no real imagery in public/pantry-photos.
+// Pick a horizontal one to tune landscape frames, a vertical one for portrait.
+function blankPhoto(w: number, h: number): string {
+  const svg =
+    `<svg xmlns="http://www.w3.org/2000/svg" width="${w}" height="${h}">` +
+    `<rect width="100%" height="100%" fill="#c8a878" fill-opacity="0.3"/>` +
+    `<rect x="2" y="2" width="${w - 4}" height="${h - 4}" fill="none" stroke="#2a1f14" stroke-opacity="0.4" stroke-width="3"/>` +
+    `</svg>`
+  return `data:image/svg+xml,${encodeURIComponent(svg)}`
+}
+
 const REFERENCE_PHOTOS = [
-  { name: 'citrus-jute (4:3 horizontal)', url: `${BASE}pantry-photos/citrus-jute-2026-02-17-e82c26.jpeg` },
-  { name: 'classic-reusable (4:3 horizontal)', url: `${BASE}pantry-photos/classic-reusable-2026-05-17-0d2799.jpeg` },
-  { name: 'arizona back (16:9 horizontal)', url: `${BASE}pantry-photos/az-2026-05-15-f8b96a.jpeg` },
-  { name: 'arizona front (3:4 portrait)', url: `${BASE}pantry-photos/az-2026-05-15-f4ec9c.jpeg` },
-  { name: 'kentucky (3:4 portrait)', url: `${BASE}pantry-photos/ky-2026-05-15-13166f.jpeg` },
-  { name: 'flower-shop (4:5 portrait)', url: `${BASE}pantry-photos/flower-shop-2026-05-17-6f1a06.png` },
-  { name: 'mock 9:16 portrait (very tall)', url: `${BASE}pantry-photos/mock-9x16-portrait.jpg` },
+  { name: '4:3 horizontal', url: blankPhoto(400, 300) },
+  { name: '16:9 horizontal', url: blankPhoto(640, 360) },
+  { name: '1:1 square', url: blankPhoto(400, 400) },
+  { name: '3:4 portrait', url: blankPhoto(300, 400) },
+  { name: '4:5 portrait', url: blankPhoto(320, 400) },
+  { name: '9:16 portrait (very tall)', url: blankPhoto(360, 640) },
 ]
 
 type Rotation = 0 | 90 | 180 | 270
