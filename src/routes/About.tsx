@@ -1173,11 +1173,12 @@ export default function About() {
               </summary>
               <p className="mt-3">
                 On this page, hover the birthday greeting up top, brush
-                one of the hung photos, give the red dot on the
-                bazaar's awning a tap, and slow down near the cats in
-                the margins. Around the rest of the site, decline the
-                welcome on the landing page and hover the figures
-                tucked into the encyclopedia gallery's margins.
+                the hung photos and click through each gallery, give 
+                the red dot on the bazaar's awning a tap (1 for 
+                play/pause, 2 for fast forward, 3 to go back—yk the drill)
+                and slow down near the cats in the margins. Around the rest
+                of the site, decline the welcome on the landing page and 
+                hover the figures tucked into the encyclopedia gallery's margins.
               </p>
             </details>
             <p>
@@ -2241,6 +2242,29 @@ function BazaarSecret() {
     },
     [],
   )
+  useEffect(() => {
+    const handlePlayerMessage = (event: MessageEvent) => {
+      if (event.origin !== 'https://www.youtube.com') return
+
+      let data: any
+      try {
+        data = typeof event.data === 'string' ? JSON.parse(event.data) : event.data
+      } catch {
+        return
+      }
+
+      if (data?.event === 'infoDelivery' && data?.info?.playerState === 0) {
+        setTrackIndex((prev) => {
+          if (prev === null) return 0
+          return (prev + 1) % trackCount
+        })
+        setIsPlaying(true)
+      }
+    }
+
+    window.addEventListener('message', handlePlayerMessage)
+    return () => window.removeEventListener('message', handlePlayerMessage)
+  }, [trackCount])
 
   const sendCommand = (func: 'playVideo' | 'pauseVideo') => {
     iframeRef.current?.contentWindow?.postMessage(
