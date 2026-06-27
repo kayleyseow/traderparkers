@@ -106,5 +106,14 @@
     "dateAcquired": "2026-05-24",
     "memory": "Visiting my mom in Arizona after she moved!",
     "photos": []
+  },
+  {
+    "slug": "ca-norcal-2026-05-30",
+    "encyclopediaId": "ca-norcal",
+    "name": "Northern California (California)",
+    "storeNumber": "212",
+    "dateAcquired": "2026-05-30",
+    "memory": "Wandering around San Jose while visiting Madhu (and Kayley and other friends!) in the Bay Area :)",
+    "photos": []
   }
 ]
