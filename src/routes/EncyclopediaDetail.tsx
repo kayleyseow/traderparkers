@@ -139,8 +139,13 @@ function EncyclopediaView({
   const [activeVariantId, setActiveVariantId] = useState<string | undefined>(
     variants[0]?.id,
   )
+
+  useEffect(() => {
+    setActiveVariantId(variants[0]?.id)
+  }, [entry.id, variants])
+
   const activeVariant: EncyclopediaVariant | undefined = useMemo(
-    () => variants.find((v) => v.id === activeVariantId),
+    () => variants.find((v) => v.id === activeVariantId) ?? variants[0],
     [variants, activeVariantId],
   )
 
