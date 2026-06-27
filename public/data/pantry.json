@@ -34,5 +34,14 @@
     "dateAcquired": "2025-08-18",
     "memory": "Visiting my friends from high school in DC!",
     "photos": []
+  },
+  {
+    "slug": "ma-boston-2025-09-01",
+    "encyclopediaId": "ma-boston",
+    "name": "Boston (Massachusetts)",
+    "storeNumber": "510",
+    "dateAcquired": "2025-09-01",
+    "memory": "Helping my brother move back into college with my mom!",
+    "photos": []
   }
 ]
